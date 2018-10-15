@@ -7,5 +7,8 @@ namespace Taken5Bart.Controllers.Objects
 {
     public class Sessie
     {
+        public int Id { get; set; }
+        public List<Team> Teams { get; set; }
+        public Team Winnaar { get; set; }
     }
 }
