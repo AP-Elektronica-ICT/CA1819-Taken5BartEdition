@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{9C7D2C91-7261-46FE-8789-736F584BEE14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "model", "model\model.csproj", "{C76BC6E3-00E3-4485-B971-33CE4C20A893}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "model", "model\model.csproj", "{C76BC6E3-00E3-4485-B971-33CE4C20A893}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{5495428E-B0CF-4E40-A6B2-25EC4AED6E64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C76BC6E3-00E3-4485-B971-33CE4C20A893}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C76BC6E3-00E3-4485-B971-33CE4C20A893}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C76BC6E3-00E3-4485-B971-33CE4C20A893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5495428E-B0CF-4E40-A6B2-25EC4AED6E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5495428E-B0CF-4E40-A6B2-25EC4AED6E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5495428E-B0CF-4E40-A6B2-25EC4AED6E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5495428E-B0CF-4E40-A6B2-25EC4AED6E64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

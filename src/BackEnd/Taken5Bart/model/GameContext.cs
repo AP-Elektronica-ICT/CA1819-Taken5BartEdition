@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Taken5Bart.Controllers.Objects;
+using Taken5Bart.Controllers;
 
 namespace model
 {
-    class GameContext: DbContext
+    public class GameContext: DbContext
     {
         public GameContext(DbContextOptions<GameContext> options) : base(options)
         {

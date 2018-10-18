@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Taken5Bart.Controllers.Objects
+namespace Taken5Bart.Controllers
 {
     public class Speler
     {
