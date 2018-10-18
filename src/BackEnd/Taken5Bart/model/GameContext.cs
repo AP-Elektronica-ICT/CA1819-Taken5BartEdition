@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Taken5Bart.Controllers.Objects;
 
 namespace model
 {
@@ -25,7 +26,7 @@ namespace model
         public DbSet<Locatie> Locaties { get; set; }
         public DbSet<Puzzel> Puzzels { get; set; }
         public DbSet<Sessie> Sessies { get; set; }
-        public DbSet<Spelser> Spelers { get; set; }
+        public DbSet<Speler> Spelers { get; set; }
         public DbSet<Team> Teams { get; set; }
     }
 }
