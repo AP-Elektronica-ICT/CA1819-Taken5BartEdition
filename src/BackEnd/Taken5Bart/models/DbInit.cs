@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Models
 {
-    class DbInit
+    public class DbInit
     {
         public static void Initialize(GameContext context)
         {

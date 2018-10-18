@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Interfaces;
+using Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace Taken5Bart.Controllers
 {
@@ -21,10 +22,11 @@ namespace Taken5Bart.Controllers
 
 
         [HttpGet("{id}")]
-        public Game Get(int id)
+        public IEnumerable<Game> Get(int id)
         {
+            Console.WriteLine(id);
             Game game = GetGame(id);
-            return game;
+            return new Game[] { game };
         }
 
         private Game GetGame(int id)

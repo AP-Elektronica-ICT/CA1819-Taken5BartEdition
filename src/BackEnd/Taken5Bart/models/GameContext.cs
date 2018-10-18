@@ -16,7 +16,7 @@ namespace Models
         {
             //  modelBuilder.Entity<Movie>().ToTable("Movie");
             // modelBuilder.Entity<Rating>().ToTable("Rating");
-
+            modelBuilder.Entity<Game>().ToTable("Game");
 
         }
 

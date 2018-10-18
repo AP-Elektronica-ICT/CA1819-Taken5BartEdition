@@ -1,5 +1,5 @@
-﻿using Interfaces;
-using model;
+﻿using Interface;
+using Models;
 using Repository;
 using System;
 using System.Collections.Generic;
