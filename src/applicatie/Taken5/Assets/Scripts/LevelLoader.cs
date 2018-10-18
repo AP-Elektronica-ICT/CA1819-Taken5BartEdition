@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
+    public GameObject loadingscreen;
+    public Slider slider;
+
     public void LoadLevel(int sceneIndex)
     {
         StartCoroutine(LoadAsychronously(sceneIndex));
@@ -11,11 +15,12 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadAsychronously (int sceneIndex)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        
+
+        loadingscreen.SetActive(true);
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
-            Debug.Log(progress);
+            slider.value = progress;
             
              yield return null;
             
