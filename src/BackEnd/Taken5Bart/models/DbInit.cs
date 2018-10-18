@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Taken5Bart.Controllers;
 
-namespace Model
+namespace Models
 {
     class DbInit
     {

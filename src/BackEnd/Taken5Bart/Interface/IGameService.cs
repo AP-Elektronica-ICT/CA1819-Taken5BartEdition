@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Taken5Bart.Controllers;
 
-namespace Interfaces
+namespace Interface
 {
     public interface IGameService
     {

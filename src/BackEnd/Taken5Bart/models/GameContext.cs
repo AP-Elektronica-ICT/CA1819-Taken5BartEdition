@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Taken5Bart.Controllers;
 
-namespace Model
+namespace Models
 {
     public class GameContext: DbContext
     {
