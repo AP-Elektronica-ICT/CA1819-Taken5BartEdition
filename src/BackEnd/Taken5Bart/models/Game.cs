@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Taken5Bart.Controllers
+namespace Models
 {
     public class Game
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Taken5Bart.Controllers;
 
-namespace model
+namespace Model
 {
     class DbInit
     {

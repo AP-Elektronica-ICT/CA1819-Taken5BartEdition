@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Taken5Bart.Controllers;
 
-namespace model
+namespace Model
 {
     public class GameContext: DbContext
     {
