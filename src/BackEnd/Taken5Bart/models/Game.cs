@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,5 +12,8 @@ namespace Models
         public DateTime Datum { get; set; }
         public int Uur { get; set; }
         public Sessie Sessie { get; set; }
+
+        [JsonIgnore]
+        public List<Puzzel> Puzzels { get; set; }
     }
 }
