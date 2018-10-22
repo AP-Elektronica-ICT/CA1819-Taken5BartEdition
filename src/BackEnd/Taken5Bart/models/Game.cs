@@ -9,11 +9,8 @@ namespace Models
     public class Game
     {
         public int Id { get; set; }
-        public DateTime Datum { get; set; }
-        public int Uur { get; set; }
-        public Sessie Sessie { get; set; }
-
-        [JsonIgnore]
-        public List<Puzzel> Puzzels { get; set; }
+        public String Stad { get; set; }
+        public List<Sessie> Sessie { get; set; }
+        public List<Puzzel> MogelijkePuzzels { get; set; }
     }
 }
