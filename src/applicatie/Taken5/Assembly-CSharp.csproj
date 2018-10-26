@@ -53,10 +53,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DragAndTrow.cs" />
      <Compile Include="Assets\Scripts\GPS.cs" />
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\PhoneCamera.cs" />
      <Compile Include="Assets\Scripts\UpdateGPSText.cs" />
+     <None Include="Assets\Images\Pokemons\3DS - Pokemon X Y - Poke Balls\Pokemon XY\PokeBalls\Tag.txt" />
+     <None Include="Assets\Images\Pokemons\3DS - Pokemon X Y - 017 Pidgeotto\Pokemon XY\Pidgeotto\Tag.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

@@ -3,6 +3,9 @@ PlayerPath?
 C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/build.apk
 SceneListBegin?
 Assets/Scenes/Loadingscreen.unity
+Assets/Scenes/Menu.unity
+Assets/Scenes/Menu_Create.unity
+Assets/Scenes/Menu_Join.unity
 Assets/Scenes/CamareWithcoordinates.unity
 SceneListEnd?
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
