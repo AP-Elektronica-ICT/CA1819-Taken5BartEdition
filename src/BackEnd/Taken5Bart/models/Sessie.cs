@@ -9,10 +9,10 @@ namespace Models
     public class Sessie
     {
         public int Id { get; set; }
-        public List<Team> Teams { get; set; }
+        public ICollection<Team> Teams { get; set; }
         public DateTime StartTijd { get; set; }
         
         [JsonIgnore]
-        public Sessie AssignedSessie { get; set; }
+        public Sessie AssignedGame { get; set; }
     }
 }

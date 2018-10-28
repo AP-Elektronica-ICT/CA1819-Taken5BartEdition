@@ -10,9 +10,9 @@ namespace Models
     {
         public int Id { get; set; }
         public string TeamNaam { get; set; }
-        public List<Speler> Spelers { get; set; }
+        public ICollection<Speler> Spelers { get; set; }
         public int DiamantenVerzameld { get; set; }
-        public List<Puzzel> Puzzellijst { get; set; } //op volgorde dat gedaan moet worden
+        public ICollection<Puzzel> Puzzellijst { get; set; } //op volgorde dat gedaan moet worden
         public int VerzameldeDiamanten { get; set; } //dient ook als pointer van de huidige puzzel
         public int Score { get; set; }
 

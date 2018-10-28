@@ -10,7 +10,7 @@ namespace Models
     {
         public int Id { get; set; }
         public String Stad { get; set; }
-        public List<Sessie> Sessie { get; set; }
-        public List<Puzzel> MogelijkePuzzels { get; set; }
+        public ICollection<Sessie> Sessie { get; set; }
+        public ICollection<Puzzel> MogelijkePuzzels { get; set; }
     }
 }
