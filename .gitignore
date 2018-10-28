@@ -267,3 +267,13 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 *.cache
+
+src/applicatie/Taken5/Assembly-CSharp\.csproj
+
+src/applicatie/Taken5/Library/assetDatabase3
+
+src/applicatie/Taken5/Library/EditorInstance\.json
+
+src/applicatie/Taken5/Library/metadata/
+
+src/applicatie/Taken5/Temp/
