@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using Models;
+
 
 namespace Repository
 {
-    public class GameRepository
+    public class GameRepository:IGameRepository
     {
         GameContext _context;
 
@@ -22,11 +24,15 @@ namespace Repository
 
         public Game GetGame(int id)
         {
-            Game game = _context.Games.Where(g => g.Id == id).Single();
-            if (game != null)
-                return game;
-            else
-                return null;
+            var game = _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels).SingleOrDefault(g => g.Id == id);
+            return game;
+   
         }
+    }
+
+    public interface IGameRepository
+    {
+        Game GetGame(int id);
+        void NewGame(Game g);
     }
 }

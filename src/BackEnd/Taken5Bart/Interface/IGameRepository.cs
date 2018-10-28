@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Interface
 {
-    public interface IGameService
+    internal interface IGameRepository
     {
-        Game GetGame(int Id);
-        
+        Game GetGames();
+        void NewGame(Game g);
     }
 }

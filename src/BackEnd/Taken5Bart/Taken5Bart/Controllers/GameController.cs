@@ -20,19 +20,28 @@ namespace Taken5Bart.Controllers
             gameService = service;
         }
 
-
-        [HttpGet("{id}")]
-        public IEnumerable<Game> Get(int id)
+        
+        public IActionResult Get()
         {
-            Console.WriteLine(id);
-            Game game = GetGame(id);
-            return new Game[] { game };
+            return Ok("Hi");
         }
 
-        private Game GetGame(int id)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            return gameService.GetGame(id);
-           
+            Console.WriteLine(id);
+            var game = GetGame(id);
+            return game;
+        }
+
+        private IActionResult GetGame(int id)
+        {
+            Game game = gameService.GetGame(id);
+            if(game == null)
+            {
+                return NotFound();
+            }
+            return Ok(game);
         }
     }
 }
