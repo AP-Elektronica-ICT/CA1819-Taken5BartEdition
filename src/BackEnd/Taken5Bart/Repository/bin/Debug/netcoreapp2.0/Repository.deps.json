@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v2.0": {
       "Repository/1.0.0": {
         "dependencies": {
+          "Interface": "1.0.0",
           "Models": "1.0.0"
         },
         "runtime": {
@@ -3763,6 +3764,14 @@
           }
         }
       },
+      "Interface/1.0.0": {
+        "dependencies": {
+          "Models": "1.0.0"
+        },
+        "runtime": {
+          "Interface.dll": {}
+        }
+      },
       "Models/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.0.0",
@@ -5802,6 +5811,11 @@
       "sha512": "sha512-KXblJ3XWzUORNFiIoItmK/sOFIa3aKdjXSpdiCpYmqUKeFt6BQ1pDoGqeynvmuwLqlqp6/+RCXnW+Fix1bPWxQ==",
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
+    },
+    "Interface/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Models/1.0.0": {
       "type": "project",

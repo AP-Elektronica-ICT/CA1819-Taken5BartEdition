@@ -37,6 +37,7 @@ namespace Taken5Bart
             });
             services.AddDbContext<GameContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IGameService, GameService>();
+            services.AddScoped<ISpelerService, SpelerService>();
             services.AddMvc();
         }
 

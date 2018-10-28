@@ -21,7 +21,7 @@ namespace Repository.T5B
    
         }
 
-        public Game GetGame()
+        public Game GetGames()
         {
             throw new System.NotImplementedException();
         }

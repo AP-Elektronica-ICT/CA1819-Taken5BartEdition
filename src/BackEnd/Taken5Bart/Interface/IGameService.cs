@@ -9,6 +9,7 @@ namespace Interface.T5B
     public interface IGameService
     {
         Game GetGame(int Id);
-        
+        Game GetGames();
+
     }
 }

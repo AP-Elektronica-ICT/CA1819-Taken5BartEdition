@@ -8,7 +8,8 @@ namespace Interface.T5B
 {
     public interface IGameRepository
     {
-        Game GetGame();
+        Game GetGame(int id);
+        Game GetGames();
         void NewGame(Game g);
     }
 }

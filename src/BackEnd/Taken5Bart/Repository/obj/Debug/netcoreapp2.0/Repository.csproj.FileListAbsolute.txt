@@ -10,3 +10,5 @@ E:\AP\CA\CA1819-Taken5BartEdition\src\BackEnd\Taken5Bart\Repository\obj\Debug\ne
 E:\AP\CA\CA1819-Taken5BartEdition\src\BackEnd\Taken5Bart\Repository\obj\Debug\netcoreapp2.0\Repository.csproj.CopyComplete
 E:\AP\CA\CA1819-Taken5BartEdition\src\BackEnd\Taken5Bart\Repository\obj\Debug\netcoreapp2.0\Repository.dll
 E:\AP\CA\CA1819-Taken5BartEdition\src\BackEnd\Taken5Bart\Repository\obj\Debug\netcoreapp2.0\Repository.pdb
+E:\AP\CA\CA1819-Taken5BartEdition\src\BackEnd\Taken5Bart\Repository\bin\Debug\netcoreapp2.0\Interface.dll
+E:\AP\CA\CA1819-Taken5BartEdition\src\BackEnd\Taken5Bart\Repository\bin\Debug\netcoreapp2.0\Interface.pdb

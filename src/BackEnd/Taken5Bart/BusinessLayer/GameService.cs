@@ -25,5 +25,10 @@ namespace BusinessLayer.T5B
             Game game = gameRepo.GetGame(Id);
             return game;
         }
+
+        public Game GetGames()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

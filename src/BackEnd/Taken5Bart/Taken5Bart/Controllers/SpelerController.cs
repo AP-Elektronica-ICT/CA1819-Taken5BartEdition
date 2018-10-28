@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Interface.T5B;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Taken5Bart.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class SpelerController : ControllerBase
     {
+        private ISpelerService spelerService;
+        public SpelerController(ISpelerService service)
+        {
+            spelerService = service;
+        }
+
         // GET: api/Speler
         [HttpGet]
         public IEnumerable<string> Get()
@@ -20,9 +28,9 @@ namespace Taken5Bart.Controllers
 
         // GET: api/Speler/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return GetSpeler(id);
         }
 
         // POST: api/Speler
@@ -41,6 +49,17 @@ namespace Taken5Bart.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+
+        private IActionResult GetSpeler(int id)
+        {
+            var speler = spelerService.GetSpeler(id);
+            if (speler == null)
+            {
+                return NotFound();
+            }
+            return Ok(speler);
         }
     }
 }

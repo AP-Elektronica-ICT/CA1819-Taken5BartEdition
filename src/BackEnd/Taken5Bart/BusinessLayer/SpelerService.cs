@@ -10,9 +10,9 @@ using Repository.T5B;
 
 namespace BusinessLayer.T5B
 {
-    class SpelerService : ISpelerService
+    public class SpelerService : ISpelerService
     {
-        private ISpelerRepository gameRepo;
+        private ISpelerRepository spelerRepo;
         public SpelerService(GameContext context)
         {
             spelerRepo = new SpelerRepository(context);
