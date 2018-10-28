@@ -1,13 +1,14 @@
 ﻿using Models;
+using Models.T5B;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Interface
+namespace Interface.T5B
 {
-    internal interface IGameRepository
+    public interface IGameRepository
     {
-        Game GetGames();
+        Game GetGame();
         void NewGame(Game g);
     }
 }
