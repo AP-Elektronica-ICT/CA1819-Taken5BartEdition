@@ -30,6 +30,7 @@ namespace Taken5Bart.Controllers
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
+            Console.WriteLine(GetSpeler(id));
             return GetSpeler(id);
         }
 

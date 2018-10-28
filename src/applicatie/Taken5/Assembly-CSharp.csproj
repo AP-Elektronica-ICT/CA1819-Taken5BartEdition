@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\PhoneCamera.cs" />
      <Compile Include="Assets\Scripts\UpdateGPSText.cs" />
+     <Compile Include="Assets\Testing\Json\JsonGetName1.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>E:/AP/CA/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
