@@ -36,6 +36,11 @@ namespace Repository.T5B
             throw new NotImplementedException();
         }
 
-        
+        public Team GetTeamFromSpeler(int spelerId)
+        {
+            var s = _context.Spelers.Include(sp => sp.AssignedTeam).Single(sp => sp.Id == spelerId);
+            var team = _context.Teams.Include(t => t.Spelers).Single(t => t.Id == s.AssignedTeam.Id);
+            return team;
+        }
     }
 }

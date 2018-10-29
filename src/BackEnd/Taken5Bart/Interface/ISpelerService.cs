@@ -9,5 +9,6 @@ namespace Interface.T5B
     public interface ISpelerService
     {
         Speler GetSpeler(int id);
+        Team GetTeamFromSpeler(int spelerId);
     }
 }

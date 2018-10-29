@@ -24,5 +24,10 @@ namespace BusinessLayer.T5B
             Speler s = spelerRepo.GetSpeler(id);
             return s;
         }
+
+        public Team GetTeamFromSpeler(int spelerId)
+        {
+            return spelerRepo.GetTeamFromSpeler(spelerId);
+        }
     }
 }

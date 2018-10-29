@@ -36,5 +36,7 @@ namespace Repository.T5B
             var team = _context.Teams.Include(t => t.Spelers).Include(t => t.Puzzellijst);
             return team;
         }
+
+        
     }
 }

@@ -34,6 +34,19 @@ namespace Taken5Bart.Controllers
             return GetSpeler(id);
         }
 
+        // GET: api/Team/Speler/id
+        [HttpGet("{id}/Team/")]
+        public IActionResult getTeamFromSpeler(int id)
+        {
+            var t = spelerService.GetTeamFromSpeler(id);
+            if (t == null)
+            {
+                return NotFound();
+            }
+            return Ok(t);
+
+        }
+
         // POST: api/Speler
         [HttpPost]
         public void Post([FromBody] string value)
