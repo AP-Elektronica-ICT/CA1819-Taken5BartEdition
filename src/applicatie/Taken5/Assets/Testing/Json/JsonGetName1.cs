@@ -25,12 +25,14 @@ public class JsonGetName1 : MonoBehaviour {
             SpelerNaam.text = speler.voornaam;
         }
     }
+
+    [Serializable]
+    private class Speler
+    {
+        public int id;
+        public string voornaam;
+        public string achternaam;
+    }
 }
 
-[Serializable]
-public class Speler
-{
-    public int id;
-    public string voornaam;
-    public string achternaam;
-}
+
