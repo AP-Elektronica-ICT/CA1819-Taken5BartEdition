@@ -12,11 +12,13 @@ namespace BusinessLayer.T5B
 {
     public class SpelerService : ISpelerService
     {
-        private ISpelerRepository spelerRepo;
+        private readonly SpelerRepository spelerRepo;
         public SpelerService(GameContext context)
         {
             spelerRepo = new SpelerRepository(context);
+            
         }
+
         public Speler GetSpeler(int id)
         {
             Speler s = spelerRepo.GetSpeler(id);

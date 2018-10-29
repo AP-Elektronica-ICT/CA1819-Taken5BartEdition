@@ -5,42 +5,43 @@ using System.Threading.Tasks;
 using Interface.T5B;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.T5B;
 
 namespace Taken5Bart.Controllers
 {
+    [Route("api/Team")]
     [Produces("application/json")]
-    [Route("api/Speler")]
     [ApiController]
-    public class SpelerController : ControllerBase
+    public class TeamController : ControllerBase
     {
-        private ISpelerService spelerService;
-        public SpelerController(ISpelerService service)
+        private ITeamService teamService;
+        public TeamController(ITeamService service)
         {
-            spelerService = service;
+            teamService = service;
         }
 
-        // GET: api/Speler
+        // GET: api/Team
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Team> Get()
         {
-            return new string[] { "value1", "value2" };
+            var teams = teamService.GetTeams();
+            return teams;
         }
 
-        // GET: api/Speler/5
+        // GET: api/Team/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Console.WriteLine(GetSpeler(id));
-            return GetSpeler(id);
+            return GetTeam(id);
         }
 
-        // POST: api/Speler
+        // POST: api/Team
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT: api/Speler/5
+        // PUT: api/Team/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
@@ -52,15 +53,14 @@ namespace Taken5Bart.Controllers
         {
         }
 
-
-        private IActionResult GetSpeler(int id)
+        private IActionResult GetTeam(int id)
         {
-            var speler = spelerService.GetSpeler(id);
-            if (speler == null)
+            var t = teamService.GetTeam(id);
+            if (t == null)
             {
                 return NotFound();
             }
-            return Ok(speler);
+            return Ok(t);
         }
     }
 }
