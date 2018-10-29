@@ -4775,6 +4775,19 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "Interface/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Interface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Interface.dll": {}
+        }
+      },
       "Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -12746,6 +12759,11 @@
         "windowsazure.storage.nuspec"
       ]
     },
+    "Interface/1.0.0": {
+      "type": "project",
+      "path": "../Interface/Interface.csproj",
+      "msbuildProject": "../Interface/Interface.csproj"
+    },
     "Models/1.0.0": {
       "type": "project",
       "path": "../models/Models.csproj",
@@ -12754,6 +12772,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "Interface >= 1.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "Models >= 1.0.0"
     ]
@@ -12788,6 +12807,9 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
+            "E:\\AP\\CA\\CA1819-Taken5BartEdition\\src\\BackEnd\\Taken5Bart\\Interface\\Interface.csproj": {
+              "projectPath": "E:\\AP\\CA\\CA1819-Taken5BartEdition\\src\\BackEnd\\Taken5Bart\\Interface\\Interface.csproj"
+            },
             "E:\\AP\\CA\\CA1819-Taken5BartEdition\\src\\BackEnd\\Taken5Bart\\models\\Models.csproj": {
               "projectPath": "E:\\AP\\CA\\CA1819-Taken5BartEdition\\src\\BackEnd\\Taken5Bart\\models\\Models.csproj"
             }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+using Interface.T5B;
 using Microsoft.EntityFrameworkCore;
-using Models;
+using Models.T5B;
 
-
-namespace Repository
+namespace Repository.T5B
 {
     public class GameRepository:IGameRepository
     {
@@ -17,22 +14,22 @@ namespace Repository
             _context = context;
         }
 
-        public void NewGame(Game g)
-        {
-            _context.Games.Add(g);
-        }
-
         public Game GetGame(int id)
         {
             var game = _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels).SingleOrDefault(g => g.Id == id);
             return game;
    
         }
-    }
 
-    public interface IGameRepository
-    {
-        Game GetGame(int id);
-        void NewGame(Game g);
+        public Game GetGames()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void NewGame(Game g)
+        {
+            _context.Games.Add(g);
+        }
+
     }
 }
