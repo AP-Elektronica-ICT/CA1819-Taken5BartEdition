@@ -5,9 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
 
+/*
+ * Voor JSON pakketten die maar uit 1 laag bestaan is JsonUtility van unity zelf handig genoeg, maar voor json dat bestaat uit meerdere lagen is SimpleJSOn handiger
+ */ 
+
 public class GetTeamData : MonoBehaviour {
 
-    public string url = "http://localhost:1907/api/Speler/"+Info.spelerId.ToString()+"/Team";
+    public string url;
     // Use this for initialization
     public Text SpelerNaam;
     public Text TeamNaam;
@@ -17,6 +21,7 @@ public class GetTeamData : MonoBehaviour {
 
     IEnumerator Start()
     {
+        url = "http://localhost:1907/api/Speler/" + Info.spelerId.ToString() + "/Team";
         SpelerNaam.text = "my test";
         using (WWW www = new WWW(url))
         {
@@ -24,42 +29,45 @@ public class GetTeamData : MonoBehaviour {
             string json = www.text;
             var N = JSON.Parse(json);
             Debug.Log(N);
-
-            Team team = JsonUtility.FromJson<Team>(json);
-            
-            //Debug.Log(Team team = JsonUtility.FromJson<Team>(json);); //Type casting!!!
-            Debug.Log(team.spelers);
             SpelerNaam.text = N["spelers"][0]["voornaam"].Value;
             TeamNaam.text = N["teamNaam"].Value;
             Diamanten.text = N["diamantenVerzameld"].Value;
             Score.text = N["score"].Value;
             Info.teamId = N["id"];
             www.Dispose();
-            //Start2();
+          
         }
+        StartCoroutine(Delayed());
+        
+
+    }
+    IEnumerator Delayed()
+    {
+        yield return new WaitForSeconds(2f);
         Debug.Log("start2");
-        var url2 = "http://localhost:1907/api/Team/" + Info.teamId.ToString() + "/GetScorePosition";
+        var url2 = "http://localhost:1907/api/Speler/" + Info.spelerId.ToString();
         Debug.Log(url2);
         using (WWW www = new WWW(url2))
         {
             yield return www;
-            var result = www.text;
-            Debug.Log(result);
-            TeamPositie.text = result;
+            var json = www.text;
+            var N = JSON.Parse(json);
+            Debug.Log(N);
+            SpelerNaam.text = N["voornaam"].Value;
         }
-
-    }
-    IEnumerator getScorePos()
-    {
-        Debug.Log("start2");
-        var url2 = "http://localhost:1907/api/Team/" + Info.teamId.ToString() + "/GetScorePosition";
-        using (WWW www = new WWW(url2))
+   
+        Debug.Log("start3");
+        var url3 = "http://localhost:1907/api/Team/" + Info.teamId.ToString() + "/GetScorePosition";
+        Debug.Log(url3);
+        using (WWW www = new WWW(url3))
         {
             yield return www;
             var result = www.text;
             Debug.Log(result);
             TeamPositie.text = result;
+            www.Dispose();
         }
+ 
     }
 
     [Serializable]
