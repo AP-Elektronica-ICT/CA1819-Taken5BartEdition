@@ -11,6 +11,7 @@ namespace Models.T5B
         public int Id { get; set; }
         public string Voornaam { get; set; }
         public string Achternaam { get; set; }
+        public int DeviceId { get; set; }
 
         [JsonIgnore]
         public Team AssignedTeam { get; set; }

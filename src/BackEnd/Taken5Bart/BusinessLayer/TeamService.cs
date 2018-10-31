@@ -32,7 +32,7 @@ namespace BusinessLayer.T5B
             .Select((x, i) => new { Item = x, Index = i })
             .Where(itemWithIndex => itemWithIndex.Item.Id == id)
             .FirstOrDefault();
-            return result.Index;
+            return (result.Index+1);
         }
 
         public Team GetTeam(int id)

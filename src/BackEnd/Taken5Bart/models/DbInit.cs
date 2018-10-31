@@ -11,7 +11,7 @@ namespace Models.T5B
         {
             context.Database.EnsureCreated();
 
-            if (context.Games.Count() < 5) { 
+            if (!context.Games.Any()) { 
                 var locatie = new Locatie[]
                 {
                     new Locatie()
