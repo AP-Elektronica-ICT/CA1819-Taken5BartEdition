@@ -53,12 +53,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Code\APICall\GetTeamData.cs" />
+     <Compile Include="Assets\Scripts\APICall\constante.cs" />
+     <Compile Include="Assets\Scripts\APICall\GetTeamData.cs" />
+     <Compile Include="Assets\Scripts\APICall\GetTeamPos.cs" />
+     <Compile Include="Assets\Scripts\APICall\terd.cs" />
      <Compile Include="Assets\Scripts\GPS.cs" />
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\PhoneCamera.cs" />
      <Compile Include="Assets\Scripts\UpdateGPSText.cs" />
-     <Compile Include="Assets\Testing\Json\JsonGetName1.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>E:/AP/CA/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
