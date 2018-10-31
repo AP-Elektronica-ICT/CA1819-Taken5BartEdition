@@ -26,7 +26,7 @@ namespace Repository.T5B
 
         public Team GetTeam(int id)
         {
-            var team = _context.Teams.Include(t=>t.Spelers).Include(t=>t.Puzzellijst).SingleOrDefault(g => g.Id == id);
+            var team = _context.Teams.Include(t=>t.Spelers).Include(t=>t.Puzzellijst).Include(t => t.AssignedSessie).SingleOrDefault(g => g.Id == id);
             return team;
 
         }

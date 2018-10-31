@@ -86,7 +86,7 @@ namespace Models.T5B
                         DiamantenVerzameld = 0,
                         VerzameldeDiamanten = 0,
                         Puzzellijst = context.Puzzels.ToList(),
-                        Spelers = context.Spelers.Where(s=> s.Voornaam=="Jonas" || s.Voornaam=="sedf").ToList(),
+                        Spelers = context.Spelers.Where(s=> s.Voornaam=="sedf").ToList(),
                         Score = 1,
                         TeamNaam = "Antwerp!!!"
                     },
@@ -96,7 +96,16 @@ namespace Models.T5B
                         VerzameldeDiamanten = 0,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="eeeeee").ToList(),
-                        Score = 1,
+                        Score = 5,
+                        TeamNaam = "Antwerp!!!"
+                    },
+                    new Team()
+                    {
+                        DiamantenVerzameld = 1,
+                        VerzameldeDiamanten = 2,
+                        Puzzellijst = context.Puzzels.ToList(),
+                        Spelers = context.Spelers.Where(s=> s.Voornaam=="Jonas").ToList(),
+                        Score = 15,
                         TeamNaam = "Antwerp!!!"
                     }
                 };

@@ -10,6 +10,6 @@ namespace Interface.T5B
     {
         Team GetTeam(int id);
         IEnumerable<Team> GetTeams();
-        
+        int GetScorePos(int id);
     }
 }
