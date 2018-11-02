@@ -39,6 +39,7 @@ namespace Taken5Bart
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<ISpelerService, SpelerService>();
             services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<ISessieService, SessieService>();
             services.AddMvc();
         }
 
