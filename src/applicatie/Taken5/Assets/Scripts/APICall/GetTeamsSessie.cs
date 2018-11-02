@@ -13,7 +13,7 @@ public class GetTeamsSessie : MonoBehaviour {
     public Button btnJoin;
     public Button btnGo;
 
-    public void OnClick()
+    public void Get()
     {
         StartCoroutine(GetTeams());
     }
