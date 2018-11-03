@@ -47,12 +47,30 @@ namespace Taken5Bart.Controllers
             return Ok(t);
         }
 
-
-
-        // POST: api/Team
-        [HttpPost]
-        public void Post([FromBody] string value)
+        // GET: api/Team/5/AddSpeler
+        [HttpGet("{id}/AddSpeler")]
+        public IActionResult AddSpeler(int id, int spelerID)
         {
+            var result = teamService.SpelerJoin(spelerID, id);
+            if (result)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
+
+
+
+        // POST: api/Team/id?spelerID=5
+        [HttpPost("{id}")]
+        public IActionResult Post(int id, int spelerID)
+        {
+            var result = teamService.SpelerJoin(spelerID, id);
+            if (result)
+            {
+                return Ok();
+            }
+            return NotFound();
         }
 
         // PUT: api/Team/5

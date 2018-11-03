@@ -37,6 +37,19 @@ namespace Repository.T5B
             return team;
         }
 
-        
+        public bool SpelerJoin(int spelerId, int teamId)
+        {
+            Speler speler = _context.Spelers.Find(spelerId);
+            var team = _context.Teams.Include(t=>t.Spelers).Single(t=>t.Id==teamId);
+            var teamSpeler = team.Spelers;
+            if(speler == null || team == null)
+            {
+                return false;
+            }
+            teamSpeler.Add(speler);
+            team.Spelers = teamSpeler;
+            _context.SaveChanges();
+            return true;
+        }
     }
 }

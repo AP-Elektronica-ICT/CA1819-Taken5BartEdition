@@ -46,5 +46,10 @@ namespace BusinessLayer.T5B
             var ts = teamRepo.GetTeams();
             return ts;
         }
+
+        public bool SpelerJoin(int spelerId, int teamId)
+        {
+            return teamRepo.SpelerJoin(spelerId, teamId);
+        }
     }
 }
