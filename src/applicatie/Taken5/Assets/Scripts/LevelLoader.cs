@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel(int sceneIndex)
     {
+        Debug.Log(sceneIndex.ToString());
         StartCoroutine(LoadAsychronously(sceneIndex));
     }
 
