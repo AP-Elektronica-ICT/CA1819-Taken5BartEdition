@@ -22,7 +22,8 @@ public class GetTeamsSessie : MonoBehaviour {
         btnGo.gameObject.SetActive(false);
         url = "http://localhost:1907/api/Sessie?id=" + SessieCode.text;
         Debug.Log(url);
-        List<string> teamNamen = new List<string>();
+        List<TeamList> teams = new List<TeamList>();
+        List<string> teamnamen = new List<string>();
         using (WWW www = new WWW(url))
         {
             yield return www;
@@ -33,15 +34,22 @@ public class GetTeamsSessie : MonoBehaviour {
             
             for(var i =0; i < count; i++)
             {
-                teamNamen.Add(N["data"][i]["teamNaam"]);
+                teams.Add(new TeamList { TeamNaam = N["data"][i]["teamNaam"], Id = N["data"][i]["id"] });
+                teamnamen.Add(teams[i].TeamNaam);
             }
-            Debug.Log(teamNamen);
+            Debug.Log(teams);
             www.Dispose();
         }
-        dropdown.AddOptions(teamNamen);
+        
+        dropdown.AddOptions(teamnamen);
         dropdown.gameObject.SetActive(true);
         btnGo.gameObject.SetActive(true);
         btnJoin.gameObject.SetActive(true);
 
     }
+}
+
+public class TeamList{
+    public int Id { get; set; }
+    public string TeamNaam { get; set; }
 }
