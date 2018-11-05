@@ -51,6 +51,8 @@ public class GPS : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        Input.location.Start();
+        latitude = Input.location.lastData.latitude;
+        longitude = Input.location.lastData.longitude;
+    }
 }

@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Loadingscreen.unity
-    guid: fe063bfc90d3fa5479932777c2e4d549
+    path: Assets/Scenes/NavigationScreen.unity
+    guid: ef9bd4f3e5dfa1d488bdbfcd0daeb9fc
   - enabled: 1
     path: Assets/Scenes/CamareWithcoordinates.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Loadingscreen.unity
+    guid: fe063bfc90d3fa5479932777c2e4d549
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
