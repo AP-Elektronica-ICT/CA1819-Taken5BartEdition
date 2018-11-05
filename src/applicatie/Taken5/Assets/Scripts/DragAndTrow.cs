@@ -12,10 +12,11 @@ public class DragAndTrow : MonoBehaviour {
     public float speed;
 
 	// Use this for initialization
-	void onMouseDown()
+    public void OnMouseDown()
     {
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        dragging = true;    
+        dragging = true;
+        Debug.Log("mouse down");
 	}
     public void OnMouseUp()
     {
@@ -23,10 +24,12 @@ public class DragAndTrow : MonoBehaviour {
         this.GetComponent<Rigidbody>().velocity += this.transform.forward * ThrowSpeed;
         this.GetComponent<Rigidbody>().velocity += this.transform.up * ArchSpeed;
         dragging = false;
+        Debug.Log("mouse up");
+
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (dragging)
         { 
