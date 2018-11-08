@@ -55,9 +55,9 @@ namespace Taken5Bart.Controllers
             var result = teamService.SpelerJoin(spelerID, id);
             if (result)
             {
-                return Ok();
+                return Ok(1);
             }
-            return NotFound();
+            return NotFound(0);
         }
 
 

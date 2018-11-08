@@ -14,6 +14,8 @@ public class GetTeamsSessie : MonoBehaviour {
     public Button btnJoin;
     public Button btnGo;
     Dictionary<string, int> teamlijst = new Dictionary<string, int>();
+    public LevelLoader levelLoader;
+    public int nextLevel;
 
     public void Get()
     {
@@ -62,10 +64,15 @@ public class GetTeamsSessie : MonoBehaviour {
         
         
         var url = "http://localhost:1907/api/Team/" + teamId + "/AddSpeler?spelerID=" + Info.spelerId;
+        string success = "0";
         using (WWW www = new WWW(url))
         {
             yield return www;
-            string json = www.text;
+            success = www.text;
+        }
+        if(success == "1")
+        {
+            levelLoader.LoadLevel(nextLevel);
         }
         
     }
