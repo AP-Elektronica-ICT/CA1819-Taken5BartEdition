@@ -34,7 +34,11 @@ namespace Repository.T5B
         public IEnumerable<Team> GetTeams(int sessieId)
         {
             var sessie = _context.Sessies.Include(s => s.Teams).SingleOrDefault(s => s.Id == sessieId);
-            return sessie.Teams;
+            if(sessie != null)
+            {
+                var t = sessie.Teams;
+            }
+            return t;
         }
     }
 }

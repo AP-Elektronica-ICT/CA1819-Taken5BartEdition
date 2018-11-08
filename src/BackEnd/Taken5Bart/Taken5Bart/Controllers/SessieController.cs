@@ -22,10 +22,10 @@ namespace Taken5Bart.Controllers
 
         // GET: api/Sessie
         [HttpGet]
-        public TeamsInSesse GetSessieByCode(int id)
+        public IActionResult GetSessieByCode(int id)
         {
             var result = new TeamsInSesse { Data = sessieService.GetTeamsBySessie(id) };
-            return result;
+            return NotFound(result);
         }
 
         // GET: api/Sessie/5

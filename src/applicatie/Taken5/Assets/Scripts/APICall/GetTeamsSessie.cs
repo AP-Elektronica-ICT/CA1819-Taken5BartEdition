@@ -10,6 +10,7 @@ public class GetTeamsSessie : MonoBehaviour {
     public Text SessieCode;
     public Dropdown dropdown;
     public Text dropdownLabel;
+    public Slider loader;
 
     public Button btnJoin;
     public Button btnGo;
@@ -23,6 +24,7 @@ public class GetTeamsSessie : MonoBehaviour {
     }
     IEnumerator GetTeams()
     {
+        bool wwwSuccess = false;
         btnGo.gameObject.SetActive(false);
         url = "http://localhost:1907/api/Sessie?id=" + SessieCode.text;
         Debug.Log(url);
@@ -31,23 +33,33 @@ public class GetTeamsSessie : MonoBehaviour {
         {
             yield return www;
             string json = www.text;
-            var N = JSON.Parse(json);
-            Debug.Log(N);
-            int count = N["count"].AsInt;
-            
-            for(var i =0; i < count; i++)
+            //Debug.Log(json);
+            if (json != null) //vervang null door een error waarde van de server
             {
-                teamlijst.Add(N["data"][i]["teamNaam"], N["data"][i]["id"].AsInt);
-                teamnamen.Add(N["data"][i]["teamNaam"]);
+                wwwSuccess = true;
+                var N = JSON.Parse(json);
+                //Debug.Log(N);
+                int count = N["count"].AsInt;
+                for (var i = 0; i < count; i++)
+                {
+                    teamlijst.Add(N["data"][i]["teamNaam"], N["data"][i]["id"].AsInt);
+                    teamnamen.Add(N["data"][i]["teamNaam"]);
+                }
             }
-            //Debug.Log(teams);
+            else
+            {
+                SessieCode.text = "wrong sessieID";
+            }
+
             www.Dispose();
         }
-        
-        dropdown.AddOptions(teamnamen);
-        dropdown.gameObject.SetActive(true);
+        if (wwwSuccess)
+        {
+            dropdown.AddOptions(teamnamen);
+            dropdown.gameObject.SetActive(true);
+            btnJoin.gameObject.SetActive(true);
+        }
         btnGo.gameObject.SetActive(true);
-        btnJoin.gameObject.SetActive(true);
 
     }
 
