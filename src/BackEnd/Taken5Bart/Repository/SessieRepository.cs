@@ -37,7 +37,7 @@ namespace Repository.T5B
             IEnumerable<Team> t = null;
             if (sessie != null)
             {
-                 t = sessie.Teams;
+                t = sessie.Teams;
             }
             return t;
         }
