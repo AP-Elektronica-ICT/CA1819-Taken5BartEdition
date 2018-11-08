@@ -64,13 +64,13 @@ namespace Models.T5B
                     },
                       new Speler()
                     {
-                        Voornaam = "eeeeee",
-                        Achternaam = "dddd"
+                        Voornaam = "Viktor",
+                        Achternaam = "S"
                     },
                       new Speler()
                     {
-                        Voornaam = "eeeeee",
-                        Achternaam = "dddd"
+                        Voornaam = "Joren",
+                        Achternaam = "J"
                     }
 
                };
@@ -95,18 +95,18 @@ namespace Models.T5B
                         DiamantenVerzameld = 0,
                         VerzameldeDiamanten = 0,
                         Puzzellijst = context.Puzzels.ToList(),
-                        Spelers = context.Spelers.Where(s=> s.Voornaam=="eeeeee").ToList(),
+                        Spelers = context.Spelers.Where(s=> s.Voornaam=="Viktor").ToList(),
                         Score = 5,
-                        TeamNaam = "Antwerp!!!"
+                        TeamNaam = "TEam DJ"
                     },
                     new Team()
                     {
                         DiamantenVerzameld = 1,
                         VerzameldeDiamanten = 2,
                         Puzzellijst = context.Puzzels.ToList(),
-                        Spelers = context.Spelers.Where(s=> s.Voornaam=="Jonas").ToList(),
+                        Spelers = context.Spelers.Where(s=> s.Voornaam=="Joren").ToList(),
                         Score = 15,
-                        TeamNaam = "Antwerp!!!"
+                        TeamNaam = "Limberg Parking"
                     }
                 };
                 foreach (Team t in teams)
