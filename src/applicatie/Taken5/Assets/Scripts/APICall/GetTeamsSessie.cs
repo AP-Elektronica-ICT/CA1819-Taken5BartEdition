@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class GetTeamsSessie : MonoBehaviour {
 
-    public string url;
+    string url;
     public Text SessieCode;
     public Dropdown dropdown;
+    public Text dropdownLabel;
 
     public Button btnJoin;
     public Button btnGo;
+    Dictionary<string, int> teamlijst = new Dictionary<string, int>();
 
     public void Get()
     {
@@ -22,7 +24,6 @@ public class GetTeamsSessie : MonoBehaviour {
         btnGo.gameObject.SetActive(false);
         url = "http://localhost:1907/api/Sessie?id=" + SessieCode.text;
         Debug.Log(url);
-        List<TeamList> teams = new List<TeamList>();
         List<string> teamnamen = new List<string>();
         using (WWW www = new WWW(url))
         {
@@ -34,10 +35,10 @@ public class GetTeamsSessie : MonoBehaviour {
             
             for(var i =0; i < count; i++)
             {
-                teams.Add(new TeamList { TeamNaam = N["data"][i]["teamNaam"], Id = N["data"][i]["id"] });
-                teamnamen.Add(teams[i].TeamNaam);
+                teamlijst.Add(N["data"][i]["teamNaam"], N["data"][i]["id"].AsInt);
+                teamnamen.Add(N["data"][i]["teamNaam"]);
             }
-            Debug.Log(teams);
+            //Debug.Log(teams);
             www.Dispose();
         }
         
@@ -47,9 +48,31 @@ public class GetTeamsSessie : MonoBehaviour {
         btnJoin.gameObject.SetActive(true);
 
     }
-}
 
-public class TeamList{
-    public int Id { get; set; }
-    public string TeamNaam { get; set; }
+    public void PutSpelerInTeam()
+    {
+        StartCoroutine(Upload());
+    }
+    IEnumerator Upload()
+    {
+        var menuIndex = dropdown.GetComponent<Dropdown>().value;
+        var menuValue = dropdown.GetComponent<Dropdown>().options[menuIndex].text;
+        Debug.Log(menuValue);
+        var teamId = teamlijst[menuValue];
+        
+        
+        var url = "http://localhost:1907/api/Team/" + teamId + "/AddSpeler?spelerID=" + Info.spelerId;
+        using (WWW www = new WWW(url))
+        {
+            yield return www;
+            string json = www.text;
+        }
+        
+    }
+
+    public void ChangeDropValue()
+    {
+        var menuIndex = dropdown.GetComponent<Dropdown>().value;
+        dropdownLabel.text = dropdown.GetComponent<Dropdown>().options[menuIndex].text;
+    }
 }

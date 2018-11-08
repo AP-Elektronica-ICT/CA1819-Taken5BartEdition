@@ -47,7 +47,8 @@ namespace Taken5Bart.Controllers
             return Ok(t);
         }
 
-        // GET: api/Team/5/AddSpeler
+        //put zou correcter zijn, maar unity kent enkel get en post
+        // get: api/Team/2/AddSpeler?spelerID=1
         [HttpGet("{id}/AddSpeler")]
         public IActionResult AddSpeler(int id, int spelerID)
         {

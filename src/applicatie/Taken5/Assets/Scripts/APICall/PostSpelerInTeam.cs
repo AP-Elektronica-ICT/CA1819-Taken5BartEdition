@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
-public class PostSpelerInTeam : MonoBehaviour {
+public class PutSpelerInTeam : MonoBehaviour {
+    Dropdown dropdown;
 
 	// Use this for initialization
 	void Start () {
@@ -11,12 +13,13 @@ public class PostSpelerInTeam : MonoBehaviour {
 	}
 	IEnumerator Upload()
     {
-        var url = "http://localhost:1907/api/Team/"+5+"/AddSpeler?spelerID="+6;
-        using (WWW www = new WWW(url))
+
+        var teamId = 0;
+        var url = "http://localhost:1907/api/Team/"+teamId+"/AddSpeler?spelerID="+Info.spelerId;
+        using(WWW www = new WWW(url))
         {
             yield return www;
             string json = www.text;
-            UnityWebRequest www = Uweb;
         }
     }
 	// Update is called once per frame
