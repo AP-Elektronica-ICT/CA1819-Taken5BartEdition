@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Interface.T5B;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.T5B;
 
 namespace Taken5Bart.Controllers
 {
@@ -21,17 +22,17 @@ namespace Taken5Bart.Controllers
 
         // GET: api/Speler
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<Speler>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok();
         }
 
         // GET: api/Speler/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public ActionResult<Speler> Get(int id)
         {
             Console.WriteLine(GetSpeler(id));
-            return GetSpeler(id);
+            return Ok(GetSpeler(id));
         }
 
         // GET: api/Team/Speler/id

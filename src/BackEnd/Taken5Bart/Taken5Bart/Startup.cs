@@ -51,6 +51,7 @@ namespace Taken5Bart
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("EnableCORS");
+            app.UseStaticFiles();
             app.UseMvc();
             DbInit.Initialize(context);
         }

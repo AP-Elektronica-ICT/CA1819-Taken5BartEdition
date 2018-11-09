@@ -30,9 +30,9 @@ namespace Taken5Bart.Controllers
 
         // GET: api/Sessie/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Ok("value");
         }
 
         // POST: api/Sessie

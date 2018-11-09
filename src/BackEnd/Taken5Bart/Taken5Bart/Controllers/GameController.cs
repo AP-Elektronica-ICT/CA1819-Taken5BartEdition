@@ -45,13 +45,5 @@ namespace Taken5Bart.Controllers
             }
             return Ok(game);
         }
-
-
-
-        // POST: api/Speler
-        [HttpPost]
-        public void JoinSession([FromBody] int sessieCode, int spelerId)
-        {
-        }
     }
 }

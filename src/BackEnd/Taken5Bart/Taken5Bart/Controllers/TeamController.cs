@@ -22,10 +22,10 @@ namespace Taken5Bart.Controllers
 
         // GET: api/Team
         [HttpGet]
-        public IEnumerable<Team> Get()
+        public IActionResult Get()
         {
             var teams = teamService.GetTeams();
-            return teams;
+            return Ok(teams);
         }
 
         // GET: api/Team/5
