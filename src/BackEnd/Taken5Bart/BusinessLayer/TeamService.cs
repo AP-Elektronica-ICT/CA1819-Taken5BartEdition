@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Interface;
 using Interface.T5B;
@@ -12,13 +13,29 @@ namespace BusinessLayer.T5B
 {
     public class TeamService : ITeamService
     {
+        private ISpelerRepository spelerRepo;
         private ITeamRepository teamRepo;
+        private ISessionRepository sessieRepo;
+
         public TeamService(GameContext context)
         {
             teamRepo = new TeamRepository(context);
+            sessieRepo = new SessieRepository(context);
+            spelerRepo = new SpelerRepository(context);
         }
 
-        
+        public int GetScorePos(int id)
+        {
+            var sessieId = teamRepo.GetTeam(id).AssignedSessie.Id;
+            IQueryable<Team> q = sessieRepo.GetSessie(sessieId).Teams.AsQueryable();
+            
+            q = q.OrderByDescending(t => t.Score);
+            var result = q
+            .Select((x, i) => new { Item = x, Index = i })
+            .Where(itemWithIndex => itemWithIndex.Item.Id == id)
+            .FirstOrDefault();
+            return (result.Index+1);
+        }
 
         public Team GetTeam(int id)
         {
@@ -30,6 +47,19 @@ namespace BusinessLayer.T5B
         {
             var ts = teamRepo.GetTeams();
             return ts;
+        }
+
+        public bool SpelerJoin(int spelerId, int teamId)
+        {
+            Speler speler = spelerRepo.GetSpeler(spelerId);
+            Team team = teamRepo.GetTeam(teamId);
+            if (speler == null || team == null)
+            {
+                return false;
+            }
+            team.Spelers.Add(speler);
+            teamRepo.UpdateTeam(team);
+            return true;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Interface.T5B;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.T5B;
 
 namespace Taken5Bart.Controllers
 {
@@ -21,22 +22,26 @@ namespace Taken5Bart.Controllers
 
         // GET: api/Speler
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<Speler>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(spelerService.GetSpelers());
         }
 
         // GET: api/Speler/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public ActionResult<Speler> Get(int id)
         {
-            Console.WriteLine(GetSpeler(id));
-            return GetSpeler(id);
+            var result = spelerService.GetSpeler(id);
+            if(result == null)
+            {
+                return NotFound(-1);
+            }
+            return Ok(result);
         }
 
         // GET: api/Team/Speler/id
         [HttpGet("{id}/Team/")]
-        public IActionResult getTeamFromSpeler(int id)
+        public ActionResult<IEnumerable<Team>> GetTeamFromSpeler(int id)
         {
             var t = spelerService.GetTeamFromSpeler(id);
             if (t == null)
@@ -63,17 +68,6 @@ namespace Taken5Bart.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-
-
-        private IActionResult GetSpeler(int id)
-        {
-            var speler = spelerService.GetSpeler(id);
-            if (speler == null)
-            {
-                return NotFound();
-            }
-            return Ok(speler);
         }
     }
 }

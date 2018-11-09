@@ -26,17 +26,20 @@ namespace Repository.T5B
 
         public Team GetTeam(int id)
         {
-            var team = _context.Teams.Include(t=>t.Spelers).Include(t=>t.Puzzellijst).SingleOrDefault(g => g.Id == id);
-            return team;
+            return _context.Teams.Include(t=>t.Spelers).Include(t=>t.Puzzellijst).Include(t => t.AssignedSessie).SingleOrDefault(g => g.Id == id);
 
         }
 
         public IEnumerable<Team> GetTeams()
         {
-            var team = _context.Teams.Include(t => t.Spelers).Include(t => t.Puzzellijst);
-            return team;
+            return _context.Teams.Include(t => t.Spelers).Include(t => t.Puzzellijst);
         }
 
-        
+        public void UpdateTeam(Team newTeam)
+        {
+            Team oldTeam = _context.Teams.Single(t => t.Id == newTeam.Id);
+            oldTeam = newTeam;
+            _context.SaveChanges();
+        }
     }
 }

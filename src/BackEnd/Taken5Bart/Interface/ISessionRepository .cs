@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Interface.T5B
 {
-    public interface IGameRepository
+    public interface ISessionRepository
     {
-        Game GetGame(int id);
-        IEnumerable<Game> GetGames();
-        void NewGame(Game g);
+        Sessie GetSessie(int id);
+        IEnumerable<Sessie> GetSessies();
+
     }
 }

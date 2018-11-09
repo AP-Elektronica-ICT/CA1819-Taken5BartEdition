@@ -9,7 +9,6 @@ namespace Interface.T5B
     public interface ISpelerRepository
     {
         Speler GetSpeler(int Id);
-        Team GetTeamFromSpeler(int spelerId);
         void NewSpeler(Speler s);
     }
 }
