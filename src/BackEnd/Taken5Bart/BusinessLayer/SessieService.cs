@@ -33,7 +33,12 @@ namespace BusinessLayer.T5B
 
         public IEnumerable<Team> GetTeamsBySessie(int sessieId)
         {
-            var t = sessieRepo.GetTeams(sessieId);
+            var s = sessieRepo.GetSessie(sessieId);
+            IEnumerable<Team> t = null;
+            if(s != null)
+            {
+                t = s.Teams;
+            }
             return t;
         }
     }

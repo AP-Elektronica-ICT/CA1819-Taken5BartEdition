@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Interface.T5B;
 using Microsoft.EntityFrameworkCore;
 using Models.T5B;
@@ -16,14 +17,12 @@ namespace Repository.T5B
 
         public Game GetGame(int id)
         {
-            var game = _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels).SingleOrDefault(g => g.Id == id);
-            return game;
-   
+            return _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels).SingleOrDefault(g => g.Id == id);
         }
 
-        public Game GetGames()
+        public IEnumerable<Game> GetGames()
         {
-            throw new System.NotImplementedException();
+            return _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels);
         }
 
         public void NewGame(Game g)

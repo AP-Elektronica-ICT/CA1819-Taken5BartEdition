@@ -26,21 +26,12 @@ namespace Repository.T5B
 
         public Speler GetSpeler(int id)
         {
-            var speler = _context.Spelers.Include(s=>s.AssignedTeam).SingleOrDefault(g => g.Id == id);
-            return speler;
-
+            return _context.Spelers.Include(s=>s.AssignedTeam).SingleOrDefault(g => g.Id == id);
         }
 
         public IEnumerable<Speler> GetSpelers()
         {
-            throw new NotImplementedException();
-        }
-
-        public Team GetTeamFromSpeler(int spelerId)
-        {
-            var s = _context.Spelers.Include(sp => sp.AssignedTeam).Single(sp => sp.Id == spelerId);
-            var team = _context.Teams.Include(t => t.Spelers).Single(t => t.Id == s.AssignedTeam.Id);
-            return team;
+            return _context.Spelers.Include(s => s.AssignedTeam);
         }
     }
 }

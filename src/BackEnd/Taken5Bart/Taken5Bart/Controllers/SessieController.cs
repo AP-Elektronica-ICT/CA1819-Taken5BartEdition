@@ -20,19 +20,34 @@ namespace Taken5Bart.Controllers
             sessieService = service;
         }
 
-        // GET: api/Sessie
         [HttpGet]
-        public IActionResult GetSessieByCode(int id)
+        public ActionResult<IEnumerable<Sessie>> Get()
         {
-            var result = new TeamsInSesse { Data = sessieService.GetTeamsBySessie(id) };
-            return NotFound(result);
+            return Ok(sessieService.GetSessies());
+        }
+
+        // GET: api/Sessie?id=5
+        [HttpGet]
+        public ActionResult<TeamListWithCount> GetSessieByCode(int id)
+        {
+            var result = new TeamListWithCount { Data = sessieService.GetTeamsBySessie(id) };
+            if(result.Count < 1)
+            {
+                return NotFound(-1);
+            }
+            return Ok(result);
         }
 
         // GET: api/Sessie/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
-            return Ok("value");
+            var result = sessieService.GetSessie(id);
+            if (result == null)
+            {
+                return NotFound(-1);
+            }
+            return Ok(result);
         }
 
         // POST: api/Sessie
@@ -51,15 +66,6 @@ namespace Taken5Bart.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-    }
-
-    public class TeamsInSesse
-    {
-        public int count { get { return Data.Count(); } }
-        public IEnumerable<Team> Data
-        {
-            get; set;
         }
     }
 }

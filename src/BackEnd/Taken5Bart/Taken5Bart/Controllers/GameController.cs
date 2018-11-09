@@ -39,14 +39,5 @@ namespace Taken5Bart.Controllers
             return Ok(result);
         }
 
-        private ActionResult<Game> GetGame(int id)
-        {
-            var game = gameService.GetGame(id);
-            if(game == null)
-            {
-                return NotFound();
-            }
-            return Ok(game);
-        }
     }
 }

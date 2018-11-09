@@ -10,7 +10,6 @@ namespace Interface.T5B
     {
         Sessie GetSessie(int id);
         IEnumerable<Sessie> GetSessies();
-        IEnumerable<Team> GetTeams(int sessieId);
 
     }
 }

@@ -13,6 +13,7 @@ namespace BusinessLayer.T5B
 {
     public class TeamService : ITeamService
     {
+        private ISpelerRepository spelerRepo;
         private ITeamRepository teamRepo;
         private ISessionRepository sessieRepo;
 
@@ -20,12 +21,13 @@ namespace BusinessLayer.T5B
         {
             teamRepo = new TeamRepository(context);
             sessieRepo = new SessieRepository(context);
+            spelerRepo = new SpelerRepository(context);
         }
 
         public int GetScorePos(int id)
         {
             var sessieId = teamRepo.GetTeam(id).AssignedSessie.Id;
-            IQueryable<Team> q = sessieRepo.GetTeams(sessieId).AsQueryable();
+            IQueryable<Team> q = sessieRepo.GetSessie(sessieId).Teams.AsQueryable();
             
             q = q.OrderByDescending(t => t.Score);
             var result = q
@@ -49,7 +51,15 @@ namespace BusinessLayer.T5B
 
         public bool SpelerJoin(int spelerId, int teamId)
         {
-            return teamRepo.SpelerJoin(spelerId, teamId);
+            Speler speler = spelerRepo.GetSpeler(spelerId);
+            Team team = teamRepo.GetTeam(teamId);
+            if (speler == null || team == null)
+            {
+                return false;
+            }
+            team.Spelers.Add(speler);
+            teamRepo.UpdateTeam(team);
+            return true;
         }
     }
 }

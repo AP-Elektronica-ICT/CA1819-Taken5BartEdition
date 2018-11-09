@@ -22,13 +22,12 @@ namespace BusinessLayer.T5B
 
         public Game GetGame(int Id)
         {
-            Game game = gameRepo.GetGame(Id);
-            return game;
+            return gameRepo.GetGame(Id);
         }
 
-        public Game GetGames()
+        IEnumerable<Game> IGameService.GetGames()
         {
-            throw new NotImplementedException();
+            return gameRepo.GetGames();
         }
     }
 }

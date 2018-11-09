@@ -41,7 +41,7 @@ namespace Taken5Bart.Controllers
 
         // GET: api/Team/Speler/id
         [HttpGet("{id}/Team/")]
-        public ActionResult<IEnumerable<Team>> getTeamFromSpeler(int id)
+        public ActionResult<IEnumerable<Team>> GetTeamFromSpeler(int id)
         {
             var t = spelerService.GetTeamFromSpeler(id);
             if (t == null)

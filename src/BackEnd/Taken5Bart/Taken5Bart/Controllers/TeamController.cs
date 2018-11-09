@@ -24,8 +24,7 @@ namespace Taken5Bart.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var teams = teamService.GetTeams();
-            return Ok(teams);
+            return Ok(teamService.GetTeams());
         }
 
         // GET: api/Team/5
@@ -35,7 +34,7 @@ namespace Taken5Bart.Controllers
             var result = teamService.GetTeam(id);
             if (result == null)
             {
-                return NotFound();
+                return NotFound(-1);
             }
             return Ok(result);
         }
@@ -62,7 +61,7 @@ namespace Taken5Bart.Controllers
             {
                 return Ok(1);
             }
-            return NotFound(0);
+            return Ok(0);
         }
 
 
@@ -89,16 +88,6 @@ namespace Taken5Bart.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-
-        private IActionResult GetTeam(int id)
-        {
-            var t = teamService.GetTeam(id);
-            if (t == null)
-            {
-                return NotFound();
-            }
-            return Ok(t);
         }
     }
 }
