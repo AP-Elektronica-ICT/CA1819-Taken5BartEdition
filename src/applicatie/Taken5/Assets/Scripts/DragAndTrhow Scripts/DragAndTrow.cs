@@ -10,8 +10,10 @@ public class DragAndTrow : MonoBehaviour {
     public float ThrowSpeed;
     public float ArchSpeed;
     public float speed;
+    Vector3 startVector = new Vector3(0, 0, 0);
+    Quaternion startRotation = new Quaternion(0,0,0,0);
 
-	// Use this for initialization
+    // Use this for initialization
     public void OnMouseDown()
     {
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
@@ -26,6 +28,19 @@ public class DragAndTrow : MonoBehaviour {
         dragging = false;
         Debug.Log("mouse up");
 
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Respawn")
+        {
+
+            this.GetComponent<Rigidbody>().useGravity = false;
+            this.GetComponent<Rigidbody>().velocity = startVector;
+            this.GetComponent<Rigidbody>().freezeRotation =true;
+            dragging = false;
+            Debug.Log("respanw");
+
+        }
     }
 
     // Update is called once per frame

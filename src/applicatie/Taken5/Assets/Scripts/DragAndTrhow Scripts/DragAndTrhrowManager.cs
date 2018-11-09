@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DragAndTrhrowManager : MonoBehaviour {
+    public Vector3 StartPosition;
+    Quaternion StartRotation = new Quaternion(0, 0, 0, 0);
 
-	void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         
         if (other.gameObject.tag == "CatchObject")
         {
       
             StartCoroutine("CatchObject", other.gameObject);
+
+        }
+        if (other.gameObject.tag == "Respawn")
+        {
+
+            Debug.Log("nu respawne");
+            transform.SetPositionAndRotation(StartPosition, StartRotation);
 
         }
     }
