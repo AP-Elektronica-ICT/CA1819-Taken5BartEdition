@@ -32,7 +32,12 @@ namespace Taken5Bart.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return GetTeam(id);
+            var result = teamService.GetTeam(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         // GET: api/Team/5/GetScorePosition
@@ -42,7 +47,7 @@ namespace Taken5Bart.Controllers
             var t = teamService.GetScorePos(id);
             if (t <0)
             {
-                return NotFound();
+                return NotFound(-1);
             }
             return Ok(t);
         }

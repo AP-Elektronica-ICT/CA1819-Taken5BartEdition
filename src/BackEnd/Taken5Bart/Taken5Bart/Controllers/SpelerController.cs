@@ -24,20 +24,24 @@ namespace Taken5Bart.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Speler>> Get()
         {
-            return Ok();
+            return Ok(spelerService.GetSpelers());
         }
 
         // GET: api/Speler/5
         [HttpGet("{id}")]
         public ActionResult<Speler> Get(int id)
         {
-            Console.WriteLine(GetSpeler(id));
-            return Ok(GetSpeler(id));
+            var result = spelerService.GetSpeler(id);
+            if(result == null)
+            {
+                return NotFound(-1);
+            }
+            return Ok(result);
         }
 
         // GET: api/Team/Speler/id
         [HttpGet("{id}/Team/")]
-        public IActionResult getTeamFromSpeler(int id)
+        public ActionResult<IEnumerable<Team>> getTeamFromSpeler(int id)
         {
             var t = spelerService.GetTeamFromSpeler(id);
             if (t == null)
@@ -64,17 +68,6 @@ namespace Taken5Bart.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-
-
-        private IActionResult GetSpeler(int id)
-        {
-            var speler = spelerService.GetSpeler(id);
-            if (speler == null)
-            {
-                return NotFound();
-            }
-            return Ok(speler);
         }
     }
 }

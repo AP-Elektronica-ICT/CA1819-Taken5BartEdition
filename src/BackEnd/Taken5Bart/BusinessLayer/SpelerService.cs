@@ -25,6 +25,11 @@ namespace BusinessLayer.T5B
             return s;
         }
 
+        public IEnumerable<Speler> GetSpelers()
+        {
+            return spelerRepo.GetSpelers();
+        }
+
         public Team GetTeamFromSpeler(int spelerId)
         {
             return spelerRepo.GetTeamFromSpeler(spelerId);

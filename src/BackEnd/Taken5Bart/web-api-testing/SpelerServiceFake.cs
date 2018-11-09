@@ -37,6 +37,11 @@ namespace web_api_testing
             return _spelers.Where(s=> s.Id == id).FirstOrDefault();
         }
 
+        public IEnumerable<Speler> GetSpelers()
+        {
+            return _spelers;
+        }
+
         public Team GetTeamFromSpeler(int spelerId)
         {
             return new Team();
