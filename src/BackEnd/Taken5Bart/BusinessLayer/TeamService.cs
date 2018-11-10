@@ -13,21 +13,27 @@ namespace BusinessLayer.T5B
 {
     public class TeamService : ITeamService
     {
-        private ISpelerRepository spelerRepo;
-        private ITeamRepository teamRepo;
-        private ISessionRepository sessieRepo;
+        private ISpelerRepository _spelerRepo;
+        private ITeamRepository _teamRepo;
+        private ISessionRepository _sessieRepo;
 
         public TeamService(GameContext context)
         {
-            teamRepo = new TeamRepository(context);
-            sessieRepo = new SessieRepository(context);
-            spelerRepo = new SpelerRepository(context);
+            _teamRepo = new TeamRepository(context);
+            _sessieRepo = new SessieRepository(context);
+            _spelerRepo = new SpelerRepository(context);
+        }
+        public TeamService(ITeamRepository teamRepo, ISpelerRepository spelerRepo, ISessionRepository sessieRepo)
+        {
+            _teamRepo = teamRepo;
+            _sessieRepo = sessieRepo;
+            _spelerRepo = spelerRepo;
         }
 
         public int GetScorePos(int id)
         {
-            var sessieId = teamRepo.GetTeam(id).AssignedSessie.Id;
-            IQueryable<Team> q = sessieRepo.GetSessie(sessieId).Teams.AsQueryable();
+            var sessieId = _teamRepo.GetTeam(id).AssignedSessie.Id;
+            IQueryable<Team> q = _sessieRepo.GetSessie(sessieId).Teams.AsQueryable();
             
             q = q.OrderByDescending(t => t.Score);
             var result = q
@@ -39,26 +45,26 @@ namespace BusinessLayer.T5B
 
         public Team GetTeam(int id)
         {
-            Team t = teamRepo.GetTeam(id);
+            Team t = _teamRepo.GetTeam(id);
             return t;
         }
 
-        public IEnumerable<Team> GetTeams()
+        public ICollection<Team> GetTeams()
         {
-            var ts = teamRepo.GetTeams();
+            var ts = _teamRepo.GetTeams();
             return ts;
         }
 
         public bool SpelerJoin(int spelerId, int teamId)
         {
-            Speler speler = spelerRepo.GetSpeler(spelerId);
-            Team team = teamRepo.GetTeam(teamId);
+            Speler speler = _spelerRepo.GetSpeler(spelerId);
+            Team team = _teamRepo.GetTeam(teamId);
             if (speler == null || team == null)
             {
                 return false;
             }
             team.Spelers.Add(speler);
-            teamRepo.UpdateTeam(team);
+            _teamRepo.UpdateTeam(team);
             return true;
         }
     }

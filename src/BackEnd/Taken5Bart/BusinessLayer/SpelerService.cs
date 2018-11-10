@@ -12,29 +12,34 @@ namespace BusinessLayer.T5B
 {
     public class SpelerService : ISpelerService
     {
-        private readonly SpelerRepository spelerRepo;
-        private readonly TeamRepository teamRepo;
+        private readonly ISpelerRepository _spelerRepo;
+        private readonly ITeamRepository _teamRepo;
         public SpelerService(GameContext context)
         {
-            spelerRepo = new SpelerRepository(context);
-            teamRepo = new TeamRepository(context);
+            _spelerRepo = new SpelerRepository(context);
+            _teamRepo = new TeamRepository(context);
+        }
+        public SpelerService(ISpelerRepository spelerRepo, ITeamRepository teamRepo)
+        {
+            _spelerRepo = spelerRepo;
+            _teamRepo = teamRepo;
         }
 
         public Speler GetSpeler(int id)
         {
-            Speler s = spelerRepo.GetSpeler(id);
+            Speler s = _spelerRepo.GetSpeler(id);
             return s;
         }
 
-        public IEnumerable<Speler> GetSpelers()
+        public ICollection<Speler> GetSpelers()
         {
-            return spelerRepo.GetSpelers();
+            return _spelerRepo.GetSpelers();
         }
 
         public Team GetTeamFromSpeler(int spelerId)
         {
-            Speler s = spelerRepo.GetSpeler(spelerId);
-            Team team = teamRepo.GetTeam(s.AssignedTeam.Id);
+            Speler s = _spelerRepo.GetSpeler(spelerId);
+            Team team = _teamRepo.GetTeam(s.AssignedTeam.Id);
             return team;
         }
     }

@@ -13,28 +13,33 @@ namespace BusinessLayer.T5B
 {
     public class SessieService : ISessieService
     {
-        private ISessionRepository sessieRepo;
+        private ISessionRepository _sessieRepo;
 
         public SessieService(GameContext context)
         {
-            sessieRepo = new SessieRepository(context);
+            _sessieRepo = new SessieRepository(context);
         }
+        public SessieService(ISessionRepository sessieRepo)
+        {
+            _sessieRepo = sessieRepo;
+        }
+
         public Sessie GetSessie(int id)
         {
-            Sessie s = sessieRepo.GetSessie(id);
+            Sessie s = _sessieRepo.GetSessie(id);
             return s;
         }
 
-        public IEnumerable<Sessie> GetSessies()
+        public ICollection<Sessie> GetSessies()
         {
-            IEnumerable<Sessie> s = sessieRepo.GetSessies();
+            ICollection<Sessie> s = _sessieRepo.GetSessies();
             return s;
         }
 
-        public IEnumerable<Team> GetTeamsBySessie(int sessieId)
+        public ICollection<Team> GetTeamsBySessie(int sessieId)
         {
-            var s = sessieRepo.GetSessie(sessieId);
-            IEnumerable<Team> t = null;
+            var s = _sessieRepo.GetSessie(sessieId);
+            ICollection<Team> t = null;
             if(s != null)
             {
                 t = s.Teams;

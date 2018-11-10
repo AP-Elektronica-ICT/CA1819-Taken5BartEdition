@@ -14,20 +14,24 @@ namespace BusinessLayer.T5B
     //Elke nieuwe service moet ook gelinkt worden aan zijn interface in startup.cs onder ConfigureServices(..){}
     public class GameService:IGameService
     {
-        private IGameRepository gameRepo;
+        private IGameRepository _gameRepo;
         public GameService(GameContext context)
         {
-            gameRepo = new GameRepository(context);
+            _gameRepo = new GameRepository(context);
+        }
+        public GameService(IGameRepository gameRepo)
+        {
+            _gameRepo = gameRepo;
         }
 
         public Game GetGame(int Id)
         {
-            return gameRepo.GetGame(Id);
+            return _gameRepo.GetGame(Id);
         }
 
-        IEnumerable<Game> IGameService.GetGames()
+        public ICollection<Game> GetGames()
         {
-            return gameRepo.GetGames();
+            return _gameRepo.GetGames();
         }
     }
 }
