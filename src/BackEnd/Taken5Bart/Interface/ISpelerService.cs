@@ -8,7 +8,7 @@ namespace Interface.T5B
 {
     public interface ISpelerService
     {
-        IEnumerable<Speler> GetSpelers();
+        ICollection<Speler> GetSpelers();
         Speler GetSpeler(int id);
         Team GetTeamFromSpeler(int spelerId);
     }

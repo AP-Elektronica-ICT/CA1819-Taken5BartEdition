@@ -8,7 +8,7 @@ namespace Interface.T5B
 {
     public interface ITeamRepository
     {
-        IEnumerable<Team> GetTeams();
+        ICollection<Team> GetTeams();
         Team GetTeam(int Id);
         void UpdateTeam(Team newTeam);
         void NewTeam(Team t);

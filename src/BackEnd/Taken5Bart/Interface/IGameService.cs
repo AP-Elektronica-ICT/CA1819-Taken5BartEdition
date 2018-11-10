@@ -9,7 +9,7 @@ namespace Interface.T5B
     public interface IGameService
     {
         Game GetGame(int Id);
-        IEnumerable<Game> GetGames();
+        ICollection<Game> GetGames();
 
     }
 }

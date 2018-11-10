@@ -9,7 +9,7 @@ namespace Interface.T5B
     public interface ISessionRepository
     {
         Sessie GetSessie(int id);
-        IEnumerable<Sessie> GetSessies();
+        ICollection<Sessie> GetSessies();
 
     }
 }

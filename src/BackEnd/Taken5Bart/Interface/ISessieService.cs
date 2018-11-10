@@ -9,8 +9,8 @@ namespace Interface.T5B
     public interface ISessieService
     {
         Sessie GetSessie(int Id);
-        IEnumerable<Sessie> GetSessies();
-        IEnumerable<Team> GetTeamsBySessie(int sessieId);
+        ICollection<Sessie> GetSessies();
+        ICollection<Team> GetTeamsBySessie(int sessieId);
 
     }
 }
