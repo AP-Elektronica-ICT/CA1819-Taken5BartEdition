@@ -7,11 +7,10 @@ using System.Text;
 
 namespace web_api_testing
 {
-    
-    class SpelerServiceFake : ISpelerService
+    class SpelerRepoFake : ISpelerRepository
     {
-        private readonly List<Speler> _spelers;
-        public SpelerServiceFake()
+        private List<Speler> _spelers;
+        public SpelerRepoFake()
         {
             _spelers = new List<Speler>()
             {
@@ -29,22 +28,21 @@ namespace web_api_testing
                     Voornaam = "pp",
                     DeviceId = 6
                 }
-            };
+            }; ;
         }
-
         public Speler GetSpeler(int id)
         {
-            return _spelers.Where(s=> s.Id == id).FirstOrDefault();
+            return _spelers.Where(s => s.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Speler> GetSpelers()
+        public ICollection<Speler> GetSpelers()
         {
             return _spelers;
         }
 
-        public Team GetTeamFromSpeler(int spelerId)
+        public void NewSpeler(Speler s)
         {
-            return new Team();
+            _spelers.Add(s);
         }
     }
 }
