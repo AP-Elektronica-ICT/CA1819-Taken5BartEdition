@@ -25,9 +25,9 @@ namespace Repository.T5B
             return sessie;
         }
 
-        public IEnumerable<Sessie> GetSessies()
+        public ICollection<Sessie> GetSessies()
         {
-            var sessie = _context.Sessies.Include(s => s.Teams);
+            var sessie = _context.Sessies.Include(s => s.Teams).ToList();
             return sessie;
         }
     }

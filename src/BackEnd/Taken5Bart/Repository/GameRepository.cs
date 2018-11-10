@@ -20,9 +20,9 @@ namespace Repository.T5B
             return _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels).SingleOrDefault(g => g.Id == id);
         }
 
-        public IEnumerable<Game> GetGames()
+        public ICollection<Game> GetGames()
         {
-            return _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels);
+            return _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels).ToList();
         }
 
         public void NewGame(Game g)

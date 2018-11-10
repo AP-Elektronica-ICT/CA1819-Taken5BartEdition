@@ -29,9 +29,9 @@ namespace Repository.T5B
             return _context.Spelers.Include(s=>s.AssignedTeam).SingleOrDefault(g => g.Id == id);
         }
 
-        public IEnumerable<Speler> GetSpelers()
+        public ICollection<Speler> GetSpelers()
         {
-            return _context.Spelers.Include(s => s.AssignedTeam);
+            return _context.Spelers.Include(s => s.AssignedTeam).ToList();
         }
     }
 }

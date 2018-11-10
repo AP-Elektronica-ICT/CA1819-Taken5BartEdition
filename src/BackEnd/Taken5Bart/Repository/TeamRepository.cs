@@ -30,9 +30,9 @@ namespace Repository.T5B
 
         }
 
-        public IEnumerable<Team> GetTeams()
+        public ICollection<Team> GetTeams()
         {
-            return _context.Teams.Include(t => t.Spelers).Include(t => t.Puzzellijst);
+            return _context.Teams.Include(t => t.Spelers).Include(t => t.Puzzellijst).ToList();
         }
 
         public void UpdateTeam(Team newTeam)
