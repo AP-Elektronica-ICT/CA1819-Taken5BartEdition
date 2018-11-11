@@ -11,7 +11,7 @@ namespace web_api_testing
     
     class SessieRepoFake : ISessionRepository
     {
-        private readonly List<Sessie> _sessie;
+        private List<Sessie> _sessie;
         public SessieRepoFake()
         {
             _sessie = GameDBFake._gameDB.Sessie.ToList();

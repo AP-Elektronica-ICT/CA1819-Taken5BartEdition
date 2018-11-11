@@ -112,5 +112,47 @@ namespace web_api_testing
             // Assert
             Assert.Equal(-1, result);
         }
+
+        [Fact]
+        public void ExistingSpeler_Join_Team()
+        {
+            //Arrange
+            var teamId = 1;
+            var spelerId = 3;
+
+            // Act
+            bool result = _service.SpelerJoin(spelerId, teamId);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void NotExistingSpeler_Join_Team()
+        {
+            //Arrange
+            var teamId = 5;
+            var spelerId = 999;
+
+            // Act
+            bool result = _service.SpelerJoin(spelerId, teamId);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void ExistingSpeler_Join_NotExistingTeam()
+        {
+            //Arrange
+            var teamId = 9999;
+            var spelerId = 2;
+
+            // Act
+            bool result = _service.SpelerJoin(spelerId, teamId);
+
+            // Assert
+            Assert.False(result);
+        }
     }
 }

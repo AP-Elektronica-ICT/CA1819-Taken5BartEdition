@@ -11,7 +11,7 @@ namespace web_api_testing
     
     class SpelerServiceFake : ISpelerService
     {
-        private readonly List<Speler> _spelers;
+        private List<Speler> _spelers;
         public SpelerServiceFake()
         {
             _spelers = new List<Speler>()

@@ -26,14 +26,12 @@ namespace BusinessLayer.T5B
 
         public Sessie GetSessie(int id)
         {
-            Sessie s = _sessieRepo.GetSessie(id);
-            return s;
+            return _sessieRepo.GetSessie(id);
         }
 
         public ICollection<Sessie> GetSessies()
         {
-            ICollection<Sessie> s = _sessieRepo.GetSessies();
-            return s;
+            return _sessieRepo.GetSessies();
         }
 
         public ICollection<Team> GetTeamsBySessie(int sessieId)

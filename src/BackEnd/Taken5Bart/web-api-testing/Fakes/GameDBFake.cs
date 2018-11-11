@@ -133,6 +133,7 @@ namespace web_api_testing.Fakes
         {
             new Sessie()
             {
+                Id = 1,
                 StartTijd = new DateTime(2018,11,11),
                 Teams = new List<Team>()
                 {
