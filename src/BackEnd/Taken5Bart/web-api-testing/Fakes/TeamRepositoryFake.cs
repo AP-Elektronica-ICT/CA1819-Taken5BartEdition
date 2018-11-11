@@ -7,6 +7,7 @@ using Models.T5B;
 using Interface.T5B;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using web_api_testing.Fakes;
 
 namespace web_api_testing
 {
@@ -16,59 +17,10 @@ namespace web_api_testing
 
         public TeamRepositoryFake()
         {
-            _teams = new List<Team>()
-            {
-                new Team()
-                {
-                    Id = 1,
-                    DiamantenVerzameld = 0,
-                    Score = 15,
-                    VerzameldeDiamanten = 1,
-                    TeamNaam = "gokai",
-                    Spelers = new List<Speler>()
-                    {
-                        new Speler()
-                        {
-                            Id = 5,
-                            Achternaam = "vi",
-                            Voornaam = "jo",
-                            DeviceId = 5
-                        },
-                        new Speler()
-                        {
-                            Id = 6,
-                            Achternaam = "mm",
-                            Voornaam = "pp",
-                            DeviceId = 6
-                        }
-                    }
-                },
-                new Team()
-                {
-                    Id = 2,
-                    DiamantenVerzameld = 1,
-                    Score = 111,
-                    VerzameldeDiamanten = 2,
-                    TeamNaam = "Gunzen",
-                    Spelers = new List<Speler>()
-                    {
-                        new Speler()
-                        {
-                            Id = 1,
-                            Achternaam = "dd",
-                            Voornaam = "FNAF",
-                            DeviceId = 3
-                        },
-                        new Speler()
-                        {
-                            Id = 2,
-                            Achternaam = "kdo",
-                            Voornaam = "2Ce,t",
-                            DeviceId = 2
-                        }
-                    }
-                }
-            };
+            _teams = GameDBFake.teams;
+            _teams[0].AssignedSessie = GameDBFake.sessies[0];
+            _teams[1].AssignedSessie = GameDBFake.sessies[0];
+            _teams[2].AssignedSessie = null;
         }
 
         public void NewTeam(Team t)

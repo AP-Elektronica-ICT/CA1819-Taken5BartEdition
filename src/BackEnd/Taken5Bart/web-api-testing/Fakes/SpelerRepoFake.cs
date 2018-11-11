@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using web_api_testing.Fakes;
 
 namespace web_api_testing
 {
@@ -13,22 +14,83 @@ namespace web_api_testing
         public SpelerRepoFake()
         {
             _spelers = new List<Speler>()
+        {
+            new Speler()
             {
+                Id = 1,
+                Voornaam = "Jonas",
+                Achternaam = "K",
+                AssignedTeam = new Team()
+            {
+                Id = 1,
+                DiamantenVerzameld = 0,
+                VerzameldeDiamanten = 0,
+                Puzzellijst = null,
+                Score = 1,
+                TeamNaam = "Antwerp!!!"
+            },
+            },
                 new Speler()
-                {
-                    Id = 5,
-                    Achternaam = "vi",
-                    Voornaam = "jo",
-                    DeviceId = 5
-                },
+            {
+                Id = 2,
+                Voornaam = "sedf",
+                Achternaam = "e",
+                AssignedTeam = new Team()
+            {
+                Id = 1,
+                DiamantenVerzameld = 0,
+                VerzameldeDiamanten = 0,
+                Puzzellijst = null,
+                Score = 1,
+                TeamNaam = "Antwerp!!!"
+            },
+            },
+            new Speler()
+            {
+                Id = 3,
+                Voornaam = "dd",
+                Achternaam = "dddd",
+                AssignedTeam = new Team()
+            {
+                Id = 2,
+                DiamantenVerzameld = 0,
+                VerzameldeDiamanten = 0,
+                Puzzellijst = null,
+                Score = 5,
+                TeamNaam = "TEam DJ"
+            },
+            },
                 new Speler()
-                {
-                    Id = 6,
-                    Achternaam = "mm",
-                    Voornaam = "pp",
-                    DeviceId = 6
-                }
-            }; ;
+            {
+                Id = 4,
+                Voornaam = "Viktor",
+                Achternaam = "S",
+                AssignedTeam = new Team()
+            {
+                Id = 2,
+                DiamantenVerzameld = 0,
+                VerzameldeDiamanten = 0,
+                Puzzellijst = null,
+                Score = 5,
+                TeamNaam = "TEam DJ"
+            },
+            },
+            new Speler()
+            {
+                Id = 5,
+                Voornaam = "Joren",
+                Achternaam = "J",
+                AssignedTeam = new Team()
+            {
+                Id = 3,
+                DiamantenVerzameld = 1,
+                VerzameldeDiamanten = 2,
+                Puzzellijst = null,
+                Score = 15,
+                TeamNaam = "Limberg Parking"
+            }
+            }
+        };
         }
         public Speler GetSpeler(int id)
         {

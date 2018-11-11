@@ -35,13 +35,67 @@ namespace web_api_testing
         }
 
         [Fact]
-        public void Get_WhenCalled_ReturnsAllItems()
+        public void Get_Speler_ReturnsAllItems()
         {
             // Act
             ICollection<Speler> result = _service.GetSpelers();
 
             // Assert
-            Assert.Equal(2, result.Count);
+            Assert.Equal(5, result.Count);
+        }
+
+        [Fact]
+        public void Get_Speler_ReturnItem()
+        {
+            //Arrange
+            var existingId = 5;
+
+            // Act
+            Speler result = _service.GetSpeler(existingId);
+
+            // Assert
+            Assert.IsType<Speler>(result);
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void Get_Speler_NotReturnItem()
+        {
+            //Arrange
+            var id = -1;
+
+            // Act
+            Speler result = _service.GetSpeler(id);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void Get_Team_ReturnItem()
+        {
+            //Arrange
+            var id = 2;
+
+            // Act
+            Team result = _service.GetTeamFromSpeler(id);
+
+            // Assert
+            Assert.IsType<Team>(result);
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void Get_Team_NotReturnItem() 
+        {
+            //Arrange
+            var id = -1;
+
+            // Act
+            Team result = _service.GetTeamFromSpeler(id);
+
+            // Assert
+            Assert.Null(result);
         }
     }
 }
