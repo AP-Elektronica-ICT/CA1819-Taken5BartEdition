@@ -23,8 +23,10 @@ public class DragAndTrow : MonoBehaviour {
     public void OnMouseUp()
     {
         this.GetComponent<Rigidbody>().useGravity = true;
+
         this.GetComponent<Rigidbody>().velocity += this.transform.forward * ThrowSpeed;
         this.GetComponent<Rigidbody>().velocity += this.transform.up * ArchSpeed;
+      
         dragging = false;
         Debug.Log("mouse up");
 
