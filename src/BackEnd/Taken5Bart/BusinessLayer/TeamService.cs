@@ -32,9 +32,18 @@ namespace BusinessLayer.T5B
 
         public int GetScorePos(int id)
         {
-            var sessieId = _teamRepo.GetTeam(id).AssignedSessie.Id;
+            var team = _teamRepo.GetTeam(id);
+            if (team == null)
+            {
+                return -1;
+            }
+            var sessie = team.AssignedSessie;
+            if(sessie == null)
+            {
+                return -1;
+            }
+            int sessieId = sessie.Id;
             IQueryable<Team> q = _sessieRepo.GetSessie(sessieId).Teams.AsQueryable();
-            
             q = q.OrderByDescending(t => t.Score);
             var result = q
             .Select((x, i) => new { Item = x, Index = i })

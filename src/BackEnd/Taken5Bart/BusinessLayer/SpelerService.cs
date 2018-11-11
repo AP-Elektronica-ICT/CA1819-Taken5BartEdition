@@ -39,7 +39,11 @@ namespace BusinessLayer.T5B
         public Team GetTeamFromSpeler(int spelerId)
         {
             Speler s = _spelerRepo.GetSpeler(spelerId);
-            Team team = _teamRepo.GetTeam(s.AssignedTeam.Id);
+            Team team = null;
+            if (s != null)
+            {
+                team = _teamRepo.GetTeam(s.AssignedTeam.Id);
+            }
             return team;
         }
     }
