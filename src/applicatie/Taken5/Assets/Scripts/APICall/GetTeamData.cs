@@ -23,23 +23,37 @@ public class GetTeamData : MonoBehaviour {
     {
         url = "http://localhost:1907/api/Speler/" + Info.spelerId.ToString() + "/Team";
         SpelerNaam.text = "my test";
-        using (WWW www = new WWW(url))
+        if(Info.TeamId == -1)
         {
-            yield return www;
-            string json = www.text;
-            var N = JSON.Parse(json);
-            Debug.Log(N);
-            SpelerNaam.text = N["spelers"][0]["voornaam"].Value;
-            TeamNaam.text = N["teamNaam"].Value;
-            Diamanten.text = N["diamantenVerzameld"].Value;
-            Score.text = N["score"].Value;
-            Info.teamId = N["id"];
-            www.Dispose();
-          
+            Debug.Log("Dev team");
+            Info.Diamanten = 1;
+            Info.Score = 11111;
+            TeamPositie.text = "-1";
         }
-        StartCoroutine(Delayed());
-        
-
+        else
+        {
+            using (WWW www = new WWW(url))
+            {
+                yield return www;
+                string json = www.text;
+                var N = JSON.Parse(json);
+                Debug.Log(N);
+                Info.SpelerNaam = N["spelers"][0]["voornaam"].Value;
+                Info.TeamNaam = N["teamNaam"].Value;
+                Info.Diamanten = N["diamantenVerzameld"].AsInt;
+                Info.Score = N["score"].AsInt;
+                Info.TeamId = N["id"].AsInt;
+                www.Dispose();
+            }
+        }
+        SpelerNaam.text = Info.SpelerNaam;
+        TeamNaam.text = Info.TeamNaam;
+        Diamanten.text = Info.Diamanten.ToString();
+        Score.text = Info.Score.ToString();
+        if(Info.TeamId != -1)
+        {
+            StartCoroutine(Delayed());
+        }
     }
     IEnumerator Delayed()
     {
@@ -57,7 +71,7 @@ public class GetTeamData : MonoBehaviour {
         }
    
         Debug.Log("start3");
-        var url3 = "http://localhost:1907/api/Team/" + Info.teamId.ToString() + "/GetScorePosition";
+        var url3 = "http://localhost:1907/api/Team/" + Info.TeamId.ToString() + "/GetScorePosition";
         Debug.Log(url3);
         using (WWW www = new WWW(url3))
         {

@@ -27,7 +27,7 @@ namespace Taken5Bart.Controllers
         }
 
         // GET: api/Sessie?id=5
-        [HttpGet]
+        [HttpGet("toList")]
         public ActionResult<TeamListWithCount> GetSessieByCode(int id)
         {
             var result = new TeamListWithCount { Data = sessieService.GetTeamsBySessie(id) };
@@ -67,5 +67,21 @@ namespace Taken5Bart.Controllers
         public void Delete(int id)
         {
         }
+    }
+
+    public class TeamListWithCount
+    {
+        public ICollection<Team> Data
+        {
+            get; set;
+        }
+        public int Count { get {
+                if (Data == null)
+                {
+                    return 0;
+                }
+                else return Data.Count();
+            } }
+        
     }
 }

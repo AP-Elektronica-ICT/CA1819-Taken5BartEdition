@@ -14,7 +14,7 @@ public class GetTeamsSessie : MonoBehaviour {
 
     public Button btnJoin;
     public Button btnGo;
-    Dictionary<string, int> teamlijst = new Dictionary<string, int>();
+    Dictionary<string, int> teamlijst;
     public LevelLoader levelLoader;
     public int nextLevel;
 
@@ -26,15 +26,17 @@ public class GetTeamsSessie : MonoBehaviour {
     {
         bool wwwSuccess = false;
         btnGo.gameObject.SetActive(false);
-        url = "http://localhost:1907/api/Sessie?id=" + SessieCode.text;
+        url = "http://localhost:1907/api/Sessie/toList?id=" + SessieCode.text;
         Debug.Log(url);
         List<string> teamnamen = new List<string>();
+        teamlijst = new Dictionary<string, int>();
+
         using (WWW www = new WWW(url))
         {
             yield return www;
             string json = www.text;
-            //Debug.Log(json);
-            if (json != null) //vervang null door een error waarde van de server
+            //Debug.Log(json == ""); json is een string en zal nooit null zijn.
+            if (json != "") //vervang null door een error waarde van de server
             {
                 wwwSuccess = true;
                 var N = JSON.Parse(json);
@@ -53,6 +55,16 @@ public class GetTeamsSessie : MonoBehaviour {
 
             www.Dispose();
         }
+        if(SessieCode.text == "666") //dev bypass
+        {
+            teamlijst.Add("dev", -1);
+            teamnamen.Add("dev");
+            teamlijst.Add("Bypass", -1);
+            teamnamen.Add("Bypass");
+            teamlijst.Add("HAXXXX!", -1);
+            teamnamen.Add("HAXXXX!");
+            wwwSuccess = true;
+        }
         if (wwwSuccess)
         {
             dropdown.AddOptions(teamnamen);
@@ -65,6 +77,7 @@ public class GetTeamsSessie : MonoBehaviour {
 
     public void PutSpelerInTeam()
     {
+        
         StartCoroutine(Upload());
     }
     IEnumerator Upload()
@@ -73,14 +86,23 @@ public class GetTeamsSessie : MonoBehaviour {
         var menuValue = dropdown.GetComponent<Dropdown>().options[menuIndex].text;
         Debug.Log(menuValue);
         var teamId = teamlijst[menuValue];
-        
-        
         var url = "http://localhost:1907/api/Team/" + teamId + "/AddSpeler?spelerID=" + Info.spelerId;
         string success = "0";
-        using (WWW www = new WWW(url))
+
+        if (teamId == -1)
         {
-            yield return www;
-            success = www.text;
+            Debug.Log("bypassing");
+            Info.TeamNaam = menuValue;
+            Info.TeamId = teamId;
+            success = "1";
+        }
+        else
+        {
+            using (WWW www = new WWW(url))
+            {
+                yield return www;
+                success = www.text;
+            }
         }
         if(success == "1")
         {
