@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/BraboGame.unity
-=======
-- path: Assets/Scenes/NavigationScreen.unity
->>>>>>> NavigationScreen
+- path: Assets/Scenes/Menu_Join.unity
   isLoaded: 1
   isActive: 1
