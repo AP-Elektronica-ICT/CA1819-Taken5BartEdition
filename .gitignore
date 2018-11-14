@@ -268,16 +268,6 @@ __pycache__/
 # tools/
 *.cache
 
-src/applicatie/Taken5/Assembly-CSharp\.csproj
-
-src/applicatie/Taken5/Library/assetDatabase3
-
-src/applicatie/Taken5/Library/EditorInstance\.json
-
-src/applicatie/Taken5/Library/metadata/
-
-src/applicatie/Taken5/Temp/
-
 # =============== #
 # Unity generated #
 # =============== #
@@ -309,23 +299,3 @@ sysinfo.txt
 .consulo/
 /*.tmp
 /*.svd
- 
-# ============ #
-# OS generated #
-# ============ #
-.DS_Store*
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-[Tt]humbs.db
-[Dd]esktop.ini
-Corridor/Library/ShaderCache/
-Corridor/Library/metadata/
-/src/applicatie/Taken5/Library
-
-/src/applicatie/LocatiebepalingAndCamera/CameraLocation/Library
-/src/applicatie/Taken5/Library
-
-src/applicatie/Taken5/Assembly-CSharp-firstpass\.csproj
