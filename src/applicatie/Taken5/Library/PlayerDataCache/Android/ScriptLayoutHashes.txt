@@ -2,10 +2,10 @@ Android
 PlayerPath?
 C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/build.apk
 SceneListBegin?
+Assets/Scenes/Loadingscreen.unity
 Assets/Scenes/Menu.unity
 Assets/Scenes/Menu_Create.unity
 Assets/Scenes/Menu_Join.unity
-Assets/Scenes/Menu_Join_Team.unity
 Assets/Scenes/NavigationScreen.unity
 Assets/Scenes/BraboGame.unity
 SceneListEnd?

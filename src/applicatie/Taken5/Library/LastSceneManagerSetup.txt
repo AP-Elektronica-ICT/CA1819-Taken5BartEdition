@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Menu.unity
-=======
-- path: Assets/Scenes/NavigationScreen.unity
->>>>>>> bbe6fc3... Democlear
+- path: Assets/Scenes/Loadingscreen.unity
   isLoaded: 1
   isActive: 1
