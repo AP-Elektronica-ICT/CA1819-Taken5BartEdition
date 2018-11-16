@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Interface;
 using Interface.T5B;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.T5B;
 using Repository;
@@ -46,5 +47,13 @@ namespace BusinessLayer.T5B
             }
             return team;
         }
+
+        
+        public void CreateSpeler([FromBody] Speler newSpeler)
+        {
+          
+            _spelerRepo.PostSpeler(newSpeler);        }
+
+
     }
 }

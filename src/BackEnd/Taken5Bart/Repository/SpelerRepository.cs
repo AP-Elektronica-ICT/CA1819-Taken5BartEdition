@@ -29,6 +29,14 @@ namespace Repository.T5B
             return _context.Spelers.Include(s=>s.AssignedTeam).SingleOrDefault(g => g.Id == id);
         }
 
+        //nieuwe speler aanmaken:
+        public void PostSpeler(Speler speler)
+        {
+            //Speler toevoegen in de databank, Id wordt dan ook toegekend
+            _context.Spelers.Add(speler);
+            _context.SaveChanges();
+        }
+
         public ICollection<Speler> GetSpelers()
         {
             return _context.Spelers.Include(s => s.AssignedTeam).ToList();

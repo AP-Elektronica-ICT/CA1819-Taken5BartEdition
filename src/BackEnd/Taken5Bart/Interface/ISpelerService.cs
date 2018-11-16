@@ -10,6 +10,7 @@ namespace Interface.T5B
     {
         ICollection<Speler> GetSpelers();
         Speler GetSpeler(int id);
+        void CreateSpeler(Speler newSpeler);
         Team GetTeamFromSpeler(int spelerId);
     }
 }

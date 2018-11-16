@@ -54,8 +54,9 @@ namespace Taken5Bart.Controllers
 
         // POST: api/Speler
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Speler speler)
         {
+            spelerService.CreateSpeler(speler);
         }
 
         // PUT: api/Speler/5

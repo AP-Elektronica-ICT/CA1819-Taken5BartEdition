@@ -10,6 +10,7 @@ namespace Interface.T5B
     {
         Speler GetSpeler(int Id);
         void NewSpeler(Speler s);
+        void PostSpeler(Speler s);
         ICollection<Speler> GetSpelers();
     }
 }
