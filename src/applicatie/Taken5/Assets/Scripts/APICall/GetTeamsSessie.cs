@@ -17,26 +17,31 @@ public class GetTeamsSessie : MonoBehaviour {
     Dictionary<string, int> teamlijst;
     public LevelLoader levelLoader;
     public int nextLevel;
+    private APICall api;
 
-    public void Get()
+    public void GetTeams()
     {
-        StartCoroutine(GetTeams());
-    }
-    IEnumerator GetTeams()
-    {
-        bool wwwSuccess = false;
         btnGo.gameObject.SetActive(false);
-        url = "http://localhost:1907/api/Sessie/toList?id=" + SessieCode.text;
-        Debug.Log(url);
+        url = "Sessie/toList?id=" + SessieCode.text;
+        bool wwwSuccess = false;
+        //Debug.Log(url);
         List<string> teamnamen = new List<string>();
         teamlijst = new Dictionary<string, int>();
-
-        using (WWW www = new WWW(url))
+        if (SessieCode.text == "666") //dev bypass
         {
-            yield return www;
-            string json = www.text;
+            wwwSuccess = true;
+            teamlijst.Add("dev", -1);
+            teamnamen.Add("dev");
+            teamlijst.Add("Bypass", -1);
+            teamnamen.Add("Bypass");
+            teamlijst.Add("HAXXXX!", -1);
+            teamnamen.Add("HAXXXX!");
+        }
+        else
+        {
+            string json = api.ApiCall(url);
             //Debug.Log(json == ""); json is een string en zal nooit null zijn.
-            if (json != "") //vervang null door een error waarde van de server
+            if (json != "-1") //vervang null door een error waarde van de server
             {
                 wwwSuccess = true;
                 var N = JSON.Parse(json);
@@ -52,18 +57,6 @@ public class GetTeamsSessie : MonoBehaviour {
             {
                 SessieCode.text = "wrong sessieID";
             }
-
-            www.Dispose();
-        }
-        if(SessieCode.text == "666") //dev bypass
-        {
-            teamlijst.Add("dev", -1);
-            teamnamen.Add("dev");
-            teamlijst.Add("Bypass", -1);
-            teamnamen.Add("Bypass");
-            teamlijst.Add("HAXXXX!", -1);
-            teamnamen.Add("HAXXXX!");
-            wwwSuccess = true;
         }
         if (wwwSuccess)
         {
@@ -72,43 +65,38 @@ public class GetTeamsSessie : MonoBehaviour {
             btnJoin.gameObject.SetActive(true);
         }
         btnGo.gameObject.SetActive(true);
-
     }
 
     public void PutSpelerInTeam()
     {
-        
-        StartCoroutine(Upload());
-    }
-    IEnumerator Upload()
-    {
+        //get selected item from dropdown
         var menuIndex = dropdown.GetComponent<Dropdown>().value;
         var menuValue = dropdown.GetComponent<Dropdown>().options[menuIndex].text;
         Debug.Log(menuValue);
-        var teamId = teamlijst[menuValue];
-        var url = "http://localhost:1907/api/Team/" + teamId + "/AddSpeler?spelerID=" + Info.spelerId;
-        string success = "0";
 
-        if (teamId == -1)
+        //get teamid from the team dictionary throug the teamname
+        var teamId = teamlijst[menuValue];
+
+        //create the url for adding player
+        var url = "Team/" + teamId + "/AddSpeler?spelerID=" + Info.spelerId;
+
+        string success = "0";
+        if (teamId == -1) //team id -1 => developer bypass (offline mode)
         {
-            Debug.Log("bypassing");
+            //Debug.Log("bypassing"); 
             Info.TeamNaam = menuValue;
             Info.TeamId = teamId;
             success = "1";
         }
         else
         {
-            using (WWW www = new WWW(url))
-            {
-                yield return www;
-                success = www.text;
-            }
+            success = api.ApiCall(url);
         }
-        if(success == "1")
+
+        if (success == "1")
         {
             levelLoader.LoadLevel(nextLevel);
         }
-        
     }
 
     public void ChangeDropValue()
