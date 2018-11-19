@@ -299,3 +299,5 @@ sysinfo.txt
 .consulo/
 /*.tmp
 /*.svd
+
+src/applicatie/LocatiebepalingAndCamera/CameraLocation/Library/metadata/
