@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class APICall : MonoBehaviour {
-    string baseURL = "http://localhost:1907/api/";    // "Sessie/toList?id="
+    string baseURL = "https://taken5bart20181119082417.azurewebsites.net/api/";    // "Sessie/toList?id="
     string json;
     IEnumerator Call(string requestUrl)
     {
