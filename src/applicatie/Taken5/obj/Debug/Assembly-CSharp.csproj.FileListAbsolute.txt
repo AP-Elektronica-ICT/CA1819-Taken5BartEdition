@@ -520,3 +520,4 @@ E:\AP\CA\CA1819-Taken5BartEdition\src\applicatie\Taken5\obj\Debug\Assembly-CShar
 E:\AP\CA\CA1819-Taken5BartEdition\src\applicatie\Taken5\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 E:\AP\CA\CA1819-Taken5BartEdition\src\applicatie\Taken5\obj\Debug\Assembly-CSharp.dll
 E:\AP\CA\CA1819-Taken5BartEdition\src\applicatie\Taken5\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Viktor\Documents\School1819\CA1819-Taken5BartEdition\src\applicatie\Taken5\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb

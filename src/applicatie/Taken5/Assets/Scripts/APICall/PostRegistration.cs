@@ -1,24 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PostRegistration : MonoBehaviour {
-
-    public Input Voornaam;
-    public Input Achternaam;
-	// Use this for initialization
-	void Start () 
+public class postMessage : MonoBehaviour
+{
+    // Use this for initialization
+    void Start()
     {
-        string url = "";
+        string url = "http://localhost:1907/api/speler";
+
         WWWForm formDate = new WWWForm();
-        formDate.AddField("Voornaam", "Viktor");
-        formDate.AddField("Achternaam", "Segers");
+        formDate.AddField("voornaam", "sdfsd");
+        formDate.AddField("achternaam", "sdf");
+        formDate.AddField("deviceId", "15");
+
 
         WWW www = new WWW(url, formDate);
-		
-	}
-	
-    IEnumerator request (WWW www)
+
+        StartCoroutine(request(www));
+    }
+
+    // Update is called once per frame
+    IEnumerator request(WWW www)
     {
         yield return www;
 
