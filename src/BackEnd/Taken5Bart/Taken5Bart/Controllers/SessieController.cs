@@ -52,8 +52,13 @@ namespace Taken5Bart.Controllers
 
         // POST: api/Sessie
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Sessie value)
         {
+            foreach(Team t in value.Teams)
+            {
+                Console.WriteLine(t.TeamNaam);
+            }
+            
         }
 
         // PUT: api/Sessie/5
