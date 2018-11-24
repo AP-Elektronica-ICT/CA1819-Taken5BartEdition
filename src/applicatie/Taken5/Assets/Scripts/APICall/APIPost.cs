@@ -9,7 +9,9 @@ using UnityEngine.Networking;
 public class APIPost : MonoBehaviour {
     //https://answers.unity.com/questions/1419353/write-data-to-to-json-database-using-simplejsoncs.html
     // Use this for initialization
-    void Start () {
+    /*
+     * example van hoe je een sessie object maakt met teams in met enkel de teamnamen in
+    void SessieCreator () {
         JSONNode N = new JSONObject();
         int teams = 5;
         
@@ -19,26 +21,21 @@ public class APIPost : MonoBehaviour {
         Debug.Log(N);
         StartCoroutine(WWWPost(N));
     }
-    static string url = "http://localhost:1907/api/Sessie";
-    public static IEnumerator Post(JSONNode aNode)
+    */
+    string baseURL = "https://taken5bart20181119082417.azurewebsites.net/api/";    // "Sessie/toList?id="
+    string baseLocalURL = "http://localhost:1907/api/Sessie";
+    string json;
+
+    public string ApiPost(JSONNode aNode, string requestUrl)
     {
-        var req = new UnityWebRequest(url, "POST");
-        byte[] data = Encoding.UTF8.GetBytes(aNode.ToString());
+        StartCoroutine(Post(aNode, requestUrl));
+        return json;
+    } 
 
-        req.uploadHandler = new UploadHandlerRaw(data);
-        req.uploadHandler.contentType = "application/json";
-        req.downloadHandler = new DownloadHandlerBuffer();
-
-        req.SetRequestHeader("Content-Type", "application/json");
-        req.SetRequestHeader("accept", "application/json");
-        yield return req.SendWebRequest();
-        string blobURL = req.GetResponseHeader("Location");
-        Debug.Log(blobURL);
-        
-    }
-
-    public static IEnumerator WWWPost(JSONNode N)
+    public IEnumerator Post(JSONNode N, string requestUrl)
     {
+        string url = baseLocalURL + requestUrl;
+
         var req = new UnityWebRequest(url, "POST");
         byte[] data = Encoding.UTF8.GetBytes(N.ToString());
 
@@ -53,17 +50,12 @@ public class APIPost : MonoBehaviour {
 
         if (req.isNetworkError || req.isHttpError)
         {
-            Debug.Log(req.error);
+            json = "-1";
         }
         else
         {
-            Debug.Log("Form upload complete!");
+            json = "1";
         }
         
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

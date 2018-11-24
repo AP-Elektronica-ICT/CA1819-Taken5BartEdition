@@ -19,7 +19,7 @@ public class GetTeamData : MonoBehaviour {
     public Text Score;
     public Text TeamPositie;
 
-    private APICall api;
+    private APICaller api;
 
     void Start()
     {
@@ -51,7 +51,7 @@ public class GetTeamData : MonoBehaviour {
     {
         var url = "Team/" + Info.TeamId.ToString() + "/GetScorePosition";
         Debug.Log(url);
-        var result = api.ApiCall(url);
+        var result = api.ApiGet(url);
         TeamPositie.text = result;
     }
 

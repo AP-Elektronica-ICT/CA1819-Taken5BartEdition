@@ -14,16 +14,16 @@ public static class Info
     public static int Score { get; set; }
     public static void Update()
     {
-        APICall api = new APICall();
+        APICaller api = new APICaller();
         string url = "Speler/" + Info.spelerId.ToString() + "/Team";
-        var N = JSON.Parse(api.ApiCall(url));
+        var N = JSON.Parse(api.ApiGet(url));
         TeamNaam = N["teamNaam"].Value;
         Diamanten = N["diamantenVerzameld"].AsInt;
         Score = N["score"].AsInt;
         TeamId = N["id"].AsInt;
 
         url = "Speler/" + Info.spelerId.ToString();
-        N = JSON.Parse(api.ApiCall(url));
+        N = JSON.Parse(api.ApiGet(url));
         Voornaam = N["voornaam"].Value;
     }
 }

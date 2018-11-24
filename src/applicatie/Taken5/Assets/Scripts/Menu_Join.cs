@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GetTeamsSessie : MonoBehaviour {
+public class Menu_Join : MonoBehaviour {
 
     string url;
     public Text SessieCode;
@@ -17,8 +17,12 @@ public class GetTeamsSessie : MonoBehaviour {
     Dictionary<string, int> teamlijst;
     public LevelLoader levelLoader;
     public int nextLevel;
-    private APICall api;
+    private APICaller api;
 
+    void Start()
+    {
+        api = gameObject.AddComponent<APICaller>();
+    }
     public void GetTeams()
     {
         btnGo.gameObject.SetActive(false);
@@ -39,7 +43,7 @@ public class GetTeamsSessie : MonoBehaviour {
         }
         else
         {
-            string json = api.ApiCall(url);
+            string json = api.ApiGet(url);
             //Debug.Log(json == ""); json is een string en zal nooit null zijn.
             if (json != "-1") //vervang null door een error waarde van de server
             {
@@ -90,7 +94,7 @@ public class GetTeamsSessie : MonoBehaviour {
         }
         else
         {
-            success = api.ApiCall(url);
+            success = api.ApiGet(url);
         }
 
         if (success == "1")

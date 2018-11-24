@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using SimpleJSON;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +9,7 @@ public class Menu_Create : MonoBehaviour {
     int aantalTeams;
     int teamCounter;
     List<string> teamNamen;
+    private APICaller api;
 
     public InputField txtAantalGroepen;
     public InputField txtTeamNaam;
@@ -29,6 +32,7 @@ public class Menu_Create : MonoBehaviour {
         recapTeams.gameObject.SetActive(false);
         txtTeam.gameObject.SetActive(false);
         btnStartSesstion.gameObject.SetActive(false);
+        api = gameObject.AddComponent<APICaller>();
     }
     public void SessieInit()
     {
@@ -66,7 +70,27 @@ public class Menu_Create : MonoBehaviour {
         }
     }
 
-    void printTeams()
+    public void createSession()
+    {
+        txtTeamNaam.gameObject.SetActive(false);
+        btnAddTeam.gameObject.SetActive(false);
+        txtTeam.gameObject.SetActive(true);
+        recapTeams.gameObject.SetActive(true);
+        btnStartSesstion.gameObject.SetActive(true);
+
+        JSONNode N = new JSONObject();
+        N["startTijd"] = DateTime.Now.ToString();
+
+        for(int i =0; i<aantalTeams; i++)
+        {
+            N["teams"][i]["teamNaam"] = teamNamen[i];
+            Debug.Log(i + teamNamen[i]);
+        }
+        Debug.Log(N.AsObject);
+        api.ApiPost("Sessie",N);
+    }
+
+    public void printTeams()
     {
         Debug.Log("printTeams");
         txtTeamNaam.gameObject.SetActive(false);
@@ -75,6 +99,7 @@ public class Menu_Create : MonoBehaviour {
         recapTeams.gameObject.SetActive(true);
         btnStartSesstion.gameObject.SetActive(true);
         string text = "Teamnamen: \n";
+
         foreach(string s in teamNamen)
         {
             Debug.Log(s);
