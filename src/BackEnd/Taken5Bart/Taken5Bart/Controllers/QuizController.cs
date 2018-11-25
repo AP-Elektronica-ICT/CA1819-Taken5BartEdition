@@ -30,11 +30,13 @@ namespace Taken5Bart.Controllers
             return Ok(quizService.GetQuizvragen());
         }
 
-        /*public ActionResult<IEnumerable<Quizvraag>> Get(int index)
+
+        [HttpGet("{index}")]
+        public ActionResult<IEnumerable<Quizvraag>> Get(int index)
         {
             return Ok(quizService.GetQuizvraag(index));
 
-        }*/
+        }
     }
 
 
