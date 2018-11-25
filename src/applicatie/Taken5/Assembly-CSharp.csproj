@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\APICall\CheckDeviceId.cs" />
      <Compile Include="Assets\Scripts\APICall\constante.cs" />
      <Compile Include="Assets\Scripts\APICall\GetTeamData.cs" />
      <Compile Include="Assets\Scripts\APICall\GetTeamPos.cs" />

@@ -29,6 +29,14 @@ namespace Repository.T5B
             return _context.Spelers.Include(s=>s.AssignedTeam).SingleOrDefault(g => g.Id == id);
         }
 
+        public Speler GetSpelerOnDevice(string DeviceID)
+        {
+            return _context.Spelers.SingleOrDefault(g => g.DeviceId == DeviceID);
+        }
+
+
+
+
         //nieuwe speler aanmaken:
         public void PostSpeler(Speler speler)
         {
@@ -41,5 +49,20 @@ namespace Repository.T5B
         {
             return _context.Spelers.Include(s => s.AssignedTeam).ToList();
         }
+
+
+
+
+        public string CheckRegisterdPlayer(Speler Speler)
+        {
+            var speler = _context.Spelers.Where(i => i.DeviceId == Speler.DeviceId);
+
+            if (speler != null)
+                return Speler.DeviceId;
+
+            return null;      
+        }
+
+       
     }
 }

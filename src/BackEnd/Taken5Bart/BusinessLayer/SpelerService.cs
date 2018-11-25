@@ -32,6 +32,8 @@ namespace BusinessLayer.T5B
             return s;
         }
 
+
+
         public ICollection<Speler> GetSpelers()
         {
             return _spelerRepo.GetSpelers();
@@ -52,7 +54,23 @@ namespace BusinessLayer.T5B
         public void CreateSpeler([FromBody] Speler newSpeler)
         {
           
-            _spelerRepo.PostSpeler(newSpeler);        }
+            _spelerRepo.PostSpeler(newSpeler);
+        }
+
+        [Route("api/speler/deviceid")]
+        public Speler CheckRegisterdPlayer([FromBody] Speler Speler)
+        {
+            string deviceId = _spelerRepo.CheckRegisterdPlayer(Speler);
+
+            if (deviceId != null)
+                return _spelerRepo.GetSpelerOnDevice(Speler.DeviceId);
+
+
+            return null;
+
+
+        }
+
 
 
     }
