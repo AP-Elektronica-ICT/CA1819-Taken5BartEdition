@@ -10,16 +10,24 @@ public class PostRegistration : MonoBehaviour
 {
 
     static string url = "http://localhost:1907/api/speler";
-
-    public void onclick()
+    public InputField Voornaam;
+    public InputField Achternaam;
+    string voornaam;
+    string achternaam;
+    void Update()
+    {
+        voornaam = Voornaam.text;
+        achternaam = Achternaam.text;
+    }
+     public void OnClick()
         {
             Debug.Log("start");
             JSONNode N = new JSONObject();
            
 
-            N["voornaam"] = "sdfsdf";
-            N["achternaam"] = "sdfsdf";
-            N["deviceId"] = 269;
+            N["voornaam"] = Voornaam.ToString();
+            N["achternaam"] = Achternaam.ToString();
+            N["deviceId"] = SystemInfo.deviceUniqueIdentifier.ToString();
             Debug.Log(N);
             StartCoroutine(WWWPost(N));
         }
