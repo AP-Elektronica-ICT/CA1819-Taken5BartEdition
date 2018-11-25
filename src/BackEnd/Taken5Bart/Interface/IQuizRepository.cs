@@ -9,5 +9,9 @@ namespace Interface.T5B
 {
     public interface IQuizRepository
     {
+        ICollection<Quizvraag> GetQuizvragen();
+
+        Quizvraag GetQuizvraag(int index);
+
     }
 }

@@ -13,5 +13,29 @@ namespace BusinessLayer.T5B
 {
     public class QuizService : IQuizService
     {
+        private IQuizRepository _quizRepo;
+        
+        public QuizService(GameContext context)
+        {
+            _quizRepo = new QuizRepository(context);
+        }
+
+        public QuizService(IQuizRepository quizrepo)
+        {
+            _quizRepo = quizrepo;
+        }
+
+        public ICollection<Quizvraag> GetQuizvragen()
+        {
+            return _quizRepo.GetQuizvragen();
+        }
+
+
+        public Quizvraag GetQuizvraag(int index)
+        {
+            return _quizRepo.GetQuizvraag(index);
+        }
+
+        
     }
 }

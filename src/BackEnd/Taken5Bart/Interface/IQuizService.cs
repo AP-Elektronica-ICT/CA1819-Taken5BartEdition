@@ -8,5 +8,9 @@ namespace Interface.T5B
 {
     public interface IQuizService
     {
+        ICollection<Quizvraag> GetQuizvragen();
+
+        Quizvraag GetQuizvraag(int index);
+
     }
 }
