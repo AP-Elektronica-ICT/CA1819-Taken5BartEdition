@@ -13,7 +13,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Models;
 using Models.T5B;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Taken5Bart
 {
@@ -36,16 +35,11 @@ namespace Taken5Bart
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials().Build();
                 });
             });
-            
             services.AddDbContext<GameContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<ISpelerService, SpelerService>();
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<ISessieService, SessieService>();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-            });
             services.AddMvc();
         }
 
@@ -57,16 +51,7 @@ namespace Taken5Bart
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors("EnableCORS");
-
-            app.UseSwagger();
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
-            
-            //app.UseStaticFiles();
+            app.UseStaticFiles();
             app.UseMvc();
             DbInit.Initialize(context);
         }

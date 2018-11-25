@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Interface;
 using Interface.T5B;
-using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.T5B;
 using Repository;
@@ -32,8 +31,6 @@ namespace BusinessLayer.T5B
             return s;
         }
 
-
-
         public ICollection<Speler> GetSpelers()
         {
             return _spelerRepo.GetSpelers();
@@ -49,29 +46,5 @@ namespace BusinessLayer.T5B
             }
             return team;
         }
-
-        
-        public void CreateSpeler([FromBody] Speler newSpeler)
-        {
-          
-            _spelerRepo.PostSpeler(newSpeler);
-        }
-
-        [Route("api/speler/deviceid")]
-        public Speler CheckRegisterdPlayer([FromBody] Speler Speler)
-        {
-            string deviceId = _spelerRepo.CheckRegisterdPlayer(Speler);
-
-            if (deviceId != null)
-                return _spelerRepo.GetSpelerOnDevice(Speler.DeviceId);
-
-
-            return null;
-
-
-        }
-
-
-
     }
 }

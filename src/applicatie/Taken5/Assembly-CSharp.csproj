@@ -53,12 +53,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\APICall\CheckDeviceId.cs" />
+     <Compile Include="Assets\scrip.cs" />
      <Compile Include="Assets\Scripts\APICall\constante.cs" />
      <Compile Include="Assets\Scripts\APICall\GetTeamData.cs" />
      <Compile Include="Assets\Scripts\APICall\GetTeamPos.cs" />
      <Compile Include="Assets\Scripts\APICall\GetTeamsSessie.cs" />
-     <Compile Include="Assets\Scripts\APICall\PostRegistration.cs" />
      <Compile Include="Assets\Scripts\APICall\PostSpelerInTeam.cs" />
      <Compile Include="Assets\Scripts\APICall\terd.cs" />
      <Compile Include="Assets\Scripts\Arrow.cs" />
