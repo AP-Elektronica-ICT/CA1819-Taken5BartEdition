@@ -12,8 +12,8 @@ public class Distance : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+    }
 
     public static double DistanceTo(double lat, double lon)
     {
