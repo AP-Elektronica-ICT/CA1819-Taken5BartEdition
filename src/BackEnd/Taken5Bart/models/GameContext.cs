@@ -27,5 +27,7 @@ namespace Models.T5B
         public DbSet<Sessie> Sessies { get; set; }
         public DbSet<Speler> Spelers { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<Quizvraag> Quizvragen { get; set; }
+
     }
 }
