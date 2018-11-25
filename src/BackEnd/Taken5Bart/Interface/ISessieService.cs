@@ -11,6 +11,6 @@ namespace Interface.T5B
         Sessie GetSessie(int Id);
         ICollection<Sessie> GetSessies();
         ICollection<Team> GetTeamsBySessie(int sessieId);
-
+        bool CreateSessie(Sessie newSessie);
     }
 }

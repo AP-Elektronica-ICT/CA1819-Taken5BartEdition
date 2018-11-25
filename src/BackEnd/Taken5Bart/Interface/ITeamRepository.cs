@@ -12,5 +12,6 @@ namespace Interface.T5B
         Team GetTeam(int Id);
         void UpdateTeam(Team newTeam);
         void NewTeam(Team t);
+        Team NewTeamT(Team t);
     }
 }

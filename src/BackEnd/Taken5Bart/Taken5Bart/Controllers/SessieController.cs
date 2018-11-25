@@ -54,10 +54,7 @@ namespace Taken5Bart.Controllers
         [HttpPost]
         public void Post([FromBody] Sessie value)
         {
-            foreach(Team t in value.Teams)
-            {
-                Console.WriteLine(t.TeamNaam);
-            }
+            sessieService.CreateSessie(value);
             
         }
 
