@@ -21,7 +21,7 @@ public class PostRegistration : MonoBehaviour
     }
      public void OnClick()
         {
-            Debug.Log("start");
+            Debug.Log("OnClick");
             JSONNode N = new JSONObject();
            
 
@@ -32,6 +32,11 @@ public class PostRegistration : MonoBehaviour
             StartCoroutine(WWWPost(N));
         }
 
+
+    public void OnLoad()
+    {
+      
+    }
     // Update is called once per frame
     public static IEnumerator WWWPost(JSONNode N)
         {
