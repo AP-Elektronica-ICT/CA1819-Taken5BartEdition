@@ -21,7 +21,9 @@ namespace Repository.T5B
 
         public void NewSpeler(Speler s)
         {
+            //Speler toevoegen in de databank, Id wordt dan ook toegekend
             _context.Spelers.Add(s);
+            _context.SaveChanges();
         }
 
         public Speler GetSpeler(int id)
@@ -29,8 +31,6 @@ namespace Repository.T5B
             return _context.Spelers.Include(s=>s.AssignedTeam).SingleOrDefault(g => g.Id == id);
         }
 
-<<<<<<< HEAD
-=======
         public Speler GetSpelerOnDevice(string DeviceID)
         {
             return _context.Spelers.SingleOrDefault(g => g.DeviceId == DeviceID);
@@ -39,20 +39,15 @@ namespace Repository.T5B
 
 
 
-        //nieuwe speler aanmaken:
-        public void PostSpeler(Speler speler)
-        {
-            //Speler toevoegen in de databank, Id wordt dan ook toegekend
-            _context.Spelers.Add(speler);
-            _context.SaveChanges();
-        }
 
->>>>>>> ed617f3... Start checkondeviceid
         public ICollection<Speler> GetSpelers()
         {
             return _context.Spelers.Include(s => s.AssignedTeam).ToList();
         }
-
+        public ICollection<Speler> GetSpelersRegisterd()
+        {
+            return _context.Spelers.ToList();
+        }
 
 
 
@@ -66,6 +61,6 @@ namespace Repository.T5B
             return null;      
         }
 
-       
+      
     }
 }

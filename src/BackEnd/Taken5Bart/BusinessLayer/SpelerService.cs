@@ -37,6 +37,8 @@ namespace BusinessLayer.T5B
         {
             return _spelerRepo.GetSpelers();
         }
+       
+        
 
         public Team GetTeamFromSpeler(int spelerId)
         {
@@ -48,18 +50,16 @@ namespace BusinessLayer.T5B
             }
             return team;
         }
-<<<<<<< HEAD
-=======
 
         
-        public void CreateSpeler([FromBody] Speler newSpeler)
+        public void CreateSpeler(Speler newSpeler)
         {
           
-            _spelerRepo.PostSpeler(newSpeler);
+            _spelerRepo.NewSpeler(newSpeler);
         }
 
-        [Route("api/speler/deviceid")]
-        public Speler CheckRegisterdPlayer([FromBody] Speler Speler)
+        //[Route("api/speler/deviceid")]
+        public Speler CheckRegisterdPlayer( Speler Speler)
         {
             string deviceId = _spelerRepo.CheckRegisterdPlayer(Speler);
 
@@ -72,8 +72,6 @@ namespace BusinessLayer.T5B
 
         }
 
-
-
->>>>>>> ed617f3... Start checkondeviceid
+      
     }
 }

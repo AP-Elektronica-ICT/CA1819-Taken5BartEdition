@@ -12,11 +12,7 @@ namespace Interface.T5B
         Speler GetSpelerOnDevice(string DeviceID);
 
         void NewSpeler(Speler s);
-<<<<<<< HEAD
-=======
-        void PostSpeler(Speler s);
         string CheckRegisterdPlayer(Speler id);
->>>>>>> ed617f3... Start checkondeviceid
         ICollection<Speler> GetSpelers();
     }
 }

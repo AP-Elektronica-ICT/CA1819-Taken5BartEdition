@@ -25,8 +25,11 @@ namespace Taken5Bart.Controllers
         public ActionResult<IEnumerable<Speler>> Get()
         {
             return Ok(spelerService.GetSpelers());
+            
         }
 
+
+        
         // GET: api/Speler/5
         [HttpGet("{id}")]
         public ActionResult<Speler> Get(int id)
@@ -54,8 +57,11 @@ namespace Taken5Bart.Controllers
 
         // POST: api/Speler
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult CreateNewPlayer([FromBody] Speler value)
         {
+            spelerService.CreateSpeler(value);
+
+            return Ok();
         }
 
         // PUT: api/Speler/5
