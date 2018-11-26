@@ -14,13 +14,16 @@ public class Distance : MonoBehaviour {
 	void Update () {
 
     }
-
-    public static double DistanceTo(double lat, double lon)
+    
+    public static double DistanceTo()
     {
-        double rlat1 = Math.PI * GPS.Instance.latitude / 180;
-        double rlat2 = Math.PI * lat / 180;
+        double latGame = 51.064898;
+        double lonGame = 5.300884;
 
-        double theta = GPS.Instance.longitude - lon;
+        double rlat1 = Math.PI * GPS.Instance.latitude / 180;
+        double rlat2 = Math.PI * latGame / 180;
+
+        double theta = GPS.Instance.longitude - lonGame;
         double rtheta = Math.PI * theta / 180;
 
         double dist = Math.Sin(rlat1) * Math.Sin(rlat2) + Math.Cos(rlat1) * Math.Cos(rlat2) * Math.Cos(rtheta);

@@ -12,6 +12,8 @@ public static class Info
     public static string TeamNaam { get; set; }
     public static int Diamanten { get; set; }
     public static int Score { get; set; }
+    public static double Longitude { get; set; }
+    public static double Latitude { get; set; }
     public static void Update()
     {
         APICall api = new APICall();
@@ -25,5 +27,10 @@ public static class Info
         url = "Speler/" + Info.spelerId.ToString();
         N = JSON.Parse(api.ApiCall(url));
         Voornaam = N["voornaam"].Value;
+
+        url = "puzzel/" + "1" + "/location";
+        N = JSON.Parse(api.ApiCall(url));
+        Longitude = N["longitude"].AsDouble;
+        Latitude = N["latitude"].AsDouble;
     }
 }

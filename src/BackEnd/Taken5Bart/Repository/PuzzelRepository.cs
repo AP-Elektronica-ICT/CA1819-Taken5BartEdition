@@ -19,13 +19,14 @@ namespace Repository
 
         public Puzzel GetPuzzel(int id)
         {
-            return _context.Puzzels.Include(p => p.Id).Include(p => p.Locatie).SingleOrDefault(p => p.Id == id);
+            return _context.Puzzels.Include(p => p.Locatie).SingleOrDefault(p => p.Id == id);
         }
 
         public ICollection<Puzzel> GetPuzzels()
         {
-            return _context.Puzzels.Include(p => p.Id).Include(p => p.Locatie).ToList();
-
+            var puzzels = _context.Puzzels.Include(p => p.Locatie).ToList<Puzzel>();
+            return puzzels;
+            // return _context.Puzzels.ToList();
         }
     }
 }
