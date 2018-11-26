@@ -66,7 +66,7 @@ public class Quiz : MonoBehaviour
 
 
         request();
-        
+
     }
     void request()
     {
@@ -81,10 +81,10 @@ public class Quiz : MonoBehaviour
         // check for errors
         if (www.error == null)
         {
-            
-           // Debug.Log("WWW Ok!: " + www.text);
+
+            // Debug.Log("WWW Ok!: " + www.text);
             json = www.text;
-          
+
             if (www.text == "")
             {
                 Debug.Log("ik ben een 0");
@@ -95,7 +95,7 @@ public class Quiz : MonoBehaviour
                 var N = JSON.Parse(json);
                 Debug.Log(N);
                 Vraag.text = N["vraag"].Value;
-                Btn1.text= N["antwoord1"].Value;
+                Btn1.text = N["antwoord1"].Value;
                 Btn2.text = N["antwoord2"].Value;
                 Btn3.text = N["antwoord3"].Value;
                 Btn4.text = N["antwoord4"].Value;
@@ -104,7 +104,7 @@ public class Quiz : MonoBehaviour
                 correctie = N["correctie"].AsInt;
                 btnDisable.onclick();
 
-                foreach(Text t in Btns)
+                foreach (Text t in Btns)
                 {
                     if (t.text != "" && t != null)
                     {
@@ -135,7 +135,7 @@ public class Quiz : MonoBehaviour
 
         }
         else
-        { 
+        {
             switch (BtnId)
             {
                 case 1:
@@ -163,7 +163,7 @@ public class Quiz : MonoBehaviour
                     break;
 
             }
-            score -= 1;     
+            score -= 1;
             Debug.Log("score is " + score);
         }
 
@@ -221,5 +221,6 @@ public class Quiz : MonoBehaviour
             }
         }
 
+    }
 }
 

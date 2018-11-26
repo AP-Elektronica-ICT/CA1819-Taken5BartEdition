@@ -31,10 +31,6 @@ namespace Taken5Bart.Controllers
 
         }
 
-        [HttpPost]
-
-        public ActionResult Postspeler()
-
-
+   
     }
 }
