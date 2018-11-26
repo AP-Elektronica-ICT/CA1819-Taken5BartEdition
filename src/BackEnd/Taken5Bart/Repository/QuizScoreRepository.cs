@@ -22,9 +22,11 @@ namespace Repository.T5B
             return _context.QuizScores.ToList();
         }
 
-        public void PostQuizScore()
+        public void PostQuizScore(QuizScore Q)
         {
-            throw new System.NotImplementedException();
+             _context.QuizScores.Add(Q);
         }
+
+      
     }
 }

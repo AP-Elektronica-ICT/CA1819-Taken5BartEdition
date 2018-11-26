@@ -8,7 +8,7 @@ namespace Interface.T5B
     public interface IQuizScoreRepository
     {
         ICollection<QuizScore> GetQuizScores();
-        void PostQuizScore();
+        void PostQuizScore(QuizScore Q);
        
     }
 }

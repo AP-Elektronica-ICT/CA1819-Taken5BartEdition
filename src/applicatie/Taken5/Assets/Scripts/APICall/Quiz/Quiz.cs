@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
-
+using UnityEngine.Networking;
+using System.Text;
 
 public class Quiz : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class Quiz : MonoBehaviour
     int count = 1;
     int correctie;
     string url;
+    static string ScoreURL = "http://localhost:1907/api/quiz/quizscores";
 
     int aantalvragen;
     int score;
@@ -86,6 +88,7 @@ public class Quiz : MonoBehaviour
             if (www.text == "")
             {
                 Debug.Log("ik ben een 0");
+                PostScore();
             }
             if (json != "")
             {
@@ -160,10 +163,63 @@ public class Quiz : MonoBehaviour
                     break;
 
             }
-            score -= 1;
+            score -= 1;     
             Debug.Log("score is " + score);
         }
 
     }
+
+    void PostScore()
+    {
+        JSONNode N = new JSONObject();
+
+        N["DeviceId"] = "";
+        N[aantalvragen] = aantalvragen;
+        N[score] = score;
+
+        StartCoroutine(WWWPost(N));
+    }
+
+    public static IEnumerator Post(JSONNode aNode)
+    {
+        var req = new UnityWebRequest(ScoreURL, "POST");
+        byte[] data = Encoding.UTF8.GetBytes(aNode.ToString());
+
+        req.uploadHandler = new UploadHandlerRaw(data);
+        req.uploadHandler.contentType = "application/json";
+        req.downloadHandler = new DownloadHandlerBuffer();
+
+        req.SetRequestHeader("Content-Type", "application/json");
+        req.SetRequestHeader("accept", "application/json");
+        yield return req.SendWebRequest();
+        string blobURL = req.GetResponseHeader("Location");
+        Debug.Log(blobURL);
+    }
+
+    public static IEnumerator WWWPost(JSONNode N)
+    {
+        {
+            var req = new UnityWebRequest(ScoreURL, "POST");
+            byte[] data = Encoding.UTF8.GetBytes(N.ToString());
+
+            req.uploadHandler = new UploadHandlerRaw(data);
+            req.uploadHandler.contentType = "application/json";
+            req.downloadHandler = new DownloadHandlerBuffer();
+
+            req.SetRequestHeader("Content-Type", "application/json");
+            req.SetRequestHeader("accept", "application/json");
+
+            yield return req.SendWebRequest();
+
+            if (req.isNetworkError || req.isHttpError)
+            {
+                Debug.Log(req.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
+
 }
 

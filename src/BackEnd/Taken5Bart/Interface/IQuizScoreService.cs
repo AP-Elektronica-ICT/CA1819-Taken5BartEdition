@@ -8,6 +8,6 @@ namespace Interface.T5B
     public interface IQuizScoreService
     {
         ICollection<QuizScore> GetQuizScores();
-        void PostQuizScore();
+        void PostQuizScore(QuizScore Q);
     }
 }

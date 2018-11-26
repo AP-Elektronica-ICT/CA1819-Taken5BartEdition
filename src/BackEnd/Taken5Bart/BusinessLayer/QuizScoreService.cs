@@ -33,9 +33,9 @@ namespace BusinessLayer.T5B
             return _quizScoreRepo.GetQuizScores();
         }
 
-        public void PostQuizScore()
+        public void PostQuizScore(QuizScore Q)
         {
-            throw new NotImplementedException();
+            _quizScoreRepo.PostQuizScore(Q);
         }
     }
 }

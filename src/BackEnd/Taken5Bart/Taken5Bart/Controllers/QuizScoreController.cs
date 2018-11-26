@@ -30,5 +30,11 @@ namespace Taken5Bart.Controllers
             return Ok(quizScoreService.GetQuizScores());
 
         }
+
+        [HttpPost]
+
+        public ActionResult Postspeler()
+
+
     }
 }
