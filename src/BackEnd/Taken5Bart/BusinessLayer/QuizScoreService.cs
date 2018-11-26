@@ -10,11 +10,27 @@ using Repository;
 using Repository.T5B;
 namespace BusinessLayer.T5B
 {
-    class QuizScoreService : IQuizScoreService
+    public class QuizScoreService : IQuizScoreService
     {
+
+        private IQuizScoreRepository _quizScoreRepo;
+
+        public QuizScoreService(GameContext context)
+        {
+            _quizScoreRepo = new QuizScoreRepository(context);
+        }
+
+        public QuizScoreService(IQuizScoreRepository quizScoreRepo)
+        {
+            _quizScoreRepo = quizScoreRepo;
+        }
+
+      
+
+
         public ICollection<QuizScore> GetQuizScores()
         {
-            throw new NotImplementedException();
+            return _quizScoreRepo.GetQuizScores();
         }
 
         public void PostQuizScore()

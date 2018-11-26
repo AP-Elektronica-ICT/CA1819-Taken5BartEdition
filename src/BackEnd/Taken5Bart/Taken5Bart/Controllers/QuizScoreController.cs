@@ -2,15 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Interface;
+using Interface.T5B;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using Models.T5B;
 
 namespace Taken5Bart.Controllers
 {
+
+    [Produces("application/json")]
+    [Route("api/quizscores")]
+    [ApiController]
     public class QuizScoreController : Controller
     {
-        public IActionResult Index()
+        private IQuizScoreService quizScoreService;
+        public QuizScoreController(IQuizScoreService service)
         {
-            return View();
+            quizScoreService = service;
+        }
+
+        // GET: api/Speler
+        [HttpGet]
+        public ActionResult<IEnumerable<Speler>> Get()
+        {
+            return Ok(quizScoreService.GetQuizScores());
+
         }
     }
 }

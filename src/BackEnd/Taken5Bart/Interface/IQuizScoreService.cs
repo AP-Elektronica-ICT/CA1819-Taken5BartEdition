@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Interface.T5B
 {
-    interface IQuizScoreService
+    public interface IQuizScoreService
     {
         ICollection<QuizScore> GetQuizScores();
         void PostQuizScore();

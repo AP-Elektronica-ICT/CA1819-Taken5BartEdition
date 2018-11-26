@@ -6,11 +6,20 @@ using Models.T5B;
 
 namespace Repository.T5B
 {
-    class QuizScoreRepository : IQuizScoreRepository
+    public class QuizScoreRepository : IQuizScoreRepository
     {
+        GameContext _context;
+
+
+
+
+        public QuizScoreRepository(GameContext context)
+        {
+            _context = context;
+        }
         public ICollection<QuizScore> GetQuizScores()
         {
-            throw new System.NotImplementedException();
+            return _context.QuizScores.ToList();
         }
 
         public void PostQuizScore()
