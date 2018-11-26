@@ -29,9 +29,9 @@ namespace BusinessLayer.T5B
             _teamRepo = teamRepo;
         }
 
-        public bool CreateSessie(Sessie newSessie)
+        public int CreateSessie(Sessie newSessie)
         {
-            var success = false;
+            var newSessieId = -1;
             List<Team> teams = new List<Team>();
             //var puzzels = _gameRepo.GetPuzzels()
             foreach(Team t in newSessie.Teams)
@@ -46,8 +46,8 @@ namespace BusinessLayer.T5B
             }
             newSessie.Teams = teams;
             _sessieRepo.AddSessie(newSessie);
-            success = true;
-            return success;
+            newSessieId = newSessie.Id;
+            return newSessieId;
         }
 
         public Sessie GetSessie(int id)

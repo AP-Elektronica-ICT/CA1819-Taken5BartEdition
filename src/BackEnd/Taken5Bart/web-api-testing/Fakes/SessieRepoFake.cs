@@ -17,6 +17,12 @@ namespace web_api_testing
             _sessie = GameDBFake._gameDB.Sessie.ToList();
         }
 
+        public Sessie AddSessie(Sessie sessie)
+        {
+            _sessie.Add(sessie);
+            return sessie;
+        }
+
         public Sessie GetSessie(int id)
         {
             return _sessie.Where(s => s.Id == id).FirstOrDefault();

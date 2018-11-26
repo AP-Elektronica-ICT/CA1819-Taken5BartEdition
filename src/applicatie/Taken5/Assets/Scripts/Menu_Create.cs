@@ -86,8 +86,10 @@ public class Menu_Create : MonoBehaviour {
             N["teams"][i]["teamNaam"] = teamNamen[i];
             Debug.Log(i + teamNamen[i]);
         }
-        Debug.Log(N.AsObject);
-        api.ApiPost("Sessie",N);
+        //Debug.Log(N.AsObject);
+        StartCoroutine(api.Post("Sessie", N));
+        var response = api.json;
+        Debug.Log(response);
     }
 
     public void printTeams()

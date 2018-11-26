@@ -7,8 +7,8 @@ using UnityEngine.Networking;
 
 public class APICaller : MonoBehaviour {
     string baseURL = "https://taken5bart20181119082417.azurewebsites.net/api/";    // "Sessie/toList?id="
-    string baseLocalURL = "http://localhost:1907/api/Sessie";
-    string json;
+    string baseLocalURL = "http://localhost:1907/api/";
+    public string json;
 
     public string ApiGet(string requestUrl)
     {
@@ -38,10 +38,11 @@ public class APICaller : MonoBehaviour {
 
     public string ApiPost( string requestUrl, JSONNode N)
     {
-        json = "-1";
-        Debug.Log(requestUrl);
-        Debug.Log(N.AsObject);
+        //Debug.Log(requestUrl);
+        //Debug.Log(N.AsObject);
         StartCoroutine(Post(requestUrl, N));
+        StartCoroutine(Wait(15));
+
         return json;
     }
 
@@ -49,8 +50,9 @@ public class APICaller : MonoBehaviour {
     {
         Debug.Log(N.AsObject);
         string url = baseLocalURL + requestUrl;
-        using (var req = new UnityWebRequest(url, "POST"))
-        {
+        Debug.Log(url);
+        var req = new UnityWebRequest(url, "POST");
+        
             byte[] data = Encoding.UTF8.GetBytes(N.ToString());
 
             req.uploadHandler = new UploadHandlerRaw(data);
@@ -59,17 +61,26 @@ public class APICaller : MonoBehaviour {
 
             req.SetRequestHeader("Content-Type", "application/json");
             req.SetRequestHeader("accept", "application/json");
-
-            yield return req.SendWebRequest();
-
+            req.SendWebRequest();
+            yield return new WaitUntil(()=>req.downloadHandler.isDone);
             if (req.isNetworkError || req.isHttpError)
             {
+                Debug.Log(req.error);
+                Debug.Log("Error");
                 json = "-1";
             }
             else
             {
-                json = "1";
+                var result = req.downloadHandler.text;
+                Debug.Log(result + " k");
+                json = result;
             }
-        }
+            req.Dispose();
+        
+    }
+
+    IEnumerator Wait(int s)
+    {
+        yield return new WaitForSeconds(s);
     }
 }

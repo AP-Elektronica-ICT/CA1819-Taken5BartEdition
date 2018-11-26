@@ -52,10 +52,14 @@ namespace Taken5Bart.Controllers
 
         // POST: api/Sessie
         [HttpPost]
-        public void Post([FromBody] Sessie value)
+        public IActionResult Post([FromBody] Sessie value)
         {
-            sessieService.CreateSessie(value);
-            
+            var result = sessieService.CreateSessie(value);
+            if (result == -1)
+            {
+                return BadRequest(-1);
+            }
+            return Ok(result);
         }
 
         // PUT: api/Sessie/5
