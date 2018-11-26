@@ -911,15 +911,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 742419430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e30db6a3e69388549ad5388e92283789, type: 3}
+  m_Script: {fileID: 11500000, guid: b36ee0dc2620fa442bdb847a6ae47ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: http://localhost:1907/api/Team
-  SpelerNaam: {fileID: 637372365}
-  TeamNaam: {fileID: 1276685319}
-  Diamanten: {fileID: 708233915}
-  Score: {fileID: 1628163699}
-  TeamPositie: {fileID: 48830787}
 --- !u!1 &747403261
 GameObject:
   m_ObjectHideFlags: 0
