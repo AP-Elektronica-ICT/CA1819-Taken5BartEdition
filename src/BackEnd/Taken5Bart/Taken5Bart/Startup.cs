@@ -41,6 +41,8 @@ namespace Taken5Bart
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<ISessieService, SessieService>();
             services.AddScoped<IQuizService, QuizService>();
+            services.AddScoped<IQuizScoreService, QuizScoreService>();
+
 
             services.AddMvc();
         }
