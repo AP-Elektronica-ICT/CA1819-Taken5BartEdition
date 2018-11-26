@@ -51,15 +51,7 @@ namespace Repository.T5B
 
 
 
-        public string CheckRegisterdPlayer(Speler Speler)
-        {
-            var speler = _context.Spelers.Where(i => i.DeviceId == Speler.DeviceId);
-
-            if (speler != null)
-                return Speler.DeviceId;
-
-            return null;      
-        }
+      
 
       
     }

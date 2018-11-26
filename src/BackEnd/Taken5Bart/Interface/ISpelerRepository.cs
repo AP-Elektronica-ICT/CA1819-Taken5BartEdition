@@ -12,7 +12,6 @@ namespace Interface.T5B
         Speler GetSpelerOnDevice(string DeviceID);
 
         void NewSpeler(Speler s);
-        string CheckRegisterdPlayer(Speler id);
         ICollection<Speler> GetSpelers();
     }
 }

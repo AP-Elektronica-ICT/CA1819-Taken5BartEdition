@@ -59,8 +59,9 @@
      <Compile Include="Assets\Scripts\APICall\GetTeamData.cs" />
      <Compile Include="Assets\Scripts\APICall\GetTeamPos.cs" />
      <Compile Include="Assets\Scripts\APICall\GetTeamsSessie.cs" />
-     <Compile Include="Assets\Scripts\APICall\PostRegistration.cs" />
      <Compile Include="Assets\Scripts\APICall\PostSpelerInTeam.cs" />
+     <Compile Include="Assets\Scripts\APICall\Registration\CheckRegisterd.cs" />
+     <Compile Include="Assets\Scripts\APICall\Registration\PostRegistration.cs" />
      <Compile Include="Assets\Scripts\APICall\terd.cs" />
      <Compile Include="Assets\Scripts\Arrow.cs" />
      <Compile Include="Assets\Scripts\Distance.cs" />

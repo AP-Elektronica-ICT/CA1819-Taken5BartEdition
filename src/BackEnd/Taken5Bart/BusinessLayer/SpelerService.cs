@@ -58,20 +58,17 @@ namespace BusinessLayer.T5B
             _spelerRepo.NewSpeler(newSpeler);
         }
 
-        //[Route("api/speler/deviceid")]
-        public Speler CheckRegisterdPlayer( Speler Speler)
+      
+
+        public Speler GetSpelerOnDeviceID(string deviceId)
         {
-            string deviceId = _spelerRepo.CheckRegisterdPlayer(Speler);
+            Speler speler = _spelerRepo.GetSpelerOnDevice(deviceId);
 
             if (deviceId != null)
-                return _spelerRepo.GetSpelerOnDevice(Speler.DeviceId);
+                return _spelerRepo.GetSpelerOnDevice(deviceId);
 
 
             return null;
-
-
         }
-
-      
     }
 }
