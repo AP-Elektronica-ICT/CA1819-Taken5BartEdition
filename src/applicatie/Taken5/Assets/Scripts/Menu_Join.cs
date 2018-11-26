@@ -27,48 +27,53 @@ public class Menu_Join : MonoBehaviour {
     {
         btnGo.gameObject.SetActive(false);
         url = "Sessie/toList?id=" + SessieCode.text;
-        bool wwwSuccess = false;
         //Debug.Log(url);
         List<string> teamnamen = new List<string>();
         teamlijst = new Dictionary<string, int>();
         if (SessieCode.text == "666") //dev bypass
         {
-            wwwSuccess = true;
             teamlijst.Add("dev", -1);
             teamnamen.Add("dev");
             teamlijst.Add("Bypass", -1);
             teamnamen.Add("Bypass");
             teamlijst.Add("HAXXXX!", -1);
             teamnamen.Add("HAXXXX!");
-        }
-        else
-        {
-            string json = api.ApiGet(url);
-            //Debug.Log(json == ""); json is een string en zal nooit null zijn.
-            if (json != "-1") //vervang null door een error waarde van de server
-            {
-                wwwSuccess = true;
-                var N = JSON.Parse(json);
-                //Debug.Log(N);
-                int count = N["count"].AsInt;
-                for (var i = 0; i < count; i++)
-                {
-                    teamlijst.Add(N["data"][i]["teamNaam"], N["data"][i]["id"].AsInt);
-                    teamnamen.Add(N["data"][i]["teamNaam"]);
-                }
-            }
-            else
-            {
-                SessieCode.text = "wrong sessieID";
-            }
-        }
-        if (wwwSuccess)
-        {
             dropdown.AddOptions(teamnamen);
             dropdown.gameObject.SetActive(true);
             btnJoin.gameObject.SetActive(true);
+            Info.SessieCode = SessieCode.ToString();
         }
+        else
+        {
+            api.ApiGet(url, GetTeamCor);
+        }
+       
         btnGo.gameObject.SetActive(true);
+    }
+    void GetTeamCor()
+    {
+        List<string> teamnamen = new List<string>();
+        string json = api.json;
+        //Debug.Log(json == ""); json is een string en zal nooit null zijn.
+        if (json != "-1") //vervang null door een error waarde van de server
+        {
+            var N = JSON.Parse(json);
+            //Debug.Log(N);
+            int count = N["count"].AsInt;
+            for (var i = 0; i < count; i++)
+            {
+                teamlijst.Add(N["data"][i]["teamNaam"], N["data"][i]["id"].AsInt);
+                teamnamen.Add(N["data"][i]["teamNaam"]);
+            }
+            dropdown.AddOptions(teamnamen);
+            dropdown.gameObject.SetActive(true);
+            btnJoin.gameObject.SetActive(true);
+            Info.SessieCode = SessieCode.ToString();
+        }
+        else
+        {
+            SessieCode.text = "wrong sessieID";
+        }
     }
 
     public void PutSpelerInTeam()
@@ -94,10 +99,14 @@ public class Menu_Join : MonoBehaviour {
         }
         else
         {
-            success = api.ApiGet(url);
+            api.ApiGet(url, PutSpelerInTeamCor);
         }
 
-        if (success == "1")
+        
+    }
+    void PutSpelerInTeamCor()
+    {
+        if (api.json == "1")
         {
             levelLoader.LoadLevel(nextLevel);
         }

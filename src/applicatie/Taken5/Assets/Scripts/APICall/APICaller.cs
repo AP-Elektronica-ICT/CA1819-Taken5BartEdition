@@ -1,25 +1,38 @@
 ﻿using SimpleJSON;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class APICaller : MonoBehaviour {
     string baseURL = "https://taken5bart20181119082417.azurewebsites.net/api/";    // "Sessie/toList?id="
     string baseLocalURL = "http://localhost:1907/api/";
     public string json;
+    public bool isBusy;
 
     public string ApiGet(string requestUrl)
     {
-        StartCoroutine(Get(requestUrl));
+        isBusy = true;
+        json = "-2";
+        StartCoroutine(Get(requestUrl, this.DoNothing));
         return json;
     }
-    IEnumerator Get(string requestUrl)
+     //https://answers.unity.com/questions/228150/hold-or-wait-while-coroutine-finishes.html
+    public string ApiGet(string requestUrl, Action doLast)
+    {
+        json = "-2";
+        StartCoroutine(Get(requestUrl, doLast));
+        return json;
+    }
+    
+    public IEnumerator Get(string requestUrl, Action doLast)
     {
         string url = baseLocalURL + requestUrl;
         
-        //Debug.Log(url);
+        Debug.Log(url);
         using (WWW www = new WWW(url))
         {
             yield return www;
@@ -27,26 +40,33 @@ public class APICaller : MonoBehaviour {
             //Debug.Log(json == ""); json is een string en zal nooit null zijn.
             if (temp != "") //vervang null door een error waarde van de server
                 json = www.text;
+                
             else
                 json = "-1";
-
+            isBusy = false;
+            doLast();
+            Debug.Log("Get Done");
             www.Dispose();
+            
         }
+
     }
 
-
-
-    public string ApiPost( string requestUrl, JSONNode N)
+    public string ApiPost(string requestUrl, JSONNode N)
     {
-        //Debug.Log(requestUrl);
-        //Debug.Log(N.AsObject);
-        StartCoroutine(Post(requestUrl, N));
-        StartCoroutine(Wait(15));
-
+        json = "-2";
+        StartCoroutine(Post(requestUrl, N, this.DoNothing));
         return json;
     }
 
-    public IEnumerator Post(string requestUrl, JSONNode N)
+    public string ApiPost( string requestUrl, JSONNode N,Action doLast)
+    {
+        json = "-2";
+        StartCoroutine(Post(requestUrl, N, doLast));
+        return json;
+    }
+
+    public IEnumerator Post(string requestUrl, JSONNode N, Action doLast)
     {
         Debug.Log(N.AsObject);
         string url = baseLocalURL + requestUrl;
@@ -75,6 +95,7 @@ public class APICaller : MonoBehaviour {
                 Debug.Log(result + " k");
                 json = result;
             }
+            doLast();
             req.Dispose();
         
     }
@@ -82,5 +103,9 @@ public class APICaller : MonoBehaviour {
     IEnumerator Wait(int s)
     {
         yield return new WaitForSeconds(s);
+    }
+    void DoNothing()
+    {
+        var i = 1 + 1;
     }
 }

@@ -16,10 +16,18 @@ public class Menu_Create : MonoBehaviour {
 
     public Button btnInitSessie;
     public Button btnAddTeam;
-    public Button btnStartSesstion;
+    public Button btnPostSessie;
+    public Button btnJoinSessie;
 
     public Image recapTeams;
     public Text txtTeam;
+    public Text txtSessieCode;
+    public Text txtSessieInfo;
+
+    public int nextScene;
+    public Slider sldLoader;
+    public LevelLoader loader;
+
     
 
     // Use this for initialization
@@ -31,35 +39,48 @@ public class Menu_Create : MonoBehaviour {
         txtTeamNaam.gameObject.SetActive(false);
         recapTeams.gameObject.SetActive(false);
         txtTeam.gameObject.SetActive(false);
-        btnStartSesstion.gameObject.SetActive(false);
+        btnPostSessie.gameObject.SetActive(false);
+        txtSessieCode.gameObject.SetActive(false);
+        txtSessieInfo.gameObject.SetActive(false);
         api = gameObject.AddComponent<APICaller>();
     }
     public void SessieInit()
     {
-        Debug.Log("sessieInit");
-        aantalTeams = int.Parse(txtAantalGroepen.text);
-        Debug.Log(aantalTeams);
-        if (aantalTeams > 0 && aantalTeams < 5)
+        //Debug.Log("sessieInit");
+        aantalTeams=0;
+        
+        //Debug.Log(aantalTeams);
+        if(int.TryParse(txtAantalGroepen.text, out aantalTeams))
         {
-            Debug.Log("hi");
-            teamNamen = new List<string>();
-            btnInitSessie.gameObject.SetActive(false);
-            txtAantalGroepen.gameObject.SetActive(false);
-            btnAddTeam.gameObject.SetActive(true);
-            txtTeamNaam.gameObject.SetActive(true);
-            teamCounter = 0;
+            if (aantalTeams > 0 && aantalTeams < 5)
+            {
+                //Debug.Log("hi");
+                teamNamen = new List<string>();
+                btnInitSessie.gameObject.SetActive(false);
+                txtAantalGroepen.gameObject.SetActive(false);
+                btnAddTeam.gameObject.SetActive(true);
+                txtTeamNaam.gameObject.SetActive(true);
+                teamCounter = 0;
+                recapTeams.gameObject.SetActive(true);
+                txtTeam.gameObject.SetActive(true);
+                txtTeam.text = ("Geef de teamn aam waartoe jou team bij zit");
+            }
+            else
+                txtAantalGroepen.text = "Aantal Groepen";
         }
-        else
-            txtAantalGroepen.text = "Aantal Groepen";
+        
     }
 
     public void AddTeam()
     {
-        Debug.Log("addTeams");
+        
+        //Debug.Log("addTeams");
         string teamNaam = txtTeamNaam.text;
+        txtTeamNaam.text = "team naam";
         teamNamen.Add(teamNaam);
         teamCounter++;
-        Debug.Log(teamCounter);
+        txtTeam.text = ("geef de naam van team:" + (teamCounter+1));
+        //Debug.Log(teamCounter);
         if (teamCounter >= aantalTeams)
         {
             printTeams();
@@ -70,13 +91,32 @@ public class Menu_Create : MonoBehaviour {
         }
     }
 
-    public void createSession()
+    public void printTeams()
     {
+        //Debug.Log("printTeams");
         txtTeamNaam.gameObject.SetActive(false);
         btnAddTeam.gameObject.SetActive(false);
         txtTeam.gameObject.SetActive(true);
         recapTeams.gameObject.SetActive(true);
-        btnStartSesstion.gameObject.SetActive(true);
+        btnPostSessie.gameObject.SetActive(true);
+        string text = "Teamnamen: \n";
+
+        foreach (string s in teamNamen)
+        {
+            //Debug.Log(s);
+            text += "-> " + s + "\n";
+        }
+        txtTeam.text = text;
+
+    }
+
+    public void createSession()
+    {
+        txtTeamNaam.gameObject.SetActive(false);
+        btnAddTeam.gameObject.SetActive(false);
+        btnPostSessie.gameObject.SetActive(false);
+        txtTeam.gameObject.SetActive(false);
+        recapTeams.gameObject.SetActive(false);
 
         JSONNode N = new JSONObject();
         N["startTijd"] = DateTime.Now.ToString();
@@ -84,31 +124,47 @@ public class Menu_Create : MonoBehaviour {
         for(int i =0; i<aantalTeams; i++)
         {
             N["teams"][i]["teamNaam"] = teamNamen[i];
-            Debug.Log(i + teamNamen[i]);
+            //Debug.Log(i + teamNamen[i]);
         }
-        //Debug.Log(N.AsObject);
-        StartCoroutine(api.Post("Sessie", N));
-        var response = api.json;
-        Debug.Log(response);
+        ////Debug.Log(N.AsObject);
+        api.ApiPost("Sessie", N, CreateSessionCor);
+        txtSessieCode.gameObject.SetActive(true);
+        txtSessieInfo.gameObject.SetActive(true);
+        btnJoinSessie.gameObject.SetActive(true);
+        //StartCoroutine(CreateSessionCor());
+        //Debug.Log(response);
+    }
+    void CreateSessionCor()
+    {
+        var code = api.json;
+        Info.SessieCode = code;
+        txtSessieCode.text = code;
+        Debug.Log("done");
+        Debug.Log(Info.SessieCode);
     }
 
-    public void printTeams()
+    public void joinGame()
     {
-        Debug.Log("printTeams");
-        txtTeamNaam.gameObject.SetActive(false);
-        btnAddTeam.gameObject.SetActive(false);
-        txtTeam.gameObject.SetActive(true);
-        recapTeams.gameObject.SetActive(true);
-        btnStartSesstion.gameObject.SetActive(true);
-        string text = "Teamnamen: \n";
-
-        foreach(string s in teamNamen)
-        {
-            Debug.Log(s);
-            text += "-> " + s + "\n";
-        }
-        txtTeam.text = text;
+        string code = Info.SessieCode;
+        Info.SessieCode = code;
+        Debug.Log(Info.SessieCode + "code");
+        var url = "Sessie/toList?id=" + code;
+        api.ApiGet(url,JoinGameCor);
         
     }
+    void JoinGameCor()
+    {
+        string result = api.json;
+        Debug.Log(result);
+        var N = JSON.Parse(result);
+        Info.TeamId = N["data"][0]["id"].AsInt;
+        Info.TeamNaam = N["data"][0]["teamNaam"].Value;
+        Debug.Log("joined: ");
+        Debug.Log(Info.TeamId);
+        Debug.Log(Info.TeamNaam);
+        loader.LoadLevel(nextScene);
+    }
+
+ 
 	
 }
