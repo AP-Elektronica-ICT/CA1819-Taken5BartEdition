@@ -26,7 +26,7 @@ public class Quiz : MonoBehaviour
     int count = 1;
     int correctie;
     string url;
-    static string ScoreURL = "http://localhost:1907/api/quiz/quizscores";
+    static string ScoreURL = "http://localhost:1907/api/quizscores";
 
     int aantalvragen;
     int score;
@@ -173,28 +173,16 @@ public class Quiz : MonoBehaviour
     {
         JSONNode N = new JSONObject();
 
-        N["DeviceId"] = "";
-        N[aantalvragen] = aantalvragen;
-        N[score] = score;
+        N["DeviceID"] = SystemInfo.deviceUniqueIdentifier;
+        N["aantalvragen"] = aantalvragen;
+        N["score"] = score;
+
+        Debug.Log("aantalvragen " + aantalvragen + "score " + score);
 
         StartCoroutine(WWWPost(N));
     }
 
-    public static IEnumerator Post(JSONNode aNode)
-    {
-        var req = new UnityWebRequest(ScoreURL, "POST");
-        byte[] data = Encoding.UTF8.GetBytes(aNode.ToString());
 
-        req.uploadHandler = new UploadHandlerRaw(data);
-        req.uploadHandler.contentType = "application/json";
-        req.downloadHandler = new DownloadHandlerBuffer();
-
-        req.SetRequestHeader("Content-Type", "application/json");
-        req.SetRequestHeader("accept", "application/json");
-        yield return req.SendWebRequest();
-        string blobURL = req.GetResponseHeader("Location");
-        Debug.Log(blobURL);
-    }
 
     public static IEnumerator WWWPost(JSONNode N)
     {
@@ -218,6 +206,7 @@ public class Quiz : MonoBehaviour
             else
             {
                 Debug.Log("Form upload complete!");
+                Debug.Log(data);
             }
         }
 

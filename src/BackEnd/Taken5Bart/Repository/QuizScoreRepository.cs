@@ -25,6 +25,7 @@ namespace Repository.T5B
         public void PostQuizScore(QuizScore Q)
         {
              _context.QuizScores.Add(Q);
+            _context.SaveChanges();
         }
 
       

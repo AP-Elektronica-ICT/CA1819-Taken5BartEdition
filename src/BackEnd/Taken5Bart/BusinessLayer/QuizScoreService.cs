@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Interface;
 using Interface.T5B;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.T5B;
 using Repository;
@@ -33,7 +34,7 @@ namespace BusinessLayer.T5B
             return _quizScoreRepo.GetQuizScores();
         }
 
-        public void PostQuizScore(QuizScore Q)
+        public void AddNewScore(QuizScore Q)
         {
             _quizScoreRepo.PostQuizScore(Q);
         }
