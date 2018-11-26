@@ -16,15 +16,24 @@ public class Quiz : MonoBehaviour
     public Text Btn4;
     public Text Btn5;
     public Text Btn6;
+    public Button button5;
+    public Button button6;
     int count = 1;
     int correctie;
     string url;
+
+    BtnDisable btnDisable;
 
 
     // Use this for initialization
     string json;
     void Start()
     {
+        btnDisable = gameObject.AddComponent<BtnDisable>();
+        btnDisable.button1 = button5;
+        btnDisable.button2 = button6;
+        btnDisable.x = Btn5;
+        btnDisable.y = Btn6;
         request();
         
     }
@@ -41,7 +50,7 @@ public class Quiz : MonoBehaviour
         // check for errors
         if (www.error == null)
         {
-            Debug.Log("WWW Ok!: " + www.text);
+           // Debug.Log("WWW Ok!: " + www.text);
             json = www.text;
             if (json != "")
             {
@@ -55,7 +64,8 @@ public class Quiz : MonoBehaviour
                 Btn5.text = N["antwoord5"].Value;
                 Btn6.text = N["antwoord6"].Value;
                 correctie = N["correctie"].AsInt;
-                
+                btnDisable.onclick();
+
             }
 
         }
@@ -66,13 +76,15 @@ public class Quiz : MonoBehaviour
     }
     public void onlick(int BtnId)
     {
+
         if (BtnId == correctie)
         {
-            Debug.Log("juist");
+           // Debug.Log("juist");
             count++;
             request();
 
         }
+
     }
 }
 
