@@ -157,8 +157,7 @@ namespace Models.T5B
                         Antwoord5 = "Dampshop",
                         Antwoord6 = "Urban Outfitters",
                         Correctie = 3,
-                        AantalKeerGeraden =0,
-                        JuistGeraden =false
+
                     },
 
                     new Quizvraag()
@@ -173,8 +172,7 @@ namespace Models.T5B
                         Antwoord5 = "Paarden",
                         Antwoord6 = "",
                         Correctie = 3,
-                        AantalKeerGeraden = 0,
-                        JuistGeraden =true
+
                     },
                     new Quizvraag()
 
@@ -188,8 +186,7 @@ namespace Models.T5B
                         Antwoord5 = "George W. Bush bracht een bezoek aan de stadsfeestzaal",
                         Antwoord6 = "",
                         Correctie = 2,
-                        AantalKeerGeraden = 0,
-                        JuistGeraden = false
+
                     },
 
                     new Quizvraag()
@@ -204,8 +201,7 @@ namespace Models.T5B
                         Antwoord5 = "",
                         Antwoord6 = "",
                         Correctie = 1,
-                        AantalKeerGeraden = 0,
-                        JuistGeraden = false
+
                     },
 
                     new Quizvraag()
@@ -219,17 +215,42 @@ namespace Models.T5B
                         Antwoord5 = "Vlaanderen",
                         Antwoord6 = "Antwerpen",
                         Correctie = 3,
-                        AantalKeerGeraden = 0,
-                        JuistGeraden = false
+
                     }
 
 
 
-            };
+                };
+
                 foreach (Quizvraag q in vraag)
                 {
-                    context.Quizvragen.Add(q);
+                     context.Quizvragen.Add(q);
                 }
+
+                var score = new QuizScore[]
+                {
+                    new QuizScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        AantalVragen = 5,
+                        Score = 5
+                    },
+                      new QuizScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        AantalVragen = 5,
+                        Score = 5
+                    }
+
+                };
+                foreach (QuizScore q in score)
+                {
+                    context.QuizScores.Add(q);
+                }
+
+
+
+
                 context.SaveChanges();
             }
         }

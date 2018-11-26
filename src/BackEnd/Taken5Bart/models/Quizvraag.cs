@@ -19,7 +19,8 @@ namespace Models.T5B
         public String Antwoord5 { get; set; }
         public String Antwoord6 { get; set; }
         public int Correctie { get; set; }
-        public int AantalKeerGeraden { get; set; }
-        public bool JuistGeraden { get; set; }
+    
+   
+
     }
 }

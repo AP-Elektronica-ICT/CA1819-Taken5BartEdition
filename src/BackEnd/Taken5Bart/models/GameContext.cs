@@ -28,6 +28,8 @@ namespace Models.T5B
         public DbSet<Speler> Spelers { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Quizvraag> Quizvragen { get; set; }
+        public DbSet<QuizScore> QuizScores { get; set; }
+
 
     }
 }
