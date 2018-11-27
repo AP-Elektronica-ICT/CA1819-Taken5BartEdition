@@ -21,8 +21,7 @@ public class Arrow : MonoBehaviour {
 
         distance.text = "hey 1";
 
-        Info.Update();
-        distance.text = Info.Longitude.ToString();
+        //distance.text = Info.Longitude.ToString();
 
         
 

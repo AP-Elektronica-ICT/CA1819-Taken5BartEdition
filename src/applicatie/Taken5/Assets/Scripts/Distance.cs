@@ -4,21 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Distance : MonoBehaviour {
-
+    private APICaller _api;
+    public double dist;
+    public bool isDone;
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+	public void SetAPI(APICaller api)
+    {
+        _api = api;
+        Info.updater = new InfoUpdater(api);
+        isDone = true;
+    }
 
+    public void DistanceTo()
+    {
+        Debug.Log("updating");
+        isDone = false;
+        dist = 10000;
+        StartCoroutine(Info.updater.UpdateLocatie(DistanceToCorDummy));
     }
     
-    public static double DistanceTo()
+    void DistanceToCor()
     {
-        double latGame = 51.064898;
-        double lonGame = 5.300884;
+        double latGame = Info.Latitude;
+        double lonGame = Info.Longitude;
 
         double rlat1 = Math.PI * GPS.Instance.latitude / 180;
         double rlat2 = Math.PI * latGame / 180;
@@ -32,7 +40,15 @@ public class Distance : MonoBehaviour {
         dist = dist * 180 / Math.PI;
         dist = dist * 60 * 1.1515;
         dist = dist * 1.609344 * 1000;
-
-        return dist;
+        isDone = true;
+    }
+    void DistanceToCorDummy()
+    {
+        double latGame = Info.Latitude;
+        double lonGame = Info.Longitude;
+        Debug.Log("Lat:"+latGame);
+        Debug.Log("Long:" + lonGame);
+        dist = 25;
+        isDone = true;
     }
 }

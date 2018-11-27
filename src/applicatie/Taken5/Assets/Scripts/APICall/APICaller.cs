@@ -23,7 +23,7 @@ public class APICaller : MonoBehaviour {
      //https://answers.unity.com/questions/228150/hold-or-wait-while-coroutine-finishes.html
     public string ApiGet(string requestUrl, Action doLast)
     {
-        json = "-2";
+        json = "-2"; //-2 = niets opgehaald
         StartCoroutine(Get(requestUrl, doLast));
         return json;
     }

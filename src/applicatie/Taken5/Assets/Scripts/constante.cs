@@ -14,6 +14,8 @@ public static class Info
     public static int Diamanten { get; set; }
     public static int Score { get; set; }
     public static string SessieCode { get; set; }
+    public static double Longitude { get; set; }
+    public static double Latitude { get; set; } 
 
     public static InfoUpdater updater;
     
@@ -22,8 +24,6 @@ public static class Info
 public class InfoUpdater
 {
     APICaller _api;
-    JSONNode N;
-    string result;
     bool isDone;
 
     public InfoUpdater(APICaller api)
@@ -34,7 +34,15 @@ public class InfoUpdater
     {
         isDone = false;
         string url = "Speler/" + Info.spelerId.ToString() + "/Team";
-        JSON.Parse(_api.ApiGet(url, LoadTeamData));
+        _api.ApiGet(url, LoadTeamData);
+        yield return new WaitUntil(() => isDone);
+        doAfter();
+    }
+    public IEnumerator UpdateLocatie(Action doAfter)
+    {
+        isDone = false;
+        var url = "puzzel/" + Info.Diamanten + "/location";
+        _api.ApiGet(url, LoadPuzzelLocatie);
         yield return new WaitUntil(() => isDone);
         doAfter();
     }
@@ -50,20 +58,26 @@ public class InfoUpdater
         var url = "Speler/" + Info.spelerId.ToString();
         _api.ApiGet(url, LoadSpelerData);
 
-        
-        url = "Speler/" + Info.spelerId.ToString();
-        N = JSON.Parse(api.ApiCall(url));
-        Voornaam = N["voornaam"].Value;
+       
 
         url = "puzzel/" + "1" + "/location";
-        N = JSON.Parse(api.ApiCall(url));
-        Longitude = N["longitude"].AsDouble;
-        Latitude = N["latitude"].AsDouble;
+        N = JSON.Parse(_api.ApiGet(url, LoadSpelerData));
+        
     }
     void LoadSpelerData()
     {
         var N = JSON.Parse(_api.json);
         Info.Voornaam = N["voornaam"].Value;
+
+        var url = "puzzel/" + "1" + "/location";
+        N = JSON.Parse(_api.ApiGet(url, LoadPuzzelLocatie));
+        
+    }
+    void LoadPuzzelLocatie()
+    {
+        var N = JSON.Parse(_api.json);
+        Info.Longitude = N["longitude"].AsDouble;
+        Info.Latitude = N["latitude"].AsDouble;
         isDone = true;
     }
 }
