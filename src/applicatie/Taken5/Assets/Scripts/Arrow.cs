@@ -28,11 +28,4 @@ public class Arrow : MonoBehaviour {
 
 
     }
-
-    [Serializable]
-    private class Positie
-    {
-        public double longitude { get; set; }
-        public double latitude { get; set; }
-    }
 }
