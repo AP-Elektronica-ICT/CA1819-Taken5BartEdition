@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/NavigationScreen.unity
-=======
-- path: Assets/Scenes/Menu_Join.unity
->>>>>>> CreateSession
   isLoaded: 1
   isActive: 1
