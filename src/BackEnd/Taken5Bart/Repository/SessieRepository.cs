@@ -19,6 +19,13 @@ namespace Repository.T5B
             _context = context;
         }
 
+        public Sessie AddSessie(Sessie s)
+        {
+            _context.Sessies.Add(s);
+            _context.SaveChanges();
+            return s;
+        }
+
         public Sessie GetSessie(int id)
         {
             Sessie sessie = _context.Sessies.Include(s => s.Teams).SingleOrDefault(s => s.Id == id);

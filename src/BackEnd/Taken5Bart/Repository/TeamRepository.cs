@@ -22,6 +22,7 @@ namespace Repository.T5B
         public void NewTeam(Team t)
         {
             _context.Teams.Add(t);
+            _context.SaveChanges();
         }
 
         public Team GetTeam(int id)
@@ -40,6 +41,13 @@ namespace Repository.T5B
             Team oldTeam = _context.Teams.Single(t => t.Id == newTeam.Id);
             oldTeam = newTeam;
             _context.SaveChanges();
+        }
+
+        public Team NewTeamT(Team t)
+        {
+            _context.Teams.Add(t);
+            _context.SaveChanges();
+            return t;
         }
     }
 }

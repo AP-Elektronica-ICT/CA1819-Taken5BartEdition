@@ -44,7 +44,7 @@ namespace web_api_testing
             var result = _service.GetTeams();
 
             // Assert
-            Assert.Equal(3, result.Count);
+            Assert.Equal(6, result.Count); //3 van de Database en 3 gemaakt door de Creat_Sessie
         }
 
         [Fact]
