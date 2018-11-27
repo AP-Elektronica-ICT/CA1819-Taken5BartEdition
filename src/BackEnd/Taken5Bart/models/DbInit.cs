@@ -11,7 +11,8 @@ namespace Models.T5B
         {
             context.Database.EnsureCreated();
 
-            if (!context.Games.Any()) { 
+            if (!context.Games.Any())
+            {
                 var locatie = new Locatie[]
                 {
                     new Locatie()
@@ -113,7 +114,7 @@ namespace Models.T5B
                 {
                     context.Teams.Add(t);
                 }
-     
+
                 context.SaveChanges();
                 var sessie = new Sessie[]
                 {
@@ -142,8 +143,117 @@ namespace Models.T5B
                     context.Games.Add(g);
                 }
 
+                var vraag = new Quizvraag[]
+                {
+                    new Quizvraag()
+
+                    {
+                        Vraagnummer = 1,
+                        Vraag = "Welke winkel bevind zich niet in de stadsfeestzaal?",
+                        Antwoord1 = "Action",
+                        Antwoord2 = "Delifrance",
+                        Antwoord3 = "Carrefour",
+                        Antwoord4 = "Devernois",
+                        Antwoord5 = "Dampshop",
+                        Antwoord6 = "Urban Outfitters",
+                        Correctie = 3,
+
+                    },
+
+                    new Quizvraag()
+
+                    {
+                        Vraagnummer = 2,
+                        Vraag = "Van welk dier werden er botten aangetroffen in de gewelven van de stadsfeestzaal?",
+                        Antwoord1 = "T-rex",
+                        Antwoord2 = "Hond",
+                        Antwoord3 = "Walvis",
+                        Antwoord4 = "Wolven",
+                        Antwoord5 = "Paarden",
+                        Antwoord6 = "",
+                        Correctie = 3,
+
+                    },
+                    new Quizvraag()
+
+                    {
+                        Vraagnummer = 3,
+                        Vraag = "Wat is er in 2000 gebeurd met de stadsfeestzaal?",
+                        Antwoord1 = "Er vond een ontvoering plaats",
+                        Antwoord2 = "De stadsfeestzaal is volledig uitgebrand",
+                        Antwoord3 = "Het dak van de stadsfeestzaal is insgestort",
+                        Antwoord4 = "Er zijn rellen uitgebroken door de presidentsverkiezingen in Amerika",
+                        Antwoord5 = "George W. Bush bracht een bezoek aan de stadsfeestzaal",
+                        Antwoord6 = "",
+                        Correctie = 2,
+
+                    },
+
+                    new Quizvraag()
+
+                     {
+                        Vraagnummer = 4,
+                        Vraag = "Wat is het adres van de stadsfeestzaal?",
+                        Antwoord1 = "Meir 78, 2000 Antwerpen",
+                        Antwoord2 = "Meir 168, 2000 Antwerpen",
+                        Antwoord3 = "Meir 8a, 2000 Antwerpen",
+                        Antwoord4 = "Meir 50, 2000 Antwerpen",
+                        Antwoord5 = "",
+                        Antwoord6 = "",
+                        Correctie = 1,
+
+                    },
+
+                    new Quizvraag()
+                    {
+                        Vraagnummer = 5,
+                        Vraag = "In 2008 werd de stadsfeestzaal benoemd tot beste shopping center van …",
+                        Antwoord1 = "Europa",
+                        Antwoord2 = "België",
+                        Antwoord3 = "De Benelux",
+                        Antwoord4 = "De Wereld",
+                        Antwoord5 = "Vlaanderen",
+                        Antwoord6 = "Antwerpen",
+                        Correctie = 3,
+
+                    }
+
+
+
+                };
+
+                foreach (Quizvraag q in vraag)
+                {
+                     context.Quizvragen.Add(q);
+                }
+
+                var score = new QuizScore[]
+                {
+                    new QuizScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        AantalVragen = 5,
+                        Score = 5
+                    },
+                      new QuizScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        AantalVragen = 5,
+                        Score = 5
+                    }
+
+                };
+                foreach (QuizScore q in score)
+                {
+                    context.QuizScores.Add(q);
+                }
+
+
+
+
                 context.SaveChanges();
             }
         }
     }
 }
+
