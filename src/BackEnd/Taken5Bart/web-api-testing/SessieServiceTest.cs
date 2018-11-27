@@ -15,11 +15,13 @@ namespace web_api_testing
     {
         SessieService _service;
         ISessionRepository _fakeSessieRepo;
+        ITeamRepository _fakeTeamRepo;
 
         public SessieServiceTest()
         {
+            _fakeTeamRepo = new TeamRepositoryFake();
             _fakeSessieRepo = new SessieRepoFake();
-            _service = new SessieService(_fakeSessieRepo);
+            _service = new SessieService(_fakeSessieRepo,_fakeTeamRepo);
         }
 
         [Fact]
@@ -88,6 +90,41 @@ namespace web_api_testing
 
         }
 
-        
+        [Fact]
+        public void Create_Sessie()
+        {
+            //Arrange
+            var Sessie = new Sessie()
+            {
+                StartTijd = DateTime.Now,
+                Teams = new List<Team>()
+                {
+                    new Team()
+                    {
+                        TeamNaam = "Jonas"
+                    },
+                    new Team()
+                    {
+                        TeamNaam = "Viktor"
+                    },
+                    new Team()
+                    {
+                        TeamNaam = "Joren"
+                    },
+                }
+
+            };
+
+            // Act
+            var result = _service.CreateSessie(Sessie);
+
+            // Assert
+            Assert.NotEqual(result,-1);
+
+        }
+
+
+
+
     }
 }

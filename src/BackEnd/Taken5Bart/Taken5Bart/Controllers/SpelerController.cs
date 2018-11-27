@@ -83,8 +83,9 @@ namespace Taken5Bart.Controllers
 
         // PUT: api/Speler/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Speler value)
         {
+            Console.WriteLine(value.Voornaam);
         }
 
         // DELETE: api/ApiWithActions/5

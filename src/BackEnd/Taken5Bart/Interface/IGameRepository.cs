@@ -11,5 +11,6 @@ namespace Interface.T5B
         Game GetGame(int id);
         ICollection<Game> GetGames();
         void NewGame(Game g);
+        
     }
 }

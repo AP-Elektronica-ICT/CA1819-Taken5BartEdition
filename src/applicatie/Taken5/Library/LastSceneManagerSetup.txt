@@ -1,8 +1,12 @@
 sceneSetups:
 <<<<<<< HEAD
+<<<<<<< HEAD
 - path: Assets/Scenes/Registration.unity
 =======
 - path: Assets/Scenes/QuizGame/QuizStart.unity
 >>>>>>> StadsfeestzaalGame
+=======
+- path: Assets/Scenes/NavigationScreen.unity
+>>>>>>> GPS
   isLoaded: 1
   isActive: 1

@@ -45,5 +45,11 @@ namespace web_api_testing
             oldTeam = newTeam;
             
         }
+
+        public Team NewTeamT(Team t)
+        {
+            _teams.Add(t);
+            return t;
+        }
     }
 }

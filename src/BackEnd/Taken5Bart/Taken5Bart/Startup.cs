@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLayer;
 using BusinessLayer.T5B;
+using Interface;
 using Interface.T5B;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +46,11 @@ namespace Taken5Bart
             services.AddScoped<IQuizScoreService, QuizScoreService>();
 
 
+            services.AddScoped<IPuzzelService, PuzzelService>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
             services.AddMvc();
         }
 

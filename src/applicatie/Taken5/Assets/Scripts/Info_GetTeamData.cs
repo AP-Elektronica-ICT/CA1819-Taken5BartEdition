@@ -9,7 +9,7 @@ using SimpleJSON;
  * Voor JSON pakketten die maar uit 1 laag bestaan is JsonUtility van unity zelf handig genoeg, maar voor json dat bestaat uit meerdere lagen is SimpleJSOn handiger
  */ 
 
-public class GetTeamData : MonoBehaviour {
+public class Info_GetTeamData : MonoBehaviour {
 
     public string url;
     // Use this for initialization
@@ -18,11 +18,14 @@ public class GetTeamData : MonoBehaviour {
     public Text Diamanten;
     public Text Score;
     public Text TeamPositie;
+    public Text SessieCode;
 
-    private APICall api;
+    private APICaller api;
 
     void Start()
     {
+        api = gameObject.AddComponent<APICaller>();
+        Info.updater = new InfoUpdater(api);
         if (Info.TeamId == -1)
         {
             Debug.Log("Dev team");
@@ -32,27 +35,33 @@ public class GetTeamData : MonoBehaviour {
         }
         else
         {
-            UpdateInfo();
-            ScorePos();
+            Debug.Log(Info.SessieCode);
+            StartCoroutine(Info.updater.UpdateInfo(UpdateInfo));
+            
         }
         
     }
 
     void UpdateInfo()
     {
-        Info.Update();
         SpelerNaam.text = Info.SpelerNaam;
         TeamNaam.text = Info.TeamNaam;
         Diamanten.text = Info.Diamanten.ToString();
         Score.text = Info.Score.ToString();
         SpelerNaam.text = Info.Voornaam;
+        SessieCode.text = Info.SessieCode;
+        ScorePos();
     }
     void ScorePos()
     {
         var url = "Team/" + Info.TeamId.ToString() + "/GetScorePosition";
-        Debug.Log(url);
-        var result = api.ApiCall(url);
-        TeamPositie.text = result;
+        //Debug.Log(url);
+        api.ApiGet(url, ScorePosCor);
+        
+    }
+    void ScorePosCor()
+    {
+        TeamPositie.text = api.json;
     }
 
     [Serializable]
