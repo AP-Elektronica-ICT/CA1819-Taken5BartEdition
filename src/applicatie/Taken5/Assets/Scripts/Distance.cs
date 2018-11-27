@@ -20,7 +20,7 @@ public class Distance : MonoBehaviour {
         Debug.Log("updating");
         isDone = false;
         dist = 10000;
-        StartCoroutine(Info.updater.UpdateLocatie(DistanceToCorDummy));
+        StartCoroutine(Info.updater.UpdateLocatie(DistanceToCor));
     }
     
     void DistanceToCor()

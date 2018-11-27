@@ -30,7 +30,7 @@ public class APICaller : MonoBehaviour {
     
     public IEnumerator Get(string requestUrl, Action doLast)
     {
-        string url = baseLocalURL + requestUrl;
+        string url = baseURL + requestUrl;
         
         Debug.Log(url);
         using (WWW www = new WWW(url))
@@ -69,7 +69,7 @@ public class APICaller : MonoBehaviour {
     public IEnumerator Post(string requestUrl, JSONNode N, Action doLast)
     {
         Debug.Log(N.AsObject);
-        string url = baseLocalURL + requestUrl;
+        string url = baseURL + requestUrl;
         Debug.Log(url);
         var req = new UnityWebRequest(url, "POST");
         

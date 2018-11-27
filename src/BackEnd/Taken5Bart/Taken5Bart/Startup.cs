@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Models;
 using Models.T5B;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Taken5Bart
 {
@@ -44,8 +45,6 @@ namespace Taken5Bart
             services.AddScoped<ISessieService, SessieService>();
             services.AddScoped<IQuizService, QuizService>();
             services.AddScoped<IQuizScoreService, QuizScoreService>();
-
-
             services.AddScoped<IPuzzelService, PuzzelService>();
             services.AddSwaggerGen(c =>
             {
