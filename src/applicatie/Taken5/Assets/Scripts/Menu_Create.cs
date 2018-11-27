@@ -145,6 +145,7 @@ public class Menu_Create : MonoBehaviour {
 
     public void joinGame()
     {
+        btnJoinSessie.gameObject.SetActive(false);
         string code = Info.SessieCode;
         Info.SessieCode = code;
         Debug.Log(Info.SessieCode + "code");
@@ -162,6 +163,13 @@ public class Menu_Create : MonoBehaviour {
         Debug.Log("joined: ");
         Debug.Log(Info.TeamId);
         Debug.Log(Info.TeamNaam);
+        var url = "Team/" + Info.TeamId + "/AddSpeler?spelerID=" + Info.spelerId;
+        api.ApiGet(url, NextLevel);
+        
+    }
+
+    void NextLevel()
+    {
         loader.LoadLevel(nextScene);
     }
 
