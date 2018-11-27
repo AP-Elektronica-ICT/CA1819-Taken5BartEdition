@@ -22,7 +22,7 @@ namespace Taken5Bart.Controllers
             gameService = service;
         }
 
-        [HttpGet]
+        
         public ActionResult<IEnumerable<Game>> Get()
         {
             return Ok(gameService.GetGames());

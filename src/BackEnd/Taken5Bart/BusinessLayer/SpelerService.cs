@@ -31,10 +31,14 @@ namespace BusinessLayer.T5B
             return s;
         }
 
+
+
         public ICollection<Speler> GetSpelers()
         {
             return _spelerRepo.GetSpelers();
         }
+       
+        
 
         public Team GetTeamFromSpeler(int spelerId)
         {
@@ -45,6 +49,26 @@ namespace BusinessLayer.T5B
                 team = _teamRepo.GetTeam(s.AssignedTeam.Id);
             }
             return team;
+        }
+
+        
+        public void CreateSpeler(Speler newSpeler)
+        {
+          
+            _spelerRepo.NewSpeler(newSpeler);
+        }
+
+      
+
+        public Speler GetSpelerOnDeviceID(string deviceId)
+        {
+            Speler speler = _spelerRepo.GetSpelerOnDevice(deviceId);
+
+            if (deviceId != null)
+                return _spelerRepo.GetSpelerOnDevice(deviceId);
+
+
+            return null;
         }
     }
 }

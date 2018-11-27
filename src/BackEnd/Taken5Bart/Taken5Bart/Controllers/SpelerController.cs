@@ -25,19 +25,24 @@ namespace Taken5Bart.Controllers
         public ActionResult<IEnumerable<Speler>> Get()
         {
             return Ok(spelerService.GetSpelers());
+
         }
+   
 
         // GET: api/Speler/5
         [HttpGet("{id}")]
         public ActionResult<Speler> Get(int id)
         {
             var result = spelerService.GetSpeler(id);
-            if(result == null)
+            if (result == null)
             {
                 return NotFound(-1);
             }
             return Ok(result);
         }
+
+
+
 
         // GET: api/Team/Speler/id
         [HttpGet("{id}/Team/")]
@@ -52,11 +57,29 @@ namespace Taken5Bart.Controllers
 
         }
 
+        [HttpGet("register/{deviceid}")]
+
+        public ActionResult<Speler> GetOnDeviceId(string deviceid)
+        {
+            var result = spelerService.GetSpelerOnDeviceID(deviceid);
+            if (result == null)
+            {
+                return NotFound(-1);
+            }
+            return Ok(result);
+        }
+
         // POST: api/Speler
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult CreateNewPlayer([FromBody] Speler value)
         {
+            spelerService.CreateSpeler(value);
+
+            return Ok();
         }
+
+      
+
 
         // PUT: api/Speler/5
         [HttpPut("{id}")]

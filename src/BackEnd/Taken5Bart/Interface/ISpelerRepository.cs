@@ -9,6 +9,8 @@ namespace Interface.T5B
     public interface ISpelerRepository
     {
         Speler GetSpeler(int Id);
+        Speler GetSpelerOnDevice(string DeviceID);
+
         void NewSpeler(Speler s);
         ICollection<Speler> GetSpelers();
     }
