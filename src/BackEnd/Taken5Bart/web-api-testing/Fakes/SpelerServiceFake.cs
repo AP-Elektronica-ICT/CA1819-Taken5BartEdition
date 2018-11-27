@@ -21,21 +21,31 @@ namespace web_api_testing
                     Id = 5,
                     Achternaam = "vi",
                     Voornaam = "jo",
-                    DeviceId = 5
+                    DeviceId = "5"
                 },
                 new Speler()
                 {
                     Id = 6,
                     Achternaam = "mm",
                     Voornaam = "pp",
-                    DeviceId = 6
+                    DeviceId = "6"
                 }
             };
+        }
+
+        public void CreateSpeler(Speler newSpeler)
+        {
+            throw new NotImplementedException();
         }
 
         public Speler GetSpeler(int id)
         {
             return _spelers.Where(s=> s.Id == id).FirstOrDefault();
+        }
+
+        public Speler GetSpelerOnDeviceID(string deviceId)
+        {
+            throw new NotImplementedException();
         }
 
         public ICollection<Speler> GetSpelers()

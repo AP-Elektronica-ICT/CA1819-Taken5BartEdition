@@ -33,16 +33,9 @@ namespace Taken5Bart.Controllers
 
         [HttpPost]
         public ActionResult postScore([FromBody] QuizScore Q)
-        {
-
+        { 
             quizScoreService.AddNewScore(Q);
-
             return Ok();
-
-
-
-
-
         }
 
    

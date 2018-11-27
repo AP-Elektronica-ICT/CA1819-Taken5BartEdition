@@ -300,8 +300,7 @@ sysinfo.txt
 /*.tmp
 /*.svd
 
-src/applicatie/LocatiebepalingAndCamera/CameraLocation/Library/metadata/
 
-src/applicatie/Taken5/obj/Debug/
+src/applicatie/Taken5/Library/
 
-src/applicatie/Taken5/Library/metadata/
+src/applicatie/LocatiebepalingAndCamera/CameraLocation/Library/

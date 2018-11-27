@@ -44,7 +44,7 @@ namespace BusinessLayer.T5B
         {
             Speler s = _spelerRepo.GetSpeler(spelerId);
             Team team = null;
-            if (s.AssignedTeam != null)
+            if (s != null && s.AssignedTeam != null)
             {
                 team = _teamRepo.GetTeam(s.AssignedTeam.Id);
             }

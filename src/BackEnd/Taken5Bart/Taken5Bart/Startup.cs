@@ -63,6 +63,12 @@ namespace Taken5Bart
             app.UseCors("EnableCORS");
             app.UseStaticFiles();
             app.UseMvc();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI V1");
+            });
             DbInit.Initialize(context);
         }
     }

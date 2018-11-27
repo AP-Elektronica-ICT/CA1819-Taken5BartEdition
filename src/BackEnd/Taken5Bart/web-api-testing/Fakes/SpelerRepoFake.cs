@@ -97,6 +97,11 @@ namespace web_api_testing
             return _spelers.Where(s => s.Id == id).FirstOrDefault();
         }
 
+        public Speler GetSpelerOnDevice(string DeviceID)
+        {
+            throw new NotImplementedException();
+        }
+
         public ICollection<Speler> GetSpelers()
         {
             return _spelers;

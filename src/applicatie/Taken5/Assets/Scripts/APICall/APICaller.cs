@@ -1,4 +1,4 @@
-﻿using SimpleJSON;
+using SimpleJSON;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class APICaller : MonoBehaviour {
-    string baseURL = "https://taken5bart20181119082417.azurewebsites.net/api/";    // "Sessie/toList?id="
+    string baseURL = "https://taken5bart20181127090235.azurewebsites.net/api/";    // "Sessie/toList?id="
     string baseLocalURL = "http://localhost:1907/api/";
     public string json;
     public bool isBusy;
