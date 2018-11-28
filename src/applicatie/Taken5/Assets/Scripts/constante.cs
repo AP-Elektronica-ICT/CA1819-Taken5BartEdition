@@ -59,17 +59,17 @@ public class InfoUpdater
         _api.ApiGet(url, LoadSpelerData);
 
        
-
+        /*
         url = "puzzel/" + "1" + "/location";
         N = JSON.Parse(_api.ApiGet(url, LoadSpelerData));
-        
+        */
     }
     void LoadSpelerData()
     {
         var N = JSON.Parse(_api.json);
         Info.Voornaam = N["voornaam"].Value;
 
-        var url = "puzzel/" + "1" + "/location";
+        var url = "puzzel/" + Info.Diamanten + "/location";
         N = JSON.Parse(_api.ApiGet(url, LoadPuzzelLocatie));
         
     }
