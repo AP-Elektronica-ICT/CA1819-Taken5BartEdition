@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scrip.cs" />
-     <Compile Include="Assets\Scripts\APICall\APICall.cs" />
+     <Compile Include="Assets\Scripts\APICall\APICaller.cs" />
      <Compile Include="Assets\Scripts\APICall\CheckDeviceId.cs" />
      <Compile Include="Assets\Scripts\APICall\Quiz\BtnDisable.cs" />
      <Compile Include="Assets\Scripts\APICall\Quiz\Quiz.cs" />
@@ -69,7 +69,9 @@
      <Compile Include="Assets\Scripts\GpsArrow.cs" />
      <Compile Include="Assets\Scripts\Info_GetTeamData.cs" />
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
+     <Compile Include="Assets\Scripts\Menu_Create.cs" />
      <Compile Include="Assets\Scripts\Menu_Join.cs" />
+     <Compile Include="Assets\Scripts\OpenGame.cs" />
      <Compile Include="Assets\Scripts\PhoneCamera.cs" />
      <Compile Include="Assets\Scripts\UpdateGPSText.cs" />
  <Reference Include="UnityEditor.StandardEvents">
