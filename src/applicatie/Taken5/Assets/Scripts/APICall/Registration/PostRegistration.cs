@@ -14,7 +14,7 @@ public class PostRegistration : MonoBehaviour
     public Text Achternaam;
     string voornaam;
     string achternaam;
-    public  static Button button;
+    public   Button button;
     void Update()
     {
         voornaam = Voornaam.text;
@@ -41,7 +41,7 @@ public class PostRegistration : MonoBehaviour
 
    
     // Update is called once per frame
-    public static IEnumerator WWWPost(JSONNode N)
+    public  IEnumerator WWWPost(JSONNode N)
         {
             var req = new UnityWebRequest(url, "POST");
             byte[] data = Encoding.UTF8.GetBytes(N.ToString());
