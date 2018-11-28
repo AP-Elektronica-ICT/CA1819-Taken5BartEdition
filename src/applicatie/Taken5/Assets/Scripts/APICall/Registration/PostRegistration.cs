@@ -62,7 +62,7 @@ public class PostRegistration : MonoBehaviour
             else
             {
                 Debug.Log("Form upload complete!");
-                butto   n.interactable = true;
+                button.interactable = true;
             }
 
         }
