@@ -41,7 +41,7 @@ public class InfoUpdater
     public IEnumerator UpdateLocatie(Action doAfter)
     {
         isDone = false;
-        var url = "puzzel/" + Info.Diamanten + "/location";
+        var url = "puzzel/" + (Info.Diamanten+1) + "/location";
         _api.ApiGet(url, LoadPuzzelLocatie);
         yield return new WaitUntil(() => isDone);
         doAfter();
@@ -69,8 +69,8 @@ public class InfoUpdater
         var N = JSON.Parse(_api.json);
         Info.Voornaam = N["voornaam"].Value;
 
-        var url = "puzzel/" + Info.Diamanten + "/location";
-        N = JSON.Parse(_api.ApiGet(url, LoadPuzzelLocatie));
+        var url = "puzzel/" + (Info.Diamanten + 1) + "/location";
+        _api.ApiGet(url, LoadPuzzelLocatie);
         
     }
     void LoadPuzzelLocatie()

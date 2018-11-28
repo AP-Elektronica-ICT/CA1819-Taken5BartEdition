@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+//unity Async + await ; https://github.com/tomptrs/AsyncAwait
 public class APICaller : MonoBehaviour {
     string baseURL = "https://taken5bart20181127090235.azurewebsites.net/api/";    // "Sessie/toList?id="
     string baseLocalURL = "http://localhost:1907/api/";
