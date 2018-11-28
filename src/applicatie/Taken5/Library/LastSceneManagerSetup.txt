@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Registration.unity
-=======
 - path: Assets/Scenes/QuizGame/QuizStart.unity
->>>>>>> StadsfeestzaalGame
   isLoaded: 1
   isActive: 1
