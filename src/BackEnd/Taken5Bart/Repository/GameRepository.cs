@@ -25,10 +25,10 @@ namespace Repository.T5B
             return _context.Games.Include(g => g.Sessie).Include(g => g.MogelijkePuzzels).ToList();
         }
 
-        public void NewGame(Game g)
+        public Game NewGame(Game g)
         {
             _context.Games.Add(g);
+            return g;
         }
-
     }
 }

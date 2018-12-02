@@ -23,9 +23,12 @@ namespace web_api_testing
             _teams[2].AssignedSessie = null;
         }
 
-        public void NewTeam(Team t)
+        public Team NewTeam(Team t)
         {
+            t.Id = _teams.Count + 10;
             _teams.Add(t);
+
+            return t;
         }
 
         public Team GetTeam(int id)
@@ -44,12 +47,6 @@ namespace web_api_testing
             Team oldTeam = _teams.Where(g => g.Id == newTeam.Id).FirstOrDefault();
             oldTeam = newTeam;
             
-        }
-
-        public Team NewTeamT(Team t)
-        {
-            _teams.Add(t);
-            return t;
         }
     }
 }

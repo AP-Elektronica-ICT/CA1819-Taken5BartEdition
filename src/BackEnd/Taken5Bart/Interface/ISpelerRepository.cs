@@ -11,7 +11,7 @@ namespace Interface.T5B
         Speler GetSpeler(int Id);
         Speler GetSpelerOnDevice(string DeviceID);
 
-        void NewSpeler(Speler s);
+        Speler NewSpeler(Speler s);
         ICollection<Speler> GetSpelers();
     }
 }

@@ -28,9 +28,9 @@ namespace Taken5Bart.Controllers
 
         // GET: api/Sessie?id=5
         [HttpGet("toList")]
-        public ActionResult<TeamListWithCount> GetSessieByCode(int id)
+        public ActionResult<TeamListWithCount> GetSessieByCode(string code)
         {
-            var result = new TeamListWithCount { Data = sessieService.GetTeamsBySessie(id) };
+            var result = new TeamListWithCount { Data = sessieService.GetTeamsBySessie(code) };
             if(result.Count < 1)
             {
                 return NotFound(-1);
@@ -55,7 +55,7 @@ namespace Taken5Bart.Controllers
         public IActionResult Post([FromBody] Sessie value)
         {
             var result = sessieService.CreateSessie(value);
-            if (result == -1)
+            if (result.Equals("-1"))
             {
                 return BadRequest(-1);
             }

@@ -19,6 +19,7 @@ namespace web_api_testing
 
         public Sessie AddSessie(Sessie sessie)
         {
+            sessie.Id = _sessie.Count + 10;
             _sessie.Add(sessie);
             return sessie;
         }

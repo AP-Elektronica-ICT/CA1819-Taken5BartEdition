@@ -135,6 +135,7 @@ namespace web_api_testing.Fakes
             {
                 Id = 1,
                 StartTijd = new DateTime(2018,11,11),
+                Code = "1",
                 Teams = new List<Team>()
                 {
                     teams[0],

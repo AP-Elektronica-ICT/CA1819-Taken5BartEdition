@@ -35,7 +35,8 @@ namespace web_api_testing
 
         public void CreateSpeler(Speler newSpeler)
         {
-            throw new NotImplementedException();
+            newSpeler.Id = _spelers.Count() + 1;
+            _spelers.Add(newSpeler);
         }
 
         public Speler GetSpeler(int id)
@@ -57,5 +58,6 @@ namespace web_api_testing
         {
             return new Team();
         }
+
     }
 }

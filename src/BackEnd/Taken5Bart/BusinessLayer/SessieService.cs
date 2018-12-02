@@ -29,9 +29,9 @@ namespace BusinessLayer.T5B
             _teamRepo = teamRepo;
         }
 
-        public int CreateSessie(Sessie newSessie)
+        public string CreateSessie(Sessie newSessie)
         {
-            var newSessieId = -1;
+            var newSessieCode = "-1";
             List<Team> teams = new List<Team>();
             //var puzzels = _gameRepo.GetPuzzels()
             foreach(Team t in newSessie.Teams)
@@ -41,13 +41,14 @@ namespace BusinessLayer.T5B
                 t.Spelers = null;
                 t.VerzameldeDiamanten = 0;
                 //t.puzzels
-                var newT = _teamRepo.NewTeamT(t);
+                var newT = _teamRepo.NewTeam(t);
                 teams.Add(newT);
             }
             newSessie.Teams = teams;
+            newSessie.Code = RandomString(6);
             _sessieRepo.AddSessie(newSessie);
-            newSessieId = newSessie.Id;
-            return newSessieId;
+            newSessieCode = newSessie.Code;
+            return newSessieCode;
         }
 
         public Sessie GetSessie(int id)
@@ -55,14 +56,22 @@ namespace BusinessLayer.T5B
             return _sessieRepo.GetSessie(id);
         }
 
+        public Sessie GetSessieByCode(string code)
+        {
+            code = code.ToUpper();
+            var sessies = _sessieRepo.GetSessies();
+            Sessie sessie = sessies.Where(s => s.Code == code).SingleOrDefault();
+            return sessie;
+        }
+
         public ICollection<Sessie> GetSessies()
         {
             return _sessieRepo.GetSessies();
         }
 
-        public ICollection<Team> GetTeamsBySessie(int sessieId)
+        public ICollection<Team> GetTeamsBySessie(string sessieId)
         {
-            var s = _sessieRepo.GetSessie(sessieId);
+            var s = GetSessieByCode(sessieId);
             ICollection<Team> t = null;
             if(s != null)
             {
@@ -70,5 +79,15 @@ namespace BusinessLayer.T5B
             }
             return t;
         }
+
+        private static Random random = new Random();
+        private static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        
     }
 }

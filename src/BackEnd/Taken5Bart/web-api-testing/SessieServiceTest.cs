@@ -66,7 +66,7 @@ namespace web_api_testing
         public void Get_Teams_Sessie() 
         {
             //Arrange
-            var id = 1;
+            var id = "1";
 
             // Act
             var result = _service.GetTeamsBySessie(id);
@@ -80,7 +80,7 @@ namespace web_api_testing
         public void Get_Teams_WrongSessie()
         {
             //Arrange
-            var id = -1;
+            var id = "-1";
 
             // Act
             var result = _service.GetTeamsBySessie(id);
@@ -119,7 +119,7 @@ namespace web_api_testing
             var result = _service.CreateSessie(Sessie);
 
             // Assert
-            Assert.NotEqual(result,-1);
+            Assert.NotEqual(result,"-1");
 
         }
 

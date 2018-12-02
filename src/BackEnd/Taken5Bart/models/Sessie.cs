@@ -11,7 +11,8 @@ namespace Models.T5B
         public int Id { get; set; }
         public ICollection<Team> Teams { get; set; }
         public DateTime StartTijd { get; set; }
-        
+        public string Code { get; set; }
+
         [JsonIgnore]
         public Sessie AssignedGame { get; set; }
     }

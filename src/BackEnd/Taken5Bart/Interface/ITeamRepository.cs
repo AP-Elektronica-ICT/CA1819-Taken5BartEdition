@@ -11,7 +11,6 @@ namespace Interface.T5B
         ICollection<Team> GetTeams();
         Team GetTeam(int Id);
         void UpdateTeam(Team newTeam);
-        void NewTeam(Team t);
-        Team NewTeamT(Team t);
+        Team NewTeam(Team t);
     }
 }
