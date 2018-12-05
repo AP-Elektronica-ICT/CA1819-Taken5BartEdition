@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\Navigation\GPS.cs" />
      <Compile Include="Assets\Scripts\Navigation\GpsArrow.cs" />
      <Compile Include="Assets\Scripts\Navigation\OpenGame.cs" />
+     <Compile Include="Assets\Scripts\Navigation\OpenGameVersieViktor.cs" />
      <Compile Include="Assets\Scripts\Navigation\UpdateGPSText.cs" />
      <Compile Include="Assets\Scripts\PhoneCamera.cs" />
      <Compile Include="Assets\Scripts\Users\Menu_Create.cs" />

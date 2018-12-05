@@ -24,21 +24,28 @@ namespace Models.T5B
 
                     new Locatie()
                     {
-                         Naam = "Stadsfeestzaal",
+                        Naam = "Stadsfeestzaal",
                         Latitude = 51.2178361f,
                         Longitude = 4.4091902f
                     },
 
                     new Locatie()
                     {
-                         Naam = "Kathedraal",
+                        Naam = "Kathedraal",
                         Latitude = 51.2202678f,
                         Longitude = 4.399327f
                     },
 
+                       new Locatie()
+                    {
+                        Naam = "vlaeykensgang",
+                        Latitude = 51.2201932f,
+                        Longitude = 4.4003693f
+                    },
+
                     new Locatie()
                     {
-                         Naam = "Grote Markt",
+                        Naam = "Grote Markt",
                         Latitude = 51.2212442f,
                         Longitude = 4.3980062f
                     },
@@ -52,7 +59,7 @@ namespace Models.T5B
 
                     new Locatie()
                     {
-                         Naam = "Museum aan de Stroom",
+                        Naam = "Museum aan de Stroom",
                         Latitude = 51.2227238f,
                         Longitude = 4.395175f
                     },
@@ -84,6 +91,7 @@ namespace Models.T5B
                         Diamant = 1,
                         Uitleg = "blablabla"
                     },
+
                     new Puzzel()
                     {
                         Locatie = locatie[1],
@@ -118,7 +126,7 @@ namespace Models.T5B
 
                     new Puzzel()
                     {
-                        Locatie = locatie[4],
+                        Locatie = locatie[5],
                         Diamant = 1,
                         Uitleg = "puzzel 6"
                     },
@@ -137,7 +145,7 @@ namespace Models.T5B
                         Locatie = locatie[7],
                         Diamant = 1,
                         Uitleg = "puzzel 8"
-                    },
+                    }
 
 
 
@@ -179,7 +187,6 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 0,
-                        VerzameldeDiamanten = 0,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="sedf").ToList(),
                         Score = 1,
@@ -188,7 +195,6 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 0,
-                        VerzameldeDiamanten = 0,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Viktor").ToList(),
                         Score = 5,
@@ -197,7 +203,6 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 1,
-                        VerzameldeDiamanten = 2,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Joren").ToList(),
                         Score = 15,

@@ -8,4 +8,8 @@
     <ProjectReference Include="..\models\Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Speler\" />
+  </ItemGroup>
+
 </Project>

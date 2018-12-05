@@ -13,7 +13,6 @@ namespace Models.T5B
         public ICollection<Speler> Spelers { get; set; }
         public int DiamantenVerzameld { get; set; }
         public ICollection<Puzzel> Puzzellijst { get; set; } //op volgorde dat gedaan moet worden
-        public int VerzameldeDiamanten { get; set; } //dient ook als pointer van de huidige puzzel
         public int Score { get; set; }
 
         [JsonIgnore]
