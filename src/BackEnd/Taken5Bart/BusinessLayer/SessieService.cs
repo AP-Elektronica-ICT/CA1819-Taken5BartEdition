@@ -39,7 +39,6 @@ namespace BusinessLayer.T5B
                 t.DiamantenVerzameld = 0;
                 t.Score = 0;
                 t.Spelers = null;
-                t.VerzameldeDiamanten = 0;
                 //t.puzzels
                 var newT = _teamRepo.NewTeamT(t);
                 teams.Add(newT);

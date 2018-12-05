@@ -17,19 +17,71 @@ namespace Models.T5B
                 {
                     new Locatie()
                     {
-                        Latitude = 0.1f,
-                        Longitude = 0.2f
+                        Naam = "VlaamseKaai",
+                        Latitude = 51.209675f,
+                        Longitude = 4.3884186f
                     },
-                     new Locatie()
+
+                    new Locatie()
                     {
-                        Latitude = 0.5f,
-                        Longitude = 0.7f
+                        Naam = "Stadsfeestzaal",
+                        Latitude = 51.2178361f,
+                        Longitude = 4.4091902f
+                    },
+
+                    new Locatie()
+                    {
+                        Naam = "Kathedraal",
+                        Latitude = 51.2202678f,
+                        Longitude = 4.399327f
+                    },
+
+                       new Locatie()
+                    {
+                        Naam = "vlaeykensgang",
+                        Latitude = 51.2201932f,
+                        Longitude = 4.4003693f
+                    },
+
+                    new Locatie()
+                    {
+                        Naam = "Grote Markt",
+                        Latitude = 51.2212442f,
+                        Longitude = 4.3980062f
+                    },
+
+                    new Locatie()
+                    {
+                         Naam = "Het steen",
+                        Latitude = 51.2227238f,
+                        Longitude = 4.395175f
+                    },
+
+                    new Locatie()
+                    {
+                        Naam = "Museum aan de Stroom",
+                        Latitude = 51.2227238f,
+                        Longitude = 4.395175f
+                    },
+
+                    new Locatie()
+                    {
+                         Naam = "Havenhuis",
+                        Latitude = 51.2227238f,
+                        Longitude = 4.395175f
                     }
+
+            
+
                 };
+                //Brent schrijft code beter
+                context.Locaties.AddRange(locatie);
+                /*
                 foreach (Locatie l in locatie)
                 {
                     context.Locaties.Add(l);
                 }
+                */
                 context.SaveChanges();
                 var puzzels = new Puzzel[]
                 {
@@ -39,17 +91,67 @@ namespace Models.T5B
                         Diamant = 1,
                         Uitleg = "blablabla"
                     },
+
                     new Puzzel()
                     {
                         Locatie = locatie[1],
                         Diamant = 1,
                         Uitleg = "puzzel 2"
+                    },
+
+                    new Puzzel()
+                    {
+                        Locatie = locatie[2],
+                        Diamant = 1,
+                        Uitleg = "puzzel 3"
+                    },
+
+
+                    new Puzzel()
+                    {
+                        Locatie = locatie[3],
+                        Diamant = 1,
+                        Uitleg = "puzzel 4"
+                    },
+
+
+                    new Puzzel()
+                    {
+                        Locatie = locatie[4],
+                        Diamant = 1,
+                        Uitleg = "puzzel 5"
+                    },
+
+
+
+                    new Puzzel()
+                    {
+                        Locatie = locatie[5],
+                        Diamant = 1,
+                        Uitleg = "puzzel 6"
+                    },
+
+
+                    new Puzzel()
+                    {
+                        Locatie = locatie[6],
+                        Diamant = 1,
+                        Uitleg = "puzzel 7"
+                    },
+
+
+                    new Puzzel()
+                    {
+                        Locatie = locatie[7],
+                        Diamant = 1,
+                        Uitleg = "puzzel 8"
                     }
+
+
+
                 };
-                foreach (Puzzel p in puzzels)
-                {
-                    context.Puzzels.Add(p);
-                }
+                context.Puzzels.AddRange(puzzels);
+
                 context.SaveChanges();
                 var spelers = new Speler[]
                {
@@ -85,7 +187,6 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 0,
-                        VerzameldeDiamanten = 0,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="sedf").ToList(),
                         Score = 1,
@@ -94,7 +195,6 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 0,
-                        VerzameldeDiamanten = 0,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Viktor").ToList(),
                         Score = 5,
@@ -103,7 +203,6 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 1,
-                        VerzameldeDiamanten = 2,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Joren").ToList(),
                         Score = 15,
