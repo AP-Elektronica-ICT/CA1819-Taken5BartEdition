@@ -96,8 +96,13 @@ namespace BusinessLayer.T5B
             return GetTeam(Id).ActivePuzzel;
         }
 
-        public Puzzel SetActivePuzzel(int Id)
+        public Puzzel SetActivePuzzel(int Id, bool reset)
         {
+            if (reset)
+            {
+                _teamRepo.SetActivePuzzel(Id, -1);
+                return null;
+            }
             var team = GetTeam(Id);
             var pl = team.PuzzelsTeam.ToList();
             Puzzel ActivePuzzel = _puzzelRepo.GetPuzzel(pl.ElementAt(team.DiamantenVerzameld).PuzzelId);
