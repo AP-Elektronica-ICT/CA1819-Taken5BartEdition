@@ -28,19 +28,26 @@ namespace Repository.T5B
 
         public Team GetTeam(int id)
         {
-            return _context.Teams.Include(t=>t.Spelers).Include(t=>t.Puzzellijst).Include(t => t.AssignedSessie).SingleOrDefault(g => g.Id == id);
+            return _context.Teams.Include(t=>t.Spelers).Include(t => t.AssignedSessie).Include(t => t.PuzzelsTeam).ThenInclude(t=>t.Puzzel).SingleOrDefault(g => g.Id == id);
 
         }
 
         public ICollection<Team> GetTeams()
         {
-            return _context.Teams.Include(t => t.Spelers).Include(t => t.Puzzellijst).ToList();
+            return _context.Teams.Include(t => t.Spelers).Include(t => t.PuzzelsTeam).ThenInclude(t => t.Puzzel).ToList();
         }
 
         public void UpdateTeam(Team newTeam)
         {
             Team oldTeam = _context.Teams.Single(t => t.Id == newTeam.Id);
             oldTeam = newTeam;
+            _context.SaveChanges();
+        }
+
+        public void SetActivePuzzel(int tId, int pId)
+        {
+            Team oldTeam = _context.Teams.Single(t => t.Id == tId);
+            oldTeam.ActivePuzzel = pId;
             _context.SaveChanges();
         }
     }
