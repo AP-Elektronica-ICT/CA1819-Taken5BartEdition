@@ -86,10 +86,10 @@ namespace Taken5Bart.Controllers
             return NotFound(-1);
         }
 
-        [HttpPut("{id}/SetActivePuzzel")]
-        public IActionResult SetActivePuzzel(int id)
+        [HttpPut("{id}/ActivePuzzel")]
+        public IActionResult SetActivePuzzel(int id,bool reset)
         {
-            var result = teamService.SetActivePuzzel(id);
+            var result = teamService.SetActivePuzzel(id, reset);
             if (result != null)
             {
                 return Ok(result);

@@ -14,6 +14,6 @@ namespace Interface.T5B
         bool SpelerJoin(int spelerId, int teamId);
         Puzzel ActivePuzzel(int Id);
         int ActivePuzzelID(int Id);
-        Puzzel SetActivePuzzel(int Id);
+        Puzzel SetActivePuzzel(int Id, bool reset);
     }
 }
