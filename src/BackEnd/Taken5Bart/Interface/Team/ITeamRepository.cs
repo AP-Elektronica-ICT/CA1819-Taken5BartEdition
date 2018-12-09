@@ -13,5 +13,10 @@ namespace Interface.T5B
         void UpdateTeam(Team newTeam);
         void NewTeam(Team t);
         Team NewTeamT(Team t);
+        int GetStartPuzzel(int TeamId);
+        int GetNewPuzzel(int TeamId);
+
+
+
     }
 }
