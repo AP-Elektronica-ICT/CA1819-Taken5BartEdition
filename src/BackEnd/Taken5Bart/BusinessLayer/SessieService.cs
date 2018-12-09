@@ -87,6 +87,6 @@ namespace BusinessLayer.T5B
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        
+
     }
 }

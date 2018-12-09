@@ -7,10 +7,12 @@ namespace Models.T5B
 {
     public class DbInit
     {
+        
         public static void Initialize(GameContext context)
         {
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
-
+            
             if (!context.Games.Any())
             {
                 var locatie = new Locatie[]
@@ -150,9 +152,10 @@ namespace Models.T5B
 
 
                 };
-                context.Puzzels.AddRange(puzzels);
 
+                context.Puzzels.AddRange(puzzels);
                 context.SaveChanges();
+                var puzzelsIDs = context.Puzzels.Select(p => p.Id);
                 var spelers = new Speler[]
                {
                     new Speler()
@@ -187,26 +190,29 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 0,
-                        Puzzellijst = context.Puzzels.ToList(),
+                        //Puzzellijst = context.Puzzels.Select(p => p.Id).ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="sedf").ToList(),
                         Score = 1,
-                        TeamNaam = "Antwerp!!!"
+                        TeamNaam = "Antwerp!!!",
+                        ActivePuzzel = -1
                     },
                     new Team()
                     {
                         DiamantenVerzameld = 0,
-                        Puzzellijst = context.Puzzels.ToList(),
+                        //Puzzellijst = context.Puzzels.Select(p => p.Id).ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Viktor").ToList(),
                         Score = 5,
-                        TeamNaam = "TEam DJ"
+                        TeamNaam = "TEam DJ",
+                        ActivePuzzel = -1
                     },
                     new Team()
                     {
                         DiamantenVerzameld = 1,
-                        Puzzellijst = context.Puzzels.ToList(),
+                        //Puzzellijst = context.Puzzels.Select(p => p.Id).ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Joren").ToList(),
                         Score = 15,
-                        TeamNaam = "Limberg Parking"
+                        TeamNaam = "Limberg Parking",
+                        ActivePuzzel = -1
                     }
                 };
                 foreach (Team t in teams)
@@ -214,6 +220,15 @@ namespace Models.T5B
                     context.Teams.Add(t);
                 }
 
+                context.SaveChanges();
+
+                foreach(Team t in teams)
+                {
+                    foreach(Puzzel p in puzzels)
+                    {
+                        context.Add(new PuzzelTeam { Puzzel = p, Team = t });
+                    }
+                }
                 context.SaveChanges();
                 var sessie = new Sessie[]
                 {
@@ -316,9 +331,6 @@ namespace Models.T5B
                         Correctie = 3,
 
                     }
-
-
-
                 };
 
                 foreach (Quizvraag q in vraag)

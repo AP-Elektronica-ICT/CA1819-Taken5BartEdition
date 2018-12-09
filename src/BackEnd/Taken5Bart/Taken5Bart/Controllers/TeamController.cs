@@ -64,6 +64,39 @@ namespace Taken5Bart.Controllers
             return Ok(0);
         }
 
+        //put zou correcter zijn, maar unity kent enkel get en post
+        // get: api/Team/2/AddSpeler?spelerID=1
+        [HttpGet("{id}/ActivePuzzelID")]
+        public IActionResult ActivePuzzelID(int id)
+        {
+            var result = teamService.ActivePuzzelID(id);
+            return Ok(result);
+        }
+
+        //put zou correcter zijn, maar unity kent enkel get en post
+        // get: api/Team/2/AddSpeler?spelerID=1
+        [HttpGet("{id}/ActivePuzzel")]
+        public IActionResult ActivePuzzel(int id)
+        {
+            var result = teamService.ActivePuzzel(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(-1);
+        }
+
+        [HttpPut("{id}/SetActivePuzzel")]
+        public IActionResult SetActivePuzzel(int id)
+        {
+            var result = teamService.SetActivePuzzel(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(-1);
+        }
+
 
 
         // POST: api/Team/id?spelerID=5

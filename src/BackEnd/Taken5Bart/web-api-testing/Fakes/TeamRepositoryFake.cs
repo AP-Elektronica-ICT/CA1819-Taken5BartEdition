@@ -48,5 +48,11 @@ namespace web_api_testing
             oldTeam = newTeam;
             
         }
+
+        public void SetActivePuzzel(int tId, int pId)
+        {
+            Team oldTeam = _teams.Where(g => g.Id == tId).FirstOrDefault();
+            oldTeam.ActivePuzzel = pId;
+        }
     }
 }

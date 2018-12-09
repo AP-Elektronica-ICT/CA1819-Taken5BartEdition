@@ -12,5 +12,6 @@ namespace Interface.T5B
         Team GetTeam(int Id);
         void UpdateTeam(Team newTeam);
         Team NewTeam(Team t);
+        void SetActivePuzzel(int tId, int pId);
     }
 }

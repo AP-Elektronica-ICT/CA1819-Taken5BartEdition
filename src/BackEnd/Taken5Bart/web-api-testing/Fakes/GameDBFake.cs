@@ -90,8 +90,7 @@ namespace web_api_testing.Fakes
             {
                 Id = 1,
                 DiamantenVerzameld = 0,
-                VerzameldeDiamanten = 0,
-                Puzzellijst = puzzels,
+                //////Puzzellijst = {1,2 },
                 Spelers = new List<Speler>()
                 {
                     spelers[0],
@@ -104,8 +103,7 @@ namespace web_api_testing.Fakes
             {
                 Id = 2,
                 DiamantenVerzameld = 0,
-                VerzameldeDiamanten = 0,
-                Puzzellijst = puzzels,
+                //////Puzzellijst = {1,2 },
                 Spelers = new List<Speler>()
                 {
                     spelers[2],
@@ -118,8 +116,7 @@ namespace web_api_testing.Fakes
             {
                 Id = 3,
                 DiamantenVerzameld = 1,
-                VerzameldeDiamanten = 2,
-                Puzzellijst = puzzels,
+                ////Puzzellijst = {1,2 },
                 Spelers = new List<Speler>()
                 {
                     spelers[4]

@@ -12,5 +12,8 @@ namespace Interface.T5B
         ICollection<Team> GetTeams();
         int GetScorePos(int id);
         bool SpelerJoin(int spelerId, int teamId);
+        Puzzel ActivePuzzel(int Id);
+        int ActivePuzzelID(int Id);
+        Puzzel SetActivePuzzel(int Id);
     }
 }

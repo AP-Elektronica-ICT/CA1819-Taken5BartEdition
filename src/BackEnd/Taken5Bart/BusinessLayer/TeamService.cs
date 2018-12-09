@@ -16,18 +16,21 @@ namespace BusinessLayer.T5B
         private ISpelerRepository _spelerRepo;
         private ITeamRepository _teamRepo;
         private ISessionRepository _sessieRepo;
+        private IPuzzelRepository _puzzelRepo;
 
         public TeamService(GameContext context)
         {
             _teamRepo = new TeamRepository(context);
             _sessieRepo = new SessieRepository(context);
             _spelerRepo = new SpelerRepository(context);
+            _puzzelRepo = new PuzzelRepository(context);
         }
-        public TeamService(ITeamRepository teamRepo, ISpelerRepository spelerRepo, ISessionRepository sessieRepo)
+        public TeamService(ITeamRepository teamRepo, ISpelerRepository spelerRepo, ISessionRepository sessieRepo, IPuzzelRepository puzzelRepo)
         {
             _teamRepo = teamRepo;
             _sessieRepo = sessieRepo;
             _spelerRepo = spelerRepo;
+            _puzzelRepo = puzzelRepo;
         }
 
         public int GetScorePos(int id)
@@ -75,6 +78,31 @@ namespace BusinessLayer.T5B
             team.Spelers.Add(speler);
             _teamRepo.UpdateTeam(team);
             return true;
+        }
+        public Puzzel ActivePuzzel(int Id)
+        {
+            var t = GetTeam(Id);
+            if(t.ActivePuzzel == -1)
+            {
+                return null;
+            }
+            var p = _puzzelRepo.GetPuzzel(t.ActivePuzzel);
+            return p;
+            
+        }
+
+        public int ActivePuzzelID(int Id)
+        {
+            return GetTeam(Id).ActivePuzzel;
+        }
+
+        public Puzzel SetActivePuzzel(int Id)
+        {
+            var team = GetTeam(Id);
+            var pl = team.PuzzelsTeam.ToList();
+            Puzzel ActivePuzzel = _puzzelRepo.GetPuzzel(pl.ElementAt(team.DiamantenVerzameld).PuzzelId);
+            _teamRepo.SetActivePuzzel(Id, ActivePuzzel.Id);
+            return ActivePuzzel;
         }
     }
 }
