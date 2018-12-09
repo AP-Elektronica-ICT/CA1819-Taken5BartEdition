@@ -12,10 +12,14 @@ namespace Models.T5B
         public string TeamNaam { get; set; }
         public ICollection<Speler> Spelers { get; set; }
         public int DiamantenVerzameld { get; set; }
-        public ICollection<Puzzel> Puzzellijst { get; set; } //op volgorde dat gedaan moet worden
+        public int TeamPositionId { get; set; }
+
+        public ICollection<Puzzel> Puzzellijst { get; set; }
+        public int StartPuzzel { get; set; }
+        public int ActivePuzzel { get; set; } //hier word de voglende kuzzel bepaald
         public int Score { get; set; }
 
-        [JsonIgnore]
+       [JsonIgnore]
         public Sessie AssignedSessie { get; set; }
     }
 }

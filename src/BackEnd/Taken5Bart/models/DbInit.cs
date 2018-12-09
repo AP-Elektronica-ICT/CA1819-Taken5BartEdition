@@ -13,6 +13,7 @@ namespace Models.T5B
 
             if (!context.Games.Any())
             {
+
                 var locatie = new Locatie[]
                 {
                     new Locatie()
@@ -74,14 +75,8 @@ namespace Models.T5B
             
 
                 };
-                //Brent schrijft code beter
                 context.Locaties.AddRange(locatie);
-                /*
-                foreach (Locatie l in locatie)
-                {
-                    context.Locaties.Add(l);
-                }
-                */
+              
                 context.SaveChanges();
                 var puzzels = new Puzzel[]
                 {
@@ -182,6 +177,8 @@ namespace Models.T5B
                     context.Spelers.Add(s);
                 }
                 context.SaveChanges();
+
+
                 var teams = new Team[]
                 {
                     new Team()
@@ -189,15 +186,22 @@ namespace Models.T5B
                         DiamantenVerzameld = 0,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="sedf").ToList(),
+                        TeamPositionId = 1,
                         Score = 1,
-                        TeamNaam = "Antwerp!!!"
+                        StartPuzzel = 0,
+                        ActivePuzzel = 0,
+                        TeamNaam = "Antwerp!!!",
+                        
                     },
                     new Team()
                     {
                         DiamantenVerzameld = 0,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Viktor").ToList(),
+                        TeamPositionId = 2,
                         Score = 5,
+                        StartPuzzel = 0,
+                        ActivePuzzel = 0,
                         TeamNaam = "TEam DJ"
                     },
                     new Team()
@@ -205,29 +209,38 @@ namespace Models.T5B
                         DiamantenVerzameld = 1,
                         Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Joren").ToList(),
+                        TeamPositionId = 3,
                         Score = 15,
-                        TeamNaam = "Limberg Parking"
+                        StartPuzzel = 0,
+                        ActivePuzzel = 0,
+                        TeamNaam = "Limberg Parking",
                     }
                 };
                 foreach (Team t in teams)
                 {
                     context.Teams.Add(t);
                 }
-
-                context.SaveChanges();
                 var sessie = new Sessie[]
-                {
+          {
                     new Sessie()
                     {
                         StartTijd = DateTime.Now,
                         Teams = context.Teams.ToList()
                     }
-                };
+          };
                 foreach (Sessie s in sessie)
                 {
                     context.Sessies.Add(s);
                 }
                 context.SaveChanges();
+
+                foreach (Team t in context.Teams)
+                {
+                    t.AssignedSessie = sessie[0];
+                }
+
+                context.SaveChanges();
+               
                 var game = new Game[]
                 {
                     new Game()
@@ -347,9 +360,7 @@ namespace Models.T5B
                     context.QuizScores.Add(q);
                 }
 
-
-
-
+                
                 context.SaveChanges();
             }
         }

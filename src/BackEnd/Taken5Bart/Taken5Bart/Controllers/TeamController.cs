@@ -78,6 +78,29 @@ namespace Taken5Bart.Controllers
             return NotFound();
         }
 
+        [HttpPost("{id}/startpuzzel")]
+        public IActionResult PostStartPuzzel(int id)
+        {
+            var result = teamService.GetStartPuzzel(id);
+            if (result != 0)
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
+
+        [HttpPost("{id}/nextpuzzel")]
+        public IActionResult PostNextPuzzel(int id)
+        {
+            var result = teamService.GetNewPuzzel(id);
+            if (result != 0)
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
+
+
         // PUT: api/Team/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

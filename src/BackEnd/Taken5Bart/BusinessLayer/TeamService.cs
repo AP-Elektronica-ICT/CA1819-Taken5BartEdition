@@ -52,6 +52,8 @@ namespace BusinessLayer.T5B
             return (result.Index+1);
         }
 
+        
+
         public Team GetTeam(int id)
         {
             Team t = _teamRepo.GetTeam(id);
@@ -75,6 +77,17 @@ namespace BusinessLayer.T5B
             team.Spelers.Add(speler);
             _teamRepo.UpdateTeam(team);
             return true;
+        }
+
+
+        public int GetStartPuzzel(int TeamId)
+        {
+            return _teamRepo.GetStartPuzzel(TeamId);
+        }
+
+        public int GetNewPuzzel(int TeamId)
+        {
+            return _teamRepo.GetNewPuzzel(TeamId);
         }
     }
 }

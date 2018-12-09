@@ -13,5 +13,8 @@ namespace Interface.T5B
         int GetScorePos(int id);
 
         bool SpelerJoin(int spelerId, int teamId);
+
+        int GetStartPuzzel(int TeamId);
+        int GetNewPuzzel(int TeamId);
     }
 }
