@@ -134,9 +134,8 @@ public class Menu_Create : MonoBehaviour {
         //StartCoroutine(CreateSessionCor());
         //Debug.Log(response);
     }
-    void CreateSessionCor()
+    void CreateSessionCor(string code)
     {
-        var code = api.json;
         Info.SessieCode = code;
         txtSessieCode.text = code;
         Debug.Log("done");
@@ -146,18 +145,19 @@ public class Menu_Create : MonoBehaviour {
     public void joinGame()
     {
         btnJoinSessie.gameObject.SetActive(false);
-        string code = Info.SessieCode;
+        string code = Info.SessieCode.ToString();
         Info.SessieCode = code;
+        code = code.Trim('"');
         Debug.Log(Info.SessieCode + "code");
-        var url = "Sessie/toList?id=" + code;
+        string url = "Sessie/toList?code=" + code;
+        Debug.Log(url);
         api.ApiGet(url,JoinGameCor);
         
     }
-    void JoinGameCor()
+    void JoinGameCor(string json)
     {
-        string result = api.json;
-        Debug.Log(result);
-        var N = JSON.Parse(result);
+        Debug.Log(json);
+        var N = JSON.Parse(json);
         Info.TeamId = N["data"][0]["id"].AsInt;
         Info.TeamNaam = N["data"][0]["teamNaam"].Value;
         Debug.Log("joined: ");
@@ -168,7 +168,7 @@ public class Menu_Create : MonoBehaviour {
         
     }
 
-    void NextLevel()
+    void NextLevel(string json)
     {
         loader.LoadLevel(nextScene);
     }

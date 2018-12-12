@@ -9,73 +9,72 @@ public static class Info
     public static int spelerId = 2;
     public static string Voornaam { get; set; }
     public static int TeamId { get; set; }
+    public static int ActivePuzzel { get; set; }
     public static string SpelerNaam { get; set; }
     public static string TeamNaam { get; set; }
     public static int Diamanten { get; set; }
     public static int Score { get; set; }
     public static string SessieCode { get; set; }
     public static double Longitude { get; set; }
-    public static double Latitude { get; set; } 
+    public static double Latitude { get; set; }
+    public static List<PuzzelDone> puzzelDones { get; set; }
 
-    public static InfoUpdater updater;
+}
+public class PuzzelDone
+{
+    string Naam { get; set; }
     
+    string LocatieNaam { get; set; }
+
 }
 
-public class InfoUpdater
-{
-    APICaller _api;
-    bool isDone;
 
-    public InfoUpdater(APICaller api)
-    {
-        _api = api;
-    }
-    public IEnumerator UpdateInfo(Action doAfter)
+public class InfoUpdater : MonoBehaviour
+{
+    private bool isDone;
+    public IEnumerator UpdateInfo(APICaller _api, Action doLast)
     {
         isDone = false;
         string url = "Speler/" + Info.spelerId.ToString() + "/Team";
-        _api.ApiGet(url, LoadTeamData);
-        yield return new WaitUntil(() => isDone);
-        doAfter();
+        StartCoroutine(_api.Get(url, GetSpeler));
+        
+        url = "Speler/" + Info.spelerId.ToString();
+        StartCoroutine(_api.Get(url, GetSpeler));
+        yield return new WaitUntil(() => !isDone);
+        doLast();
     }
-    public IEnumerator UpdateLocatie(Action doAfter)
+    
+    private void GetTeam(string json)
     {
-        isDone = false;
-        var url = "puzzel/" + (Info.Diamanten+1) + "/location";
-        _api.ApiGet(url, LoadPuzzelLocatie);
-        yield return new WaitUntil(() => isDone);
-        doAfter();
-    }
 
-    void LoadTeamData()
-    {
-        var N = JSON.Parse(_api.json);
+        var N = JSON.Parse(json);
         Info.TeamNaam = N["teamNaam"].Value;
         Info.Diamanten = N["diamantenVerzameld"].AsInt;
         Info.Score = N["score"].AsInt;
         Info.TeamId = N["id"].AsInt;
-
-        var url = "Speler/" + Info.spelerId.ToString();
-        _api.ApiGet(url, LoadSpelerData);
-
-       
-        /*
-        url = "puzzel/" + "1" + "/location";
-        N = JSON.Parse(_api.ApiGet(url, LoadSpelerData));
-        */
     }
-    void LoadSpelerData()
+
+    private void GetSpeler(string json)
     {
-        var N = JSON.Parse(_api.json);
+        var N = JSON.Parse(json);
         Info.Voornaam = N["voornaam"].Value;
-
-        var url = "puzzel/" + (Info.Diamanten + 1) + "/location";
-        _api.ApiGet(url, LoadPuzzelLocatie);
-        
+        isDone = true;
     }
-    void LoadPuzzelLocatie()
+
+    public IEnumerator UpdateLocatie(APICaller _api, Action doLast)
     {
-        var N = JSON.Parse(_api.json);
+        isDone = false;
+        var url = "puzzel/" + (Info.Diamanten) + "/location";
+
+        StartCoroutine(_api.Get(url, Locatie));
+        
+        yield return new WaitUntil(() => !isDone);
+        doLast();
+    }
+
+    private void Locatie(string json)
+    {
+        var N = JSON.Parse(json);
         Info.Longitude = N["longitude"].AsDouble;
         Info.Latitude = N["latitude"].AsDouble;
         isDone = true;

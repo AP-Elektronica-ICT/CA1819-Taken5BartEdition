@@ -14,6 +14,7 @@ public class Arrow : MonoBehaviour {
     // Use this for initialization
     void Start() {
         _distance = gameObject.AddComponent<Distance>();
+        _distance.Setup();
         distance.text = "0 m";
     }
 
@@ -22,15 +23,11 @@ public class Arrow : MonoBehaviour {
         //distance.text = Math.Round(Distance.DistanceTo()).ToString() + " m";
         if (_distance.isDone)
         {
-            _distance.DistanceTo();
+            StartCoroutine(_distance.DistanceTo(updateDist));
         }
-        double dist = _distance.dist;
-        distance.text = dist.ToString()+" m";
-
-        //distance.text = Info.Longitude.ToString();
-
-        
-
-
+    }
+    void updateDist(double dist)
+    {
+        distance.text = dist.ToString() + " m";
     }
 }

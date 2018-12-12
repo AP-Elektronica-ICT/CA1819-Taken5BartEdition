@@ -21,11 +21,13 @@ public class Info_GetTeamData : MonoBehaviour {
     public Text SessieCode;
 
     private APICaller api;
+    private InfoUpdater updater;
 
     void Start()
     {
         api = gameObject.AddComponent<APICaller>();
-        Info.updater = new InfoUpdater(api);
+        updater = gameObject.AddComponent<InfoUpdater>();
+        
         if (Info.TeamId == -1)
         {
             Debug.Log("Dev team");
@@ -36,8 +38,7 @@ public class Info_GetTeamData : MonoBehaviour {
         else
         {
             Debug.Log(Info.SessieCode);
-            StartCoroutine(Info.updater.UpdateInfo(UpdateInfo));
-            
+            StartCoroutine(updater.UpdateInfo(api, UpdateInfo));  
         }
         
     }
@@ -50,38 +51,14 @@ public class Info_GetTeamData : MonoBehaviour {
         Score.text = Info.Score.ToString();
         SpelerNaam.text = Info.Voornaam;
         SessieCode.text = Info.SessieCode;
-        ScorePos();
-    }
-    void ScorePos()
-    {
         var url = "Team/" + Info.TeamId.ToString() + "/GetScorePosition";
-        //Debug.Log(url);
-        api.ApiGet(url, ScorePosCor);
-        
+        StartCoroutine(api.Get(url, ScorePos));
     }
-    void ScorePosCor()
+    void ScorePos(string json)
     {
-        TeamPositie.text = api.json;
+        TeamPositie.text = json;
     }
 
-    [Serializable]
-    private class Speler
-    {
-        public double id { get; set; }
-        public string voornaam { get; set; }
-        public string achternaam { get; set; }
-    }
-    [Serializable]
-    private class Team
-    {
-        public double id { get; set; }
-        public string teamNaam { get; set; }
-        public List<Speler> spelers { get; set; }
-        public int diamantenVerzameld { get; set; }
-        public object puzzellijst { get; set; }
-        public int verzameldeDiamanten { get; set; }
-        public int score { get; set; }
-    }
 }
 
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Menu_Join : MonoBehaviour {
 
-    string url;
+    
     public Text SessieCode;
     public Dropdown dropdown;
     public Text dropdownLabel;
@@ -14,10 +14,14 @@ public class Menu_Join : MonoBehaviour {
 
     public Button btnJoin;
     public Button btnGo;
-    Dictionary<string, int> teamlijst;
+    
     public LevelLoader levelLoader;
     public int nextLevel;
     private APICaller api;
+
+    string url;
+    List<string> teamnamen;
+    Dictionary<string, int> teamlijst;
 
     void Start()
     {
@@ -26,7 +30,10 @@ public class Menu_Join : MonoBehaviour {
     public void GetTeams()
     {
         btnGo.gameObject.SetActive(false);
-        url = "Sessie/toList?id=" + SessieCode.text;
+        string code = SessieCode.text;
+        code = code.Trim('"');
+        Debug.Log(code + "code");
+        url = "Sessie/toList?code=" + code;
         //Debug.Log(url);
         List<string> teamnamen = new List<string>();
         teamlijst = new Dictionary<string, int>();
@@ -38,46 +45,51 @@ public class Menu_Join : MonoBehaviour {
             teamnamen.Add("Bypass");
             teamlijst.Add("HAXXXX!", -1);
             teamnamen.Add("HAXXXX!");
-            dropdown.AddOptions(teamnamen);
-            dropdown.gameObject.SetActive(true);
-            btnJoin.gameObject.SetActive(true);
-            Info.SessieCode = SessieCode.ToString();
+            SetupPutInTeam();
         }
         else
         {
-            api.ApiGet(url, GetTeamCor);
+            StartCoroutine(api.Get(url, GetTeamResult));
         }
-       
-        btnGo.gameObject.SetActive(true);
     }
-    void GetTeamCor()
+
+    void GetTeamResult(string json)
     {
-        List<string> teamnamen = new List<string>();
-        string json = api.json;
+        Debug.Log(json);
+        teamnamen = new List<string>();
         //Debug.Log(json == ""); json is een string en zal nooit null zijn.
         if (json != "-1") //vervang null door een error waarde van de server
         {
             var N = JSON.Parse(json);
-            //Debug.Log(N);
+            
             int count = N["count"].AsInt;
             for (var i = 0; i < count; i++)
             {
                 teamlijst.Add(N["data"][i]["teamNaam"], N["data"][i]["id"].AsInt);
                 teamnamen.Add(N["data"][i]["teamNaam"]);
             }
-            dropdown.AddOptions(teamnamen);
-            dropdown.gameObject.SetActive(true);
-            btnJoin.gameObject.SetActive(true);
-            Info.SessieCode = SessieCode.ToString();
+            SetupPutInTeam();
         }
         else
         {
             SessieCode.text = "wrong sessieID";
+            btnGo.gameObject.SetActive(true);
         }
+        
+    }
+    void SetupPutInTeam()
+    {
+        btnGo.gameObject.SetActive(true);
+        dropdown.AddOptions(teamnamen);
+        dropdown.gameObject.SetActive(true);
+        btnJoin.gameObject.SetActive(true);
+        Info.SessieCode = SessieCode.ToString();
     }
 
     public void PutSpelerInTeam()
     {
+        btnJoin.gameObject.SetActive(false);
+        btnGo.gameObject.SetActive(false);
         //get selected item from dropdown
         var menuIndex = dropdown.GetComponent<Dropdown>().value;
         var menuValue = dropdown.GetComponent<Dropdown>().options[menuIndex].text;
@@ -89,27 +101,26 @@ public class Menu_Join : MonoBehaviour {
         //create the url for adding player
         var url = "Team/" + teamId + "/AddSpeler?spelerID=" + Info.spelerId;
 
-        string success = "0";
         if (teamId == -1) //team id -1 => developer bypass (offline mode)
         {
             //Debug.Log("bypassing"); 
             Info.TeamNaam = menuValue;
             Info.TeamId = teamId;
-            success = "1";
-        }
-        else
-        {
-            api.ApiGet(url, PutSpelerInTeamCor);
+            levelLoader.LoadLevel(nextLevel);
         }
 
+        StartCoroutine(api.Get(url, NextLevel));
         
     }
-    void PutSpelerInTeamCor()
-    {
-        if (api.json == "1")
+
+    private void NextLevel(string json)
+    { 
+        if (json == "1")
         {
             levelLoader.LoadLevel(nextLevel);
         }
+        btnJoin.gameObject.SetActive(true);
+        btnGo.gameObject.SetActive(true);
     }
 
     public void ChangeDropValue()

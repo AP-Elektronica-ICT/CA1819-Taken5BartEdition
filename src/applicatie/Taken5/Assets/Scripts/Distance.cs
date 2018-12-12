@@ -5,25 +5,42 @@ using UnityEngine;
 
 public class Distance : MonoBehaviour {
     private APICaller _api;
-    public double dist;
-    public bool isDone;
-	// Use this for initialization
-	public void SetAPI(APICaller api)
+    private InfoUpdater updater;
+    private double dist;
+    public bool isDone { get; private set; }
+                                       // Use this for initialization
+    public void Setup()
     {
-        _api = api;
-        Info.updater = new InfoUpdater(api);
+        _api = gameObject.AddComponent<APICaller>();
+        updater = gameObject.AddComponent<InfoUpdater>();
         isDone = true;
     }
 
-    public void DistanceTo()
+    public IEnumerator DistanceTo(Action<Double> doLast)
     {
-        Debug.Log("updating");
         isDone = false;
-        dist = 10000;
-        StartCoroutine(Info.updater.UpdateLocatie(DistanceToCor));
+        Debug.Log("updating distance");
+        Debug.Log(updater);
+        StartCoroutine(updater.UpdateLocatie(_api, getDone));
+        yield return new WaitUntil(() => !isDone);
+        var result = DistanceToDummy();
+        doLast(result);
+    }
+    public IEnumerator DistanceTo()
+    {
+        isDone = false;
+        Debug.Log("updating distance");
+        Debug.Log(updater);
+        StartCoroutine(updater.UpdateLocatie(_api, getDone));
+        yield return new WaitUntil(() => !isDone);
+        var result = DistanceToDummy();
+    }
+    private void getDone()
+    {
+        isDone = true;
     }
     
-    void DistanceToCor()
+    private double DistanceToGPS()
     {
         double latGame = Info.Latitude;
         double lonGame = Info.Longitude;
@@ -40,15 +57,15 @@ public class Distance : MonoBehaviour {
         dist = dist * 180 / Math.PI;
         dist = dist * 60 * 1.1515;
         dist = dist * 1.609344 * 1000;
-        isDone = true;
+        return dist;
     }
-    void DistanceToCorDummy()
+    private double DistanceToDummy()
     {
         double latGame = Info.Latitude;
         double lonGame = Info.Longitude;
         Debug.Log("Lat:"+latGame);
         Debug.Log("Long:" + lonGame);
-        dist = 25;
-        isDone = true;
+        dist = 30;
+        return dist;
     }
 }

@@ -13,8 +13,8 @@ namespace Models.T5B
         public ICollection<Speler> Spelers { get; set; }
         public int DiamantenVerzameld { get; set; }
         public int TeamPositionId { get; set; }
-
         public ICollection<Puzzel> Puzzellijst { get; set; }
+        public ICollection<Puzzel> PuzzelsDone { get; set; }
         public int StartPuzzel { get; set; }
         public int ActivePuzzel { get; set; } //hier word de voglende kuzzel bepaald
         public int Score { get; set; }

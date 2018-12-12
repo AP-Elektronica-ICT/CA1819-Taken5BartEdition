@@ -5,12 +5,13 @@ using UnityEngine;
 public class OpenGameVersieViktor : MonoBehaviour {
     int levelId = 0;
     Distance _distance;
+    double distance;
 
     // Use this for initialization
     void Start()
     {
         _distance = gameObject.AddComponent<Distance>();
-        _distance.SetAPI(gameObject.AddComponent<APICaller>());
+        _distance.Setup();
         Info.Diamanten = 0; //TD fix diamant id begint bij 0
     }
 
@@ -22,7 +23,7 @@ public class OpenGameVersieViktor : MonoBehaviour {
         {
             _distance.DistanceTo();
         }
-        double distance = _distance.dist;
+      //  double distance = _distance.DistanceTo();
         //Debug.Log(distance);
 
         if (distance <= 20)

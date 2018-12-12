@@ -8,6 +8,7 @@ namespace Models.T5B
 {
     public class Puzzel
     {
+        public string naam { get; set; }
         public int Id { get; set; }
         public Locatie Locatie { get; set; }
         public int Diamant { get; set; }
