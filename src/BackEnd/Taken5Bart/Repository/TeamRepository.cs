@@ -19,21 +19,22 @@ namespace Repository.T5B
             _context = context;
         }
 
-        public void NewTeam(Team t)
+        public Team NewTeam(Team t)
         {
             _context.Teams.Add(t);
             _context.SaveChanges();
+            return t;
         }
 
         public Team GetTeam(int id)
         {
-            return _context.Teams.Include(t=>t.Spelers).Include(t=>t.Puzzellijst).Include(t => t.AssignedSessie).SingleOrDefault(g => g.Id == id);
+            return _context.Teams.Include(t=>t.Spelers).Include(t => t.AssignedSessie).Include(t => t.PuzzelsTeam).ThenInclude(t=>t.Puzzel).SingleOrDefault(g => g.Id == id);
 
         }
 
         public ICollection<Team> GetTeams()
         {
-            return _context.Teams.Include(t => t.Spelers).Include(t => t.Puzzellijst).ToList();
+            return _context.Teams.Include(t => t.Spelers).Include(t => t.PuzzelsTeam).ThenInclude(t => t.Puzzel).ToList();
         }
 
         public void UpdateTeam(Team newTeam)
@@ -43,11 +44,11 @@ namespace Repository.T5B
             _context.SaveChanges();
         }
 
-        public Team NewTeamT(Team t)
+        public void SetActivePuzzel(int tId, int pId)
         {
-            _context.Teams.Add(t);
+            Team oldTeam = _context.Teams.Single(t => t.Id == tId);
+            oldTeam.ActivePuzzel = pId;
             _context.SaveChanges();
-            return t;
         }
 
         public int GetStartPuzzel(int TeamId)

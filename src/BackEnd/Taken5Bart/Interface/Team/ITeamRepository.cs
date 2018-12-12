@@ -1,22 +1,19 @@
 ﻿using Models;
 using Models.T5B;
 using System;
-using System.Collections.Generic;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Interface.T5B
 {
     public interface ITeamRepository
     {
         ICollection<Team> GetTeams();
-        Team GetTeam(int Id);
         void UpdateTeam(Team newTeam);
-        void NewTeam(Team t);
-        Team NewTeamT(Team t);
+        Team GetTeam(int Id);
+        void SetActivePuzzel(int tId, int pId);
+        Team NewTeam(Team t);
         int GetStartPuzzel(int TeamId);
         int GetNewPuzzel(int TeamId);
-
-
-
     }
 }

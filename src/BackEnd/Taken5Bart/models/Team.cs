@@ -17,6 +17,10 @@ namespace Models.T5B
         public ICollection<Puzzel> PuzzelsDone { get; set; }
         public int StartPuzzel { get; set; }
         public int ActivePuzzel { get; set; } //hier word de voglende kuzzel bepaald
+                                              //public ICollection<Int32> Puzzellijst { get; set; } //op volgorde dat gedaan moet worden
+        [JsonIgnore]
+        public ICollection<PuzzelTeam> PuzzelsTeam { get; } = new List<PuzzelTeam>();
+
         public int Score { get; set; }
 
        [JsonIgnore]

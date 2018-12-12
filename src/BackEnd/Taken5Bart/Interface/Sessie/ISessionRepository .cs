@@ -12,6 +12,5 @@ namespace Interface.T5B
         ICollection<Sessie> GetSessies();
         Sessie AddSessie(Sessie sessie);
 
-
     }
 }

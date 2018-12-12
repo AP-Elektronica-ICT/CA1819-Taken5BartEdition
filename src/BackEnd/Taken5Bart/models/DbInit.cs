@@ -7,10 +7,12 @@ namespace Models.T5B
 {
     public class DbInit
     {
+        
         public static void Initialize(GameContext context)
         {
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
-
+            
             if (!context.Games.Any())
             {
 
@@ -148,6 +150,7 @@ namespace Models.T5B
                 context.Puzzels.AddRange(puzzels);
 
                 context.SaveChanges();
+                var puzzelsIDs = context.Puzzels.Select(p => p.Id);
                 var spelers = new Speler[]
                {
                     new Speler()
@@ -329,9 +332,6 @@ namespace Models.T5B
                         Correctie = 3,
 
                     }
-
-
-
                 };
 
                 foreach (Quizvraag q in vraag)

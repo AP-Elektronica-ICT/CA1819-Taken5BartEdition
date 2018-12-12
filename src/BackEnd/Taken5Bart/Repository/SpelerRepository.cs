@@ -19,11 +19,12 @@ namespace Repository.T5B
             _context = context;
         }
 
-        public void NewSpeler(Speler s)
+        public Speler NewSpeler(Speler s)
         {
             //Speler toevoegen in de databank, Id wordt dan ook toegekend
             _context.Spelers.Add(s);
             _context.SaveChanges();
+            return s;
         }
 
         public Speler GetSpeler(int id)
@@ -35,10 +36,6 @@ namespace Repository.T5B
         {
             return _context.Spelers.SingleOrDefault(g => g.DeviceId == DeviceID);
         }
-
-
-
-
 
         public ICollection<Speler> GetSpelers()
         {

@@ -14,8 +14,10 @@ namespace Models.T5B
         public int Diamant { get; set; }
         public String Uitleg { get; set; }
 
+        //[JsonIgnore]
+        //public ICollection<Team> AssignedTeams { get; set; }
         [JsonIgnore]
-        public Team AssignedTeams { get; set; }
+        public ICollection<PuzzelTeam> PuzzelTeams { get; } = new List<PuzzelTeam>();
 
         [JsonIgnore]
         public Game Game { get; set; }

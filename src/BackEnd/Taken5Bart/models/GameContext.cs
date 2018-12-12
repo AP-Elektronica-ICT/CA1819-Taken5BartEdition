@@ -17,6 +17,8 @@ namespace Models.T5B
             //  modelBuilder.Entity<Movie>().ToTable("Movie");
             // modelBuilder.Entity<Rating>().ToTable("Rating");
             modelBuilder.Entity<Game>().ToTable("Game");
+            modelBuilder.Entity<PuzzelTeam>()
+        .HasKey(t => new { t.PuzzelId, t.TeamId });
 
         }
 
@@ -24,6 +26,7 @@ namespace Models.T5B
         public DbSet<Game> Games { get; set; }
         public DbSet<Locatie> Locaties { get; set; }
         public DbSet<Puzzel> Puzzels { get; set; }
+        public DbSet<PuzzelTeam> PuzzelTeams { get; set; }
         public DbSet<Sessie> Sessies { get; set; }
         public DbSet<Speler> Spelers { get; set; }
         public DbSet<Team> Teams { get; set; }

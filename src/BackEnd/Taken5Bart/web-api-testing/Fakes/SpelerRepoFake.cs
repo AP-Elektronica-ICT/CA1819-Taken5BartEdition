@@ -24,8 +24,7 @@ namespace web_api_testing
             {
                 Id = 1,
                 DiamantenVerzameld = 0,
-                VerzameldeDiamanten = 0,
-                Puzzellijst = null,
+                //Puzzellijst = null,
                 Score = 1,
                 TeamNaam = "Antwerp!!!"
             },
@@ -39,8 +38,7 @@ namespace web_api_testing
             {
                 Id = 1,
                 DiamantenVerzameld = 0,
-                VerzameldeDiamanten = 0,
-                Puzzellijst = null,
+                //Puzzellijst = null,
                 Score = 1,
                 TeamNaam = "Antwerp!!!"
             },
@@ -54,8 +52,7 @@ namespace web_api_testing
             {
                 Id = 2,
                 DiamantenVerzameld = 0,
-                VerzameldeDiamanten = 0,
-                Puzzellijst = null,
+                //Puzzellijst = null,
                 Score = 5,
                 TeamNaam = "TEam DJ"
             },
@@ -69,8 +66,7 @@ namespace web_api_testing
             {
                 Id = 2,
                 DiamantenVerzameld = 0,
-                VerzameldeDiamanten = 0,
-                Puzzellijst = null,
+                //Puzzellijst = null,
                 Score = 5,
                 TeamNaam = "TEam DJ"
             },
@@ -84,8 +80,7 @@ namespace web_api_testing
             {
                 Id = 3,
                 DiamantenVerzameld = 1,
-                VerzameldeDiamanten = 2,
-                Puzzellijst = null,
+                //Puzzellijst = null,
                 Score = 15,
                 TeamNaam = "Limberg Parking"
             }
@@ -107,9 +102,16 @@ namespace web_api_testing
             return _spelers;
         }
 
-        public void NewSpeler(Speler s)
+        public Speler NewSpeler(Speler s)
         {
+            s.Id = _spelers.Count() + 10;
             _spelers.Add(s);
+            return s;
+        }
+
+        Speler ISpelerRepository.NewSpeler(Speler s)
+        {
+            throw new NotImplementedException();
         }
     }
 }
