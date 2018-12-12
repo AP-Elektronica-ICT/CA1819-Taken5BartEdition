@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,6 +46,7 @@ namespace Taken5Bart
             services.AddScoped<IQuizService, QuizService>();
             services.AddScoped<IQuizScoreService, QuizScoreService>();
             services.AddScoped<IPuzzelService, PuzzelService>();
+		services.AddScoped<ISteenScoreService, SteenScoreService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
