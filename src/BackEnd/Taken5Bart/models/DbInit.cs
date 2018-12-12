@@ -187,7 +187,7 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 0,
-                        Puzzellijst = context.Puzzels.ToList(),
+                        //Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="sedf").ToList(),
                         TeamPositionId = 1,
                         Score = 1,
@@ -199,7 +199,7 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 0,
-                        Puzzellijst = context.Puzzels.ToList(),
+                        //Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Viktor").ToList(),
                         TeamPositionId = 2,
                         Score = 5,
@@ -210,7 +210,7 @@ namespace Models.T5B
                     new Team()
                     {
                         DiamantenVerzameld = 1,
-                        Puzzellijst = context.Puzzels.ToList(),
+                        //Puzzellijst = context.Puzzels.ToList(),
                         Spelers = context.Spelers.Where(s=> s.Voornaam=="Joren").ToList(),
                         TeamPositionId = 3,
                         Score = 15,
@@ -222,6 +222,15 @@ namespace Models.T5B
                 foreach (Team t in teams)
                 {
                     context.Teams.Add(t);
+                }
+                context.SaveChanges();
+
+                foreach (Team t in teams)
+                {
+                    foreach (Puzzel p in puzzels)
+                    {
+                        context.Add(new PuzzelTeam { Puzzel = p, Team = t });
+                    }
                 }
                 var sessie = new Sessie[]
           {
