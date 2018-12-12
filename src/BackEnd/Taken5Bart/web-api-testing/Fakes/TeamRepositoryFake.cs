@@ -54,5 +54,15 @@ namespace web_api_testing
             Team oldTeam = _teams.Where(g => g.Id == tId).FirstOrDefault();
             oldTeam.ActivePuzzel = pId;
         }
+
+        public int GetStartPuzzel(int TeamId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetNewPuzzel(int TeamId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

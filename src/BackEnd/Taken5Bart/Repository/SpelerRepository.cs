@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Text;
 using Interface;
 using Models.T5B;
-using Interface.T5B;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Interface.T5B;
 
 namespace Repository.T5B
 {
-    public class SpelerRepository:ISpelerRepository
+    public class SpelerRepository: ISpelerRepository
     {
         GameContext _context;
 

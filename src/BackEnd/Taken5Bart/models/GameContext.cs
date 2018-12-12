@@ -33,6 +33,6 @@ namespace Models.T5B
         public DbSet<Quizvraag> Quizvragen { get; set; }
         public DbSet<QuizScore> QuizScores { get; set; }
 
-
+        public DbSet<SteenScore> SteenScores { get; set; }
     }
 }
