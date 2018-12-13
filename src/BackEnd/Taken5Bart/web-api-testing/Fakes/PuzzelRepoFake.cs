@@ -12,6 +12,10 @@ namespace web_api_testing
     {
         private ICollection<Puzzel> _puzzels;
 
+        public void reset()
+        {
+            _puzzels = GameDBFake.puzzels.ToList();
+        }
         public PuzzelRepoFake()
         {
             _puzzels = GameDBFake.puzzels.ToList();

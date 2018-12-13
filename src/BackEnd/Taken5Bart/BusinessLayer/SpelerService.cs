@@ -54,7 +54,6 @@ namespace BusinessLayer.T5B
         
         public void CreateSpeler(Speler newSpeler)
         {
-          
             _spelerRepo.NewSpeler(newSpeler);
         }
 

@@ -27,6 +27,8 @@ namespace web_api_testing
         [Fact]
         public void Get_Spelers()
         {
+            (_fakeSpelerRepo as SpelerRepoFake).reset();
+            (_fakeTeamRepo as TeamRepositoryFake).reset();
             //Act
             var okResult = _service.GetSpelers();
 
@@ -37,6 +39,8 @@ namespace web_api_testing
         [Fact]
         public void Get_Speler_ReturnsAllItems()
         {
+            (_fakeSpelerRepo as SpelerRepoFake).reset();
+            (_fakeTeamRepo as TeamRepositoryFake).reset();
             // Act
             ICollection<Speler> result = _service.GetSpelers();
 
@@ -47,6 +51,8 @@ namespace web_api_testing
         [Fact]
         public void Get_Speler_ReturnItem()
         {
+            (_fakeSpelerRepo as SpelerRepoFake).reset();
+            (_fakeTeamRepo as TeamRepositoryFake).reset();
             //Arrange
             var existingId = 5;
 
@@ -61,6 +67,8 @@ namespace web_api_testing
         [Fact]
         public void Get_Speler_NotReturnItem()
         {
+            (_fakeSpelerRepo as SpelerRepoFake).reset();
+            (_fakeTeamRepo as TeamRepositoryFake).reset();
             //Arrange
             var id = -1;
 
@@ -74,6 +82,8 @@ namespace web_api_testing
         [Fact]
         public void Get_Team_ReturnItem()
         {
+            (_fakeSpelerRepo as SpelerRepoFake).reset();
+            (_fakeTeamRepo as TeamRepositoryFake).reset();
             //Arrange
             var id = 2;
 
@@ -88,6 +98,8 @@ namespace web_api_testing
         [Fact]
         public void Get_Team_NotReturnItem() 
         {
+            (_fakeSpelerRepo as SpelerRepoFake).reset();
+            (_fakeTeamRepo as TeamRepositoryFake).reset();
             //Arrange
             var id = -1;
 

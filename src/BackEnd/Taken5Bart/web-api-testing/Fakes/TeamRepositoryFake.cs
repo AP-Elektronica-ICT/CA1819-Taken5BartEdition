@@ -17,10 +17,19 @@ namespace web_api_testing
 
         public TeamRepositoryFake()
         {
+            reset();
+        }
+
+        public void reset()
+        {
             _teams = GameDBFake.teams;
             _teams[0].AssignedSessie = GameDBFake.sessies[0];
             _teams[1].AssignedSessie = GameDBFake.sessies[0];
             _teams[2].AssignedSessie = null;
+            _teams[0].PuzzelsTeam.Add(GameDBFake.puzzelTeams[0]);
+            _teams[0].PuzzelsTeam.Add(GameDBFake.puzzelTeams[1]);
+            _teams[1].PuzzelsTeam.Add(GameDBFake.puzzelTeams[2]);
+            _teams[1].PuzzelsTeam.Add(GameDBFake.puzzelTeams[3]);
         }
 
         public Team NewTeam(Team t)
