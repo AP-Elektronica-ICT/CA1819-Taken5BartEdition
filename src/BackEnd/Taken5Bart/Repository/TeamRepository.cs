@@ -53,20 +53,13 @@ namespace Repository.T5B
 
         public int GetStartPuzzel(int TeamId)
         {
-            
             Team team = _context.Teams.Include(t => t.AssignedSessie).Single(t => t.Id == TeamId);
-       
             int index = 0;
-
-
-            
-
             System.Diagnostics.Debug.WriteLine(index);
 
             if (team.TeamPositionId == 0)
             {
                 team.StartPuzzel = 1;
-
             }
             else
             { 
