@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Images\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
-    <Compile Include="Assets\scrip.cs" />
     <Compile Include="Assets\Scripts\APICall\API_AsyncCaller.cs" />
     <Compile Include="Assets\Scripts\APICall\APICaller.cs" />
     <Compile Include="Assets\Scripts\APICall\CheckDeviceId.cs" />
@@ -72,6 +71,8 @@
     <Compile Include="Assets\Scripts\APICall\Registration\PostRegistration.cs" />
     <Compile Include="Assets\Scripts\constante.cs" />
     <Compile Include="Assets\Scripts\Distance.cs" />
+    <Compile Include="Assets\Scripts\Games\ARFindDifference\click.cs" />
+    <Compile Include="Assets\Scripts\Games\ARFindDifference\TrackableEventHandler.cs" />
     <Compile Include="Assets\Scripts\Games\ARLetterGame\Antwoord.cs" />
     <Compile Include="Assets\Scripts\Games\ARLetterGame\IntroSetup.cs" />
     <Compile Include="Assets\Scripts\Games\ARLetterGame\Navigatie.cs" />
@@ -108,6 +109,7 @@
     <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
     <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
     <None Include="Assets\Vuforia\Databases\Emulator\VuforiaEmulator.xml" />
+    <None Include="Assets\StreamingAssets\Vuforia\MAS.xml" />
     <None Include="Assets\Vuforia\Shaders\ClippingMask.shader" />
     <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
     <None Include="Assets\Vuforia\Shaders\DepthContour.shader" />

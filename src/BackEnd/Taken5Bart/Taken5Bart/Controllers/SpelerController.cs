@@ -62,6 +62,7 @@ namespace Taken5Bart.Controllers
         public ActionResult<Speler> GetOnDeviceId(string deviceid)
         {
             var result = spelerService.GetSpelerOnDeviceID(deviceid);
+
             if (result == null)
             {
                 return NotFound(-1);

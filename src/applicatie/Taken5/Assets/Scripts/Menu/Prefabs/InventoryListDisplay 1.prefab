@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzelnaam: {fileID: 114625977143115112}
+  score: {fileID: 114052462727855472}
 --- !u!114 &114625977143115112
 MonoBehaviour:
   m_ObjectHideFlags: 1

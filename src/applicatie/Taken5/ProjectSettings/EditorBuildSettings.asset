@@ -5,37 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Menu/Loadingscreen.unity
-    guid: fe063bfc90d3fa5479932777c2e4d549
-  - enabled: 0
-    path: Assets/Scenes/Menu/Menu.unity
-    guid: 4de6376d207b26e4d951cad72aa89c6e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu/Registration.unity
     guid: b2605ec5013e50d4b968a2d33a80ff70
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/Menu/Menu.unity
+    guid: 4de6376d207b26e4d951cad72aa89c6e
+  - enabled: 1
     path: Assets/Scenes/Menu/Menu_Create.unity
     guid: c4f134f2bf3462544b222213cfb30170
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu/Menu_Join.unity
     guid: 409e3e46d454a744ab09f0666c10dcc0
   - enabled: 1
     path: Assets/Scenes/NavigationS/NavigationScreen.unity
     guid: ef9bd4f3e5dfa1d488bdbfcd0daeb9fc
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/NavigationS/Vooruitgang.unity
+    guid: 74970d0e5c5fb5d4ab65f2c9fd875dd8
+  - enabled: 1
     path: Assets/Scenes/Menu/Info.unity
     guid: e0b07b7ba728efc40b89dcf3387b4d8f
-  - enabled: 0
-    path: Assets/Scenes/Games/SteenGame/SteenGame.unity
-    guid: cf39b2862fd6f0349bcadf5e49b3b796
-  - enabled: 0
-    path: Assets/Scenes/Games/ARGames/ARLetterGame/ARLetterGame.unity
-    guid: 98b929c6a70ca834f9a273dc7c655b56
-  - enabled: 0
-    path: Assets/Scenes/Games/SteenGame/SteenGameStart.unity
-    guid: 82a3098473c014b4da60912ead895023
-  - enabled: 0
-    path: Assets/Scenes/Games/SteenGame/SteenGame.unity
-    guid: cf39b2862fd6f0349bcadf5e49b3b796
   m_configObjects: {}

@@ -9,11 +9,11 @@ using UnityEngine.UI;
 
 //unity Async + await ; https://github.com/tomptrs/AsyncAwait
 public class APICaller : MonoBehaviour {
-    string baseURL = "https://taken5bart20181127090217.azurewebsites.net/api/";    // "Sessie/toList?id="
+    string baseURL = "https://taken5bart20181219122158.azurewebsites.net/api/";    // "Sessie/toList?id="
     string baseLocalURL = "http://localhost:1907/api/";
     public string json;
     public bool isBusy;
-    bool debug = true;
+    bool debug = false;
 
     public string ApiGet(string requestUrl)
     {
@@ -79,7 +79,7 @@ public class APICaller : MonoBehaviour {
 
     public IEnumerator Post(string requestUrl, JSONNode N, Action<string> doLast)
     {
-        Debug.Log(N.AsObject);
+    
         string url;
         if (debug)
         {

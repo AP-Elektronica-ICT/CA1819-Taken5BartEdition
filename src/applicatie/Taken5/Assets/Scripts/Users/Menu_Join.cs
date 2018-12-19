@@ -39,6 +39,7 @@ public class Menu_Join : MonoBehaviour {
         teamlijst = new Dictionary<string, int>();
         if (SessieCode.text == "666") //dev bypass
         {
+            teamnamen = new List<string>();
             teamlijst.Add("dev", -1);
             teamnamen.Add("dev");
             teamlijst.Add("Bypass", -1);

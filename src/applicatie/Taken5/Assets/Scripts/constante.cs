@@ -36,7 +36,10 @@ public class InfoUpdater : MonoBehaviour
     {
         isDone = false;
         string url = "Speler/" + Info.spelerId.ToString() + "/Team";
-        StartCoroutine(_api.Get(url, GetSpeler));
+        StartCoroutine(_api.Get(url, (result) => { //lamba functie zijn ook een opties om dit op te lossen
+            GetSpeler(result);
+
+            }));
         
         url = "Speler/" + Info.spelerId.ToString();
         StartCoroutine(_api.Get(url, GetSpeler));

@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Menu/Menu_Join.unity
-=======
-- path: Assets/Scenes/Games/BraboGame.unity
->>>>>>> master
+- path: Assets/Scenes/Games/SteenGame/SteenGame.unity
   isLoaded: 1
   isActive: 1

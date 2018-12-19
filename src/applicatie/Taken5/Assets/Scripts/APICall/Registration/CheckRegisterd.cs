@@ -14,32 +14,38 @@ public class CheckRegisterd : MonoBehaviour
     string textvoornaam = "";
     string textachternaam = "";
 
+    APICaller api;
+
     // Use this for initialization
     void Start()
     {
-        url = "http://localhost:1907/api/speler/register/" + SystemInfo.deviceUniqueIdentifier.ToString();
-        StartCoroutine(Get());
+        url = "speler/register/" + SystemInfo.deviceUniqueIdentifier.ToString();
+        api = gameObject.AddComponent<APICaller>();
+        Debug.Log(url);
+        StartCoroutine(api.Get(url, CheckIfRegisterd));
+        
     }
     
-    IEnumerator Get()
+    void CheckIfRegisterd(string json)
     {
-        using (WWW www = new WWW(url))
-        {
-            yield return www;
-            string json = www.text;
-            var N = JSON.Parse(json);
-            Debug.Log(N);
+        Debug.Log("function");
 
-            if (N != "")
-            {
-                textvoornaam = "test";//N["voornaam"].Value.ToString();
-                textachternaam = N["achternaam"].Value.ToString();
-                button1.interactable = false;
-                button2.interactable = true;
-                updatetext();
-            }
+        var N = JSON.Parse(json);
+        Debug.Log(N);
+
+        if (N != "-1")
+        {
+            
+
+            textvoornaam = N["voornaam"].Value.ToString();
+            textachternaam = N["achternaam"].Value.ToString();
+            button1.interactable = false;
+            button2.interactable = true;
+            updatetext();
         }
     }
+    
+   
     void updatetext()
     {
         voornaam.text = textvoornaam;

@@ -19,7 +19,8 @@ public class InventoryDisplay : MonoBehaviour {
             TeamNaam.text = "nog geen team --> demo";
         }
         else { 
-        TeamNaam.text = Info.TeamNaam;
+
+            TeamNaam.text = Info.TeamNaam;
         }
     }
 	

@@ -9,17 +9,21 @@ using UnityEngine.UI;
 public class PostRegistration : MonoBehaviour
 {
 
-    static string url = "http://localhost:1907/api/speler";
+    static string url = "speler";
     public Text Voornaam;
     public Text Achternaam;
     string voornaam;
     string achternaam;
     public   Button button;
+    public APICaller api;
     void Update()
     {
+        api = gameObject.AddComponent<APICaller>();
+
         voornaam = Voornaam.text;
         achternaam = Achternaam.text;
     }
+   /*
      public void OnClick()
         {
             Debug.Log("OnClick");
@@ -66,4 +70,27 @@ public class PostRegistration : MonoBehaviour
             }
 
         }
+    */
+    public void OnClick()
+    {
+        Debug.Log("OnClick");
+        JSONNode N = new JSONObject();
+
+
+        N["voornaam"] = voornaam;
+        N["achternaam"] = achternaam;
+        N["deviceId"] = SystemInfo.deviceUniqueIdentifier.ToString();
+        Debug.Log(N);
+
+        if (voornaam != "" && achternaam != "")
+        {
+            api.ApiPost(url, N);
+            button.interactable = true;
+        }
+
+        
+
+       
     }
+    
+}

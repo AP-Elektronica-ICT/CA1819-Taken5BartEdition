@@ -61,13 +61,7 @@ namespace BusinessLayer.T5B
 
         public Speler GetSpelerOnDeviceID(string deviceId)
         {
-            Speler speler = _spelerRepo.GetSpelerOnDevice(deviceId);
-
-            if (deviceId != null)
-                return _spelerRepo.GetSpelerOnDevice(deviceId);
-
-
-            return null;
+            return _spelerRepo.GetSpelerOnDevice(deviceId);
         }
     }
 }

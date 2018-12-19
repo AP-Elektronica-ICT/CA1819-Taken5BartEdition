@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryItemDisplay : MonoBehaviour {
     public Text puzzelnaam;
-   
+    public Text score;
     
 	// Use this for initialization
 	void Start () {
@@ -21,7 +21,7 @@ public class InventoryItemDisplay : MonoBehaviour {
         if (puzzelnaam != null)
         {
             puzzelnaam.text = item.naam;
-            //score.text = item.score;
+            score.text = item.score;
         }
     }
 }
