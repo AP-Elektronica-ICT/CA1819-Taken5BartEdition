@@ -13,8 +13,8 @@ namespace Models.T5B
         public ICollection<Speler> Spelers { get; set; }
         public int DiamantenVerzameld { get; set; }
         public int TeamPositionId { get; set; }
-        public ICollection<Puzzel> Puzzellijst { get; set; }
-        public ICollection<Puzzel> PuzzelsDone { get; set; }
+        public int puzzelDone { get; set; } //word gebruikt wanneer er het team een spel speelt en ze moeten wachten tot iedereen klaar is
+        public int teamMode { get; set; } //0: team in navigatiemodus; 1: spelers in start game room; 2: playing; 3: end of game
         public int StartPuzzel { get; set; }
         public int ActivePuzzel { get; set; } //hier word de voglende kuzzel bepaald
                                               //public ICollection<Int32> Puzzellijst { get; set; } //op volgorde dat gedaan moet worden
@@ -23,7 +23,7 @@ namespace Models.T5B
 
         public int Score { get; set; }
 
-       [JsonIgnore]
+        [JsonIgnore]
         public Sessie AssignedSessie { get; set; }
     }
 }

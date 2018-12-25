@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository.T5B
 {
-    public class TeamRepository: ITeamRepository
+    public class TeamRepository : ITeamRepository
     {
         GameContext _context;
 
@@ -28,7 +28,7 @@ namespace Repository.T5B
 
         public Team GetTeam(int id)
         {
-            return _context.Teams.Include(t=>t.Spelers).Include(t => t.AssignedSessie).Include(t => t.PuzzelsTeam).ThenInclude(t=>t.Puzzel).SingleOrDefault(g => g.Id == id);
+            return _context.Teams.Include(t => t.Spelers).Include(t => t.AssignedSessie).Include(t => t.PuzzelsTeam).ThenInclude(t => t.Puzzel).SingleOrDefault(g => g.Id == id);
 
         }
 
@@ -62,7 +62,7 @@ namespace Repository.T5B
                 team.StartPuzzel = 1;
             }
             else
-            { 
+            {
                 team.StartPuzzel = team.TeamPositionId + 2;
             }
             team.ActivePuzzel = team.StartPuzzel;
@@ -76,17 +76,55 @@ namespace Repository.T5B
 
             team.ActivePuzzel++;
 
-            if(team.ActivePuzzel == team.StartPuzzel)
+            if (team.ActivePuzzel == team.StartPuzzel)
             {
                 team.ActivePuzzel = 8;
             }
-            else if ( team.ActivePuzzel == 8 && team.StartPuzzel != 1)
+            else if (team.ActivePuzzel == 8 && team.StartPuzzel != 1)
             {
                 team.ActivePuzzel = 1;
             }
             _context.SaveChanges();
 
             return team.ActivePuzzel;
+        }
+
+        public int ChangeGameModus(int TeamId)
+        {
+            Team team = GetTeam(TeamId);
+            if (team.teamMode == 0 || team.teamMode == 2)
+            {
+                team.teamMode++;
+            }
+            else if (team.teamMode == 1 || team.teamMode == 3)
+            {
+                if (team.Spelers.Count == team.puzzelDone)
+                {
+                    if (team.teamMode == 1)
+                    {
+                        team.teamMode++;
+
+                    }
+                    else
+                    {
+                        team.teamMode = 0;
+                    }
+                }
+            }
+
+            _context.SaveChanges();
+            return team.teamMode;
+        }
+
+        public int GameDone(int TeamId)
+        {
+            Team team = GetTeam(TeamId);
+            System.Diagnostics.Debug.WriteLine(team.puzzelDone);
+
+            team.puzzelDone = team.puzzelDone + 1;
+            System.Diagnostics.Debug.WriteLine(team.puzzelDone);
+            _context.SaveChanges();
+            return team.puzzelDone;
         }
     }
 }

@@ -62,6 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Images\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
+    <Compile Include="Assets\Images\loadingBar\scripts\Loading.cs" />
+    <Compile Include="Assets\Images\loadingBar\scripts\loadingbar.cs" />
+    <Compile Include="Assets\Images\loadingBar\scripts\loadingcolorful.cs" />
+    <Compile Include="Assets\Images\loadingBar\scripts\loadingtext.cs" />
+    <Compile Include="Assets\Images\loadingBar\scripts\rotatetotate.cs" />
+    <Compile Include="Assets\Images\loadingBar\scripts\SimpleLoading.cs" />
+    <Compile Include="Assets\Images\loadingBar\scripts\simplerotate.cs" />
     <Compile Include="Assets\Scripts\APICall\API_AsyncCaller.cs" />
     <Compile Include="Assets\Scripts\APICall\APICaller.cs" />
     <Compile Include="Assets\Scripts\APICall\CheckDeviceId.cs" />
@@ -82,17 +89,18 @@
     <Compile Include="Assets\Scripts\Games\CastleGame\KnightMovement.cs" />
     <Compile Include="Assets\Scripts\Games\CastleGame\SteenGameStart.cs" />
     <Compile Include="Assets\Scripts\Games\GameCompleted.cs" />
+    <Compile Include="Assets\Scripts\Games\Photogame\Photogame.cs" />
     <Compile Include="Assets\Scripts\Info_GetTeamData.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Menu\Inventory.cs" />
     <Compile Include="Assets\Scripts\Menu\InventoryDisplay.cs" />
     <Compile Include="Assets\Scripts\Menu\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\Menu\InventoryItemDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menu\WaitForOtherPlayers.cs" />
     <Compile Include="Assets\Scripts\Navigation\Arrow.cs" />
     <Compile Include="Assets\Scripts\Navigation\GPS.cs" />
     <Compile Include="Assets\Scripts\Navigation\GpsArrow.cs" />
     <Compile Include="Assets\Scripts\Navigation\OpenGame.cs" />
-    <Compile Include="Assets\Scripts\Navigation\OpenGameVersieViktor.cs" />
     <Compile Include="Assets\Scripts\Navigation\UpdateGPSText.cs" />
     <Compile Include="Assets\Scripts\PhoneCamera.cs" />
     <Compile Include="Assets\Scripts\plugins\SimpleJSON.cs" />
@@ -109,12 +117,12 @@
     <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
     <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
     <None Include="Assets\Vuforia\Databases\Emulator\VuforiaEmulator.xml" />
-    <None Include="Assets\StreamingAssets\Vuforia\MAS.xml" />
     <None Include="Assets\Vuforia\Shaders\ClippingMask.shader" />
     <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
     <None Include="Assets\Vuforia\Shaders\DepthContour.shader" />
     <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
     <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
+    <None Include="Assets\StreamingAssets\Vuforia\MAS.xml" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>

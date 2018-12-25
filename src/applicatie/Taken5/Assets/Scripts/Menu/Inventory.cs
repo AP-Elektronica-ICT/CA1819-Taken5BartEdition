@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
 	void Start ()
     {
         AddGameDiamant("Started Game", "10");
-
         InventoryDisplay inventory = (InventoryDisplay)Instantiate(inventoryDisplayPrefab);
         inventory.Prime(items);
 	}

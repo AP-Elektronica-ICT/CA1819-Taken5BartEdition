@@ -135,5 +135,16 @@ namespace BusinessLayer.T5B
             _teamRepo.SetActivePuzzel(Id, ActivePuzzel.Id);
             return ActivePuzzel;
         }
+
+        public int ChangeGameModus(int TeamId)
+        {
+            return _teamRepo.ChangeGameModus(TeamId);
+
+        }
+
+        public int GameDone(int TeamId)
+        {
+            return _teamRepo.GameDone(TeamId);
+        }
     }
 }

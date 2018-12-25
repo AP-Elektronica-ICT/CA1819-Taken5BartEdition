@@ -33,7 +33,7 @@ public class InventoryDisplay : MonoBehaviour {
     {
         foreach (InventoryItem item in items)
         {
-            Debug.Log(item);
+           // Debug.Log(item);
             InventoryItemDisplay display = (InventoryItemDisplay)Instantiate(itemDisplayPrefab);
             display.transform.SetParent(targetTransform, false);
             display.Prime(item);

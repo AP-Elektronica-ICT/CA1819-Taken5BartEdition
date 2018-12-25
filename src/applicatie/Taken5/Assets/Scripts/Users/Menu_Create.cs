@@ -28,13 +28,15 @@ public class Menu_Create : MonoBehaviour {
     public Slider sldLoader;
     public LevelLoader loader;
 
-    
+    TouchScreenKeyboard keyboard;
+
 
     // Use this for initialization
     void Start()
     {
         btnInitSessie.gameObject.SetActive(true);
         txtAantalGroepen.gameObject.SetActive(true);
+        //txtAantalGroepen.keyboardType = TouchScreenKeyboardType.NumberPad;
         btnAddTeam.gameObject.SetActive(false);
         txtTeamNaam.gameObject.SetActive(false);
         recapTeams.gameObject.SetActive(false);
@@ -77,6 +79,7 @@ public class Menu_Create : MonoBehaviour {
         //Debug.Log("addTeams");
         string teamNaam = txtTeamNaam.text;
         txtTeamNaam.text = "team naam";
+        txtAantalGroepen.text = txtTeamNaam.text;
         teamNamen.Add(teamNaam);
         teamCounter++;
         txtTeam.text = ("geef de naam van team:" + (teamCounter+1));

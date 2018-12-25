@@ -44,7 +44,7 @@ namespace Taken5Bart.Controllers
         public IActionResult GetScorePos(int id)
         {
             var t = teamService.GetScorePos(id);
-            if (t <0)
+            if (t < 0)
             {
                 return NotFound(-1);
             }
@@ -86,8 +86,29 @@ namespace Taken5Bart.Controllers
             return NotFound(-1);
         }
 
+        //checken of heel het team de game klaar heeft
+        [HttpGet("{id}/ChangeGameMode")]
+        public IActionResult ChangeGameModus(int id)
+        {
+            var result = teamService.ChangeGameModus(id);
+            return Ok(result);
+
+        }
+
+        //doorgeven dat je de game hebt gespeeld, unity kent put niet
+        [HttpGet("{id}/GameDone")]
+        public IActionResult GameDone(int id)
+        {
+
+
+            return Ok(teamService.GameDone(id));
+
+
+        }
+
+
         [HttpPut("{id}/ActivePuzzel")]
-        public IActionResult SetActivePuzzel(int id,bool reset)
+        public IActionResult SetActivePuzzel(int id, bool reset)
         {
             var result = teamService.SetActivePuzzel(id, reset);
             if (result != null)

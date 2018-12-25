@@ -8,7 +8,7 @@ public static class Info
 {
     public static int spelerId = 2;
     public static string Voornaam { get; set; }
-    public static int TeamId { get; set; }
+    public static int TeamId = 1;
     public static int ActivePuzzel { get; set; }
     public static string SpelerNaam { get; set; }
     public static string TeamNaam { get; set; }

@@ -13,7 +13,7 @@ public class APICaller : MonoBehaviour {
     string baseLocalURL = "http://localhost:1907/api/";
     public string json;
     public bool isBusy;
-    bool debug = false;
+    bool debug = true;
 
     public string ApiGet(string requestUrl)
     {

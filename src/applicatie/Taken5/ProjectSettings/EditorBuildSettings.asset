@@ -26,4 +26,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/Info.unity
     guid: e0b07b7ba728efc40b89dcf3387b4d8f
+  - enabled: 1
+    path: Assets/Scenes/Games/BraboGame.unity
+    guid: 921f3edec55e7ba419598d377e30d1a4
+  - enabled: 1
+    path: Assets/Scenes/Games/SteenGame/SteenGameStart.unity
+    guid: 82a3098473c014b4da60912ead895023
+  - enabled: 1
+    path: Assets/Scenes/Games/QuizGame/QuizStart.unity
+    guid: 1fd3c9c9d8f8aa0479d0ee5ef2d2255e
+  - enabled: 1
+    path: Assets/Scenes/Games/ARGames/PhotoGame/PhotoGame.unity
+    guid: e0dc7a644af87e14c81bc759b60c32a6
+  - enabled: 1
+    path: Assets/Scenes/Games/ARGames/FindTheDifference/FindTheFifference.unity
+    guid: 22c4b9ad6b9935943b61d87bdfa2fb45
+  - enabled: 1
+    path: Assets/Scenes/Games/ARGames/ARLetterGame/ARLetterGame.unity
+    guid: 98b929c6a70ca834f9a273dc7c655b56
+  - enabled: 1
+    path: Assets/Scenes/Menu/WaitingScreen.unity
+    guid: b744cac86cc5a4443bc431a279b90517
   m_configObjects: {}

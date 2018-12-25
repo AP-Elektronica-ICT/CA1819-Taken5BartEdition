@@ -17,5 +17,8 @@ namespace Interface.T5B
         Puzzel ActivePuzzel(int Id);
         int ActivePuzzelID(int Id);
         Puzzel SetActivePuzzel(int Id, bool reset);
+
+        int ChangeGameModus(int TeamId);
+        int GameDone(int TeamId);
     }
 }
