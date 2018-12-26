@@ -22,6 +22,11 @@ namespace BusinessLayer
 
         public Locatie GetLocatie(int id)
         {
+            var p = _puzzelRepo.GetPuzzel(id);
+            if (p == null)
+            {
+                return null;
+            }
             return _puzzelRepo.GetPuzzel(id).Locatie;
         }
 

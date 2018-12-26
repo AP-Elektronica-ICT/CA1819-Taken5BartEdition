@@ -237,6 +237,7 @@ namespace Models.T5B
           {
                     new Sessie()
                     {
+                        Code ="BARTJE",
                         StartTijd = DateTime.Now,
                         Teams = context.Teams.ToList()
                     }
