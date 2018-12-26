@@ -73,5 +73,20 @@ namespace web_api_testing
         {
             throw new NotImplementedException();
         }
+
+        public int ChangeGameModus(int TeamId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DevChangeGameModus(int TeamId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GameDone(int TeamId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
