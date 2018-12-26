@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\APICall\Registration\PostRegistration.cs" />
     <Compile Include="Assets\Scripts\constante.cs" />
     <Compile Include="Assets\Scripts\Distance.cs" />
+    <Compile Include="Assets\Scripts\Games\ARFindDifference\antwoord.cs" />
     <Compile Include="Assets\Scripts\Games\ARFindDifference\click.cs" />
     <Compile Include="Assets\Scripts\Games\ARFindDifference\TrackableEventHandler.cs" />
     <Compile Include="Assets\Scripts\Games\ARLetterGame\Antwoord.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Assets\Scripts\Users\Menu_Create.cs" />
     <Compile Include="Assets\Scripts\Users\Menu_Join.cs" />
     <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
+    <None Include="Assets\StreamingAssets\Vuforia\FindTheDifference_HomeEdition.xml" />
     <None Include="Assets\Vuforia\Shaders\CameraDiffuse.shader" />
     <None Include="Assets\StreamingAssets\Vuforia\T5B_HiddenText.xml" />
     <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />

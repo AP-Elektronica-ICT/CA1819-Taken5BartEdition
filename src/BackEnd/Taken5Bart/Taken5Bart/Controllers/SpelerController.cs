@@ -41,9 +41,7 @@ namespace Taken5Bart.Controllers
             return Ok(result);
         }
 
-
-
-
+        
         // GET: api/Team/Speler/id
         [HttpGet("{id}/Team/")]
         public ActionResult<IEnumerable<Team>> GetTeamFromSpeler(int id)
@@ -54,6 +52,17 @@ namespace Taken5Bart.Controllers
                 return NotFound();
             }
             return Ok(t);
+
+        }
+        [HttpGet("{id}/sessie")]
+        public ActionResult<IEnumerable<Sessie>> GetSessieFromSpeler(int id)
+        {
+            var s = spelerService.GetSessieFromSpeler(id);
+            if (s == null)
+            {
+                return NotFound();
+            }
+            return Ok(s);
 
         }
 
@@ -70,6 +79,7 @@ namespace Taken5Bart.Controllers
             return Ok(result);
         }
 
+      
         // POST: api/Speler
         [HttpPost]
         public ActionResult CreateNewPlayer([FromBody] Speler value)

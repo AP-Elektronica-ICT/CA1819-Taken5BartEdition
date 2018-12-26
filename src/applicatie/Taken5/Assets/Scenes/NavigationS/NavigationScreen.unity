@@ -408,7 +408,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.9339623, g: 0.030838395, b: 0.66154355, a: 0.79607844}
     m_ColorMultiplier: 5
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1436,6 +1436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f88c27769e9f442b28af3187da4747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropdown: {fileID: 1510387107}
+  btn_nextlevel: {fileID: 159779709}
 --- !u!1 &1149623244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,7 +2019,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Vlaamsekaai
       m_Image: {fileID: 0}
-    - m_Text: Stadsfeestzaam
+    - m_Text: Stadsfeestzaal
       m_Image: {fileID: 0}
     - m_Text: Kathedraal
       m_Image: {fileID: 0}

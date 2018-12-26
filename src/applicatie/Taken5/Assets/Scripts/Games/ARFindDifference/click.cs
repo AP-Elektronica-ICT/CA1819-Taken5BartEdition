@@ -5,9 +5,10 @@ using UnityEngine;
 public class click : MonoBehaviour {
 
     public GameObject Object;
-// Use this for initialization$
-void Start () {
-		
+    public int itemID;
+    // Use this for initialization$
+    void Start () {
+        
 	}
 
     // Update is called once per frame
@@ -24,6 +25,7 @@ void Start () {
                 if (Physics.Raycast(ray, out hit))
                 {
                     Debug.Log("hit");
+                    Object.GetComponent<antwoord>().foundItem(itemID);
                 }
             }
         }

@@ -16,6 +16,9 @@ namespace Interface.T5B
         int GetStartPuzzel(int TeamId);
         int GetNewPuzzel(int TeamId);
         int ChangeGameModus(int TeamId);
+        int DevChangeGameModus(int TeamId);
+
         int GameDone(int TeamId);
+
     }
 }

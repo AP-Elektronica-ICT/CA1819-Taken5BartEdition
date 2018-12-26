@@ -39,7 +39,7 @@ public class LevelLoader : MonoBehaviour
             {
                 case 0:
                     //vlaamsekaai
-                    nextlevel = 10;
+                    nextlevel = 12;
                     break;
 
                 case 1:
@@ -49,7 +49,7 @@ public class LevelLoader : MonoBehaviour
 
                 case 2:
                     //Kathedraal
-                    nextlevel = 10;
+                    nextlevel = 11;
                     break;
 
                 case 3:
@@ -78,19 +78,25 @@ public class LevelLoader : MonoBehaviour
                     break;
 
             }
+            StartCoroutine(LoadAsychronously(nextlevel));
+
         }
 
 
 
     }
 
-
-
-
-     public void ChangeGameMode(int teamid, APICaller apicaller)
+    public void ChangeGameMode(int teamid, APICaller apicaller)
     {
         Debug.Log("changegamemode");
         StartCoroutine(apicaller.Get("team/" + teamid.ToString() + "/changegamemode", EndGameAction));
+
+    }
+
+    public void DevChangeGameMode(int teamid, APICaller apicaller)
+    {
+        Debug.Log("Devchangegamemode");
+        StartCoroutine(apicaller.Get("team/" + teamid.ToString() + "/devchangegamemode", EndGameAction));
 
     }
     public void EndGameAction(string json)
@@ -136,7 +142,7 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadAsychronously (int sceneIndex)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        Debug.Log("loading" + sceneIndex);
+        Debug.Log("loading scene " + sceneIndex);
         loadingscreen.SetActive(true);
         while (!operation.isDone)
         {

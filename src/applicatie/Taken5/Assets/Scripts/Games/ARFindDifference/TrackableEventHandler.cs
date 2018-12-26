@@ -5,11 +5,20 @@ using UnityEngine.UI;
 
 public class TrackableEventHandler : DefaultTrackableEventHandler
 {
-    public Button button;
+    public GameObject found;
+    public GameObject lost;
 
     protected override void OnTrackingFound()
     {
+        found.gameObject.SetActive(true);
+        lost.gameObject.SetActive(false);
         base.OnTrackingFound();
-        button.gameObject.SetActive(true);
+    }
+
+    protected override void OnTrackingLost()
+    {
+        found.gameObject.SetActive(false);
+        lost.gameObject.SetActive(true);
+        base.OnTrackingLost();
     }
 }

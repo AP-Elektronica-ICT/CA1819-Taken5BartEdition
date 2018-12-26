@@ -9,10 +9,15 @@ public class CheckRegisterd : MonoBehaviour
     string url;
     public Button button1;
     public Button button2;
+    public Slider slider;
+    public GameObject loadingscreen;
+    LevelLoader levelLoader;
+
     public Text voornaam;
     public Text achternaam;
     string textvoornaam = "";
     string textachternaam = "";
+    int nextlevel = 1;
 
     APICaller api;
 
@@ -21,6 +26,12 @@ public class CheckRegisterd : MonoBehaviour
     {
         url = "speler/register/" + SystemInfo.deviceUniqueIdentifier.ToString();
         api = gameObject.AddComponent<APICaller>();
+        levelLoader = gameObject.AddComponent<LevelLoader>();
+        levelLoader.slider = slider;
+        levelLoader.loadingscreen = loadingscreen;
+        button2.onClick.AddListener(onclick);
+
+
         Debug.Log(url);
         StartCoroutine(api.Get(url, CheckIfRegisterd));
         
@@ -39,13 +50,50 @@ public class CheckRegisterd : MonoBehaviour
 
             textvoornaam = N["voornaam"].Value.ToString();
             textachternaam = N["achternaam"].Value.ToString();
+
+            Info.Voornaam = textvoornaam;
+            Info.SpelerNaam = textvoornaam + " " + textachternaam;
+            Info.spelerId = N["id"];
+
+
+            StartCoroutine(api.Get("speler/" + Info.spelerId + "team",CheckInTeam));
             button1.interactable = false;
             button2.interactable = true;
             updatetext();
+
+
+            
+
+
         }
     }
-    
-   
+    void CheckInTeam(string json)
+    {
+        var N = JSON.Parse(json);
+        if (N != "")
+        {
+            StartCoroutine(api.Get("speler/" + Info.spelerId + "sessie", CheckInSessie));
+            Info.TeamNaam = N["teamnaam"].Value.ToString();
+            Info.TeamId = N["id"];
+            Info.ActivePuzzel = N["activepuzzel"];
+           
+        }
+    }
+    void CheckInSessie(string json)
+    {
+        var N = JSON.Parse(json);
+        if (N != "")
+        {
+            Info.SessieId = N["id"];
+            nextlevel = 5;
+        }
+    }
+
+    void onclick()
+    {
+        levelLoader.LoadLevel(nextlevel);
+    }
+
     void updatetext()
     {
         voornaam.text = textvoornaam;

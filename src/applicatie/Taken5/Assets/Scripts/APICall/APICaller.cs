@@ -56,7 +56,7 @@ public class APICaller : MonoBehaviour {
                 json = "-1";
             isBusy = false;
             doLast(json);
-            Debug.Log("Get Done");
+            //Debug.Log("Get Done");
             www.Dispose();
             
         }

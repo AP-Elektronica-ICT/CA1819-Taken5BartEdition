@@ -11,6 +11,7 @@ using Repository.T5B;
 
 namespace BusinessLayer.T5B
 {
+
     public class TeamService : ITeamService
     {
         private ISpelerRepository _spelerRepo;
@@ -141,10 +142,15 @@ namespace BusinessLayer.T5B
             return _teamRepo.ChangeGameModus(TeamId);
 
         }
+        public int DevChangeGameModus(int TeamId)
+        {
+            return _teamRepo.DevChangeGameModus(TeamId);
+        }
 
         public int GameDone(int TeamId)
         {
             return _teamRepo.GameDone(TeamId);
         }
+
     }
 }

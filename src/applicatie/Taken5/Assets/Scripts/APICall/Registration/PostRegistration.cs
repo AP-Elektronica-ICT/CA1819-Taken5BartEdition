@@ -35,6 +35,10 @@ public class PostRegistration : MonoBehaviour
         N["deviceId"] = SystemInfo.deviceUniqueIdentifier.ToString();
         Debug.Log(N);
 
+        Info.Voornaam = voornaam;
+        Info.SpelerNaam = voornaam + " " + achternaam;
+        
+
         if (voornaam != "" && achternaam != "")
         {
             api.ApiPost(url, N);

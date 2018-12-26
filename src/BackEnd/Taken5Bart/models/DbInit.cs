@@ -156,7 +156,8 @@ namespace Models.T5B
                     new Speler()
                     {
                         Voornaam = "Jonas",
-                        Achternaam = "K"
+                        Achternaam = "K",
+                        DeviceId = "1"
                     },
                      new Speler()
                     {

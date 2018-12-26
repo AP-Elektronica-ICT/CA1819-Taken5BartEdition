@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class OpenGame : MonoBehaviour {
     int activepuzzel = 0;
+    public Dropdown dropdown;
+    public Button btn_nextlevel;
+
     Distance _distance;
     double distance;
-    Button btn_nextlevel;
 
 
     // Use this for initialization
@@ -21,23 +23,27 @@ public class OpenGame : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("update");
+        Debug.Log(dropdown.value);
         activepuzzel = Info.ActivePuzzel;
+        /*
         if (_distance.isDone)
         {
             _distance.DistanceTo();
         }
         //  double distance = _distance.DistanceTo();
-        Debug.Log(distance);
+        */
 
-        if (distance <= 20)
+
+        if (/*distance <= 20 ||*/dropdown.value > 0)
         {
-
+            Debug.Log("button available ");
             btn_nextlevel.interactable = true;
-
-       
         }
         else
         {
+            Debug.Log("button disable ");
+
             btn_nextlevel.interactable = false;
         }
     }

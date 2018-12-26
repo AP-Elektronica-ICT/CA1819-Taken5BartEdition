@@ -95,6 +95,14 @@ namespace Taken5Bart.Controllers
 
         }
 
+        [HttpGet("{id}/DevChangeGameMode")]
+        public IActionResult DevChangeGameModus(int id)
+        {
+            var result = teamService.DevChangeGameModus(id);
+            return Ok(result);
+
+        }
+
         //doorgeven dat je de game hebt gespeeld, unity kent put niet
         [HttpGet("{id}/GameDone")]
         public IActionResult GameDone(int id)

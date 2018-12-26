@@ -211,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingscreen: {fileID: 1210918167}
   slider: {fileID: 2056621438}
+  dropdown: {fileID: 0}
 --- !u!4 &56623178
 Transform:
   m_ObjectHideFlags: 0
@@ -810,8 +811,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 56623177}
-        m_MethodName: LoadLevel
+      - m_Target: {fileID: 11500000, guid: cec76fe33171df44592fd4d7fb2eebab, type: 3}
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

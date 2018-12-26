@@ -116,6 +116,18 @@ namespace Repository.T5B
             return team.teamMode;
         }
 
+        public int DevChangeGameModus(int TeamId)
+        {
+            Team team = GetTeam(TeamId);
+
+            team.teamMode++;
+
+
+            _context.SaveChanges();
+            return team.teamMode;
+        }
+
+
         public int GameDone(int TeamId)
         {
             Team team = GetTeam(TeamId);

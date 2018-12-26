@@ -10,7 +10,7 @@ using Interface.T5B;
 
 namespace Repository.T5B
 {
-    public class SpelerRepository: ISpelerRepository
+    public class SpelerRepository : ISpelerRepository
     {
         GameContext _context;
 
@@ -29,13 +29,15 @@ namespace Repository.T5B
 
         public Speler GetSpeler(int id)
         {
-            return _context.Spelers.Include(s=>s.AssignedTeam).SingleOrDefault(g => g.Id == id);
+            return _context.Spelers.Include(s => s.AssignedTeam).SingleOrDefault(g => g.Id == id);
         }
 
         public Speler GetSpelerOnDevice(string DeviceID)
         {
             return _context.Spelers.SingleOrDefault(g => g.DeviceId == DeviceID);
         }
+
+    
 
         public ICollection<Speler> GetSpelers()
         {
@@ -48,8 +50,8 @@ namespace Repository.T5B
 
 
 
-      
 
-      
+
+
     }
 }

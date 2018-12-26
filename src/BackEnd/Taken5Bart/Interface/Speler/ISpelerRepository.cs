@@ -13,5 +13,7 @@ namespace Interface.T5B
 
         Speler NewSpeler(Speler s);
         ICollection<Speler> GetSpelers();
+
+  
     }
 }
