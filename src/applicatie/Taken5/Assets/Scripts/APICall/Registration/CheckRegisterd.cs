@@ -18,7 +18,8 @@ public class CheckRegisterd : MonoBehaviour
     string textvoornaam = "";
     string textachternaam = "";
     int nextlevel = 1;
-
+    bool registerd = false;
+    bool startcheck = true;
     APICaller api;
 
     // Use this for initialization
@@ -29,25 +30,20 @@ public class CheckRegisterd : MonoBehaviour
         levelLoader = gameObject.AddComponent<LevelLoader>();
         levelLoader.slider = slider;
         levelLoader.loadingscreen = loadingscreen;
-        button2.onClick.AddListener(onclick);
-
+        button2.onClick.AddListener(OnClick);
 
         Debug.Log(url);
         StartCoroutine(api.Get(url, CheckIfRegisterd));
         
     }
     
-    void CheckIfRegisterd(string json)
+    public void CheckIfRegisterd(string json)
     {
-        Debug.Log("function");
-
-        var N = JSON.Parse(json);
-        Debug.Log(N);
-
-        if (N != "-1")
+        Debug.Log("Checking...");
+        if (json != "-1" && json !="")
         {
-            
-
+            var N = JSON.Parse(json);
+            Debug.Log(N);
             textvoornaam = N["voornaam"].Value.ToString();
             textachternaam = N["achternaam"].Value.ToString();
 
@@ -55,13 +51,22 @@ public class CheckRegisterd : MonoBehaviour
             Info.SpelerNaam = textvoornaam + " " + textachternaam;
             Info.spelerId = N["id"];
 
+            Debug.Log("InfoTypes:");
+            Debug.Log("voornaam: " + Info.Voornaam);
+            Debug.Log("spelernaam: " + Info.SpelerNaam);
+            Debug.Log("spelerid: " + Info.spelerId);
 
-            StartCoroutine(api.Get("speler/" + Info.spelerId + "team",CheckInTeam));
+            if (startcheck)
+            { 
+                StartCoroutine(api.Get("speler/" + Info.spelerId + "/team",CheckInTeam));
+                Debug.Log("startcheck");
+                startcheck = false;
+            }
             button1.interactable = false;
             button2.interactable = true;
             updatetext();
-
-
+            registerd = true;
+            Debug.Log(nextlevel);
             
 
 
@@ -69,10 +74,13 @@ public class CheckRegisterd : MonoBehaviour
     }
     void CheckInTeam(string json)
     {
+        Debug.Log("checkinteam");
         var N = JSON.Parse(json);
-        if (N != "")
+        Debug.Log(json);
+        if (N != "" && N!="-1")
         {
-            StartCoroutine(api.Get("speler/" + Info.spelerId + "sessie", CheckInSessie));
+            Debug.Log("in if");
+            StartCoroutine(api.Get("speler/" + Info.spelerId + "/sessie", CheckInSessie));
             Info.TeamNaam = N["teamnaam"].Value.ToString();
             Info.TeamId = N["id"];
             Info.ActivePuzzel = N["activepuzzel"];
@@ -81,17 +89,27 @@ public class CheckRegisterd : MonoBehaviour
     }
     void CheckInSessie(string json)
     {
+        Debug.Log("checkinsession");
+        Debug.Log(json);
         var N = JSON.Parse(json);
-        if (N != "")
+        if (N != "" && N != "-1")
         {
             Info.SessieId = N["id"];
             nextlevel = 5;
+            Debug.Log(Info.SessieId);
         }
     }
 
-    void onclick()
+    public void OnClick()
     {
-        levelLoader.LoadLevel(nextlevel);
+        Debug.Log("check");
+        StartCoroutine(api.Get(url, CheckIfRegisterd));
+        if (registerd)
+        {
+            Debug.Log("check");
+            levelLoader.LoadLevel(nextlevel);
+
+        }
     }
 
     void updatetext()

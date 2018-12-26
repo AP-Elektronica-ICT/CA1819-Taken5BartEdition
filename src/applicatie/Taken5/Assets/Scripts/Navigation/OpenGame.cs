@@ -16,6 +16,7 @@ public class OpenGame : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        _distance = gameObject.AddComponent<Distance>();
         _distance.Setup();
      
     }

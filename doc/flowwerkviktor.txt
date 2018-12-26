@@ -1,0 +1,4 @@
+waitrooms -->starten game
+Register --> all registerd en in game --> naar gamescherm
+	--> al registerd maar nog geen team,.. --> startscherm
+	--> anders registereren

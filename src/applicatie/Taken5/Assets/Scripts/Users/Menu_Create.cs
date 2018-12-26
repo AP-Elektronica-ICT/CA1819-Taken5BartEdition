@@ -65,7 +65,7 @@ public class Menu_Create : MonoBehaviour {
                 teamCounter = 0;
                 recapTeams.gameObject.SetActive(true);
                 txtTeam.gameObject.SetActive(true);
-                txtTeam.text = ("Geef de teamn aam waartoe jou team bij zit");
+                txtTeam.text = ("Geef de team n aam waartoe jou team bij zit");
             }
             else
                 txtAantalGroepen.text = "Aantal Groepen";
@@ -147,6 +147,7 @@ public class Menu_Create : MonoBehaviour {
 
     public void joinGame()
     {
+
         btnJoinSessie.gameObject.SetActive(false);
         string code = Info.SessieCode.ToString();
         Info.SessieCode = code;

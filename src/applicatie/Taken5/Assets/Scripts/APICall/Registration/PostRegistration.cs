@@ -15,15 +15,23 @@ public class PostRegistration : MonoBehaviour
     string voornaam;
     string achternaam;
     public   Button button;
+    public string json = "";
+
     public APICaller api;
+    CheckRegisterd checkRegisterd;
+
+    void Start()
+    {
+        Debug.Log("trste");
+        api = gameObject.AddComponent<APICaller>();
+    }
     void Update()
     {
-        api = gameObject.AddComponent<APICaller>();
-
+      
         voornaam = Voornaam.text;
         achternaam = Achternaam.text;
     }
-  
+
     public void OnClick()
     {
         Debug.Log("OnClick");
@@ -35,19 +43,16 @@ public class PostRegistration : MonoBehaviour
         N["deviceId"] = SystemInfo.deviceUniqueIdentifier.ToString();
         Debug.Log(N);
 
-        Info.Voornaam = voornaam;
-        Info.SpelerNaam = voornaam + " " + achternaam;
-        
 
         if (voornaam != "" && achternaam != "")
         {
             api.ApiPost(url, N);
+            Debug.Log("posted");
             button.interactable = true;
+
         }
 
-        
-
-       
     }
     
+  
 }

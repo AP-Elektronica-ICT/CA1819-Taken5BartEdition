@@ -43,13 +43,13 @@ namespace Taken5Bart.Controllers
 
         
         // GET: api/Team/Speler/id
-        [HttpGet("{id}/Team/")]
+        [HttpGet("{id}/Team")]
         public ActionResult<IEnumerable<Team>> GetTeamFromSpeler(int id)
         {
             var t = spelerService.GetTeamFromSpeler(id);
             if (t == null)
             {
-                return NotFound();
+                return NotFound("-1");
             }
             return Ok(t);
 
@@ -60,7 +60,7 @@ namespace Taken5Bart.Controllers
             var s = spelerService.GetSessieFromSpeler(id);
             if (s == null)
             {
-                return NotFound();
+                return NotFound("-1");
             }
             return Ok(s);
 

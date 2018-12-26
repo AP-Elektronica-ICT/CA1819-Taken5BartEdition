@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class antwoord : MonoBehaviour {
+
     private int[] foundItems;
-    int itemCount = 4;
+    int itemCount;
     bool isDone = true;
+    public int activeElement;
+    public Text score;
+    public GameObject items;
 
     //public antwoord scripts;
 	// Use this for initialization
 	void Start () {
+        itemCount = items.transform.childCount;
         foundItems = new int[itemCount];
 		for(int i= 0; i < itemCount; i++)
         {
@@ -32,6 +38,11 @@ public class antwoord : MonoBehaviour {
             {
                 result += i;
             }
+            if(result>= itemCount) //itemCount)
+            {
+                Debug.Log("all found");
+            }
+            score.text = result + "/" + itemCount;
             Debug.Log(result);
             StartCoroutine(UpdateDelayed());
         }
@@ -42,4 +53,6 @@ public class antwoord : MonoBehaviour {
         yield return new WaitForSeconds(15);
         isDone = true;
     }
+
+
 }
