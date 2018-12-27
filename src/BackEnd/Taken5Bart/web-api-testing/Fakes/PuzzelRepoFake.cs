@@ -27,7 +27,7 @@ namespace web_api_testing
 
         public ICollection<Puzzel> GetPuzzels()
         {
-            throw new NotImplementedException();
+            return _puzzels;
         }
     }
 }
