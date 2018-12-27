@@ -152,5 +152,9 @@ namespace BusinessLayer.T5B
             return _teamRepo.GameDone(TeamId);
         }
 
+        public ICollection<Puzzel> GetPuzzels(int TeamId)
+        {
+            return _teamRepo.GetPuzzels(TeamId);
+        }
     }
 }

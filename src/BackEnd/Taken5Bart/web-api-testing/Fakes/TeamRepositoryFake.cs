@@ -88,5 +88,15 @@ namespace web_api_testing
         {
             throw new NotImplementedException();
         }
+
+        public Team AddPuzzels(Team team, ICollection<Puzzel> puzzels)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<Puzzel> GetPuzzels(int teamId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

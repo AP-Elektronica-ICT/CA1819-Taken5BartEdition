@@ -21,5 +21,7 @@ namespace Interface.T5B
         int ChangeGameModus(int TeamId);
         int DevChangeGameModus(int TeamId); //for development 
         int GameDone(int TeamId);
+
+        ICollection<Puzzel> GetPuzzels(int TeamId);
     }
 }

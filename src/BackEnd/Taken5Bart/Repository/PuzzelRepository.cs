@@ -24,8 +24,7 @@ namespace Repository
 
         public ICollection<Puzzel> GetPuzzels()
         {
-            var puzzels = _context.Puzzels.Include(p => p.Locatie).ToList<Puzzel>();
-            return puzzels;
+            return _context.Puzzels.Include(p => p.Locatie).ToList<Puzzel>();
             // return _context.Puzzels.ToList();
         }
     }
