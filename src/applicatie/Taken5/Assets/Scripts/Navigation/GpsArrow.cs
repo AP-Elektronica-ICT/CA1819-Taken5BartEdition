@@ -14,6 +14,7 @@ public class GpsArrow : MonoBehaviour {
     void Start () {
         lat = GPS.Instance.latitude;
         lon = GPS.Instance.longitude;
+        rectTransform = new RectTransform();
     }
 	
 	// Update is called once per frame

@@ -21,7 +21,7 @@ public class Distance : MonoBehaviour {
         isDone = false;
         Debug.Log("updating distance");
         Debug.Log(updater);
-        StartCoroutine(updater.UpdateLocatie(_api, getDone));
+        //StartCoroutine(updater.UpdateLocatie(_api, getDone));
         yield return new WaitUntil(() => !isDone);
         var result = DistanceToDummy();
         doLast(result);

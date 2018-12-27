@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
 	
     public void AddGameDiamant(string naam, string score)
     {
-        InventoryItem item = new InventoryItem();
+        InventoryItem item = gameObject.AddComponent<InventoryItem>();
         item.naam = naam;
         item.score = score;
         items.Add(item);

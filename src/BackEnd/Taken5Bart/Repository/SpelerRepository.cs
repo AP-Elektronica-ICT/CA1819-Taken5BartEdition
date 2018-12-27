@@ -37,8 +37,7 @@ namespace Repository.T5B
             return _context.Spelers.SingleOrDefault(g => g.DeviceId == DeviceID);
         }
 
-    
-
+ 
         public ICollection<Speler> GetSpelers()
         {
             return _context.Spelers.Include(s => s.AssignedTeam).ToList();
