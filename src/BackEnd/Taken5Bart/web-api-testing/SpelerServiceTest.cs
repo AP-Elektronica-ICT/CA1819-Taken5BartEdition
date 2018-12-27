@@ -7,6 +7,7 @@ using Models.T5B;
 using System.Collections.Generic;
 using BusinessLayer.T5B;
 using Repository.T5B;
+using Moq;
 
 namespace web_api_testing
 {
@@ -27,10 +28,14 @@ namespace web_api_testing
         [Fact]
         public void Get_Spelers()
         {
-            (_fakeSpelerRepo as SpelerRepoFake).reset();
-            (_fakeTeamRepo as TeamRepositoryFake).reset();
+            var spelerMock = new Mock<ISpelerRepository>();
+            var teamMock = new Mock<ITeamRepository>();
+
+            spelerMock.Setup(s => s.GetSpelers()).Returns(_fakeSpelerRepo.GetSpelers());
+            var speler = new SpelerService(spelerMock.Object, teamMock.Object);
+
             //Act
-            var okResult = _service.GetSpelers();
+            var okResult = speler.GetSpelers();
 
             //Assert
             Assert.IsType<List<Speler>>(okResult);
@@ -39,10 +44,13 @@ namespace web_api_testing
         [Fact]
         public void Get_Speler_ReturnsAllItems()
         {
-            (_fakeSpelerRepo as SpelerRepoFake).reset();
-            (_fakeTeamRepo as TeamRepositoryFake).reset();
-            // Act
-            ICollection<Speler> result = _service.GetSpelers();
+            var spelerMock = new Mock<ISpelerRepository>();
+            var teamMock = new Mock<ITeamRepository>();
+            spelerMock.Setup(s => s.GetSpelers()).Returns(_fakeSpelerRepo.GetSpelers());
+            var speler = new SpelerService(spelerMock.Object, teamMock.Object);
+
+            //Act
+            var result = speler.GetSpelers();
 
             // Assert
             Assert.Equal(5, result.Count);
@@ -51,13 +59,16 @@ namespace web_api_testing
         [Fact]
         public void Get_Speler_ReturnItem()
         {
-            (_fakeSpelerRepo as SpelerRepoFake).reset();
-            (_fakeTeamRepo as TeamRepositoryFake).reset();
+            var spelerMock = new Mock<ISpelerRepository>();
+            var teamMock = new Mock<ITeamRepository>();
+            spelerMock.Setup(s => s.GetSpeler(5)).Returns(_fakeSpelerRepo.GetSpeler(5));
+            var speler = new SpelerService(spelerMock.Object, teamMock.Object);
+
             //Arrange
             var existingId = 5;
 
             // Act
-            Speler result = _service.GetSpeler(existingId);
+            Speler result = speler.GetSpeler(existingId);
 
             // Assert
             Assert.IsType<Speler>(result);
@@ -67,13 +78,15 @@ namespace web_api_testing
         [Fact]
         public void Get_Speler_NotReturnItem()
         {
-            (_fakeSpelerRepo as SpelerRepoFake).reset();
-            (_fakeTeamRepo as TeamRepositoryFake).reset();
+            var spelerMock = new Mock<ISpelerRepository>();
+            var teamMock = new Mock<ITeamRepository>();
+            spelerMock.Setup(s => s.GetSpeler(It.IsNotIn(1,2,3,4,5))).Returns((Speler)null); //returned null van het type speler
+            var speler = new SpelerService(spelerMock.Object, teamMock.Object);
             //Arrange
             var id = -1;
 
             // Act
-            Speler result = _service.GetSpeler(id);
+            Speler result = speler.GetSpeler(id);
 
             // Assert
             Assert.Null(result);
@@ -82,14 +95,21 @@ namespace web_api_testing
         [Fact]
         public void Get_Team_ReturnItem()
         {
-            (_fakeSpelerRepo as SpelerRepoFake).reset();
-            (_fakeTeamRepo as TeamRepositoryFake).reset();
+            var spelerMock = new Mock<ISpelerRepository>();
+            var teamMock = new Mock<ITeamRepository>();
+
             //Arrange
+            spelerMock.Setup(s => s.GetSpeler(2)).Returns(_fakeSpelerRepo.GetSpeler(2));
+            teamMock.Setup(t => t.GetTeam(1)).Returns(_fakeTeamRepo.GetTeam(1));
+            teamMock.Setup(t => t.GetTeam(2)).Returns(_fakeTeamRepo.GetTeam(2));
+            teamMock.Setup(t => t.GetTeam(2)).Returns(_fakeTeamRepo.GetTeam(2));
+            var speler = new SpelerService(spelerMock.Object, teamMock.Object);
+
             var id = 2;
 
             // Act
-            Team result = _service.GetTeamFromSpeler(id);
-
+            Team result = speler.GetTeamFromSpeler(id);
+            
             // Assert
             Assert.IsType<Team>(result);
             Assert.NotNull(result);
@@ -98,13 +118,53 @@ namespace web_api_testing
         [Fact]
         public void Get_Team_NotReturnItem() 
         {
-            (_fakeSpelerRepo as SpelerRepoFake).reset();
-            (_fakeTeamRepo as TeamRepositoryFake).reset();
-            //Arrange
-            var id = -1;
+            var spelerMock = new Mock<ISpelerRepository>();
+            var teamMock = new Mock<ITeamRepository>();
 
+            //Arrange
+            var id = 2;
+
+            spelerMock.Setup(s => s.GetSpeler(id)).Returns(_fakeSpelerRepo.GetSpeler(id));
+            spelerMock.Setup(s => s.GetSpeler(It.IsNotIn(2))).Returns((Speler)null);
+            teamMock.Setup(t => t.GetTeam(1)).Returns(_fakeTeamRepo.GetTeam(1));
+            teamMock.Setup(t => t.GetTeam(2)).Returns(_fakeTeamRepo.GetTeam(2));
+            teamMock.Setup(t => t.GetTeam(3)).Returns(_fakeTeamRepo.GetTeam(3));
+            teamMock.Setup(t => t.GetTeam(It.IsNotIn(1,2,3))).Returns((Team)null);
+            var speler = new SpelerService(spelerMock.Object, teamMock.Object);
+
+            var sid = -1;
             // Act
-            Team result = _service.GetTeamFromSpeler(id);
+            Team result = speler.GetTeamFromSpeler(sid);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void Get_Team_NotInTeam()
+        {
+            var spelerMock = new Mock<ISpelerRepository>();
+            var teamMock = new Mock<ITeamRepository>();
+
+            //Arrange
+            var id = 2;
+
+            spelerMock.Setup(s => s.GetSpeler(id)).Returns(new Speler() {
+                Id = 2,
+                AssignedTeam = null,
+                DeviceId = "1",
+                
+            });
+            spelerMock.Setup(s => s.GetSpeler(It.IsNotIn(2))).Returns((Speler)null);
+            teamMock.Setup(t => t.GetTeam(1)).Returns(_fakeTeamRepo.GetTeam(1));
+            teamMock.Setup(t => t.GetTeam(2)).Returns(_fakeTeamRepo.GetTeam(2));
+            teamMock.Setup(t => t.GetTeam(3)).Returns(_fakeTeamRepo.GetTeam(3));
+            teamMock.Setup(t => t.GetTeam(It.IsNotIn(1, 2, 3))).Returns((Team)null);
+            var speler = new SpelerService(spelerMock.Object, teamMock.Object);
+
+            var sid = 2;
+            // Act
+            Team result = speler.GetTeamFromSpeler(sid);
 
             // Assert
             Assert.Null(result);
