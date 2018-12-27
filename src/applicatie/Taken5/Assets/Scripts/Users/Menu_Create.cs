@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu_Create : MonoBehaviour {
+public class Menu_Create : MonoBehaviour
+{
     int aantalTeams;
     int teamCounter;
     List<string> teamNamen;
@@ -49,10 +50,10 @@ public class Menu_Create : MonoBehaviour {
     public void SessieInit()
     {
         //Debug.Log("sessieInit");
-        aantalTeams=0;
-        
+        aantalTeams = 0;
+
         //Debug.Log(aantalTeams);
-        if(int.TryParse(txtAantalGroepen.text, out aantalTeams))
+        if (int.TryParse(txtAantalGroepen.text, out aantalTeams))
         {
             if (aantalTeams > 0 && aantalTeams < 5)
             {
@@ -70,19 +71,19 @@ public class Menu_Create : MonoBehaviour {
             else
                 txtAantalGroepen.text = "Aantal Groepen";
         }
-        
+
     }
 
     public void AddTeam()
     {
-        
+
         //Debug.Log("addTeams");
         string teamNaam = txtTeamNaam.text;
         txtTeamNaam.text = "team naam";
         txtAantalGroepen.text = txtTeamNaam.text;
         teamNamen.Add(teamNaam);
         teamCounter++;
-        txtTeam.text = ("geef de naam van team:" + (teamCounter+1));
+        txtTeam.text = ("geef de naam van team:" + (teamCounter + 1));
         //Debug.Log(teamCounter);
         if (teamCounter >= aantalTeams)
         {
@@ -124,9 +125,13 @@ public class Menu_Create : MonoBehaviour {
         JSONNode N = new JSONObject();
         N["startTijd"] = DateTime.Now.ToString();
 
-        for(int i =0; i<aantalTeams; i++)
+        for (int i = 0; i < aantalTeams; i++)
         {
             N["teams"][i]["teamNaam"] = teamNamen[i];
+            N["teams"][i]["TeamPositionId"] = i;
+            N["teams"][i]["teamMode"] = 0;
+
+
             //Debug.Log(i + teamNamen[i]);
         }
         ////Debug.Log(N.AsObject);
@@ -155,28 +160,69 @@ public class Menu_Create : MonoBehaviour {
         Debug.Log(Info.SessieCode + "code");
         string url = "Sessie/toList?code=" + code;
         Debug.Log(url);
-        api.ApiGet(url,JoinGameCor);
-        
+        api.ApiGet(url, JoinGameCor);
+
     }
     void JoinGameCor(string json)
     {
-        Debug.Log(json);
         var N = JSON.Parse(json);
         Info.TeamId = N["data"][0]["id"].AsInt;
         Info.TeamNaam = N["data"][0]["teamNaam"].Value;
+        //      Info.ActivePuzzel = N["data"][0]["startPuzzel"].AsInt;
+
+        //post and get active puzzel
+
+
+
+        for (int i = 0; i < aantalTeams; i++)
+        {
+            N["teams"][i]["activePuzzel"] = teamNamen[i];
+
+            api.ApiPost("team/" + N["data"][i]["id"] + "/startpuzzel", N, SetActivePuzzels);
+
+
+            //Debug.Log(i + teamNamen[i]);
+        }
         Debug.Log("joined: ");
         Debug.Log(Info.TeamId);
         Debug.Log(Info.TeamNaam);
+        string code = Info.SessieCode;
+        code = code.Trim('"');
+
+        string url = "Sessie/toList?code=" + code;
+
+        api.ApiGet(url, JoinGameCor2);
+
+
+
+    }
+    void SetActivePuzzels(string json)
+    {
+        Debug.Log("ACTIVEPUZZEL");
+        Debug.Log(json);
+    }
+
+
+    void JoinGameCor2(string json)
+    {
+        Debug.Log("joincamecor2"); Debug.Log(json);
+
+        var N = JSON.Parse(json);
+        Debug.Log(Info.TeamId);
+        Info.ActivePuzzel = N["data"][0]["startPuzzel"].AsInt;
+
+
+
         var url = "Team/" + Info.TeamId + "/AddSpeler?spelerID=" + Info.spelerId;
         api.ApiGet(url, NextLevel);
-        
     }
 
     void NextLevel(string json)
     {
+        Debug.Log("joined, spelernaam = " + Info.SpelerNaam + " teamnaam = " + Info.TeamNaam + " spelerid en team id = " + Info.spelerId + " " + Info.TeamId + "activelevel = " + Info.ActivePuzzel);
         loader.LoadLevel(nextScene);
     }
 
- 
-	
+
+
 }
