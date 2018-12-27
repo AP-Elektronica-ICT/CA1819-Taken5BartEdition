@@ -114,6 +114,12 @@ namespace Taken5Bart.Controllers
 
         }
 
+        [HttpGet("{id}/Puzzels")]
+        public IActionResult Puzzels(int id)
+        {
+            return Ok(teamService.GetPuzzels(id));
+        }
+
 
         [HttpPut("{id}/ActivePuzzel")]
         public IActionResult SetActivePuzzel(int id, bool reset)

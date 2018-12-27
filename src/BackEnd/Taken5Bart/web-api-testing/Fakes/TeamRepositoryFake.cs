@@ -88,5 +88,21 @@ namespace web_api_testing
         {
             throw new NotImplementedException();
         }
+
+        public Team AddPuzzels(Team oldTeam, ICollection<Puzzel> puzzels)
+        {
+            int index = _teams.FindIndex(t => t.Id == oldTeam.Id);
+            foreach (Puzzel p in puzzels)
+            {
+                _teams[index].PuzzelsTeam.Add(new PuzzelTeam { Puzzel = p, Team = _teams[index] });
+            }
+            return _teams[index];
+
+        }
+
+        public ICollection<Puzzel> GetPuzzels(int teamId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

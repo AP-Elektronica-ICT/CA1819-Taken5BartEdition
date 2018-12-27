@@ -7,6 +7,7 @@ using Models.T5B;
 using System.Collections.Generic;
 using BusinessLayer.T5B;
 using Repository.T5B;
+using Interface;
 
 namespace web_api_testing
 {
@@ -16,12 +17,14 @@ namespace web_api_testing
         SessieService _service;
         ISessionRepository _fakeSessieRepo;
         ITeamRepository _fakeTeamRepo;
+        IPuzzelRepository _fakePuzzelRepo;
 
         public SessieServiceTest()
         {
             _fakeTeamRepo = new TeamRepositoryFake();
             _fakeSessieRepo = new SessieRepoFake();
-            _service = new SessieService(_fakeSessieRepo,_fakeTeamRepo);
+            _fakePuzzelRepo = new PuzzelRepoFake();
+            _service = new SessieService(_fakeSessieRepo,_fakeTeamRepo, _fakePuzzelRepo);
         }
 
         [Fact]

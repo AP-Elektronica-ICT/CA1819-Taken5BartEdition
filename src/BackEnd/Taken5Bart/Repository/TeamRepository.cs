@@ -7,6 +7,7 @@ using Models.T5B;
 using Interface.T5B;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace Repository.T5B
 {
@@ -137,6 +138,44 @@ namespace Repository.T5B
             System.Diagnostics.Debug.WriteLine(team.puzzelDone);
             _context.SaveChanges();
             return team.puzzelDone;
+        }
+
+        public Team AddPuzzels(Team team, ICollection<Puzzel> puzzels)
+        {
+            foreach(Puzzel p in puzzels)
+            {
+                _context.Add(new PuzzelTeam { Puzzel = p, Team = team});
+            }
+            _context.SaveChanges();
+            return team;
+        }
+
+        public ICollection<Puzzel> GetPuzzels(int teamId)
+        {
+            var team = _context.Teams.Include(t => t.Spelers).Include(t => t.AssignedSessie).Include(t => t.PuzzelsTeam).ThenInclude(t => t.Puzzel).ThenInclude(p=>p.Locatie).SingleOrDefault(g => g.Id == teamId);
+            var puzzels = new List<Puzzel>();
+            Debug.WriteLine(team.PuzzelsTeam.Count);
+            foreach (PuzzelTeam p in team.PuzzelsTeam)
+            {
+                Debug.WriteLine(p.Puzzel.Id);
+                Console.WriteLine(p.Puzzel.Id);
+                Console.WriteLine(p.Team.TeamNaam);
+
+                puzzels.Add(p.Puzzel);
+            }
+            return puzzels;
+            /*
+            var pt = _context.PuzzelTeams.Include(t => t.Team).Include(p => p.Puzzel);
+            var puzzels = new List<Puzzel>();
+            foreach(PuzzelTeam p in pt)
+            {
+                Console.WriteLine(p.Puzzel.Id);
+                Console.WriteLine(p.Team.TeamNaam);
+                if (p.TeamId == teamId)
+                    puzzels.Add(p.Puzzel);
+            }
+            return puzzels;
+            */
         }
     }
 }
