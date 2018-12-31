@@ -32,7 +32,8 @@ namespace Models.T5B
         public DbSet<Team> Teams { get; set; }
         public DbSet<Quizvraag> Quizvragen { get; set; }
         public DbSet<QuizScore> QuizScores { get; set; }
-
+        public DbSet<FindTheDifference> FindTheDifferences { get; set; }
+        public DbSet<FindTheDifferenceItem> FindTheDifferenceItems { get; set; }
         public DbSet<SteenScore> SteenScores { get; set; }
     }
 }

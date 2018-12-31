@@ -43,7 +43,7 @@ namespace BusinessLayer.T5B
                 t.DiamantenVerzameld = 0;
                 t.Score = 0;
                 t.Spelers = null;
-                t.teamMode = 0;
+                t.TeamMode = 0;
                 t.StartPuzzel = startpuzzel;
                 
                 var newT = _teamRepo.NewTeam(t);

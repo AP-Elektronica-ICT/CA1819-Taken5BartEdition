@@ -93,51 +93,51 @@ namespace Repository.T5B
         public int ChangeGameModus(int TeamId)
         {
             Team team = GetTeam(TeamId);
-            if (team.teamMode == 0 || team.teamMode == 2)
+            if (team.TeamMode == 0 || team.TeamMode == 2)
             {
-                team.teamMode++;
+                team.TeamMode++;
             }
-            else if (team.teamMode == 1 || team.teamMode == 3)
+            else if (team.TeamMode == 1 || team.TeamMode == 3)
             {
-                if (team.Spelers.Count == team.puzzelDone)
+                if (team.Spelers.Count == team.PuzzelDone)
                 {
-                    if (team.teamMode == 1)
+                    if (team.TeamMode == 1)
                     {
-                        team.teamMode++;
+                        team.TeamMode++;
 
                     }
                     else
                     {
-                        team.teamMode = 0;
+                        team.TeamMode = 0;
                     }
                 }
             }
 
             _context.SaveChanges();
-            return team.teamMode;
+            return team.TeamMode;
         }
 
         public int DevChangeGameModus(int TeamId)
         {
             Team team = GetTeam(TeamId);
 
-            team.teamMode++;
+            team.TeamMode++;
 
 
             _context.SaveChanges();
-            return team.teamMode;
+            return team.TeamMode;
         }
 
 
         public int GameDone(int TeamId)
         {
             Team team = GetTeam(TeamId);
-            System.Diagnostics.Debug.WriteLine(team.puzzelDone);
+            System.Diagnostics.Debug.WriteLine(team.PuzzelDone);
 
-            team.puzzelDone = team.puzzelDone + 1;
-            System.Diagnostics.Debug.WriteLine(team.puzzelDone);
+            team.PuzzelDone = team.PuzzelDone + 1;
+            System.Diagnostics.Debug.WriteLine(team.PuzzelDone);
             _context.SaveChanges();
-            return team.puzzelDone;
+            return team.PuzzelDone;
         }
 
         public Team AddPuzzels(Team team, ICollection<Puzzel> puzzels)
