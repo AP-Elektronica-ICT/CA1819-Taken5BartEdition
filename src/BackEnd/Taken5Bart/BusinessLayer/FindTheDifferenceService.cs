@@ -44,7 +44,9 @@ namespace BusinessLayer
                 var ftd = new FindTheDifference()
                 {
                     AssignedTeamId = teamId,
-                    FoundItemsList = new List<FindTheDifferenceItem>()
+                    FoundItemsList = new List<FindTheDifferenceItem>(),
+                    startTime = DateTime.Now
+                    
                 };
                 for (int i = 0; i < itemCount; i++)
                 {
