@@ -1,4 +1,4 @@
-﻿using Interface.FTD;
+﻿using Interface.Puzzels;
 using Models;
 using Models.T5B;
 using Repository;

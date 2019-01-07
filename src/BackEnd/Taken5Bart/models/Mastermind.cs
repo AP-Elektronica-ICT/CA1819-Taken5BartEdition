@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Models
 {
-    class Mastermind
+    public class Mastermind
     {
         public int id { get; set; }
+        public DateTime StartTime { get; set; }
         public int colorId1 { get; set; }
         public int colorId2 { get; set; }
         public int colorId3 { get; set; }

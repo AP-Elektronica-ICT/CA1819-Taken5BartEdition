@@ -1,4 +1,4 @@
-﻿using Interface.FTD;
+﻿using Interface.Puzzels;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.T5B;
