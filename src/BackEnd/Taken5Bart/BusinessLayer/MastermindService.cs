@@ -21,24 +21,25 @@ namespace BusinessLayer
         }
         public ICollection<Mastermind> GetMasterMinds()
         {
-            return _mmRepo.GetAllMasterminds();
+            return _mmRepo.GetAllMastermind();
         }
 
-        public Mastermind NewGame(int teamId)
+        public Mastermind NewGame(Mastermind newM)
         {
-            var oldM = _mmRepo.GetMasterMindByTeam(teamId);
+            var oldM = _mmRepo.GetMasterMindByTeam(newM.AssignedTeamId);
             if(oldM == null)
             {
-                Mastermind newM = new Mastermind()
+                Mastermind newMM = new Mastermind()
                 {
-                    AssignedTeamId = teamId,
-                    colorId1 = r.Next(colorRange),
-                    colorId2 = r.Next(colorRange),
-                    colorId3 = r.Next(colorRange),
-                    colorId4 = r.Next(colorRange),
+                    AssignedTeamId = newM.AssignedTeamId,
+                    AllDone= false,
+                    ColorId1 = r.Next(colorRange),
+                    ColorId2 = r.Next(colorRange),
+                    ColorId3 = r.Next(colorRange),
+                    ColorId4 = r.Next(colorRange),
                     StartTime = DateTime.Now
                 };
-                Mastermind result = _mmRepo.NewGame(newM);
+                Mastermind result = _mmRepo.NewGame(newMM);
                 return result;
             }
             return null;
@@ -47,12 +48,16 @@ namespace BusinessLayer
         public int[] TryAnswer(int teamId, Array answer)
         {
             var mm = _mmRepo.GetMasterMindByTeam(teamId);
+            if(mm == null)
+            {
+                return new int[] { 0,0};
+            }
             int[] mcolors =
             {
-                mm.colorId1,
-                mm.colorId2,
-                mm.colorId3,
-                mm.colorId4
+                mm.ColorId1,
+                mm.ColorId2,
+                mm.ColorId3,
+                mm.ColorId4
             };
             int[] result = { 0, 0 };
             for (int i = 0; i < mmAnswers; i++)
@@ -77,7 +82,25 @@ namespace BusinessLayer
                     }
                 }
             }
+            if(result[0] == mmAnswers)
+            {
+                _mmRepo.AddTry(mm.Id, true);
+            }
+            else
+            {
+                _mmRepo.AddTry(mm.Id, false);
+            }
             return result;
+        }
+
+        public bool AllFound(int teamId)
+        {
+            var m = _mmRepo.GetMasterMindByTeam(teamId);
+            if(m == null)
+            {
+                return false;
+            }
+            return m.AllDone;
         }
     }
 }

@@ -17,9 +17,23 @@ namespace Repository
             _context = context;
         }
 
-        public ICollection<Mastermind> GetAllMasterminds()
+        public void AddTry(int id, bool allFound)
+        {
+            var m = _context.Masterminds.SingleOrDefault(ma => ma.Id == id);
+            m.Trials++;
+            m.AllDone = allFound;
+            _context.SaveChanges();
+        }
+
+        public ICollection<Mastermind> GetAllMastermind()
         {
             return _context.Masterminds.ToList();
+        }
+
+        public Mastermind GetMasterMind(int id)
+        {
+            var m = _context.Masterminds.SingleOrDefault(ma => ma.Id == id);
+            return m;
         }
 
         public Mastermind GetMasterMindByTeam(int teamId)

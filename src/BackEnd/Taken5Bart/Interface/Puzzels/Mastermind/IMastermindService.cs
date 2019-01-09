@@ -7,8 +7,9 @@ namespace Interface.Puzzels
 {
     public interface IMastermindService
     {
-        Mastermind NewGame(int teamId);
+        Mastermind NewGame(Mastermind newM);
         ICollection<Mastermind> GetMasterMinds();
         int[] TryAnswer(int teamId, Array answers);
+        bool AllFound(int teamId);
     }
 }

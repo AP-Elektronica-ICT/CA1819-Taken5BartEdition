@@ -6,12 +6,14 @@ namespace Models
 {
     public class Mastermind
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public DateTime StartTime { get; set; }
-        public int colorId1 { get; set; }
-        public int colorId2 { get; set; }
-        public int colorId3 { get; set; }
-        public int colorId4 { get; set; }
+        public bool AllDone { get; set; }
+        public int ColorId1 { get; set; }
+        public int ColorId2 { get; set; }
+        public int ColorId3 { get; set; }
+        public int ColorId4 { get; set; }
         public int AssignedTeamId { get; set; }
+        public int Trials { get; set; }
     }
 }

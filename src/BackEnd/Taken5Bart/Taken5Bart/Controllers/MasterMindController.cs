@@ -27,10 +27,17 @@ namespace Taken5Bart.Controllers
             return Ok(mmService.GetMasterMinds());
         }
 
-        [HttpPost]
-        public IActionResult PostNew([FromBody] int teamID)
+        [HttpGet("{teamId}/Allfound")]
+        public ActionResult Allfound(int teamId)
         {
-            var result = mmService.NewGame(teamID);
+            var m = mmService.AllFound(teamId);
+            return Ok(m);
+        }
+
+        [HttpPost]
+        public IActionResult PostNew([FromBody] Mastermind newM)
+        {
+            var result = mmService.NewGame(newM);
             if (result == null)
             {
                 return BadRequest(-1);

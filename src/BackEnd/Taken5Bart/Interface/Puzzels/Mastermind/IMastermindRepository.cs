@@ -9,6 +9,8 @@ namespace Interface.Puzzels
     {
         Mastermind NewGame(Mastermind newMM);
         Mastermind GetMasterMindByTeam(int teamId);
-        ICollection<Mastermind> GetAllMasterminds();
+        Mastermind GetMasterMind(int id);
+        ICollection<Mastermind> GetAllMastermind();
+        void AddTry(int id, bool allFound);
     }
 }
