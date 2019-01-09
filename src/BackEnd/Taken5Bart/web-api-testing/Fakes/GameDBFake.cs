@@ -97,7 +97,8 @@ namespace web_api_testing.Fakes
                     spelers[1]
                 },
                 Score = 1,
-                TeamNaam = "Antwerp!!!"
+                TeamNaam = "Antwerp!!!",
+                ActivePuzzel = -1
             },
             new Team()
             {
@@ -110,7 +111,8 @@ namespace web_api_testing.Fakes
                     spelers[3]
                 },
                 Score = 5,
-                TeamNaam = "TEam DJ"
+                TeamNaam = "TEam DJ",
+                ActivePuzzel = 1
             },
             new Team()
             {
@@ -122,7 +124,8 @@ namespace web_api_testing.Fakes
                     spelers[4]
                 },
                 Score = 15,
-                TeamNaam = "Limberg Parking"
+                TeamNaam = "Limberg Parking",
+                ActivePuzzel = -1
             }
         };
 
@@ -132,7 +135,7 @@ namespace web_api_testing.Fakes
             {
                 Id = 1,
                 StartTijd = new DateTime(2018,11,11),
-                Code = "1",
+                Code = "AC",
                 Teams = new List<Team>()
                 {
                     teams[0],
@@ -149,5 +152,39 @@ namespace web_api_testing.Fakes
                 },
                 MogelijkePuzzels = puzzels
             };
+
+        public static List<PuzzelTeam> puzzelTeams = new List<PuzzelTeam>()
+        {
+            new PuzzelTeam
+            {
+                Puzzel = puzzels[0],
+                PuzzelId = puzzels[0].Id,
+                Team = teams[0],
+                TeamId = teams[0].Id
+            },
+            new PuzzelTeam
+            {
+                Puzzel = puzzels[1],
+                PuzzelId = puzzels[1].Id,
+                Team = teams[0],
+                TeamId = teams[0].Id
+            },
+            new PuzzelTeam
+            {
+                Puzzel = puzzels[0],
+                PuzzelId = puzzels[0].Id,
+                Team = teams[1],
+                TeamId = teams[1].Id
+            },
+            new PuzzelTeam
+            {
+                Puzzel = puzzels[1],
+                PuzzelId = puzzels[1].Id,
+                Team = teams[1],
+                TeamId = teams[1].Id
+            },
+        };
+
+        
     }
 }

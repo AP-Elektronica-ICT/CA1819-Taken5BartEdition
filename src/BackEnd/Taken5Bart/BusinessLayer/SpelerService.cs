@@ -14,10 +14,13 @@ namespace BusinessLayer.T5B
     {
         private readonly ISpelerRepository _spelerRepo;
         private readonly ITeamRepository _teamRepo;
+        private readonly ISessionRepository _sessieRepo;
+
         public SpelerService(GameContext context)
         {
             _spelerRepo = new SpelerRepository(context);
             _teamRepo = new TeamRepository(context);
+            _sessieRepo = new SessieRepository(context);
         }
         public SpelerService(ISpelerRepository spelerRepo, ITeamRepository teamRepo)
         {
@@ -51,10 +54,21 @@ namespace BusinessLayer.T5B
             return team;
         }
 
+        public Sessie GetSessieFromSpeler(int spelerId)
+        {
+            Team team = GetTeamFromSpeler(spelerId);
+            Sessie sessie = null;
+
+            if (team != null && team.AssignedSessie != null)
+            {
+                sessie = _sessieRepo.GetSessie(team.AssignedSessie.Id);
+            }
+            return sessie;
+        }
+
         
         public void CreateSpeler(Speler newSpeler)
         {
-          
             _spelerRepo.NewSpeler(newSpeler);
         }
 
@@ -62,13 +76,9 @@ namespace BusinessLayer.T5B
 
         public Speler GetSpelerOnDeviceID(string deviceId)
         {
-            Speler speler = _spelerRepo.GetSpelerOnDevice(deviceId);
-
-            if (deviceId != null)
-                return _spelerRepo.GetSpelerOnDevice(deviceId);
-
-
-            return null;
+            return _spelerRepo.GetSpelerOnDevice(deviceId);
         }
+
+      
     }
 }

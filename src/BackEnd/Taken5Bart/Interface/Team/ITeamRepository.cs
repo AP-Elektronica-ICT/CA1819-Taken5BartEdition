@@ -15,5 +15,11 @@ namespace Interface.T5B
         Team NewTeam(Team t);
         int GetStartPuzzel(int TeamId);
         int GetNewPuzzel(int TeamId);
+        int ChangeGameModus(int TeamId);
+        int DevChangeGameModus(int TeamId);
+        Team AddPuzzels(Team team, ICollection<Puzzel> puzzels);
+        ICollection<Puzzel> GetPuzzels(int teamId);
+        int GameDone(int TeamId);
+
     }
 }

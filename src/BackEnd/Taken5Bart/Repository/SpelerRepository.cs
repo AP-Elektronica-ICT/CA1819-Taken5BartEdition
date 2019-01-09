@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Text;
 using Interface;
 using Models.T5B;
-using Interface.T5B;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Interface.T5B;
 
 namespace Repository.T5B
 {
-    public class SpelerRepository:ISpelerRepository
+    public class SpelerRepository : ISpelerRepository
     {
         GameContext _context;
 
@@ -29,7 +29,7 @@ namespace Repository.T5B
 
         public Speler GetSpeler(int id)
         {
-            return _context.Spelers.Include(s=>s.AssignedTeam).SingleOrDefault(g => g.Id == id);
+            return _context.Spelers.Include(s => s.AssignedTeam).SingleOrDefault(g => g.Id == id);
         }
 
         public Speler GetSpelerOnDevice(string DeviceID)
@@ -37,6 +37,7 @@ namespace Repository.T5B
             return _context.Spelers.SingleOrDefault(g => g.DeviceId == DeviceID);
         }
 
+ 
         public ICollection<Speler> GetSpelers()
         {
             return _context.Spelers.Include(s => s.AssignedTeam).ToList();
@@ -48,8 +49,8 @@ namespace Repository.T5B
 
 
 
-      
 
-      
+
+
     }
 }

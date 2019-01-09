@@ -11,9 +11,6 @@ namespace Repository.T5B
     {
         GameContext _context;
 
-
-
-
         public SteenScoreRepository(GameContext context)
         {
             _context = context;

@@ -2,57 +2,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OpenGame : MonoBehaviour {
-    int levelId = 0;
+    int activepuzzel = 0;
+    public Dropdown dropdown;
+    public Button btn_nextlevel;
+
     Distance _distance;
     double distance;
-	// Use this for initialization
-	void Start () {
+
+
+    // Use this for initialization
+    void Start ()
+    {
         _distance = gameObject.AddComponent<Distance>();
         _distance.Setup();
-        Info.Diamanten = 1; //TD fix diamant id begint bij 0
-        distance = 10000;
+     
     }
-	
-	// Update is called once per frame
-	void Update () {
-        levelId = Info.Diamanten;
-        
+
+    // Update is called once per frame
+    void Update()
+    {
+        Debug.Log("update");
+        Debug.Log(dropdown.value);
+        activepuzzel = Info.ActivePuzzel;
+        /*
         if (_distance.isDone)
         {
-            StartCoroutine(_distance.DistanceTo(updateDistance));
+            _distance.DistanceTo();
         }
-        
+        //  double distance = _distance.DistanceTo();
+        */
 
-        if (distance <= 20)
+
+        if (/*distance <= 20 ||*/dropdown.value > 0)
         {
-            switch (levelId)
-            {
-                //brabogame starten
-                case 0:
-                    Application.LoadLevel("BraboGame");
-                    break;
-                
-                case 1:
-                    break;
-                
-                case 2:
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
-                    break;
-
-                case 5:
-                    break;
-            }
+            Debug.Log("button available ");
+            btn_nextlevel.interactable = true;
         }
-	}
-    private void updateDistance(Double dist)
-    {
-       distance = dist;
+        else
+        {
+            Debug.Log("button disable ");
+
+            btn_nextlevel.interactable = false;
+        }
     }
 }
+

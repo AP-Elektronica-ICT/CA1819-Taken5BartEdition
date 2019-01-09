@@ -46,6 +46,7 @@ public class Antwoord : MonoBehaviour {
         if(json == "-1")
         {
             Debug.Log("returning to nav");
+            backToNav("-1");
         }
         else
         {

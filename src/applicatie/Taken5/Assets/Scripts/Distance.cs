@@ -21,7 +21,7 @@ public class Distance : MonoBehaviour {
         isDone = false;
         Debug.Log("updating distance");
         Debug.Log(updater);
-        StartCoroutine(updater.UpdateLocatie(_api, getDone));
+        //StartCoroutine(updater.UpdateLocatie(_api, getDone));
         yield return new WaitUntil(() => !isDone);
         var result = DistanceToDummy();
         doLast(result);
@@ -63,8 +63,8 @@ public class Distance : MonoBehaviour {
     {
         double latGame = Info.Latitude;
         double lonGame = Info.Longitude;
-        Debug.Log("Lat:"+latGame);
-        Debug.Log("Long:" + lonGame);
+        //Debug.Log("Lat:"+latGame);
+        //Debug.Log("Long:" + lonGame);
         dist = 30;
         return dist;
     }

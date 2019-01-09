@@ -34,7 +34,11 @@ namespace Repository.T5B
 
         public ICollection<Sessie> GetSessies()
         {
-            var sessie = _context.Sessies.Include(s => s.Teams).ToList();
+            var sessie = _context.Sessies
+                .Include(s => s.Teams)
+                .ThenInclude(t => t.Spelers)
+                .ToList();
+         
             return sessie;
         }
     }

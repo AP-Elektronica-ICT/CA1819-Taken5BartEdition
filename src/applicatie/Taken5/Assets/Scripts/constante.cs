@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Info 
+public static class Info
 {
-    public static int spelerId = 2;
+    public static int spelerId { get; set; }
     public static string Voornaam { get; set; }
     public static int TeamId { get; set; }
     public static int ActivePuzzel { get; set; }
@@ -15,19 +15,10 @@ public static class Info
     public static int Diamanten { get; set; }
     public static int Score { get; set; }
     public static string SessieCode { get; set; }
+    public static int SessieId { get; set; }
     public static double Longitude { get; set; }
     public static double Latitude { get; set; }
-    public static List<PuzzelDone> puzzelDones { get; set; }
-
 }
-public class PuzzelDone
-{
-    string Naam { get; set; }
-    
-    string LocatieNaam { get; set; }
-
-}
-
 
 public class InfoUpdater : MonoBehaviour
 {
@@ -36,7 +27,10 @@ public class InfoUpdater : MonoBehaviour
     {
         isDone = false;
         string url = "Speler/" + Info.spelerId.ToString() + "/Team";
-        StartCoroutine(_api.Get(url, GetSpeler));
+        StartCoroutine(_api.Get(url, (result) => { //lamba functie zijn ook een opties om dit op te lossen
+            GetSpeler(result);
+
+            }));
         
         url = "Speler/" + Info.spelerId.ToString();
         StartCoroutine(_api.Get(url, GetSpeler));

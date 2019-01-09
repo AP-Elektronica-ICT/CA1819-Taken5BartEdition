@@ -26,20 +26,27 @@ public class Quiz : MonoBehaviour
     int count = 1;
     int correctie;
     string url;
-    static string ScoreURL = "http://localhost:1907/api/quizscores";
+    static string ScoreURL = "/quizscores";
 
     int aantalvragen;
     int score;
 
+    APICaller api;
+    Inventory Inventory;
     Button[] buttons = new Button[6];
     Text[] Btns = new Text[6];
     BtnDisable btnDisable;
+    LevelLoader levelLoader ;
 
 
     // Use this for initialization
     string json;
     void Start()
     {
+        api = gameObject.AddComponent<APICaller>();
+        Inventory = gameObject.AddComponent<Inventory>();
+        levelLoader = gameObject.AddComponent<LevelLoader>();
+
         btnDisable = gameObject.AddComponent<BtnDisable>();
         btnDisable.button1 = button5;
         btnDisable.button2 = button6;
@@ -64,64 +71,57 @@ public class Quiz : MonoBehaviour
         buttons[5] = button6;
 
 
-
         request();
 
     }
     void request()
     {
-        url = "http://localhost:1907/api/quiz/" + count;
+
+        url = "quiz/" + count;
+        Debug.Log(url);
         WWW www = new WWW(url);
-        StartCoroutine(WaitForRequest(www));
+        StartCoroutine(api.Get(url, ActionGet));
+
     }
-    IEnumerator WaitForRequest(WWW www)
+
+
+    void ActionGet(string jSON)
     {
-        yield return www;
-
-        // check for errors
-        if (www.error == null)
+        Debug.Log("ik ben json " + jSON);
+        if (jSON == "-1")
         {
+            Debug.Log("ik ben een -1");
+            PostScore();
+        }
+        if (jSON != "-1")
+        {
+            var N = JSON.Parse(jSON);
+            Debug.Log(N);
+            Vraag.text = N["vraag"].Value;
+            Btn1.text = N["antwoord1"].Value;
+            Btn2.text = N["antwoord2"].Value;
+            Btn3.text = N["antwoord3"].Value;
+            Btn4.text = N["antwoord4"].Value;
+            Btn5.text = N["antwoord5"].Value;
+            Btn6.text = N["antwoord6"].Value;
+            correctie = N["correctie"].AsInt;
+            btnDisable.onclick();
 
-            // Debug.Log("WWW Ok!: " + www.text);
-            json = www.text;
-
-            if (www.text == "")
+            foreach (Text t in Btns)
             {
-                Debug.Log("ik ben een 0");
-                PostScore();
-            }
-            if (json != "")
-            {
-                var N = JSON.Parse(json);
-                Debug.Log(N);
-                Vraag.text = N["vraag"].Value;
-                Btn1.text = N["antwoord1"].Value;
-                Btn2.text = N["antwoord2"].Value;
-                Btn3.text = N["antwoord3"].Value;
-                Btn4.text = N["antwoord4"].Value;
-                Btn5.text = N["antwoord5"].Value;
-                Btn6.text = N["antwoord6"].Value;
-                correctie = N["correctie"].AsInt;
-                btnDisable.onclick();
-
-                foreach (Text t in Btns)
+                if (t.text != "" && t != null)
                 {
-                    if (t.text != "" && t != null)
-                    {
-                        aantalvragen++;
-                        score++;
-                    }
+                    aantalvragen++;
+                    score++;
                 }
-                Debug.Log("aantal vragen" + aantalvragen);
-
             }
+            Debug.Log("aantal vragen" + aantalvragen);
 
         }
-        else
-        {
-            Debug.Log("WWW Error: " + www.error);
-        }
+
+        
     }
+
 
     public void onlick(int BtnId)
     {
@@ -169,8 +169,14 @@ public class Quiz : MonoBehaviour
 
     }
 
+
+
+
+
     void PostScore()
     {
+        Debug.Log("poste " + score);
+
         JSONNode N = new JSONObject();
 
         N["DeviceID"] = SystemInfo.deviceUniqueIdentifier;
@@ -178,38 +184,15 @@ public class Quiz : MonoBehaviour
         N["score"] = score;
 
         Debug.Log("aantalvragen " + aantalvragen + "score " + score);
+        
+        api.ApiPost(url, N);
+        StartCoroutine(api.Get("team/" +Info.TeamId.ToString() + "/GameDone", GetActionEndGame));
+        levelLoader.ChangeGameMode(Info.TeamId, api);
 
-        StartCoroutine(WWWPost(N));
     }
-
-
-
-    public static IEnumerator WWWPost(JSONNode N)
+    void GetActionEndGame(string json)
     {
-        {
-            var req = new UnityWebRequest(ScoreURL, "POST");
-            byte[] data = Encoding.UTF8.GetBytes(N.ToString());
-
-            req.uploadHandler = new UploadHandlerRaw(data);
-            req.uploadHandler.contentType = "application/json";
-            req.downloadHandler = new DownloadHandlerBuffer();
-
-            req.SetRequestHeader("Content-Type", "application/json");
-            req.SetRequestHeader("accept", "application/json");
-
-            yield return req.SendWebRequest();
-
-            if (req.isNetworkError || req.isHttpError)
-            {
-                Debug.Log(req.error);
-            }
-            else
-            {
-                Debug.Log("Form upload complete!");
-                Debug.Log(data);
-            }
-        }
-
+        Debug.Log(json);
     }
+  
 }
-

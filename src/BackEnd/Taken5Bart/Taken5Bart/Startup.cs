@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using BusinessLayer;
 using BusinessLayer.T5B;
 using Interface;
+using Interface.FTD;
 using Interface.T5B;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,11 +51,23 @@ namespace Taken5Bart
 		    services.AddScoped<ISteenScoreService, SteenScoreService>();
             services.AddScoped<IPhotoGameScoreService, PhotoGameScoreService>();
             services.AddScoped<IVlaeykensScoreService, VlaeykensScoreService>();
+            services.AddScoped<IFindTheDifferenceService, FindTheDifferenceService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
             services.AddMvc();
+            services.Configure<FormOptions>(options =>
+
+            {
+
+                options.ValueLengthLimit = int.MaxValue;
+
+                options.MultipartBodyLengthLimit = int.MaxValue;
+
+                options.MultipartHeadersLengthLimit = int.MaxValue;
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

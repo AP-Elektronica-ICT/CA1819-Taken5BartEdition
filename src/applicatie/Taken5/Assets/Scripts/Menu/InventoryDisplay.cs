@@ -19,7 +19,8 @@ public class InventoryDisplay : MonoBehaviour {
             TeamNaam.text = "nog geen team --> demo";
         }
         else { 
-        TeamNaam.text = Info.TeamNaam;
+
+            TeamNaam.text = Info.TeamNaam;
         }
     }
 	
@@ -32,7 +33,7 @@ public class InventoryDisplay : MonoBehaviour {
     {
         foreach (InventoryItem item in items)
         {
-            Debug.Log(item);
+           // Debug.Log(item);
             InventoryItemDisplay display = (InventoryItemDisplay)Instantiate(itemDisplayPrefab);
             display.transform.SetParent(targetTransform, false);
             display.Prime(item);

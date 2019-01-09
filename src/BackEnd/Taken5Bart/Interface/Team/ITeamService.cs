@@ -17,5 +17,11 @@ namespace Interface.T5B
         Puzzel ActivePuzzel(int Id);
         int ActivePuzzelID(int Id);
         Puzzel SetActivePuzzel(int Id, bool reset);
+
+        int ChangeGameModus(int TeamId);
+        int DevChangeGameModus(int TeamId); //for development 
+        int GameDone(int TeamId);
+
+        ICollection<Puzzel> GetPuzzels(int TeamId);
     }
 }

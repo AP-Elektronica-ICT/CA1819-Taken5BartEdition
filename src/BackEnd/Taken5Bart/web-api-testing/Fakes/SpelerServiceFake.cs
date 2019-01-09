@@ -39,6 +39,11 @@ namespace web_api_testing
             _spelers.Add(newSpeler);
         }
 
+        public Sessie GetSessieFromSpeler(int spelerId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Speler GetSpeler(int id)
         {
             return _spelers.Where(s=> s.Id == id).FirstOrDefault();

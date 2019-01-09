@@ -11,6 +11,7 @@ using Repository.T5B;
 
 namespace BusinessLayer.T5B
 {
+
     public class TeamService : ITeamService
     {
         private ISpelerRepository _spelerRepo;
@@ -95,7 +96,11 @@ namespace BusinessLayer.T5B
         public Puzzel ActivePuzzel(int Id)
         {
             var t = GetTeam(Id);
-            if(t.ActivePuzzel == -1)
+            if (t == null)
+            {
+                return null;
+            }
+            if (t.ActivePuzzel == -1)
             {
                 return null;
             }
@@ -106,21 +111,50 @@ namespace BusinessLayer.T5B
 
         public int ActivePuzzelID(int Id)
         {
-            return GetTeam(Id).ActivePuzzel;
+            var t = GetTeam(Id);
+            if (t == null)
+            {
+                return -1;
+            }
+            return t.ActivePuzzel;
         }
 
         public Puzzel SetActivePuzzel(int Id, bool reset)
         {
+            var t = GetTeam(Id);
+            if (t == null)
+            {
+                return null;
+            }
             if (reset)
             {
                 _teamRepo.SetActivePuzzel(Id, -1);
                 return null;
             }
-            var team = GetTeam(Id);
-            var pl = team.PuzzelsTeam.ToList();
-            Puzzel ActivePuzzel = _puzzelRepo.GetPuzzel(pl.ElementAt(team.DiamantenVerzameld).PuzzelId);
+            var pl = t.PuzzelsTeam.ToList();
+            Puzzel ActivePuzzel = _puzzelRepo.GetPuzzel(pl.ElementAt(t.DiamantenVerzameld).PuzzelId);
             _teamRepo.SetActivePuzzel(Id, ActivePuzzel.Id);
             return ActivePuzzel;
+        }
+
+        public int ChangeGameModus(int TeamId)
+        {
+            return _teamRepo.ChangeGameModus(TeamId);
+
+        }
+        public int DevChangeGameModus(int TeamId)
+        {
+            return _teamRepo.DevChangeGameModus(TeamId);
+        }
+
+        public int GameDone(int TeamId)
+        {
+            return _teamRepo.GameDone(TeamId);
+        }
+
+        public ICollection<Puzzel> GetPuzzels(int TeamId)
+        {
+            return _teamRepo.GetPuzzels(TeamId);
         }
     }
 }

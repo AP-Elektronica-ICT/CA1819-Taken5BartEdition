@@ -25,6 +25,7 @@ namespace web_api_testing
         [Fact]
         public void Get_WhenCalled_ReturnsOkResult()
         {
+            
             //Act
             var okResult = _controller.Get();
 

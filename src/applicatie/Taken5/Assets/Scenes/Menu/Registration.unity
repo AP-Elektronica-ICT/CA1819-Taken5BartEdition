@@ -211,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingscreen: {fileID: 1210918167}
   slider: {fileID: 2056621438}
+  dropdown: {fileID: 0}
 --- !u!4 &56623178
 Transform:
   m_ObjectHideFlags: 0
@@ -315,6 +316,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button1: {fileID: 648348492}
   button2: {fileID: 902848721}
+  slider: {fileID: 0}
+  loadingscreen: {fileID: 1210918167}
   voornaam: {fileID: 1319241042}
   achternaam: {fileID: 583133096}
 --- !u!1 &536634107
@@ -810,13 +813,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 56623177}
-        m_MethodName: LoadLevel
+      - m_Target: {fileID: 11500000, guid: cec76fe33171df44592fd4d7fb2eebab, type: 3}
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -887,6 +890,7 @@ MonoBehaviour:
   Voornaam: {fileID: 536634109}
   Achternaam: {fileID: 1091703745}
   button: {fileID: 902848721}
+  api: {fileID: 0}
 --- !u!224 &921122758
 RectTransform:
   m_ObjectHideFlags: 0
