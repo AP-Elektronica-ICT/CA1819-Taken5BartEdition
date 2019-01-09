@@ -1,4 +1,4 @@
-﻿using Interface.FTD;
+﻿using Interface.Puzzels;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.T5B;
@@ -20,7 +20,7 @@ namespace Repository
 
         public void DifferenceFound(int teamId, int itemId)
         {
-            var ftd = _context.FindTheDifferences.Include(f => f.FoundItemsList).Single(f => f.AssignedTeamId == teamId);
+            var ftd = _context.FindTheDifferences.Include(f => f.FoundItemsList).SingleOrDefault(f => f.AssignedTeamId == teamId);
             if(ftd != null)
             {
                 var ftdList = ftd.FoundItemsList;
