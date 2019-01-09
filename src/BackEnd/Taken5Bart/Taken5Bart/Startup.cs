@@ -46,7 +46,9 @@ namespace Taken5Bart
             services.AddScoped<IQuizService, QuizService>();
             services.AddScoped<IQuizScoreService, QuizScoreService>();
             services.AddScoped<IPuzzelService, PuzzelService>();
-		services.AddScoped<ISteenScoreService, SteenScoreService>();
+		    services.AddScoped<ISteenScoreService, SteenScoreService>();
+            services.AddScoped<IPhotoGameScoreService, PhotoGameScoreService>();
+            services.AddScoped<IVlaeykensScoreService, VlaeykensScoreService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });

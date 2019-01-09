@@ -360,7 +360,45 @@ namespace Models.T5B
                     context.QuizScores.Add(q);
                 }
 
-                
+                var photoScore = new PhotoGameScore[]
+                {
+                    new PhotoGameScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        Score = 5
+                    },
+                      new PhotoGameScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        Score = 5
+                    }
+
+                };
+                foreach (PhotoGameScore q in photoScore)
+                {
+                    context.PhotoGameScores.Add(q);
+                }
+
+                var vlaeykensScore = new VlaeykensScore[]
+                {
+                    new VlaeykensScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        Score = 5
+                    },
+                      new VlaeykensScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        Score = 5
+                    }
+
+                };
+                foreach (VlaeykensScore q in vlaeykensScore)
+                {
+                    context.VlaeykensScores.Add(q);
+                }
+
+
                 context.SaveChanges();
             }
         }
