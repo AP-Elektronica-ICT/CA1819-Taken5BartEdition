@@ -39,7 +39,7 @@ namespace Repository.T5B
               .Include(p => p.PuzzelScores)
               .FirstOrDefault(t => t.Id == teamId);
 
-            totaalscore = team.PuzzelScores.vlaamsekaai + team.PuzzelScores.stadsfeestzaal + team.PuzzelScores.Kathedraal + team.PuzzelScores.vleaykensgang + team.PuzzelScores.grotemarkt
+            totaalscore = team.PuzzelScores.startgame + team.PuzzelScores.vlaamsekaai + team.PuzzelScores.stadsfeestzaal + team.PuzzelScores.Kathedraal + team.PuzzelScores.vleaykensgang + team.PuzzelScores.grotemarkt
                  + team.PuzzelScores.hetSteen + team.PuzzelScores.mas + team.PuzzelScores.havenhuis;
 
             return totaalscore;
@@ -53,6 +53,9 @@ namespace Repository.T5B
 
             switch (locatienaam)
             {
+                case "startgame":
+                    team.PuzzelScores.startgame = (int)score;
+                    break;
                 case "vlaamsekaai":
                     team.PuzzelScores.vlaamsekaai = (int)score;
                     break;

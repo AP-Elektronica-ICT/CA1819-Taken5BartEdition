@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     // public List<PuzzelDone> puzzelDones = Info.puzzelDones;
     public List<InventoryItem> items = new List<InventoryItem>();
     APICaller api;
-    string url = "score/1";//+ Info.TeamId;
+    string url = "score/"+ Info.TeamId;
     string totalurl = "score/" + Info.TeamId + "/total";
     int totalscore;
     public InventoryDisplay inventoryDisplayPrefab;
@@ -18,7 +18,6 @@ public class Inventory : MonoBehaviour
     void Start ()
     {
 
-        AddGameDiamant("Started Game", "10");
         inventory = (InventoryDisplay)Instantiate(inventoryDisplayPrefab);
         api = gameObject.AddComponent<APICaller>();
         api.ApiGet(url, getScores);

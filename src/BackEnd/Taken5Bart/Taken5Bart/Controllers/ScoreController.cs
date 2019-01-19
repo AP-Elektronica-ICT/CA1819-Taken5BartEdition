@@ -32,7 +32,7 @@ namespace Taken5Bart.Controllers
             return Ok(scoreService.GetTotalScore(teamid));
         }
 
-        [HttpPost("{teamid}/{locatienaam}/{score}")]
+        [HttpGet("{teamid}/{locatienaam}/{score}")]
         public ActionResult gettotalscores(int teamid, string locatienaam, double score)
         {
             return Ok(scoreService.SetScore(teamid, locatienaam, score));

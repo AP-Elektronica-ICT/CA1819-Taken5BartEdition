@@ -213,9 +213,13 @@ public class Menu_Create : MonoBehaviour
     void NextLevel(string json)
     {
         Debug.Log("joined, spelernaam = " + Info.SpelerNaam + " teamnaam = " + Info.TeamNaam + " spelerid en team id = " + Info.spelerId + " " + Info.TeamId + "activelevel = " + Info.ActivePuzzel);
+        api.ApiGet("score/"+Info.TeamId+"/startgame/5", startgamepost);
         loader.LoadLevel(nextScene);
     }
-
+    void startgamepost(string json)
+    {
+        Debug.Log(json);
+    }
 
 
 }
