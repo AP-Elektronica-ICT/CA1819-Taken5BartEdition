@@ -31,7 +31,7 @@ public class Menu_Create : MonoBehaviour
 
     TouchScreenKeyboard keyboard;
 
-
+    bool setactivepuzzel = false;
     // Use this for initialization
     void Start()
     {
@@ -176,12 +176,7 @@ public class Menu_Create : MonoBehaviour
 
         for (int i = 0; i < aantalTeams; i++)
         {
-            N["teams"][i]["activePuzzel"] = teamNamen[i];
-
             api.ApiPost("team/" + N["data"][i]["id"] + "/startpuzzel", N, SetActivePuzzels);
-
-
-            //Debug.Log(i + teamNamen[i]);
         }
         Debug.Log("joined: ");
         Debug.Log(Info.TeamId);
@@ -189,40 +184,42 @@ public class Menu_Create : MonoBehaviour
         string code = Info.SessieCode;
         code = code.Trim('"');
 
-        string url = "Sessie/toList?code=" + code;
 
-        api.ApiGet(url, JoinGameCor2);
 
+        var url = "Team/" + Info.TeamId + "/getactivepuzzel";
+
+
+
+        api.ApiGet(url, SetInfoActivePuzzel);
 
 
     }
     void SetActivePuzzels(string json)
     {
+     
         Debug.Log("ACTIVEPUZZEL");
         Debug.Log(json);
     }
-
-
-    void JoinGameCor2(string json)
+    void SetInfoActivePuzzel(string json)
     {
-        Debug.Log("joincamecor2"); Debug.Log(json);
-
-        var N = JSON.Parse(json);
-        Debug.Log(Info.TeamId);
-        Info.ActivePuzzel = N["data"][0]["startPuzzel"].AsInt;
-
-
-
+        Debug.Log(json);
+        Info.ActivePuzzel = int.Parse(json);
+        Debug.Log("info.Activepuzzel = "+Info.ActivePuzzel);
         var url = "Team/" + Info.TeamId + "/AddSpeler?spelerID=" + Info.spelerId;
         api.ApiGet(url, NextLevel);
+
     }
 
     void NextLevel(string json)
     {
         Debug.Log("joined, spelernaam = " + Info.SpelerNaam + " teamnaam = " + Info.TeamNaam + " spelerid en team id = " + Info.spelerId + " " + Info.TeamId + "activelevel = " + Info.ActivePuzzel);
+        api.ApiGet("score/"+Info.TeamId+"/startgame/5", startgamepost);
         loader.LoadLevel(nextScene);
     }
-
+    void startgamepost(string json)
+    {
+        Debug.Log(json);
+    }
 
 
 }

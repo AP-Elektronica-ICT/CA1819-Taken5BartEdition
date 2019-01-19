@@ -22,6 +22,7 @@ namespace Repository.T5B
 
         public Team NewTeam(Team t)
         {
+            t.PuzzelScores = new Score();
             _context.Teams.Add(t);
             _context.SaveChanges();
             return t;
@@ -69,6 +70,14 @@ namespace Repository.T5B
             team.ActivePuzzel = team.StartPuzzel;
             _context.SaveChanges();
             return team.StartPuzzel;
+        }
+
+
+        //geeft de active puzzel terug die is geactiveerd
+        public int GetActivePuzzel(int teamId)
+        {
+            Team team = _context.Teams.Include(t => t.AssignedSessie).Single(t => t.Id == teamId);
+            return team.ActivePuzzel;
         }
 
         public int GetNewPuzzel(int TeamId)
@@ -177,5 +186,7 @@ namespace Repository.T5B
             return puzzels;
             */
         }
+
+     
     }
 }

@@ -21,6 +21,7 @@ namespace Models
             } }
 
         public int AssignedTeamId { get; set; }
+        public DateTime startTime { get; set; }
     }
 
     public class FindTheDifferenceItem

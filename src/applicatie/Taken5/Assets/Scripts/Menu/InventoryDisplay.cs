@@ -7,12 +7,19 @@ public class InventoryDisplay : MonoBehaviour {
 
     public Text TeamNaam;
     public Text puzzelsdone;
+    public Text totaal;
+    APICaller api;
+
     public Transform targetTransform;
     public InventoryItemDisplay itemDisplayPrefab;
     int counter;
-   
-	void Start ()
+    string total = "score/" + Info.TeamId + "/total";
+
+    void Start ()
     {
+        api = gameObject.AddComponent<APICaller>();
+        api.ApiGet(total, getScores);
+
         counter = 0;
         if (Info.TeamNaam == null)
         {
@@ -22,10 +29,15 @@ public class InventoryDisplay : MonoBehaviour {
 
             TeamNaam.text = Info.TeamNaam;
         }
+
     }
-	
-	// Update is called once per frame
-	void Update ()
+    void getScores(string json)
+    {
+        Debug.Log(json);
+        totaal.text = json;
+    }
+    // Update is called once per frame
+    void Update ()
     {
 		
 	}

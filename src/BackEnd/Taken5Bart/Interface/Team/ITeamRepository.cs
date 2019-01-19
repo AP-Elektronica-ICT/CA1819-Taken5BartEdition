@@ -14,6 +14,9 @@ namespace Interface.T5B
         void SetActivePuzzel(int tId, int pId);
         Team NewTeam(Team t);
         int GetStartPuzzel(int TeamId);
+
+        //getstartpuzzelwithoutchange
+        int GetActivePuzzel(int teamId);
         int GetNewPuzzel(int TeamId);
         int ChangeGameModus(int TeamId);
         int DevChangeGameModus(int TeamId);

@@ -40,7 +40,7 @@ public class Distance : MonoBehaviour {
         isDone = true;
     }
     
-    private double DistanceToGPS()
+    public double DistanceToGPS()
     {
         double latGame = Info.Latitude;
         double lonGame = Info.Longitude;

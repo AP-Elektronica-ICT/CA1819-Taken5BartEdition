@@ -38,7 +38,17 @@ namespace Taken5Bart.Controllers
             }
             return Ok(result);
         }
-
+        //geeft waarde terug zinder deze te verhogen
+        [HttpGet("{id}/GetActivePuzzel")]
+        public IActionResult GetActivePuzzel(int id)
+        {
+            var result = teamService.GetActivePuzzel(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(-1);
+        }
         // GET: api/Team/5/GetScorePosition
         [HttpGet("{id}/GetScorePosition")]
         public IActionResult GetScorePos(int id)
@@ -75,6 +85,7 @@ namespace Taken5Bart.Controllers
 
         //put zou correcter zijn, maar unity kent enkel get en post
         // get: api/Team/2/AddSpeler?spelerID=1
+        //verhoogt waarde met 1
         [HttpGet("{id}/ActivePuzzel")]
         public IActionResult ActivePuzzel(int id)
         {
@@ -86,6 +97,7 @@ namespace Taken5Bart.Controllers
             return NotFound(-1);
         }
 
+      
         //checken of heel het team de game klaar heeft
         [HttpGet("{id}/ChangeGameMode")]
         public IActionResult ChangeGameModus(int id)

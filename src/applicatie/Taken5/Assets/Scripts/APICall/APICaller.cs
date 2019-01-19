@@ -15,7 +15,7 @@ public class APICaller : MonoBehaviour {
     public bool isBusy;
     bool debug = true;
 
-    public string ApiGet(string requestUrl)
+    public string ApiGet(string requestUrl, object getScores)
     {
         isBusy = true;
         json = "-2";

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using BusinessLayer;
 using BusinessLayer.T5B;
 using Interface;
-using Interface.FTD;
+using Interface.Puzzels;
 using Interface.T5B;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,6 +52,8 @@ namespace Taken5Bart
             services.AddScoped<IPhotoGameScoreService, PhotoGameScoreService>();
             services.AddScoped<IVlaeykensScoreService, VlaeykensScoreService>();
             services.AddScoped<IFindTheDifferenceService, FindTheDifferenceService>();
+            services.AddScoped<IMastermindService, MastermindService>();
+            services.AddScoped<IScoreService, ScoreService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
