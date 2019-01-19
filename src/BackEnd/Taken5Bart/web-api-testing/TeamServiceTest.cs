@@ -431,7 +431,7 @@ namespace web_api_testing
             var resultId = team.ActivePuzzelID(teamId);
 
             // Assert
-            Assert.Equal(0, resultId);
+            Assert.Equal(-1, resultId);
             Assert.Null(result);
         }
     }
