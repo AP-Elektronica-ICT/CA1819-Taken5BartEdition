@@ -195,7 +195,8 @@ namespace Models.T5B
                         StartPuzzel = 0,
                         ActivePuzzel = 0,
                         TeamNaam = "Antwerp!!!",
-                        
+                        PuzzelScores = new Score()
+
                     },
                     new Team()
                     {
@@ -206,7 +207,9 @@ namespace Models.T5B
                         Score = 5,
                         StartPuzzel = 0,
                         ActivePuzzel = 0,
-                        TeamNaam = "TEam DJ"
+                        TeamNaam = "TEam DJ",
+                        PuzzelScores = new Score()
+
                     },
                     new Team()
                     {
@@ -218,6 +221,7 @@ namespace Models.T5B
                         StartPuzzel = 0,
                         ActivePuzzel = 0,
                         TeamNaam = "Limberg Parking",
+                        PuzzelScores = new Score()
                     }
                 };
                 foreach (Team t in teams)

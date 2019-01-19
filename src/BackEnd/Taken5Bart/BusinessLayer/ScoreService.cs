@@ -13,5 +13,25 @@ namespace BusinessLayer.T5B
 {
     public class ScoreService : IScoreService
     {
+        private IScoreRepository _scoreRepo;
+
+        public ScoreService(GameContext context)
+        {
+            _scoreRepo = new ScoreRepository(context);
+        }
+        public Score GetAllScores(int teamId)
+        {
+            return _scoreRepo.GetAllScores(teamId);
+        }
+
+        public int GetTotalScore(int teamId)
+        {
+            return _scoreRepo.GetTotalScore(teamId);
+        }
+
+        public int SetScore(int teamId, string locatienaam, double score)
+        {
+            return _scoreRepo.SetScore(teamId,locatienaam,score);
+        }
     }
 }

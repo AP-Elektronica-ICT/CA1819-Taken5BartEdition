@@ -22,6 +22,7 @@ namespace Repository.T5B
 
         public Team NewTeam(Team t)
         {
+            t.PuzzelScores = new Score();
             _context.Teams.Add(t);
             _context.SaveChanges();
             return t;

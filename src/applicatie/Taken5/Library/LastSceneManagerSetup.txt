@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Menu/Menu_Create.unity
+- path: Assets/Scenes/NavigationS/NavigationScreen.unity
   isLoaded: 1
   isActive: 1
