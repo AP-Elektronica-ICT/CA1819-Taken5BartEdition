@@ -26,17 +26,11 @@ public class OpenGame : MonoBehaviour {
     {
         Debug.Log("update");
         Debug.Log(dropdown.value);
+        
         activepuzzel = Info.ActivePuzzel;
-        /*
-        if (_distance.isDone)
-        {
-            _distance.DistanceTo();
-        }
-        //  double distance = _distance.DistanceTo();
-        */
+        distance = _distance.DistanceToGPS();
 
-
-        if (/*distance <= 20 ||*/dropdown.value > 0)
+        if (distance <= 20 ||dropdown.value > 0)
         {
             Debug.Log("button available ");
             btn_nextlevel.interactable = true;

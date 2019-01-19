@@ -51,6 +51,7 @@ namespace Taken5Bart
 		    services.AddScoped<ISteenScoreService, SteenScoreService>();
             services.AddScoped<IFindTheDifferenceService, FindTheDifferenceService>();
             services.AddScoped<IMastermindService, MastermindService>();
+            services.AddScoped<IScoreService, ScoreService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });

@@ -36,5 +36,6 @@ namespace Models.T5B
         public DbSet<FindTheDifferenceItem> FindTheDifferenceItems { get; set; }
         public DbSet<Mastermind> Masterminds { get; set; }
         public DbSet<SteenScore> SteenScores { get; set; }
+        public DbSet<Score> scores { get; set; }
     }
 }
