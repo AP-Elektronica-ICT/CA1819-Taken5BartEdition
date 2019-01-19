@@ -71,6 +71,14 @@ namespace Repository.T5B
             return team.StartPuzzel;
         }
 
+
+        //geeft de active puzzel terug die is geactiveerd
+        public int GetActivePuzzel(int teamId)
+        {
+            Team team = _context.Teams.Include(t => t.AssignedSessie).Single(t => t.Id == teamId);
+            return team.ActivePuzzel;
+        }
+
         public int GetNewPuzzel(int TeamId)
         {
             Team team = _context.Teams.Single(t => t.Id == TeamId);
@@ -177,5 +185,7 @@ namespace Repository.T5B
             return puzzels;
             */
         }
+
+     
     }
 }
