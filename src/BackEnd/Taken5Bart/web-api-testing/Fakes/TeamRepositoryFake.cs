@@ -104,5 +104,10 @@ namespace web_api_testing
         {
             throw new NotImplementedException();
         }
+
+        public int GetActivePuzzel(int teamId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
