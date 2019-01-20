@@ -12,23 +12,27 @@ public class LevelLoader : MonoBehaviour
     int nextlevel;
     APICaller _api;
     bool SceneIsLoaded = false;
+
+    void Start()
+    {
+        _api = gameObject.AddComponent<APICaller>();
+    }
     public void LoadLevel(int sceneIndex)
     {
      //   Debug.Log(sceneIndex.ToString());
         StartCoroutine(LoadAsychronously(sceneIndex));
-        _api = gameObject.AddComponent<APICaller>();
+       
     }
 
     public void LoadNextLevel()
     {
-        nextlevel = 0;
+        
         int mode = dropdown.value;
         int modeIndex;
 
         if (mode == 0)
         { 
             modeIndex = Info.ActivePuzzel;
-            ChangeGameMode(Info.TeamId, _api);
         }
         else
         {
@@ -78,27 +82,41 @@ public class LevelLoader : MonoBehaviour
                     break;
 
             }
-            StartCoroutine(LoadAsychronously(nextlevel));
-
+            Info.loadlevel = nextlevel;
+            ChangeGameMode(_api);
         }
 
 
 
     }
 
-    public void ChangeGameMode(int teamid, APICaller apicaller)
+    public void ChangeGameMode(APICaller apicaller)
     {
         Debug.Log("changegamemode");
-        StartCoroutine(apicaller.Get("team/" + teamid.ToString() + "/changegamemode", EndGameAction));
+        StartCoroutine(apicaller.Get("team/" + Info.TeamId+ "/" + Info.spelerId + "/changegamemode", EndGameAction));
 
     }
 
-    public void DevChangeGameMode(int teamid, APICaller apicaller)
+    public void ChangeGameModeEndOfGame(APICaller apicaller, string locatienaam, double score)
     {
-        Debug.Log("Devchangegamemode");
-        StartCoroutine(apicaller.Get("team/" + teamid.ToString() + "/devchangegamemode", EndGameAction));
+        Debug.Log("changegamemode");
+        StartCoroutine(apicaller.GetEndOfGame("team/" + Info.TeamId + "/" +Info.spelerId +"/changegamemode", locatienaam,score, apicaller, EndGameActionfinal));
 
     }
+
+    public void EndGameActionfinal(string json, string locatienaam, double score, APICaller API)
+    {
+        Debug.Log("json for score is" + json);
+        if (json == "3")
+        {
+            Debug.Log("score/" + Info.TeamId + "/" + locatienaam + "/" + score);
+
+            StartCoroutine(API.Get("score/" + Info.TeamId + "/" + locatienaam + "/" + score, donothing));
+        }
+        EndGameAction(json);
+    }   
+    void donothing(string json)
+    { Debug.Log("score is " + json); }
     public void EndGameAction(string json)
     {
         Debug.Log("gamemode = " + json);
@@ -121,10 +139,10 @@ public class LevelLoader : MonoBehaviour
                 }
                 break;
             case "2":
-                Debug.Log("case2");
+                Debug.Log("case2 and nextlevel" + Info.loadlevel);
 
                 SceneIsLoaded = false;
-                StartCoroutine(LoadAsychronously(nextlevel));
+                StartCoroutine(LoadAsychronously(Info.loadlevel));
                 break;
 
             case "3":

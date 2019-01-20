@@ -9,7 +9,7 @@ public class WaitForOtherPlayers : MonoBehaviour {
     public Button button;
     public Slider slider;
     public GameObject loadingscreen;
-
+    bool docall = true;
     APICaller _api;
     LevelLoader levelLoader;
 	// Use this for initialization
@@ -19,20 +19,29 @@ public class WaitForOtherPlayers : MonoBehaviour {
         levelLoader = gameObject.AddComponent<LevelLoader>();
         levelLoader.slider = slider;
         levelLoader.loadingscreen = loadingscreen;
-        button.onClick.AddListener(onclick);
+        
     }
 
     // Update is called once per frame
     void Update ()
     {
-    
-        //levelLoader.ChangeGameMode(Info.TeamId, _api);
+        if (docall)
+        {
+            StartCoroutine(changer());
 
+        }
     }
-
-    void onclick()
+    IEnumerator changer()
     {
-        Debug.Log("onclick");
-        levelLoader.DevChangeGameMode(Info.TeamId, _api);
+        docall = false;
+        yield return new WaitForSeconds(10); //Count is the amount of time in seconds that you want to wait..
+        Debug.Log("changer");
+
+        levelLoader.ChangeGameMode(_api);
+
+        //And here goes your method of resetting the game...
+        docall = true;
+        yield return null;
     }
+
 }

@@ -9,6 +9,8 @@ namespace Interface.T5B
     public interface IQuizScoreService
     {
         ICollection<QuizScore> GetQuizScores();
+        ICollection<QuizScore> GetTeamQuizScores();
+
         void AddNewScore(QuizScore Q);
     }
 }

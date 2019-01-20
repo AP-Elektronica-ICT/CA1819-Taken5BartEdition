@@ -137,9 +137,9 @@ namespace BusinessLayer.T5B
             return ActivePuzzel;
         }
 
-        public int ChangeGameModus(int TeamId)
+        public int ChangeGameModus(int TeamId,int SpelerId)
         {
-            return _teamRepo.ChangeGameModus(TeamId);
+            return _teamRepo.ChangeGameModus(TeamId, SpelerId);
 
         }
         public int DevChangeGameModus(int TeamId)
@@ -160,6 +160,11 @@ namespace BusinessLayer.T5B
         public int GetActivePuzzel(int teamId)
         {
             return _teamRepo.GetActivePuzzel(teamId);
+        }
+
+        public double getquizscore(int TeamId)
+        {
+            return _teamRepo.getquizscore(TeamId);
         }
     }
 }

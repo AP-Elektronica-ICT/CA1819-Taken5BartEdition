@@ -79,6 +79,9 @@ namespace BusinessLayer.T5B
             return _spelerRepo.GetSpelerOnDevice(deviceId);
         }
 
-      
+        public void PostQuizScore(int Spelerid, QuizScore Q)
+        {
+            _spelerRepo.PostQuizScore(Spelerid, Q);
+        }
     }
 }

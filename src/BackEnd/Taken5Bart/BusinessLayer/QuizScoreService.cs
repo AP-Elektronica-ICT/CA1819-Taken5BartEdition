@@ -38,5 +38,10 @@ namespace BusinessLayer.T5B
         {
             _quizScoreRepo.PostQuizScore(Q);
         }
+
+        public ICollection<QuizScore> GetTeamQuizScores()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -89,7 +89,13 @@ namespace Taken5Bart.Controllers
             return Ok();
         }
 
-      
+        [HttpPost("{SpelerId}")]
+        public ActionResult PostScore(int SpelerId,[FromBody] QuizScore score)
+        {
+            spelerService.PostQuizScore(SpelerId,score);
+
+            return Ok();
+        }
 
 
         // PUT: api/Speler/5

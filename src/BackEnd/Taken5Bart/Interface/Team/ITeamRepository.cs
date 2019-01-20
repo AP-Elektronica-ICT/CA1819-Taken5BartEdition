@@ -18,11 +18,13 @@ namespace Interface.T5B
         //getstartpuzzelwithoutchange
         int GetActivePuzzel(int teamId);
         int GetNewPuzzel(int TeamId);
-        int ChangeGameModus(int TeamId);
+        int ChangeGameModus(int TeamId,int SpelerId);
         int DevChangeGameModus(int TeamId);
         Team AddPuzzels(Team team, ICollection<Puzzel> puzzels);
         ICollection<Puzzel> GetPuzzels(int teamId);
         int GameDone(int TeamId);
 
+        //geeft totale quiz score van team terug
+        double getquizscore(int TeamId);
     }
 }

@@ -23,14 +23,13 @@ namespace Taken5Bart.Controllers
             quizScoreService = service;
         }
 
-        // GET: api/Speler
         [HttpGet]
         public ActionResult<IEnumerable<QuizScore>> Get()
         {
             return Ok(quizScoreService.GetQuizScores());
 
         }
-
+     
         [HttpPost]
         public ActionResult postScore([FromBody] QuizScore Q)
         { 

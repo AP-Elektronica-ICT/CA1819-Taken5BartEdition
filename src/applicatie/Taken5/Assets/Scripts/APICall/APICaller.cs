@@ -61,9 +61,41 @@ public class APICaller : MonoBehaviour {
             
         }
 
-    }
 
-    public string ApiPost(string requestUrl, JSONNode N)
+
+    }
+    public IEnumerator GetEndOfGame(string requestUrl, string locatienaam, double score, APICaller API, Action<string, string, Double, APICaller> doLast)
+    {
+        string url;
+        if (debug)
+        {
+            url = baseLocalURL + requestUrl;
+        }
+        else
+        {
+            url = baseURL + requestUrl;
+        }
+
+
+        Debug.Log(url);
+        using (WWW www = new WWW(url))
+        {
+            yield return www;
+            string temp = www.text;
+            //Debug.Log(json == ""); json is een string en zal nooit null zijn.
+            if (temp != "") //vervang null door een error waarde van de server
+                json = www.text;
+
+            else
+                json = "-1";
+            isBusy = false;
+            doLast(json, locatienaam, score, API);
+            //Debug.Log("Get Done");
+            www.Dispose();
+
+        }
+    }
+        public string ApiPost(string requestUrl, JSONNode N)
     {
         json = "-2";
         StartCoroutine(Post(requestUrl, N, this.DoNothing));

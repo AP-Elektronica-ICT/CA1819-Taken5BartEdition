@@ -18,6 +18,7 @@ public static class Info
     public static int SessieId { get; set; }
     public static double Longitude { get; set; }
     public static double Latitude { get; set; }
+    public static int loadlevel { get; set; }
 }
 
 public class InfoUpdater : MonoBehaviour

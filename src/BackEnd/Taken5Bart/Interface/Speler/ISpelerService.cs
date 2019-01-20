@@ -12,6 +12,7 @@ namespace Interface.T5B
         void CreateSpeler(Speler newSpeler);
         Team GetTeamFromSpeler(int spelerId);
         Sessie GetSessieFromSpeler(int spelerId);
+        void PostQuizScore(int Spelerid, QuizScore Q);
 
 
         Speler GetSpeler(int id);

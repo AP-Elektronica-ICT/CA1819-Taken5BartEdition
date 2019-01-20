@@ -185,14 +185,24 @@ public class Quiz : MonoBehaviour
 
         Debug.Log("aantalvragen " + aantalvragen + "score " + score);
         
-        api.ApiPost(url, N);
-        StartCoroutine(api.Get("team/" +Info.TeamId.ToString() + "/GameDone", GetActionEndGame));
-        levelLoader.ChangeGameMode(Info.TeamId, api);
+        api.ApiPost("speler/"+ Info.spelerId, N, GetTotalScore);
+                         // StartCoroutine(api.Get("team/" +Info.TeamId.ToString() + "/GameDone", GetActionEndGame));
+
+
+
+    }
+
+    void GetTotalScore(string json)
+    {
+        Debug.Log("posted " + json);
+        api.ApiGet("team/"+Info.TeamId+"/quizscore", GetActionEndGame);
 
     }
     void GetActionEndGame(string json)
     {
-        Debug.Log(json);
+        Debug.Log("toptalscore" +json);
+        levelLoader.ChangeGameModeEndOfGame(api, "stadsfeestzaal", double.Parse(json));
+
     }
-  
+
 }
