@@ -69,7 +69,15 @@ namespace Repository.T5B
                     team.PuzzelScores.vleaykensgang = (int)score;
                     break;
                 case "grotemarkt":
-                    team.PuzzelScores.grotemarkt = (int)score;
+                    if (team.PuzzelScores.grotemarkt ==0)
+                    {
+                        team.PuzzelScores.grotemarkt = (int)score;
+                    }
+                    else
+                    {
+                        team.PuzzelScores.grotemarkt = (team.PuzzelScores.grotemarkt + (int)score) / 2;
+
+                    }
                     break;
                 case "hetSteen":
                     team.PuzzelScores.hetSteen = (int)score;
