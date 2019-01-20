@@ -107,6 +107,16 @@ namespace web_api_testing
 
         public int GetActivePuzzel(int teamId)
         {
+            return this.GetTeam(teamId).ActivePuzzel;
+        }
+
+        public int ChangeGameModus(int TeamId, int SpelerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double getquizscore(int TeamId)
+        {
             throw new NotImplementedException();
         }
     }
