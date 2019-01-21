@@ -83,5 +83,10 @@ namespace BusinessLayer.T5B
         {
             _spelerRepo.PostQuizScore(Spelerid, Q);
         }
+
+        public void DeleteSpeler(int id)
+        {
+            _spelerRepo.DeleteSpeler(id);
+        }
     }
 }

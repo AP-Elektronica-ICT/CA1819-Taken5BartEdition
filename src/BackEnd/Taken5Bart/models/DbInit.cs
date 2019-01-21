@@ -427,6 +427,25 @@ namespace Models.T5B
                     context.VlaeykensScores.Add(q);
                 }
 
+                var steenScore = new SteenScore[]
+               {
+                    new SteenScore
+                    {
+                        TeamID = 0,
+                        Score = 5
+                    },
+                      new SteenScore
+                    {
+                        TeamID = 1,
+                        Score = 5
+                    }
+
+               };
+                foreach (SteenScore q in steenScore)
+                {
+                    context.SteenScores.Add(q);
+                }
+
 
                 context.SaveChanges();
             }

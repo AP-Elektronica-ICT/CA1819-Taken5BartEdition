@@ -33,5 +33,10 @@ namespace BusinessLayer.T5B
         {
             _steenScoreRepo.PostSteenScore(Q);
         }
+
+        public ICollection<SteenScore> GetSteenTeamScores(int id)
+        {
+            return _steenScoreRepo.GetSteenTeamScores(id);
+        }
     }
 }

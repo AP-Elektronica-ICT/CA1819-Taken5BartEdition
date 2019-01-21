@@ -9,5 +9,6 @@ namespace Interface.T5B
     {
         ICollection<SteenScore> GetSteenScores();
         void PostSteenScore(SteenScore Q);
+        ICollection<SteenScore> GetSteenTeamScores(int id);
     }
 }

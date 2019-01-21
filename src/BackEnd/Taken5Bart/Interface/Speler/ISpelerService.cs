@@ -18,5 +18,6 @@ namespace Interface.T5B
         Speler GetSpeler(int id);
         Speler GetSpelerOnDeviceID(string deviceId);
 
+        void DeleteSpeler(int id);
     }
 }

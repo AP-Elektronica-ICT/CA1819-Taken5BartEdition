@@ -34,5 +34,12 @@ namespace Taken5Bart.Controllers
             steenScoreService.AddNewScore(Q);
             return Ok();
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<SteenScore>> getTeamScores(int id)
+        {
+            return Ok(steenScoreService.GetSteenTeamScores(id));
+
+        }
     }
 }
