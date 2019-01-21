@@ -33,5 +33,12 @@ namespace Taken5Bart.Controllers
             photoGameScoreService.AddNewScore(Q);
             return Ok();
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<PhotoGameScore>> getTeamScores(int id)
+        {
+            return Ok(photoGameScoreService.GetPhotoTeamScores(id));
+
+        }
     }
 }

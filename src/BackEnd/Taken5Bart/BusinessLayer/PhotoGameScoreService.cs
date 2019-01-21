@@ -33,5 +33,10 @@ namespace BusinessLayer.T5B
         {
             _photoGameScoreRepo.PostPhotoGameScore(Q);
         }
+
+        public ICollection<PhotoGameScore> GetPhotoTeamScores(int id)
+        {
+            return _photoGameScoreRepo.GetPhotoTeamScores(id);
+        }
     }
 }

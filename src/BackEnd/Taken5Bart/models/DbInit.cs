@@ -393,12 +393,12 @@ namespace Models.T5B
                 {
                     new PhotoGameScore
                     {
-                        DeviceID = "sfsdfsd",
+                        TeamID = 0,
                         Score = 5
                     },
                       new PhotoGameScore
                     {
-                        DeviceID = "sfsdfsd",
+                        TeamID = 1,
                         Score = 5
                     }
 

@@ -9,5 +9,6 @@ namespace Interface.T5B
     {
         ICollection<PhotoGameScore> GetPhotoGameScores();
         void PostPhotoGameScore(PhotoGameScore Q);
+        ICollection<PhotoGameScore> GetPhotoTeamScores(int id);
     }
 }
