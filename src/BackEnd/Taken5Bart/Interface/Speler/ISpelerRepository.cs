@@ -15,7 +15,7 @@ namespace Interface.T5B
 
         void PostQuizScore(int Spelerid, QuizScore Q);
 
-
+        void DeleteSpeler(int id);
 
     }
 }

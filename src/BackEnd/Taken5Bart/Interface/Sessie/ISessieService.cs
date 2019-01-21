@@ -12,7 +12,11 @@ namespace Interface.T5B
         Sessie GetSessieByCode(string code);
         ICollection<Sessie> GetSessies();
         ICollection<Team> GetTeamsBySessie(string sessieId);
+
+
         string CreateSessie(Sessie newSessie);
+
+        
         
     }
 }

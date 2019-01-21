@@ -58,5 +58,12 @@ namespace Repository.T5B
           
 
         }
+
+        public void DeleteSpeler(int id)
+        {
+            var speler = _context.Spelers.Find(id);
+            _context.Spelers.Remove(speler);
+            _context.SaveChanges();
+        }
     }
 }

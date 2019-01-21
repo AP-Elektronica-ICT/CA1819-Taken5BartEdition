@@ -12,7 +12,7 @@ public class TeamList : MonoBehaviour {
 
     APICaller api;
     //string url = "team/" + Info.TeamId;
-    string url = "team/3";
+    string url = "team/" + Info.TeamId;
 
     // Use this for initialization
     void Start () {

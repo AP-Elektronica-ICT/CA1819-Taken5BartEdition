@@ -142,7 +142,16 @@ namespace Taken5Bart.Controllers
         {
             return Ok(teamService.GetPuzzels(id));
         }
-
+        [HttpGet("{id}/nextpuzzel")]
+        public IActionResult PostNextPuzzel(int id)
+        {
+            var result = teamService.GetNewPuzzel(id);
+            if (result != 0)
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
 
         [HttpPut("{id}/ActivePuzzel")]
         public IActionResult SetActivePuzzel(int id, bool reset)
@@ -180,16 +189,7 @@ namespace Taken5Bart.Controllers
             return NotFound();
         }
 
-        [HttpPost("{id}/nextpuzzel")]
-        public IActionResult PostNextPuzzel(int id)
-        {
-            var result = teamService.GetNewPuzzel(id);
-            if (result != 0)
-            {
-                return Ok(result);
-            }
-            return NotFound();
-        }
+      
 
 
         // PUT: api/Team/5

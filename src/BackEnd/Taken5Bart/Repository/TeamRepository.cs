@@ -90,6 +90,11 @@ namespace Repository.T5B
             {
                 team.ActivePuzzel = 8;
             }
+            else if (team.ActivePuzzel == 8)
+            {
+                team.ActivePuzzel = 9;
+
+            }
             else if (team.ActivePuzzel == 8 && team.StartPuzzel != 1)
             {
                 team.ActivePuzzel = 1;

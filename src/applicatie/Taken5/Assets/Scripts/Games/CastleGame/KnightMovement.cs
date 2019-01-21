@@ -23,11 +23,15 @@ public class KnightMovement : MonoBehaviour {
     double beginPositie = 0;
     double eindPositie = 150;
 
-    static string ScoreURL = "http://localhost:1907/api/steenscores";
+    //static string ScoreURL = "http://localhost:1907/api/steenscores";
+
+    APICaller api;
+    string url = "/steenscores";
 
     // Use this for initialization
     void Start () {
         playerObject = GameObject.Find("Knight");
+        api = gameObject.AddComponent<APICaller>();
     }
 	
 	// Update is called once per frame
@@ -103,12 +107,14 @@ public class KnightMovement : MonoBehaviour {
 
         Debug.Log("score " + CalculateScore());
 
-        StartCoroutine(WWWPost(N));
+        //StartCoroutine(WWWPost(N));
+
+        api.ApiPost(url, N);
     }
 
 
 
-    public static IEnumerator WWWPost(JSONNode N)
+    /*public static IEnumerator WWWPost(JSONNode N)
     {
         {
             var req = new UnityWebRequest(ScoreURL, "POST");
@@ -134,5 +140,5 @@ public class KnightMovement : MonoBehaviour {
             }
         }
 
-    }
+    }*/
 }

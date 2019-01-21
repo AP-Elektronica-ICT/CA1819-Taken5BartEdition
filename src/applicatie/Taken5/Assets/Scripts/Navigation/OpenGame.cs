@@ -11,22 +11,26 @@ public class OpenGame : MonoBehaviour {
 
     Distance _distance;
     double distance;
-
+    LevelLoader loader;
 
     // Use this for initialization
     void Start ()
     {
         _distance = gameObject.AddComponent<Distance>();
         _distance.Setup();
-     
+        loader = gameObject.AddComponent<LevelLoader>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log("update");
-       // Debug.Log(dropdown.value);
-        
+        // Debug.Log(dropdown.value);
+        if (Info.ActivePuzzel == 9)
+        {
+            loader.LoadLevel(1);
+               
+        }
         activepuzzel = Info.ActivePuzzel;
         distance = _distance.DistanceToGPS();
 

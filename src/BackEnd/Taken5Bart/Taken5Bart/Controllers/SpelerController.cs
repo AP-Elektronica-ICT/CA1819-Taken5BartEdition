@@ -106,9 +106,16 @@ namespace Taken5Bart.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet("{id}/delete")]
+        public ActionResult Delete(int id)
         {
+            var result = spelerService.GetSpeler(id);
+            if (result == null)
+            {
+                return NotFound(-1);
+            }
+            spelerService.DeleteSpeler(id);
+            return Ok("speler verwijderd");
         }
     }
 }

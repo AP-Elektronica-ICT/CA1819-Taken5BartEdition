@@ -16,6 +16,7 @@ namespace Models
         public int hetSteen { get; set; } = 0;
         public int mas { get; set; } = 0;
         public int havenhuis { get; set; } = 0;
+        public int totaal { get; set; } = 0;
 
 
 

@@ -49,6 +49,8 @@ namespace Taken5Bart
             services.AddScoped<IQuizScoreService, QuizScoreService>();
             services.AddScoped<IPuzzelService, PuzzelService>();
 		    services.AddScoped<ISteenScoreService, SteenScoreService>();
+            services.AddScoped<IPhotoGameScoreService, PhotoGameScoreService>();
+            services.AddScoped<IVlaeykensScoreService, VlaeykensScoreService>();
             services.AddScoped<IFindTheDifferenceService, FindTheDifferenceService>();
             services.AddScoped<IMastermindService, MastermindService>();
             services.AddScoped<IScoreService, ScoreService>();

@@ -209,6 +209,13 @@ namespace Models.T5B
                         ActivePuzzel = 0,
                         TeamNaam = "TEam DJ",
                         PuzzelScores = new Score()
+                        {
+                            grotemarkt = 5,
+                            mas = 8,
+                            vlaamsekaai = 5,
+                            totaal = 15
+
+                        }
 
                     },
                     new Team()
@@ -220,8 +227,15 @@ namespace Models.T5B
                         Score = 15,
                         StartPuzzel = 0,
                         ActivePuzzel = 0,
-                        TeamNaam = "Limberg Parking",
-                        PuzzelScores = new Score()
+                        TeamNaam = "Limburg Parking!!!",
+                         PuzzelScores = new Score()
+                        {
+                            grotemarkt = 5,
+                            mas = 8,
+                            vlaamsekaai = 5,
+                            totaal = 60
+                        }
+
                     }
                 };
                 foreach (Team t in teams)
@@ -375,7 +389,64 @@ namespace Models.T5B
                     context.QuizScores.Add(q);
                 }
 
-                
+                var photoScore = new PhotoGameScore[]
+                {
+                    new PhotoGameScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        Score = 5
+                    },
+                      new PhotoGameScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        Score = 5
+                    }
+
+                };
+                foreach (PhotoGameScore q in photoScore)
+                {
+                    context.PhotoGameScores.Add(q);
+                }
+
+                var vlaeykensScore = new VlaeykensScore[]
+                {
+                    new VlaeykensScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        Score = 5
+                    },
+                      new VlaeykensScore
+                    {
+                        DeviceID = "sfsdfsd",
+                        Score = 5
+                    }
+
+                };
+                foreach (VlaeykensScore q in vlaeykensScore)
+                {
+                    context.VlaeykensScores.Add(q);
+                }
+
+                var steenScore = new SteenScore[]
+               {
+                    new SteenScore
+                    {
+                        TeamID = 0,
+                        Score = 5
+                    },
+                      new SteenScore
+                    {
+                        TeamID = 1,
+                        Score = 5
+                    }
+
+               };
+                foreach (SteenScore q in steenScore)
+                {
+                    context.SteenScores.Add(q);
+                }
+
+
                 context.SaveChanges();
             }
         }
