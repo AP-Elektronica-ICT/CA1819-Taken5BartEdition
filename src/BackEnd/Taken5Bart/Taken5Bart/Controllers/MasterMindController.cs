@@ -26,6 +26,16 @@ namespace Taken5Bart.Controllers
         {
             return Ok(mmService.GetMasterMinds());
         }
+        [HttpGet("{teamId}")]
+        public ActionResult<Mastermind> GetbyTeamID(int teamId)
+        {
+            var mm = mmService.GetMasterMindByTeam(teamId);
+            if (mm == null)
+            {
+                return NotFound(-1);
+            }
+            return Ok(mm);
+        }
 
         [HttpGet("{teamId}/Allfound")]
         public ActionResult Allfound(int teamId)

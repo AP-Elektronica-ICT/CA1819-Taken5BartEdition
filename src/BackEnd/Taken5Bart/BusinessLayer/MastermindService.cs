@@ -102,5 +102,10 @@ namespace BusinessLayer
             }
             return m.AllDone;
         }
+
+        public Mastermind GetMasterMindByTeam(int teamId)
+        {
+            return _mmRepo.GetMasterMindByTeam(teamId);
+        }
     }
 }
