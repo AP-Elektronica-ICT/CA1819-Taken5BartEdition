@@ -95,6 +95,10 @@
     <Compile Include="Assets\Scripts\Games\Photogame\Photogame.cs" />
     <Compile Include="Assets\Scripts\Info_GetTeamData.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\Menu\Eindscherm\EndInventory.cs" />
+    <Compile Include="Assets\Scripts\Menu\Eindscherm\EndInventoryDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menu\Eindscherm\EndInventoryItem.cs" />
+    <Compile Include="Assets\Scripts\Menu\Eindscherm\EndInventoryItemDisplay.cs" />
     <Compile Include="Assets\Scripts\Menu\Inventory.cs" />
     <Compile Include="Assets\Scripts\Menu\InventoryDisplay.cs" />
     <Compile Include="Assets\Scripts\Menu\InventoryItem.cs" />
@@ -132,6 +136,9 @@
     <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
     <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
     <None Include="Assets\StreamingAssets\Vuforia\MAS.xml" />
+    <Reference Include="Cinemachine">
+      <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -141,17 +148,14 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/Viktor/Documents/School1819/CA1819-Taken5BartEdition/src/applicatie/Taken5/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

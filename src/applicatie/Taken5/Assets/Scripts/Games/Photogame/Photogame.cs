@@ -23,7 +23,8 @@ public class Photogame : MonoBehaviour, ITrackableEventHandler
     private float timeLimit = 300.0f; //tijdlimiet in seconden
     private float timeLeft = 0.1f;
 
-    static string ScoreURL = "http://localhost:1907/api/photogamescores";
+    APICaller api;
+    string url = "/photogamescores";
 
     // Use this for initialization
     void Start () {
@@ -34,6 +35,8 @@ public class Photogame : MonoBehaviour, ITrackableEventHandler
         foto.SetActive(false);
         deathText.SetActive(false);
         winText.SetActive(false);
+
+        api = gameObject.AddComponent<APICaller>();
     }
 
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
@@ -121,34 +124,6 @@ public class Photogame : MonoBehaviour, ITrackableEventHandler
 
         Debug.Log("score " + score);
 
-        StartCoroutine(WWWPost(N));
-    }
-
-    public static IEnumerator WWWPost(JSONNode N)
-    {
-        {
-            var req = new UnityWebRequest(ScoreURL, "POST");
-            byte[] data = Encoding.UTF8.GetBytes(N.ToString());
-
-            req.uploadHandler = new UploadHandlerRaw(data);
-            req.uploadHandler.contentType = "application/json";
-            req.downloadHandler = new DownloadHandlerBuffer();
-
-            req.SetRequestHeader("Content-Type", "application/json");
-            req.SetRequestHeader("accept", "application/json");
-
-            yield return req.SendWebRequest();
-
-            if (req.isNetworkError || req.isHttpError)
-            {
-                Debug.Log(req.error);
-            }
-            else
-            {
-                Debug.Log("Form upload complete!");
-                Debug.Log(data);
-            }
-        }
-
+        api.ApiPost(url, N);
     }
 }

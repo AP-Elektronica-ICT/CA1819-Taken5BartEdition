@@ -34,15 +34,14 @@ namespace Repository.T5B
 
         public int GetTotalScore(int teamId)
         {
-            int totaalscore;
             Team team = _context.Teams
               .Include(p => p.PuzzelScores)
               .FirstOrDefault(t => t.Id == teamId);
 
-            totaalscore = team.PuzzelScores.startgame + team.PuzzelScores.vlaamsekaai + team.PuzzelScores.stadsfeestzaal + team.PuzzelScores.Kathedraal + team.PuzzelScores.vleaykensgang + team.PuzzelScores.grotemarkt
+            team.PuzzelScores.totaal = team.PuzzelScores.startgame + team.PuzzelScores.vlaamsekaai + team.PuzzelScores.stadsfeestzaal + team.PuzzelScores.Kathedraal + team.PuzzelScores.vleaykensgang + team.PuzzelScores.grotemarkt
                  + team.PuzzelScores.hetSteen + team.PuzzelScores.mas + team.PuzzelScores.havenhuis;
 
-            return totaalscore;
+            return team.PuzzelScores.totaal;
         }
 
         public int SetScore(int teamId, string locatienaam, double score)

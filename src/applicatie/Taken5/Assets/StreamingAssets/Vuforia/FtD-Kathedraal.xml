@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="straat2" size="10.000000 4.134929" />
+    <ImageTarget name="straat1" size="10.000000 5.577558" />
+    <ImageTarget name="kuifjekrantenwinkel" size="10.000000 9.090909" />
+    <ImageTarget name="tegelBijlamp" size="10.000000 9.694941" />
+    <ImageTarget name="navigatie" size="10.000000 6.167751" />
+    <ImageTarget name="zee" size="10.000000 9.852599" />
+    <ImageTarget name="skull" size="10.000000 13.333333" />
+  </Tracking>
+</QCARConfig>

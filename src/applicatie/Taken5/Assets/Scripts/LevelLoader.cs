@@ -112,6 +112,7 @@ public class LevelLoader : MonoBehaviour
             Debug.Log("score/" + Info.TeamId + "/" + locatienaam + "/" + score);
 
             StartCoroutine(API.Get("score/" + Info.TeamId + "/" + locatienaam + "/" + score, donothing));
+            StartCoroutine(API.Get("team/" + Info.TeamId + "/nextpuzzel",  donothing));
         }
         EndGameAction(json);
     }   
