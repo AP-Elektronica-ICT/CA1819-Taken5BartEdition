@@ -39,6 +39,11 @@ namespace web_api_testing
             _spelers.Add(newSpeler);
         }
 
+        public void DeleteSpeler(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Sessie GetSessieFromSpeler(int spelerId)
         {
             throw new NotImplementedException();

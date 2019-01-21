@@ -121,5 +121,10 @@ namespace web_api_testing
         {
             throw new NotImplementedException();
         }
+
+        public void DeleteSpeler(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
