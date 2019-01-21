@@ -33,5 +33,10 @@ namespace BusinessLayer.T5B
         {
             _vlaeykensScoreRepo.PostVlaeykensScore(Q);
         }
+
+        public ICollection<VlaeykensScore> GetVlaeykensTeamScores(int id)
+        {
+            return _vlaeykensScoreRepo.GetVlaeykensTeamScores(id);
+        }
     }
 }
