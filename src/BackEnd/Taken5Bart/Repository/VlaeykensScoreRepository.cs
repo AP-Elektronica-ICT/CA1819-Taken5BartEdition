@@ -20,6 +20,20 @@ namespace Repository.T5B
             return _context.VlaeykensScores.ToList();
         }
 
+        public ICollection<VlaeykensScore> GetVlaeykensTeamScores(int id)
+        {
+            ICollection<VlaeykensScore> vlaeykenscores = _context.VlaeykensScores.ToList();
+            List<VlaeykensScore> result = new List<VlaeykensScore>();
+            foreach (VlaeykensScore score in vlaeykenscores)
+            {
+                if (score.TeamID == id)
+                {
+                    result.Add(score);
+                }
+            }
+            return result;
+        }
+
         public void PostVlaeykensScore(VlaeykensScore Q)
         {
             _context.VlaeykensScores.Add(Q);

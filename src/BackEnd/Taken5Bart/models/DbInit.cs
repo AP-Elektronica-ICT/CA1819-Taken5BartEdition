@@ -412,12 +412,12 @@ namespace Models.T5B
                 {
                     new VlaeykensScore
                     {
-                        DeviceID = "sfsdfsd",
+                        TeamID = 0,
                         Score = 5
                     },
                       new VlaeykensScore
                     {
-                        DeviceID = "sfsdfsd",
+                        TeamID = 1,
                         Score = 5
                     }
 

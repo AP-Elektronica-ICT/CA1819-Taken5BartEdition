@@ -33,5 +33,12 @@ namespace Taken5Bart.Controllers
             vlaeykensScoreService.AddNewScore(Q);
             return Ok();
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<VlaeykensScore>> getTeamScores(int id)
+        {
+            return Ok(vlaeykensScoreService.GetVlaeykensTeamScores(id));
+
+        }
     }
 }

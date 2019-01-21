@@ -9,5 +9,6 @@ namespace Interface.T5B
     {
         ICollection<VlaeykensScore> GetVlaeykensScores();
         void PostVlaeykensScore(VlaeykensScore Q);
+        ICollection<VlaeykensScore> GetVlaeykensTeamScores(int id);
     }
 }
