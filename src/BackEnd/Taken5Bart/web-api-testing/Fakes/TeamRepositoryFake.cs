@@ -22,7 +22,7 @@ namespace web_api_testing
 
         public void reset()
         {
-            _teams = GameDBFake.teams;
+            _teams = GameDBFake.teams.ToList();
             _teams[0].AssignedSessie = GameDBFake.sessies[0];
             _teams[1].AssignedSessie = GameDBFake.sessies[0];
             _teams[2].AssignedSessie = null;

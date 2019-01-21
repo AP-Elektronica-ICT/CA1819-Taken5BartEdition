@@ -9,10 +9,11 @@ using BusinessLayer.T5B;
 using Repository.T5B;
 using Interface;
 using Moq;
+using web_api_testing.Fakes;
+using System.Linq;
 
 namespace web_api_testing
 {
-
     public class TeamServiceTest
     {
         TeamService _service;
@@ -279,15 +280,16 @@ namespace web_api_testing
         [Fact]
         public void GetActive_Puzzel_existingTeam()
         {
-            
+            var _LocalfakeTeamRepo = new TeamRepositoryFake();
             var spelerMock = new Mock<ISpelerRepository>();
             var sessieMock = new Mock<ISessionRepository>();
             var teamMock = new Mock<ITeamRepository>();
             var puzzelMock = new Mock<IPuzzelRepository>();
-            teamMock.Setup(t => t.GetTeams()).Returns(_fakeTeamRepo.GetTeams());
-            teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int i)=>_fakeTeamRepo.GetTeam(i));
+            teamMock.Setup(t => t.GetTeams()).Returns(_LocalfakeTeamRepo.GetTeams());
+            teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int id) => { return GameDBFake.teams.Where(g => g.Id == id).FirstOrDefault(); });
             teamMock.Setup(t => t.GetTeam(It.IsNotIn(1, 2))).Returns((Team)null);
-            teamMock.Setup(t => t.GetActivePuzzel(It.IsIn(1,2))).Returns((int i)=>_fakeTeamRepo.GetActivePuzzel(i));
+            teamMock.Setup(t => t.GetActivePuzzel(2)).Returns((int id) => { return GameDBFake.teams.Where(g => g.Id == id).FirstOrDefault().ActivePuzzel; });
+            teamMock.Setup(t => t.GetActivePuzzel(1)).Returns((int id) => { return -1; });
             puzzelMock.Setup(p => p.GetPuzzel(It.IsAny<int>())).Returns(new Puzzel());
             var team = new TeamService(teamMock.Object,
                                         spelerMock.Object,
@@ -412,8 +414,6 @@ namespace web_api_testing
             Assert.Null(result);
             Assert.Equal(-1, resultId);
 
-            //cleanup
-            _fakeTeamRepo = new TeamRepositoryFake();
         }
 
         [Fact]
@@ -444,8 +444,6 @@ namespace web_api_testing
             Assert.Equal(-1, resultId);
             Assert.Null(result);
 
-            //cleanup
-            _fakeTeamRepo = new TeamRepositoryFake();
         }
     }
 }
