@@ -38,6 +38,17 @@ namespace Taken5Bart.Controllers
             }
             return Ok(result);
         }
+
+        [HttpGet("{id}/quizscore")]
+        public IActionResult GetQuizScore(int id)
+        {
+            var result = teamService.getquizscore(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound(-1);
+        }
         //geeft waarde terug zinder deze te verhogen
         [HttpGet("{id}/GetActivePuzzel")]
         public IActionResult GetActivePuzzel(int id)
@@ -99,10 +110,10 @@ namespace Taken5Bart.Controllers
 
       
         //checken of heel het team de game klaar heeft
-        [HttpGet("{id}/ChangeGameMode")]
-        public IActionResult ChangeGameModus(int id)
+        [HttpGet("{TeamId}/{SpelerId}/ChangeGameMode")]
+        public IActionResult ChangeGameModus(int TeamId,int SpelerId)
         {
-            var result = teamService.ChangeGameModus(id);
+            var result = teamService.ChangeGameModus(TeamId,SpelerId);
             return Ok(result);
 
         }
@@ -131,7 +142,16 @@ namespace Taken5Bart.Controllers
         {
             return Ok(teamService.GetPuzzels(id));
         }
-
+        [HttpGet("{id}/nextpuzzel")]
+        public IActionResult PostNextPuzzel(int id)
+        {
+            var result = teamService.GetNewPuzzel(id);
+            if (result != 0)
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
 
         [HttpPut("{id}/ActivePuzzel")]
         public IActionResult SetActivePuzzel(int id, bool reset)
@@ -169,16 +189,7 @@ namespace Taken5Bart.Controllers
             return NotFound();
         }
 
-        [HttpPost("{id}/nextpuzzel")]
-        public IActionResult PostNextPuzzel(int id)
-        {
-            var result = teamService.GetNewPuzzel(id);
-            if (result != 0)
-            {
-                return Ok(result);
-            }
-            return NotFound();
-        }
+      
 
 
         // PUT: api/Team/5

@@ -28,10 +28,12 @@ namespace Repository.T5B
 
         public Sessie GetSessie(int id)
         {
-            Sessie sessie = _context.Sessies.Include(s => s.Teams).SingleOrDefault(s => s.Id == id);
+            Sessie sessie = _context.Sessies.Include(s => s.Teams)
+                .ThenInclude(s =>s.PuzzelScores)
+                .SingleOrDefault(s => s.Id == id);
             return sessie;
         }
-
+      
         public ICollection<Sessie> GetSessies()
         {
             var sessie = _context.Sessies

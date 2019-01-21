@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> items = new List<InventoryItem>();
     APICaller api;
     string url = "score/"+ Info.TeamId;
-    string totalurl = "score/" + Info.TeamId + "/total";
+    string total = "score/" + Info.TeamId + "/total";
     int totalscore;
     public InventoryDisplay inventoryDisplayPrefab;
     InventoryDisplay inventory;
@@ -38,10 +38,11 @@ public class Inventory : MonoBehaviour
         inventory.Prime(items);
 
     }
-
+    
+  
     public void AddGameDiamant(string naam, string score)
     {
-        Debug.Log("naam " + naam + "score " + score);
+       // Debug.Log("naam " + naam + "score " + score);
         if (score != "0")
         {
             InventoryItem item = gameObject.AddComponent<InventoryItem>();

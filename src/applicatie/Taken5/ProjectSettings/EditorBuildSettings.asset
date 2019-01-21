@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu/Registration.unity
+    path: Assets/Scenes/Games/Menu/Registration.unity
     guid: b2605ec5013e50d4b968a2d33a80ff70
   - enabled: 1
-    path: Assets/Scenes/Menu/Menu.unity
+    path: Assets/Scenes/Games/Menu/Menu.unity
     guid: 4de6376d207b26e4d951cad72aa89c6e
   - enabled: 1
-    path: Assets/Scenes/Menu/Menu_Create.unity
+    path: Assets/Scenes/Games/Menu/Menu_Create.unity
     guid: c4f134f2bf3462544b222213cfb30170
   - enabled: 1
-    path: Assets/Scenes/Menu/Menu_Join.unity
+    path: Assets/Scenes/Games/Menu/Menu_Join.unity
     guid: 409e3e46d454a744ab09f0666c10dcc0
   - enabled: 1
     path: Assets/Scenes/NavigationS/NavigationScreen.unity
@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/NavigationS/Vooruitgang.unity
     guid: 74970d0e5c5fb5d4ab65f2c9fd875dd8
   - enabled: 1
-    path: Assets/Scenes/Menu/Info.unity
+    path: Assets/Scenes/Games/Menu/Info.unity
     guid: e0b07b7ba728efc40b89dcf3387b4d8f
   - enabled: 1
     path: Assets/Scenes/Games/BraboGame.unity
@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Games/ARGames/ARLetterGame/ARLetterGame.unity
     guid: 98b929c6a70ca834f9a273dc7c655b56
   - enabled: 1
-    path: Assets/Scenes/Menu/WaitingScreen.unity
+    path: Assets/Scenes/Games/Menu/WaitingScreen.unity
     guid: b744cac86cc5a4443bc431a279b90517
+  - enabled: 1
+    path: Assets/Scenes/NavigationS/TeamList.unity
+    guid: 60b2ab589b0c2ca4a8b5e91ea01b9d56
   m_configObjects: {}

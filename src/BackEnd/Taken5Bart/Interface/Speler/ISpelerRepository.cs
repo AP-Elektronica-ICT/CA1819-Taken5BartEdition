@@ -10,10 +10,12 @@ namespace Interface.T5B
     {
         Speler GetSpeler(int Id);
         Speler GetSpelerOnDevice(string DeviceID);
-
         Speler NewSpeler(Speler s);
         ICollection<Speler> GetSpelers();
 
-  
+        void PostQuizScore(int Spelerid, QuizScore Q);
+
+
+
     }
 }

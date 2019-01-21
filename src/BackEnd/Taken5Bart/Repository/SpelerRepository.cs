@@ -29,7 +29,7 @@ namespace Repository.T5B
 
         public Speler GetSpeler(int id)
         {
-            return _context.Spelers.Include(s => s.AssignedTeam).SingleOrDefault(g => g.Id == id);
+            return _context.Spelers.Include(s => s.AssignedTeam).Include(s => s.quizScore).SingleOrDefault(g => g.Id == id);
         }
 
         public Speler GetSpelerOnDevice(string DeviceID)
@@ -47,10 +47,16 @@ namespace Repository.T5B
             return _context.Spelers.ToList();
         }
 
+        public void PostQuizScore(int Spelerid, QuizScore Q)
+        {
+            Speler speler = _context.Spelers.FirstOrDefault(sp => sp.Id == Spelerid);
+            if (Q != null)
+            {
+                speler.quizScore = Q;
+                _context.SaveChanges();
+            }
+          
 
-
-
-
-
+        }
     }
 }

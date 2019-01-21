@@ -30,7 +30,7 @@ namespace Repository.T5B
 
         public Team GetTeam(int id)
         {
-            return _context.Teams.Include(t => t.Spelers).Include(t => t.AssignedSessie).Include(t => t.PuzzelsTeam).ThenInclude(t => t.Puzzel).SingleOrDefault(g => g.Id == id);
+            return _context.Teams.Include(t => t.Spelers).ThenInclude(t => t.quizScore).Include(t => t.AssignedSessie).Include(t => t.PuzzelsTeam).ThenInclude(t => t.Puzzel).SingleOrDefault(g => g.Id == id);
 
         }
 
@@ -90,6 +90,11 @@ namespace Repository.T5B
             {
                 team.ActivePuzzel = 8;
             }
+            else if (team.ActivePuzzel == 8)
+            {
+                team.ActivePuzzel = 9;
+
+            }
             else if (team.ActivePuzzel == 8 && team.StartPuzzel != 1)
             {
                 team.ActivePuzzel = 1;
@@ -99,17 +104,45 @@ namespace Repository.T5B
             return team.ActivePuzzel;
         }
 
-        public int ChangeGameModus(int TeamId)
+
+
+
+
+
+
+        public int ChangeGameModus(int TeamId,int SpelerId)
         {
             Team team = GetTeam(TeamId);
+            Speler speler = team.Spelers.FirstOrDefault(s => s.Id == SpelerId);
+            int spelersinloby = 0;
+
+            foreach (Speler sp in team.Spelers)
+            {
+                if (sp.InLoby)
+                {
+                    spelersinloby++;
+                }
+            }
+
             if (team.TeamMode == 0 || team.TeamMode == 2)
             {
                 team.TeamMode++;
+                speler.InLoby = true;
             }
             else if (team.TeamMode == 1 || team.TeamMode == 3)
             {
-                if (team.Spelers.Count == team.PuzzelDone)
+
+                if (team.Spelers.Count == spelersinloby || speler.InGame)
                 {
+                    foreach (Speler sp in team.Spelers)
+                    {
+                        sp.InLoby = false;
+                        sp.InGame = true;
+                    }
+                    speler.InGame = false;
+                    {
+
+                    }
                     if (team.TeamMode == 1)
                     {
                         team.TeamMode++;
@@ -125,6 +158,8 @@ namespace Repository.T5B
             _context.SaveChanges();
             return team.TeamMode;
         }
+
+
 
         public int DevChangeGameModus(int TeamId)
         {
@@ -187,6 +222,24 @@ namespace Repository.T5B
             */
         }
 
-     
+        public double getquizscore(int TeamId)
+        {
+            Team team = _context.Teams
+                .Include(t => t.Spelers).ThenInclude(t => t.quizScore)
+                .FirstOrDefault(t => t.Id == TeamId);
+            double totaalscore = 0;
+
+            foreach (Speler speler in team.Spelers)
+            {
+                if (speler.quizScore != null)
+                {
+                    double score = speler.quizScore.Score;
+                    double aantalvragen = speler.quizScore.AantalVragen;
+
+                    totaalscore += score / aantalvragen * 10;
+                }
+            }
+            return totaalscore;
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Models.T5B
+    //alle scores in sessie meegeven!
 {
     public class Team
     {

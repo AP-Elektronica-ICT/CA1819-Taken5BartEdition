@@ -34,15 +34,14 @@ namespace Repository.T5B
 
         public int GetTotalScore(int teamId)
         {
-            int totaalscore;
             Team team = _context.Teams
               .Include(p => p.PuzzelScores)
               .FirstOrDefault(t => t.Id == teamId);
 
-            totaalscore = team.PuzzelScores.startgame + team.PuzzelScores.vlaamsekaai + team.PuzzelScores.stadsfeestzaal + team.PuzzelScores.Kathedraal + team.PuzzelScores.vleaykensgang + team.PuzzelScores.grotemarkt
+            team.PuzzelScores.totaal = team.PuzzelScores.startgame + team.PuzzelScores.vlaamsekaai + team.PuzzelScores.stadsfeestzaal + team.PuzzelScores.Kathedraal + team.PuzzelScores.vleaykensgang + team.PuzzelScores.grotemarkt
                  + team.PuzzelScores.hetSteen + team.PuzzelScores.mas + team.PuzzelScores.havenhuis;
 
-            return totaalscore;
+            return team.PuzzelScores.totaal;
         }
 
         public int SetScore(int teamId, string locatienaam, double score)
@@ -69,7 +68,15 @@ namespace Repository.T5B
                     team.PuzzelScores.vleaykensgang = (int)score;
                     break;
                 case "grotemarkt":
-                    team.PuzzelScores.grotemarkt = (int)score;
+                    if (team.PuzzelScores.grotemarkt ==0)
+                    {
+                        team.PuzzelScores.grotemarkt = (int)score;
+                    }
+                    else
+                    {
+                        team.PuzzelScores.grotemarkt = (team.PuzzelScores.grotemarkt + (int)score) / 2;
+
+                    }
                     break;
                 case "hetSteen":
                     team.PuzzelScores.hetSteen = (int)score;
