@@ -279,13 +279,15 @@ namespace web_api_testing
         [Fact]
         public void GetActive_Puzzel_existingTeam()
         {
+            
             var spelerMock = new Mock<ISpelerRepository>();
             var sessieMock = new Mock<ISessionRepository>();
             var teamMock = new Mock<ITeamRepository>();
             var puzzelMock = new Mock<IPuzzelRepository>();
             teamMock.Setup(t => t.GetTeams()).Returns(_fakeTeamRepo.GetTeams());
             teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int i)=>_fakeTeamRepo.GetTeam(i));
-            teamMock.Setup(t => t.GetTeam(It.IsNotIn(1,2))).Returns((Team)null);
+            teamMock.Setup(t => t.GetTeam(It.IsNotIn(1, 2))).Returns((Team)null);
+            teamMock.Setup(t => t.GetActivePuzzel(It.IsIn(1,2))).Returns((int i)=>_fakeTeamRepo.GetActivePuzzel(i));
             puzzelMock.Setup(p => p.GetPuzzel(It.IsAny<int>())).Returns(new Puzzel());
             var team = new TeamService(teamMock.Object,
                                         spelerMock.Object,
@@ -298,10 +300,12 @@ namespace web_api_testing
             // Act
             var resultActive = team.ActivePuzzel(teamIdActive);
             var resultNotActive = team.ActivePuzzel(teamIdNotActive);
-
+            var activepuzzelID = team.GetActivePuzzel(1);
             // Assert
             Assert.IsType<Puzzel>(resultActive);
+            Assert.Equal(-1, activepuzzelID);
             Assert.Null(resultNotActive);
+
         }
 
         [Fact]
@@ -357,13 +361,14 @@ namespace web_api_testing
         [Fact]
         public void SetActive_Puzzel_ExistingTeam()
         {
+            var _LocalfakeTeamRepo = new TeamRepositoryFake();
             var spelerMock = new Mock<ISpelerRepository>();
             var sessieMock = new Mock<ISessionRepository>();
             var teamMock = new Mock<ITeamRepository>();
             var puzzelMock = new Mock<IPuzzelRepository>();
-            teamMock.Setup(t => t.GetTeams()).Returns(_fakeTeamRepo.GetTeams());
-            teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int i) => _fakeTeamRepo.GetTeam(i));
-            teamMock.Setup(t => t.SetActivePuzzel(It.IsIn(1, 2), It.IsAny<int>())).Callback<int, int>((a,b)=>_fakeTeamRepo.SetActivePuzzel(a,b));
+            teamMock.Setup(t => t.GetTeams()).Returns(_LocalfakeTeamRepo.GetTeams());
+            teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int i) => _LocalfakeTeamRepo.GetTeam(i));
+            teamMock.Setup(t => t.SetActivePuzzel(It.IsIn(1, 2), It.IsAny<int>())).Callback<int, int>((a,b)=> _LocalfakeTeamRepo.SetActivePuzzel(a,b));
             teamMock.Setup(t => t.GetTeam(It.IsNotIn(1, 2))).Returns((Team)null);
             puzzelMock.Setup(p => p.GetPuzzel(It.IsAny<int>())).Returns(new Puzzel());
             var team = new TeamService(teamMock.Object,
@@ -383,13 +388,14 @@ namespace web_api_testing
         [Fact]
         public void ResetActive_Puzzel_ExistingTeam()
         {
+            var _LocalfakeTeamRepo = new TeamRepositoryFake();
             var spelerMock = new Mock<ISpelerRepository>();
             var sessieMock = new Mock<ISessionRepository>();
             var teamMock = new Mock<ITeamRepository>();
             var puzzelMock = new Mock<IPuzzelRepository>();
-            teamMock.Setup(t => t.GetTeams()).Returns(_fakeTeamRepo.GetTeams());
-            teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int i) => _fakeTeamRepo.GetTeam(i));
-            teamMock.Setup(t => t.SetActivePuzzel(It.IsIn(1, 2), It.IsAny<int>())).Callback<int, int>((a, b) => _fakeTeamRepo.SetActivePuzzel(a, b));
+            teamMock.Setup(t => t.GetTeams()).Returns(_LocalfakeTeamRepo.GetTeams());
+            teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int i) => _LocalfakeTeamRepo.GetTeam(i));
+            teamMock.Setup(t => t.SetActivePuzzel(It.IsIn(1, 2), It.IsAny<int>())).Callback<int, int>((a, b) => _LocalfakeTeamRepo.SetActivePuzzel(a, b));
             teamMock.Setup(t => t.GetTeam(It.IsNotIn(1, 2))).Returns((Team)null);
             puzzelMock.Setup(p => p.GetPuzzel(It.IsAny<int>())).Returns(new Puzzel());
             var team = new TeamService(teamMock.Object,
@@ -405,18 +411,22 @@ namespace web_api_testing
             // Assert
             Assert.Null(result);
             Assert.Equal(-1, resultId);
+
+            //cleanup
+            _fakeTeamRepo = new TeamRepositoryFake();
         }
 
         [Fact]
         public void SetActive_Puzzel_NotexistingTeam()
         {
+            var _LocalfakeTeamRepo = new TeamRepositoryFake();
             var spelerMock = new Mock<ISpelerRepository>();
             var sessieMock = new Mock<ISessionRepository>();
             var teamMock = new Mock<ITeamRepository>();
             var puzzelMock = new Mock<IPuzzelRepository>();
-            teamMock.Setup(t => t.GetTeams()).Returns(_fakeTeamRepo.GetTeams());
-            teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int i) => _fakeTeamRepo.GetTeam(i));
-            teamMock.Setup(t => t.SetActivePuzzel(It.IsIn(1, 2), It.IsAny<int>())).Callback<int, int>((a, b) => _fakeTeamRepo.SetActivePuzzel(a, b));
+            teamMock.Setup(t => t.GetTeams()).Returns(_LocalfakeTeamRepo.GetTeams());
+            teamMock.Setup(t => t.GetTeam(It.IsIn(1, 2))).Returns((int i) => _LocalfakeTeamRepo.GetTeam(i));
+            teamMock.Setup(t => t.SetActivePuzzel(It.IsIn(1, 2), It.IsAny<int>())).Callback<int, int>((a, b) => _LocalfakeTeamRepo.SetActivePuzzel(a, b));
             teamMock.Setup(t => t.GetTeam(It.IsNotIn(1, 2))).Returns((Team)null);
             puzzelMock.Setup(p => p.GetPuzzel(It.IsAny<int>())).Returns(new Puzzel());
             var team = new TeamService(teamMock.Object,
@@ -433,6 +443,9 @@ namespace web_api_testing
             // Assert
             Assert.Equal(-1, resultId);
             Assert.Null(result);
+
+            //cleanup
+            _fakeTeamRepo = new TeamRepositoryFake();
         }
     }
 }

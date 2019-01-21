@@ -64,5 +64,9 @@ namespace web_api_testing
             return new Team();
         }
 
+        public void PostQuizScore(int Spelerid, QuizScore Q)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
