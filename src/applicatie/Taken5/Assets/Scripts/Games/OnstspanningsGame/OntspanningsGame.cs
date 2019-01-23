@@ -12,9 +12,13 @@ public class OntspanningsGame : MonoBehaviour {
     private float timeLimit = 901.0f; //tijdlimiet in seconden
     private float timeLeft = 0.1f;
     // Use this for initialization
+    APICaller api;
+    LevelLoader levelLoader;
     void Start () {
         UpdateClock();
-	}
+        api = api = gameObject.AddComponent<APICaller>();
+        levelLoader = gameObject.AddComponent<LevelLoader>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,7 +26,7 @@ public class OntspanningsGame : MonoBehaviour {
         timeLeft = timeLimit - timePast;
         if (timeLeft < 0)
         {
-            Application.LoadLevel("OntspanningGame");
+            levelLoader.ChangeGameModeEndOfGame(api, "stadswaag", 10);
         }
         else
         {

@@ -2010,6 +2010,7 @@ GameObject:
   - component: {fileID: 1715948692}
   - component: {fileID: 1715948691}
   - component: {fileID: 1715948690}
+  - component: {fileID: 1715948693}
   m_Layer: 5
   m_Name: ByPass
   m_TagString: Untagged
@@ -2077,9 +2078,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 56623177}
-        m_MethodName: LoadLevel
-        m_Mode: 3
+      - m_Target: {fileID: 1715948693}
+        m_MethodName: bypass
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2127,6 +2128,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715948688}
   m_CullTransparentMesh: 0
+--- !u!114 &1715948693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715948688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1731837bf21408344bbe7e98dfd9ebac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLoader: {fileID: 56623177}
 --- !u!1 &1748125010
 GameObject:
   m_ObjectHideFlags: 0

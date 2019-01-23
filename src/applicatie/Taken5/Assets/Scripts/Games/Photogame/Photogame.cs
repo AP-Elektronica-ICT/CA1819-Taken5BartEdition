@@ -26,6 +26,13 @@ public class Photogame : MonoBehaviour, ITrackableEventHandler
     APICaller api;
     string url = "/photogamescores";
 
+    string teamScoreUrl = "photogamescores/" + Info.TeamId;
+    int totalScore = 0;
+    int aantalSpelers = 0;
+    double gemiddeldeScore = 0;
+    LevelLoader levelLoader;
+    int endScore = 0;
+
     // Use this for initialization
     void Start () {
         mTrackableBehaviour.RegisterTrackableEventHandler(this);
@@ -37,6 +44,7 @@ public class Photogame : MonoBehaviour, ITrackableEventHandler
         winText.SetActive(false);
 
         api = gameObject.AddComponent<APICaller>();
+        levelLoader = gameObject.AddComponent<LevelLoader>();
     }
 
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus, TrackableBehaviour.Status newStatus)
@@ -103,27 +111,52 @@ public class Photogame : MonoBehaviour, ITrackableEventHandler
         deathText.SetActive(true);
         seePictureButton.interactable = false;
         yield return new WaitForSeconds(5f);
-        PostScore(0);
-        Application.LoadLevel("PhotoGame");
+        endScore = 0;
+        PostScore(endScore);
+        api.ApiGet(teamScoreUrl, (result) => getScores(result));
+        levelLoader.ChangeGameModeEndOfGame(api, "mas", gemiddeldeScore);
     }
 
     IEnumerator Win()
     {
         winText.SetActive(true);
         yield return new WaitForSeconds(5f);
-        PostScore(10);
-        Application.LoadLevel("PhotoGame");
+        endScore = 10;
+        PostScore(endScore);
+        api.ApiGet(teamScoreUrl, (result) => getScores(result));
+        levelLoader.ChangeGameModeEndOfGame(api, "mas", gemiddeldeScore);
     }
 
     void PostScore(int score)
     {
         JSONNode N = new JSONObject();
 
-        N["DeviceID"] = SystemInfo.deviceUniqueIdentifier;
+        N["TeamID"] = Info.TeamId;
         N["score"] =score;
 
         Debug.Log("score " + score);
 
         api.ApiPost(url, N);
+    }
+
+    public void getScores(string json)
+    {
+        Debug.Log("getscores:");
+        Debug.Log(json);
+        var N = JSON.Parse(json);
+        totalScore = 0;
+        aantalSpelers = 0;
+        foreach (JSONNode score in N)
+        {
+            totalScore = totalScore + (Int32.Parse(score["score"].Value));
+            aantalSpelers++;
+        }
+        totalScore = totalScore + endScore;
+        aantalSpelers = aantalSpelers++;
+        gemiddeldeScore = totalScore / aantalSpelers;
+
+        Debug.Log("totale score: " + totalScore);
+        Debug.Log("totaal aantal spelers: " + aantalSpelers);
+        Debug.Log("gemiddelde score: " + gemiddeldeScore);
     }
 }

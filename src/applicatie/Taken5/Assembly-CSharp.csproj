@@ -78,8 +78,8 @@
     <Compile Include="Assets\Scripts\APICall\Registration\PostRegistration.cs" />
     <Compile Include="Assets\Scripts\constante.cs" />
     <Compile Include="Assets\Scripts\Distance.cs" />
-    <Compile Include="Assets\Scripts\Games\ARFindDifference\antwoord.cs" />
     <Compile Include="Assets\Scripts\Games\ARFindDifference\click.cs" />
+    <Compile Include="Assets\Scripts\Games\ARFindDifference\FTDantwoord.cs" />
     <Compile Include="Assets\Scripts\Games\ARFindDifference\FtDNavigatie.cs" />
     <Compile Include="Assets\Scripts\Games\ARFindDifference\TargetScript.cs" />
     <Compile Include="Assets\Scripts\Games\ARFindDifference\TrackableEventHandler.cs" />
@@ -92,7 +92,11 @@
     <Compile Include="Assets\Scripts\Games\CastleGame\KnightMovement.cs" />
     <Compile Include="Assets\Scripts\Games\CastleGame\SteenGameStart.cs" />
     <Compile Include="Assets\Scripts\Games\GameCompleted.cs" />
+    <Compile Include="Assets\Scripts\Games\Mastermind\color.cs" />
+    <Compile Include="Assets\Scripts\Games\Mastermind\MasterMind.cs" />
+    <Compile Include="Assets\Scripts\Games\OnstspanningsGame\OntspanningsGame.cs" />
     <Compile Include="Assets\Scripts\Games\Photogame\Photogame.cs" />
+    <Compile Include="Assets\Scripts\Games\Vlaeykens\Vlaeykens.cs" />
     <Compile Include="Assets\Scripts\Info_GetTeamData.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Menu\Eindscherm\EndInventory.cs" />
@@ -118,6 +122,7 @@
     <Compile Include="Assets\Scripts\teamList\TeamListDisplay.cs" />
     <Compile Include="Assets\Scripts\teamList\TeamListItem.cs" />
     <Compile Include="Assets\Scripts\teamList\TeamListItemDisplay.cs" />
+    <Compile Include="Assets\Scripts\Users\DevBypass.cs" />
     <Compile Include="Assets\Scripts\Users\Menu_Create.cs" />
     <Compile Include="Assets\Scripts\Users\Menu_Join.cs" />
     <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
@@ -128,11 +133,13 @@
     <None Include="Assets\Knight Files\Read Me.txt" />
     <None Include="Assets\Vuforia\Shaders\VideoBackground.shader" />
     <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
+    <None Include="Assets\StreamingAssets\Vuforia\Vlaeykens.xml" />
     <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
     <None Include="Assets\Vuforia\Databases\Emulator\VuforiaEmulator.xml" />
     <None Include="Assets\Vuforia\Shaders\ClippingMask.shader" />
     <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
     <None Include="Assets\Vuforia\Shaders\DepthContour.shader" />
+    <None Include="Assets\StreamingAssets\Vuforia\FtD-Kathedraal.xml" />
     <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
     <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
     <None Include="Assets\StreamingAssets\Vuforia\MAS.xml" />

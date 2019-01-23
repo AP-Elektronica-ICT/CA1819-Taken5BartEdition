@@ -27,6 +27,12 @@ public class Vlaeykens : MonoBehaviour, ITrackableEventHandler {
     APICaller api;
     string url = "/vlaeykensscores";
 
+    string teamScoreUrl = "vlaeykensscores/" + Info.TeamId;
+    int totalScore = 0;
+    int aantalSpelers = 0;
+    double gemiddeldeScore = 0;
+    LevelLoader levelLoader;
+
     // Use this for initialization
     void Start () {
         mTrackableBehaviour.RegisterTrackableEventHandler(this);
@@ -38,6 +44,8 @@ public class Vlaeykens : MonoBehaviour, ITrackableEventHandler {
         deathText.SetActive(false);
 
         api = gameObject.AddComponent<APICaller>();
+
+        levelLoader = gameObject.AddComponent<LevelLoader>();
     }
 	
 	// Update is called once per frame
@@ -89,7 +97,8 @@ public class Vlaeykens : MonoBehaviour, ITrackableEventHandler {
     {
         yield return new WaitForSeconds(5f);
         PostScore(finalScore);
-        Application.LoadLevel("VlaeykensGame");
+        api.ApiGet(teamScoreUrl, (result) => getScores(result));
+        levelLoader.ChangeGameModeEndOfGame(api, "vleaykensgang", gemiddeldeScore);
     }
 
     IEnumerator Death()
@@ -97,8 +106,10 @@ public class Vlaeykens : MonoBehaviour, ITrackableEventHandler {
         riddle.SetActive(false);
         deathText.SetActive(true);
         yield return new WaitForSeconds(5f);
-        PostScore(0);
-        Application.LoadLevel("VlaeykensGame");
+        finalScore = 0;
+        PostScore(finalScore);
+        api.ApiGet(teamScoreUrl, (result) => getScores(result));
+        levelLoader.ChangeGameModeEndOfGame(api, "vleaykensgang", gemiddeldeScore);
 
     }
 
@@ -128,11 +139,32 @@ public class Vlaeykens : MonoBehaviour, ITrackableEventHandler {
     {
         JSONNode N = new JSONObject();
 
-        N["DeviceID"] = SystemInfo.deviceUniqueIdentifier;
+        N["TeamID"] = Info.TeamId;
         N["score"] = score;
 
         Debug.Log("score " + score);
 
         api.ApiPost(url, N);
+    }
+
+    public void getScores(string json)
+    {
+        Debug.Log("getscores:");
+        Debug.Log(json);
+        var N = JSON.Parse(json);
+        totalScore = 0;
+        aantalSpelers = 0;
+        foreach (JSONNode score in N)
+        {
+            totalScore = totalScore + (Int32.Parse(score["score"].Value));
+            aantalSpelers++;
+        }
+        totalScore = totalScore + finalScore;
+        aantalSpelers = aantalSpelers++;
+        gemiddeldeScore = totalScore / aantalSpelers;
+
+        Debug.Log("totale score: " + totalScore);
+        Debug.Log("totaal aantal spelers: " + aantalSpelers);
+        Debug.Log("gemiddelde score: " + gemiddeldeScore);
     }
 }

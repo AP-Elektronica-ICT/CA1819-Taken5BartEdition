@@ -42,6 +42,6 @@ public class click : MonoBehaviour {
 
     public void objectClick()
     {
-        antwoord.GetComponent<antwoord>().foundItem(itemID);
+        antwoord.GetComponent<FTDantwoord>().foundItem(itemID);
     }
 }

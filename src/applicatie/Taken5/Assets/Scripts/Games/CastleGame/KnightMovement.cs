@@ -26,12 +26,20 @@ public class KnightMovement : MonoBehaviour {
     //static string ScoreURL = "http://localhost:1907/api/steenscores";
 
     APICaller api;
-    string url = "/steenscores";
+    string url = "steenscores";
+
+    //DEZE TOEVOEGEN
+    string teamScoreUrl = "steenscores/" + Info.TeamId;
+    int totalScore = 0;
+    int aantalSpelers = 0;
+    double gemiddeldeScore = 0;
+    LevelLoader levelLoader;
 
     // Use this for initialization
     void Start () {
         playerObject = GameObject.Find("Knight");
         api = gameObject.AddComponent<APICaller>();
+        levelLoader = gameObject.AddComponent<LevelLoader>();
     }
 	
 	// Update is called once per frame
@@ -43,22 +51,29 @@ public class KnightMovement : MonoBehaviour {
         if (playerObject.transform.position.y < 0)
         {
             StartCoroutine(Dies());
+            StartCoroutine(api.Get2(teamScoreUrl, (result) => getScores(result)));
         }
 
         // check if player reached end of the game
         if (playerObject.transform.position.x > eindPositie)
         {
             StartCoroutine(Winner());
+            StartCoroutine(api.Get2(teamScoreUrl, (result) => getScores(result)));
         }
 
         Debug.Log("current score is " + CalculateScore());
-
+        try { 
         // check if screen is touched to jump
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
-        {
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
             
-            animator.SetBool("IsJumping", true);
-            jump = true;
+                animator.SetBool("IsJumping", true);
+                jump = true;
+            }
+        }
+        catch(ArgumentException e)
+        {
+            Debug.Log(e);
         }
     }
 
@@ -87,7 +102,10 @@ public class KnightMovement : MonoBehaviour {
         runSpeed = 0f;
         yield return new WaitForSeconds(5);
         PostScore();
-        Application.LoadLevel("SteenGameStart");
+
+        //Deze toevoegen
+        api.ApiGet(teamScoreUrl, (result)=> getScores(result));
+        levelLoader.ChangeGameModeEndOfGame(api, "hetSteen", gemiddeldeScore);
     }
 
     IEnumerator Dies()
@@ -95,50 +113,46 @@ public class KnightMovement : MonoBehaviour {
         animator.SetBool("IsDead", true);
         yield return new WaitForSeconds(0.7f);
         PostScore();
-        Application.LoadLevel("SteenGameStart");
+
+        //Deze toevoegen
+        api.ApiGet(teamScoreUrl, (result) => getScores(result));
+        levelLoader.ChangeGameModeEndOfGame(api, "hetSteen", gemiddeldeScore);
     }
 
     void PostScore()
     {
+        
         JSONNode N = new JSONObject();
 
-        N["DeviceID"] = SystemInfo.deviceUniqueIdentifier;
-        N["score"] = CalculateScore();
+        N["TeamID"] = Info.TeamId;
+        N["Score"] = CalculateScore();
 
         Debug.Log("score " + CalculateScore());
 
-        //StartCoroutine(WWWPost(N));
-
         api.ApiPost(url, N);
+        
+    }
+
+    public void getScores(string json)
+    {
+        Debug.Log("getscores:");
+        Debug.Log(json);
+        var N = JSON.Parse(json);
+        totalScore = 0;
+        aantalSpelers = 0;
+        foreach (JSONNode score in N)
+        {
+            totalScore = totalScore + (Int32.Parse(score["score"].Value));
+            aantalSpelers++;
+        }
+        totalScore = totalScore + CalculateScore();
+        aantalSpelers = aantalSpelers++;
+        gemiddeldeScore = totalScore / aantalSpelers;
+
+        Debug.Log("totale score: " + totalScore);
+        Debug.Log("totaal aantal spelers: " + aantalSpelers);
+        Debug.Log("gemiddelde score: " + gemiddeldeScore);
     }
 
 
-
-    /*public static IEnumerator WWWPost(JSONNode N)
-    {
-        {
-            var req = new UnityWebRequest(ScoreURL, "POST");
-            byte[] data = Encoding.UTF8.GetBytes(N.ToString());
-
-            req.uploadHandler = new UploadHandlerRaw(data);
-            req.uploadHandler.contentType = "application/json";
-            req.downloadHandler = new DownloadHandlerBuffer();
-
-            req.SetRequestHeader("Content-Type", "application/json");
-            req.SetRequestHeader("accept", "application/json");
-
-            yield return req.SendWebRequest();
-
-            if (req.isNetworkError || req.isHttpError)
-            {
-                Debug.Log(req.error);
-            }
-            else
-            {
-                Debug.Log("Form upload complete!");
-                Debug.Log(data);
-            }
-        }
-
-    }*/
 }

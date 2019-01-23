@@ -52,7 +52,7 @@ public class Info_GetTeamData : MonoBehaviour {
         SpelerNaam.text = Info.Voornaam;
         SessieCode.text = Info.SessieCode;
         var url = "Team/" + Info.TeamId.ToString() + "/GetScorePosition";
-        StartCoroutine(api.Get(url, ScorePos));
+        StartCoroutine(api.Get2(url, ScorePos));
     }
     void ScorePos(string json)
     {

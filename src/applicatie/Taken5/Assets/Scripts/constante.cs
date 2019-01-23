@@ -28,13 +28,13 @@ public class InfoUpdater : MonoBehaviour
     {
         isDone = false;
         string url = "Speler/" + Info.spelerId.ToString() + "/Team";
-        StartCoroutine(_api.Get(url, (result) => { //lamba functie zijn ook een opties om dit op te lossen
+        StartCoroutine(_api.Get2(url, (result) => { //lamba functie zijn ook een opties om dit op te lossen
             GetSpeler(result);
 
             }));
         
         url = "Speler/" + Info.spelerId.ToString();
-        StartCoroutine(_api.Get(url, GetSpeler));
+        StartCoroutine(_api.Get2(url, GetSpeler));
         yield return new WaitUntil(() => !isDone);
         doLast();
     }
@@ -61,7 +61,7 @@ public class InfoUpdater : MonoBehaviour
         isDone = false;
         var url = "puzzel/" + (Info.Diamanten) + "/location";
 
-        StartCoroutine(_api.Get(url, Locatie));
+        StartCoroutine(_api.Get2(url, Locatie));
         
         yield return new WaitUntil(() => !isDone);
         doLast();

@@ -33,7 +33,7 @@ public class CheckRegisterd : MonoBehaviour
         button2.onClick.AddListener(OnClick);
 
         Debug.Log(url);
-        StartCoroutine(api.Get(url, CheckIfRegisterd));
+        StartCoroutine(api.Get2(url, CheckIfRegisterd));
         
     }
     
@@ -58,7 +58,7 @@ public class CheckRegisterd : MonoBehaviour
 
             if (startcheck)
             { 
-                StartCoroutine(api.Get("speler/" + Info.spelerId + "/team",CheckInTeam));
+                StartCoroutine(api.Get2("speler/" + Info.spelerId + "/team",CheckInTeam));
                 Debug.Log("startcheck");
                 startcheck = false;
             }
@@ -80,7 +80,7 @@ public class CheckRegisterd : MonoBehaviour
         if (N != "" && N!="-1")
         {
             Debug.Log("in if");
-            StartCoroutine(api.Get("speler/" + Info.spelerId + "/sessie", CheckInSessie));
+            StartCoroutine(api.Get2("speler/" + Info.spelerId + "/sessie", CheckInSessie));
             Info.TeamNaam = N["teamnaam"].Value.ToString();
             Info.TeamId = N["id"];
             Info.ActivePuzzel = N["activepuzzel"];
@@ -103,7 +103,7 @@ public class CheckRegisterd : MonoBehaviour
     public void OnClick()
     {
         Debug.Log("check");
-        StartCoroutine(api.Get(url, CheckIfRegisterd));
+        StartCoroutine(api.Get2(url, CheckIfRegisterd));
         if (registerd)
         {
             Debug.Log("check");

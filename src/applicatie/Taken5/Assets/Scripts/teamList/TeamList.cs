@@ -11,7 +11,6 @@ public class TeamList : MonoBehaviour {
     TeamListDisplay inventory;
 
     APICaller api;
-    //string url = "team/" + Info.TeamId;
     string url = "team/" + Info.TeamId;
 
     // Use this for initialization

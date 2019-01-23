@@ -11,9 +11,15 @@ public class SteenGameStart : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        try { 
         if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
             Application.LoadLevel("SteenGame");
+        }
+        }
+        catch(System.Exception e)
+        {
+            Debug.Log(e);
         }
     }
 }
