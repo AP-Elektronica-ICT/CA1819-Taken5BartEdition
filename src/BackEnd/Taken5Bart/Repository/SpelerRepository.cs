@@ -21,10 +21,18 @@ namespace Repository.T5B
 
         public Speler NewSpeler(Speler s)
         {
-            //Speler toevoegen in de databank, Id wordt dan ook toegekend
-            _context.Spelers.Add(s);
-            _context.SaveChanges();
-            return s;
+            Speler speler = _context.Spelers.FirstOrDefault(sp => sp.DeviceId == s.DeviceId);
+
+            if (speler == null)
+            {
+                _context.Spelers.Add(s);
+                _context.SaveChanges();
+                return s;
+
+            }
+
+            else return null;
+
         }
 
         public Speler GetSpeler(int id)
