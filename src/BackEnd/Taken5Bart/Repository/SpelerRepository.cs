@@ -34,7 +34,7 @@ namespace Repository.T5B
 
         public Speler GetSpelerOnDevice(string DeviceID)
         {
-            return _context.Spelers.SingleOrDefault(g => g.DeviceId == DeviceID);
+            return _context.Spelers.FirstOrDefault(g => g.DeviceId == DeviceID);
         }
 
  
