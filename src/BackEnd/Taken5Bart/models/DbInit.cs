@@ -21,15 +21,15 @@ namespace Models.T5B
                     new Locatie()
                     {
                         Naam = "Stadsfeestzaal",
-                        Latitude = 51.229792f,
-                        Longitude = 4.414246f
+                        Latitude = 51.229772f,
+                        Longitude = 4.416698f
                     },
 
                     new Locatie()
                     {
                         Naam = "Het steen",
-                        Latitude = 51.230709f,
-                        Longitude = 4.415490f
+                        Latitude = 51.229812f,
+                        Longitude = 4.414640f
                     },
 
                     new Locatie()
