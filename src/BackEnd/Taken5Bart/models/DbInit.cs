@@ -20,16 +20,16 @@ namespace Models.T5B
                 {
                     new Locatie()
                     {
-                        Naam = "VlaamseKaai",
-                        Latitude = 51.209675f,
-                        Longitude = 4.3884186f
+                        Naam = "Stadsfeestzaal",
+                        Latitude = 51.229792f,
+                        Longitude = 4.414246f
                     },
 
                     new Locatie()
                     {
-                        Naam = "Stadsfeestzaal",
-                        Latitude = 51.2178361f,
-                        Longitude = 4.4091902f
+                        Naam = "Het steen",
+                        Latitude = 51.230709f,
+                        Longitude = 4.415490f
                     },
 
                     new Locatie()
