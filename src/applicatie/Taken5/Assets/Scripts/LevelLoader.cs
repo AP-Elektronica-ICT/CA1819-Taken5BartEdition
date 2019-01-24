@@ -36,15 +36,12 @@ public class LevelLoader : MonoBehaviour
         }
         else
         {
-            modeIndex = dropdown.value - 1;
+            modeIndex = dropdown.value;
 
 
             switch (modeIndex)
             {
-                case 0:
-                    //vlaamsekaai
-                    nextlevel = 12;
-                    break;
+
 
                 case 1:
                     //stadsfeestzaal - quiz
@@ -52,13 +49,13 @@ public class LevelLoader : MonoBehaviour
                     break;
 
                 case 2:
-                    //Kathedraal
+                    //Kathedraal - find the difference
                     nextlevel = 11;
                     break;
 
                 case 3:
                     //vleaykensgang
-                    nextlevel = 10;
+                    nextlevel = 15;
                     break;
 
                 case 4:
@@ -76,11 +73,16 @@ public class LevelLoader : MonoBehaviour
                     nextlevel = 10;
                     break;
 
+               
                 case 7:
-                    // havenhuis
-                    nextlevel = 10;
+                    // meir - AR letterGame
+                    nextlevel = 12;
                     break;
 
+                case 8:
+                    // havenhuis - Mastermind
+                    nextlevel = 16;
+                    break;
             }
             Info.loadlevel = nextlevel;
             ChangeGameMode(_api);
@@ -93,7 +95,7 @@ public class LevelLoader : MonoBehaviour
     public void ChangeGameMode(APICaller apicaller)
     {
         Debug.Log("changegamemode");
-        StartCoroutine(apicaller.Get("team/" + Info.TeamId+ "/" + Info.spelerId + "/changegamemode", EndGameAction));
+        StartCoroutine(apicaller.Get2("team/" + Info.TeamId+ "/" + Info.spelerId + "/changegamemode", EndGameAction));
 
     }
 
@@ -111,8 +113,8 @@ public class LevelLoader : MonoBehaviour
         {
             Debug.Log("score/" + Info.TeamId + "/" + locatienaam + "/" + score);
 
-            StartCoroutine(API.Get("score/" + Info.TeamId + "/" + locatienaam + "/" + score, donothing));
-            StartCoroutine(API.Get("team/" + Info.TeamId + "/nextpuzzel",  donothing));
+            StartCoroutine(API.Get2("score/" + Info.TeamId + "/" + locatienaam + "/" + score, donothing));
+            StartCoroutine(API.Get2("team/" + Info.TeamId + "/nextpuzzel",  donothing));
         }
         EndGameAction(json);
     }   

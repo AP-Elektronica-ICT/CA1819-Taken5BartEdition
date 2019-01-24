@@ -1,4 +1,5 @@
 ﻿using SimpleJSON;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,15 +19,21 @@ public class Antwoord : MonoBehaviour {
     public Image correct;
     public Image wrong;
 
-    public int navLevelID;
-
     private APICaller _api;
     private bool _updating;
+    DateTime starttijd;
+    LevelLoader levelLoader;
+    int guesses;
 
     // Use this for initialization
     void Start () {
-        Info.TeamId = 2;
+        guesses = 0;
+        //Info.TeamId = 2;
         _api = gameObject.AddComponent<APICaller>();
+        levelLoader = gameObject.AddComponent<LevelLoader>();
+        starttijd = DateTime.Now;
+
+
         StartCoroutine(_api.Put("Team/" + Info.TeamId + "/SetActivePuzzel?reset=false",new JSONObject(), result));
         _updating = true;
         txtAntwoord.text = opl.ToUpper();
@@ -67,7 +74,7 @@ public class Antwoord : MonoBehaviour {
         if (!_updating)
         {
             _updating = true;
-            StartCoroutine(_api.Get("Team/" + Info.TeamId + "/ActivePuzzel", result));
+            StartCoroutine(_api.Get2("Team/" + Info.TeamId + "/ActivePuzzel", result));
         }
     }
 
@@ -80,6 +87,7 @@ public class Antwoord : MonoBehaviour {
 	public void Answer()
     {
         btnTryAnswer.gameObject.SetActive(false);
+        guesses++;
         string user = inAntwoord.text.ToLower();
         if(opl == user)
         {
@@ -103,7 +111,26 @@ public class Antwoord : MonoBehaviour {
     }
     void backToNav(string json)
     {
-        LevelLoader l = gameObject.AddComponent<LevelLoader>();
-        l.LoadLevel(navLevelID);
+        var timeresult = (DateTime.Now - starttijd).Minutes;
+        float finalResult = 0;
+        if (timeresult < 3)
+        {
+            finalResult = 10;
+        }
+        else if (timeresult < 8)
+        {
+            finalResult = 13 - timeresult;
+        }
+        else if (timeresult < 13)
+        {
+            finalResult = 5 - ((timeresult - 8) * 0.5f);
+        }
+        else
+        {
+            finalResult = 0;
+        }
+        finalResult = finalResult - (guesses * 0.25f);
+        Debug.Log("all found");
+        levelLoader.ChangeGameModeEndOfGame(_api, "meir", finalResult);
     }
 }

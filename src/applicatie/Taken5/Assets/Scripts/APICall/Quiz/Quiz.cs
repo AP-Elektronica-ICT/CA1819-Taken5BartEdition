@@ -80,7 +80,7 @@ public class Quiz : MonoBehaviour
         url = "quiz/" + count;
         Debug.Log(url);
         WWW www = new WWW(url);
-        StartCoroutine(api.Get(url, ActionGet));
+        StartCoroutine(api.Get2(url, ActionGet));
 
     }
 

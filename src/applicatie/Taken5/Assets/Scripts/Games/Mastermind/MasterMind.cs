@@ -1,4 +1,5 @@
 ﻿using SimpleJSON;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,16 @@ public class MasterMind : MonoBehaviour {
 
     private bool _updating;
     private APICaller _api;
+    DateTime starttijd;
+    LevelLoader levelLoader;
+    int guesses;
 
     // Use this for initialization
     void Start () {
+        _api = gameObject.AddComponent<APICaller>();
+        levelLoader = gameObject.AddComponent<LevelLoader>();
+        starttijd = DateTime.Now;
+
         _updating = false;
         btnTryAnswer.gameObject.SetActive(true);
         _api = gameObject.AddComponent<APICaller>();
@@ -38,6 +46,12 @@ public class MasterMind : MonoBehaviour {
             showResult(result);
             */
             var url = "MasterMind/" + Info.TeamId.ToString() + "/Allfound";
+            string current = "";
+            current += GameObject.Find("c1").GetComponent<color>().SelecctedColorId.ToString();
+            current += GameObject.Find("c2").GetComponent<color>().SelecctedColorId.ToString();
+            current += GameObject.Find("c3").GetComponent<color>().SelecctedColorId.ToString();
+            current += GameObject.Find("c4").GetComponent<color>().SelecctedColorId.ToString();
+            Debug.Log(current);
             _api.ApiGet(url, Allfound);
             
         }
@@ -49,7 +63,8 @@ public class MasterMind : MonoBehaviour {
         if(json == "true")
         {
             Debug.Log("all found, ending game");
-            backToNav(" ");
+            var url = "MasterMind/" + Info.TeamId.ToString();
+            _api.ApiGet(url, backToNav);
         }
         StartCoroutine(resetUpdate());
     }
@@ -75,8 +90,24 @@ public class MasterMind : MonoBehaviour {
 
     void backToNav(string json)
     {
-        LevelLoader l = gameObject.AddComponent<LevelLoader>();
-        l.LoadLevel(navLevelID);
+        var N = new SimpleJSON.JSONObject();
+        var timeresult = (DateTime.Now - starttijd).Minutes;
+        float finalResult = 0;
+        if (timeresult < 3)
+        {
+            finalResult = 100;
+        }
+        else if (timeresult < 10)
+        {
+            finalResult = 103 - timeresult;
+        }
+        else
+        {
+            finalResult = 85 - ((timeresult - 10) * 0.5f);
+        }
+        finalResult = (finalResult - (guesses * 0.25f))/10;
+        Debug.Log("all found");
+        levelLoader.ChangeGameModeEndOfGame(_api, "havenhuis", finalResult);
     }
 
     public void showResult(string json)

@@ -13,23 +13,21 @@ public class APICaller : MonoBehaviour {
     string baseLocalURL = "http://localhost:1907/api/";
     public string json;
     public bool isBusy;
-    bool debug = true;
+    bool debug = false;
 
-    public string ApiGet(string requestUrl, object getScores)
+    public void ApiGet(string requestUrl)
     {
         isBusy = true;
         json = "-2";
-        StartCoroutine(Get(requestUrl, this.DoNothing));
-        return json;
+        StartCoroutine(Get2(requestUrl, this.DoNothing));
     }
      //https://answers.unity.com/questions/228150/hold-or-wait-while-coroutine-finishes.html
-    public string ApiGet(string requestUrl, Action<string> doLast)
+    public void ApiGet(string requestUrl, Action<string> doLast)
     {
         json = "-2"; //-2 = niets opgehaald
-        StartCoroutine(Get(requestUrl, doLast));
-        return json;
+        StartCoroutine(Get2(requestUrl, doLast));
     }
-    
+    /*
     public IEnumerator Get(string requestUrl, Action<string> doLast)
     {
         string url;
@@ -56,14 +54,46 @@ public class APICaller : MonoBehaviour {
                 json = "-1";
             isBusy = false;
             doLast(json);
-            //Debug.Log("Get Done");
+            Debug.Log("Get Done");
             www.Dispose();
-            
         }
 
-
-
     }
+    */
+    public IEnumerator Get2(string requestUrl, Action<string> doLast)
+    {
+        string url;
+        if (debug)
+        {
+            url = baseLocalURL + requestUrl;
+        }
+        else
+        {
+            url = baseURL + requestUrl;
+        }
+        Debug.Log(url);
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+                Debug.Log("Error");
+                json = "-1";
+            }
+            else
+            {
+                var result = www.downloadHandler.text;
+                Debug.Log(result + " k");
+                json = result;
+            }
+            doLast(json);
+            www.Dispose();
+        }
+        Debug.Log("the end of GET");
+    }
+
     public IEnumerator GetEndOfGame(string requestUrl, string locatienaam, double score, APICaller API, Action<string, string, Double, APICaller> doLast)
     {
         string url;
@@ -95,18 +125,16 @@ public class APICaller : MonoBehaviour {
 
         }
     }
-        public string ApiPost(string requestUrl, JSONNode N)
+        public void ApiPost(string requestUrl, JSONNode N)
     {
         json = "-2";
         StartCoroutine(Post(requestUrl, N, this.DoNothing));
-        return json;
     }
 
-    public string ApiPost( string requestUrl, JSONNode N, Action<string> doLast)
+    public void ApiPost( string requestUrl, JSONNode N, Action<string> doLast)
     {
         json = "-2";
         StartCoroutine(Post(requestUrl, N, doLast));
-        return json;
     }
 
     public IEnumerator Post(string requestUrl, JSONNode N, Action<string> doLast)
@@ -150,11 +178,10 @@ public class APICaller : MonoBehaviour {
             req.Dispose();
     }
 
-    public string ApiPut(string requestUrl, JSONNode N)
+    public void ApiPut(string requestUrl, JSONNode N)
     {
         json = "-2";
         StartCoroutine(Post(requestUrl, N, DoNothing));
-        return json;
     }
 
     public IEnumerator Put(string requestUrl, JSONNode N, Action<string> doLast)

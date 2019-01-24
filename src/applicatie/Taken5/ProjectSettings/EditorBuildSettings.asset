@@ -50,4 +50,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NavigationS/TeamList.unity
     guid: 60b2ab589b0c2ca4a8b5e91ea01b9d56
+  - enabled: 1
+    path: Assets/Scenes/Games/ARGames/VlaeykensGame/VlaeykensGame.unity
+    guid: 4ce12133626f922479b2756ec016a36c
+  - enabled: 1
+    path: Assets/Scenes/Games/Mastermind/Mastermind.unity
+    guid: 533274e13d8b9824788ffa02594c77ed
   m_configObjects: {}

@@ -50,7 +50,7 @@ public class Menu_Join : MonoBehaviour {
         }
         else
         {
-            StartCoroutine(api.Get(url, GetTeamResult));
+            StartCoroutine(api.Get2(url, GetTeamResult));
         }
     }
 
@@ -110,7 +110,7 @@ public class Menu_Join : MonoBehaviour {
             levelLoader.LoadLevel(nextLevel);
         }
 
-        StartCoroutine(api.Get(url, NextLevel));
+        StartCoroutine(api.Get2(url, NextLevel));
         
     }
 

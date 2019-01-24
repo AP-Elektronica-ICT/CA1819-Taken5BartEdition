@@ -12,6 +12,7 @@ public class color : MonoBehaviour {
         UnityEngine.Color.yellow,
         new Color(255,93,0), //orange
         UnityEngine.Color.black,
+        UnityEngine.Color.gray,
     };
     int counter;
 
@@ -19,8 +20,9 @@ public class color : MonoBehaviour {
     public UnityEngine.Color SelecctedColor { get { return colorList[counter]; } }
     public int SelecctedColorId { get { return counter; } }
     public Image panel;
-	// Use this for initialization
-	void Start () {
+    
+                                       // Use this for initialization
+    void Start () {
         counter = (int)(Random.value * (colorList.Count-1));
         panel.color = colorList[counter];
     }
